@@ -1,1 +1,1 @@
-An appointment management system
+PeakSched: Appointment management system
