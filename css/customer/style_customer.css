@@ -1,0 +1,39 @@
+body {
+    background: white;
+}
+
+.box-area {
+    width: 930px;
+    background-color: white;
+}
+
+.right-box {
+    padding: 40px 30px 40px 40px;
+    background-color: #F1F3FB;
+}
+
+
+.input-field,
+.google {
+    border-color: rgb(207, 207, 207);
+}
+
+::placeholder {
+    font-size: 16px;
+}
+
+@media only screen and (max-wifht: 768px) {
+    .box-area {
+        margin: 0 10px;
+
+    }
+
+    .left-box {
+        height: 100px;
+        overflow: hidden;
+    }
+
+    .right-box {
+        padding: 20px;
+    }
+}
