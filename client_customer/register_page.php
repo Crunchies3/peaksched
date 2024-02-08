@@ -26,7 +26,7 @@
                     <div class="header-text mb-4">
                         <h1>Create Account</h1>
                     </div>
-                    <form class="row g-2">
+                    <form class="row g-2" method="post">
                         <div class="col-md-6 mb-2">
                             <input type="text" class="form-control input-field" placeholder="First name" aria-label="First name">
                         </div>
@@ -51,7 +51,7 @@
                             </label>
                         </div>
                         <div class="input-group mb-3">
-                            <button class="btn btn-lg w-100 fs-6" style="background-color: #1B75BB; color: whitesmoke; font-weight: 600;">Sign
+                            <button type="submit" name="submit" class="btn btn-lg w-100 fs-6" style="background-color: #1B75BB; color: whitesmoke; font-weight: 600;">Sign
                                 In</button>
                         </div>
                         <div style="text-align: center;">
