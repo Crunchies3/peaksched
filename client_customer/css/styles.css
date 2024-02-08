@@ -15,7 +15,7 @@ body {
 
 .input-field,
 .google {
-    border-color: rgb(207, 207, 207);
+    border-color: rgb(229, 229, 229);
 }
 
 ::placeholder {
@@ -36,4 +36,13 @@ body {
     .right-box {
         padding: 20px;
     }
+}
+
+.form-check .form-check-input {
+    float: left;
+    margin-left: -1.2em;
+}
+
+.lbl-chk {
+    margin-left: .2rem;
 }
