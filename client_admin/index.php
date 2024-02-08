@@ -72,7 +72,7 @@
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
                         <i class="bi bi-gear"></i>
-                        <span>SETTINGS</span>
+                        <span>Setings</span>
                     </a>
                 </li>
                 <!-- <li class="sidebar-item">
