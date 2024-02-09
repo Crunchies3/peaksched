@@ -56,7 +56,7 @@
                         <div class="form-check mb-4">
                             <input type="checkbox" id="formCheck" class="form-check-input chk-box">
                             <label class="lbl-chk">
-                                <small>I agree to the <a href="#">terms of services</a> and <a href="#">privacy</a>
+                                <small>I agree to the <a href="#" style="color:#343A40;">terms of services</a> and <a href="#" style="color:#343A40;">privacy</a>
                                     policy
                                 </small>
                             </label>
