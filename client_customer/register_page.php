@@ -182,7 +182,7 @@ function insertCustomerDetailstoDB($customerId, $firstName, $lastName, $emailAdd
 
             <div class="col-lg-6 d-flex justify-content-center align-items-center flex-column left-box">
                 <div class="feature-image mb-3">
-                    <img src="./images/twin-peaks-logo.png" alt="Twin Peaks" style="width: 250px;">
+                    <img src="./images/twin-peaks-logo.png" alt="Twin Peaks" style="width: 250px;" class="mt-4 mb-3">
                 </div>
             </div>
 
