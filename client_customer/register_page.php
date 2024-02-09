@@ -145,6 +145,7 @@ function insertCustomerDetailstoDB($customerId, $firstName, $lastName, $emailAdd
         $stmt->bind_param("ssssss", $customerId, $firstName, $lastName, $emailAddress, $mobileNumber, $hashedPassword);
         $stmt->execute();
         $stmt->close();
+        header("location: index.php");
     } catch (Exception $e) {
         echo 'Caught exception: ',  $e->getMessage(), "\n";
     }
