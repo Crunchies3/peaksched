@@ -169,9 +169,9 @@ function insertCustomerDetailstoDB($customerId, $firstName, $lastName, $emailAdd
 <body>
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
 
-        <div class="row rounded-5 p-3 bg-white box-area">
+        <div class="row rounded-5 box-area shadow-lg">
 
-            <div class="col-lg-6 d-flex justify-content-center align-items-center flex-column left-box" style="background: #1B75BB;">
+            <div class="col-lg-6 d-flex justify-content-center align-items-center flex-column left-box" style="background: #FDFDFD;">
                 <div class="feature-image mb-3">
                     <img src="./images/twin-peaks-logo.png" alt="Twin Peaks" style="width: 250px;">
                 </div>
