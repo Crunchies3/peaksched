@@ -2,7 +2,7 @@
 
 require_once "./php/config.php";
 
-$firstName = $lastName = $emailAddress = $mobileNumber = $password = $confirmPassword = "";
+$firstName = $lastName = $emailAddress = $mobileNumber = $password = $confirmPassword = $checkbox =  $customerId = $hashedPassword = "";
 
 // variables that will hold error messages
 $firstName_err = $lastName_err = $emailAddress_err = $mobileNumber_err = $password_err = $confirmPassword_err = $checkBox_err = "";
@@ -13,12 +13,17 @@ validateInputs();
 
 function validateInputs()
 {
-
     global $firstName_err, $lastName_err, $emailAddress_err, $mobileNumber_err, $password_err, $confirmPassword_err, $checkBox_err;
-    global $firstName, $lastName, $emailAddress, $mobileNumber, $password, $confirmPassword;
+    global $firstName, $lastName, $emailAddress, $mobileNumber, $password, $confirmPassword, $checkbox, $customerId, $hashedPassword;
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         return;
+    }
+
+    $customerId = rand(100000, 200000);
+
+    while (!isCustomerIdUnique($customerId)) {
+        $customerId = rand(100000, 200000);
     }
 
     // validate firstname
@@ -34,12 +39,14 @@ function validateInputs()
         $lastName_err = "Please enter your last name.";
     }
 
-    $emailAddress = trim($_POST["email"]);
-
-    if (empty($emailAddress)) {
+    if (empty(trim($_POST["email"]))) {
         $emailAddress_err = "Please enter your email address.";
-    } else if (!filter_var($emailAddress, FILTER_VALIDATE_EMAIL)) {
+    } else if (!filter_var(trim($_POST["email"]), FILTER_VALIDATE_EMAIL)) {
         $emailAddress_err = "Please enter a valid email address";
+    } else if (!isEmailUnique(trim($_POST["email"]))) {
+        $emailAddress_err = "Email already exist";
+    } else {
+        $emailAddress = trim($_POST["email"]);
     }
 
     $mobileNumber = trim($_POST["mobile"]);
@@ -56,7 +63,14 @@ function validateInputs()
         $password_err = "Please enter a password.";
     } else if (strlen($password) < 8) {
         $password_err = "Please enter a password with atleast 8 characters.";
-    } else if (true) {
+    } elseif (!preg_match("#[0-9]+#", $password)) {
+        $password_err = "Your Password Must Contain At Least 1 Number!";
+    } elseif (!preg_match("#[A-Z]+#", $password)) {
+        $password_err = "Your Password Must Contain At Least 1 Capital Letter!";
+    } elseif (!preg_match("#[a-z]+#", $password)) {
+        $password_err = "Your Password Must Contain At Least 1 Lowercase Letter!";
+    } else {
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     }
 
     $confirmPassword = trim($_POST["confirmPassword"]);
@@ -69,9 +83,73 @@ function validateInputs()
 
     if (!isset($_POST['checkBox'])) {
         $checkBox_err = "Please Agree before submitting";
+    } else {
+        $checkbox = 'checked';
+    }
+
+    if (empty($firstName_err) && empty($lastName_err) && empty($emailAddress_err) && empty($mobileNumber_err) && empty($password_err) && empty($confirmPassword_err) && empty($checkBox_err)) {
+        insertCustomerDetailstoDB($customerId, $firstName, $lastName, $emailAddress, $mobileNumber, $hashedPassword);
     }
 }
 
+function isEmailUnique($email)
+{
+    global $conn;
+
+    try {
+        $stmt = $conn->prepare("SELECT * FROM tbl_customer WHERE email = ?");
+        $stmt->bind_param("s", $email);
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $stmt->close();
+            return false;
+        }
+        $stmt->close();
+        return true;
+    } catch (Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
+}
+
+function isCustomerIdUnique($customerId)
+{
+    global $conn;
+
+    try {
+        $stmt = $conn->prepare("SELECT * FROM tbl_customer WHERE customerid = ?");
+        $stmt->bind_param("s", $customerId);
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $stmt->close();
+            return false;
+        }
+        $stmt->close();
+        return true;
+    } catch (Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
+}
+
+function insertCustomerDetailstoDB($customerId, $firstName, $lastName, $emailAddress, $mobileNumber, $hashedPassword)
+{
+    global $conn;
+
+    try {
+        $stmt = $conn->prepare("INSERT INTO tbl_customer (customerid, firstname, lastname, email, mobilenumber, password) VALUES (?,?,?,?,?,?)");
+        $stmt->bind_param("ssssss", $customerId, $firstName, $lastName, $emailAddress, $mobileNumber, $hashedPassword);
+        $stmt->execute();
+        $stmt->close();
+    } catch (Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
+    $conn->close();
+}
 ?>
 
 
@@ -129,19 +207,19 @@ function validateInputs()
                             </div>
                         </div>
                         <div class="mb-2 col-12">
-                            <input name="password" type="password" class="form-control fs-6 input-field <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" placeholder="Password">
+                            <input name="password" type="password" class="form-control fs-6 input-field <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" placeholder="Password" value="<?php echo $password; ?>">
                             <div class="invalid-feedback">
                                 <?php echo $password_err; ?>
                             </div>
                         </div>
                         <div class="mb-2 col-12">
-                            <input name="confirmPassword" type="password" class="form-control fs-6 input-field <?php echo (!empty($confirmPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Confirm Password">
+                            <input name="confirmPassword" type="password" class="form-control fs-6 input-field <?php echo (!empty($confirmPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Confirm Password" value="<?php echo $confirmPassword; ?>">
                             <div class="invalid-feedback">
                                 <?php echo $confirmPassword_err; ?>
                             </div>
                         </div>
                         <div class="form-check mb-4">
-                            <input name="checkBox" type="checkbox" id="formCheck" class="form-check-input chk-box <?php echo (!empty($checkBox_err)) ? 'is-invalid' : ''; ?>">
+                            <input name="checkBox" type="checkbox" id="formCheck" class="form-check-input chk-box <?php echo (!empty($checkBox_err)) ? 'is-invalid' : ''; ?>" <?php echo $checkbox; ?>>
                             <label class="lbl-chk">
                                 <small>I agree to the <a href="#">terms of services</a> and <a href="#">privacy</a>
                                     policy
