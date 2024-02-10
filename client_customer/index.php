@@ -15,31 +15,40 @@ require_once './php_backend/login_account.php';
 </head>
 
 <body>
+
+    <div class="left-section">
+        <div class="background-white"></div>
+    </div>
+    <div class="right-section">
+        <div class="background-blue"></div>
+    </div>
+
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
 
-        <div class="row rounded-5 p-3 bg-white box-area">
+        <div class="row box-area shadow-lg">
 
-            <div class="col-md-6 d-flex justify-content-center align-items-center flex-column left-box" style="background: #1B75BB;">
+            <div class="col-lg-6 d-flex justify-content-center align-items-center flex-column left-box">
                 <div class="feature-image mb-3">
-                    <img src="./images/twin-peaks-logo.png" alt="Twin Peaks" style="width: 250px;">
+                    <img src="./images/twin-peaks-logo.png" alt="Twin Peaks" style="width: 250px;" class="mt-4 mb-3">
                 </div>
             </div>
 
-            <div class="col-md-6 right-box">
-
+            <div class="col-lg-6 right-box">
                 <div class="row align-items-center">
-                    <div class="header-text mb-4">
-                        <h1>Log In</h1>
+                    <div class="header-text mt-5">
+                        <h1 class="title">Welcome Back</h1>
                     </div>
-
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
+                    <div class="header-text mb-4">
+                        <small class="sub-title fs-7">The <span style="color: #124F6F; ">TwinPeaks</span> is excited to see you again!</small>
+                    </div>
+                    <form class="g-2" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
                         <div class="input-group mb-3">
                             <input name="email" type="email" class="form-control input-field <?php echo (!empty($emailAddress_err) || !empty($login_err)) ? 'is-invalid' : ''; ?>" placeholder="Email Adress" value="<?php echo $emailAddress; ?>">
                             <div class="invalid-feedback">
                                 <?php echo $emailAddress_err; ?>
                             </div>
                         </div>
-                        <div class="input-group mb-2">
+                        <div class="input-group mb-3">
                             <input name="password" type="password" class="form-control input-field <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" placeholder="password" value="<?php echo $password; ?>">
                             <div class="invalid-feedback">
                                 <?php echo $password_err; ?>
@@ -53,12 +62,12 @@ require_once './php_backend/login_account.php';
                                 </label>
                             </div>
                             <div class="forgot">
-                                <small><a href="#" style="text-decoration: none; color: #1B75BB;">Forgot
+                                <small><a href="#" style="text-decoration: underlined; color: #124F6F; font-weight: bold;">Forgot
                                         Password?</a></small>
                             </div>
                         </div>
-                        <div class="input-group mb-3">
-                            <button class="btn btn-lg w-100 fs-6" style="background-color: #1B75BB; color: whitesmoke; font-weight: 600;">Sign
+                        <div class="input-group mb-5">
+                            <button class="btn btn-lg w-100 fs-6" style="background-color: #124F6F; color: whitesmoke; font-weight: 600;">Sign
                                 In</button>
                         </div>
                         <!-- Tanawon kung sayon lang ba ang google login -->
@@ -68,7 +77,7 @@ require_once './php_backend/login_account.php';
                                 Google</small></button>
                             </div> -->
                         <div class="row" style="text-align: center;">
-                            <small>Don't have an account? <a href="./register_page.php" style="text-decoration: none; color: #1B75BB;">Sign
+                            <small class="signin-now">Don't have an account? <a href="./register_page.php" style="text-decoration: none; color: #124F6F;">Sign
                                     Up!</a></small>
                         </div>
                     </form>

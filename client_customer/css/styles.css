@@ -8,6 +8,7 @@ body {
 
 .box-area {
     width: 1000px;
+    border-radius: 20px;
 }
 
 .right-box {
@@ -27,11 +28,12 @@ body {
 
 .input-field,
 .google {
-    border-color: rgb(229, 229, 229);
+    border-color: rgb(203, 203, 203);
 }
 
-::placeholder {
+.input-field::placeholder {
     font-size: 16px;
+    color: #9c9c9c;
 }
 
 @media only screen and (max-wifht: 768px) {
