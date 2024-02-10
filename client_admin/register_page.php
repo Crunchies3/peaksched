@@ -3,6 +3,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,31 +14,34 @@
     <script src="https://kit.fontawesome.com/3a742f337b.js" crossorigin="anonymous"></script>
     <title>PeakSched</title>
 </head>
+
 <body>
 
     <div class="left-section">
         <div class="background-white"></div>
     </div>
-    <div class="right-section"> 
+    <div class="right-section">
         <div class="background-blue"></div>
     </div>
 
+
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
 
-        <div class="row rounded-5 p-3 bg-white box-area">
+        <div class="row box-area shadow-lg">
 
-            <div class="col-md-6 d-flex justify-content-center align-items-center flex-column left-box" style="background: white;">
-            <h1>A <span style="color: #194257;">clean</span> start is a good start</h1>
+            <div class="col-lg-6 d-flex justify-content-center align-items-center flex-column left-box">
                 <div class="feature-image mb-3">
-                    <img src="./images/twin-peaks-logo.png" alt="Twin Peaks" style="width: 250px;">
+                    <img src="./images/twin-peaks-logo.png" alt="Twin Peaks" style="width: 250px;" class="mt-4 mb-3">
                 </div>
             </div>
 
-            <div class="col-md-6 right-box">
+            <div class="col-lg-6 right-box">
                 <div class="row align-items-center">
-                    <div class="header-text mb-4" style="text-align: center; font-weight: bold;">
-                        <h1>Join Us</h1>
-                        <p style="margin: 0;">Be part of <span style="color: #194257;">TWIN PEAKS</span> community</p>
+                    <div class="header-text mb-1">
+                        <h1 class="title">Sign Up</h1>
+                    </div>
+                    <div class="header-text mb-3">
+                        <small class="sub-title">Clean Home, Clear Mind: Get Started!</small>
                     </div>
                     <form class="row g-2" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
                         <div class="col-md-6 mb-2">
@@ -64,22 +68,14 @@
                                 <?php echo $mobileNumber_err; ?>
                             </div>
                         </div>
-                        <div class="input-group mb-2 col-12" id="show_hide_password">
+                        <div class="mb-2 col-12">
                             <input name="password" type="password" class="form-control fs-6 input-field <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" placeholder="Password" value="<?php echo $password; ?>">
-                            <div class="input-group-text">
-                            <a href="#" id="togglePassword1">
-                            <i class="fa-solid fa-eye-slash" aria-hidden="true"></i></a>
-                            </div>
                             <div class="invalid-feedback">
                                 <?php echo $password_err; ?>
                             </div>
                         </div>
-                        <div class="input-group mb-2 col-12" id="show_hide_confirm_password">
+                        <div class="mb-2 col-12">
                             <input name="confirmPassword" type="password" class="form-control fs-6 input-field <?php echo (!empty($confirmPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Confirm Password" value="<?php echo $confirmPassword; ?>">
-                            <div class="input-group-text">
-                            <a href="#" id="togglePassword2">
-                            <i class="fa-solid fa-eye-slash" aria-hidden="true"></i></a>
-                            </div>
                             <div class="invalid-feedback">
                                 <?php echo $confirmPassword_err; ?>
                             </div>
@@ -96,51 +92,51 @@
             </div>
         </div>
     </div>
-    
+
     <!-- only god knows how this works -->
     <script>
-class PasswordToggle {
-    constructor(containerID, toggleID) {
-        this.container = document.getElementById(containerID);
-        this.toggleID = toggleID;
+        class PasswordToggle {
+            constructor(containerID, toggleID) {
+                this.container = document.getElementById(containerID);
+                this.toggleID = toggleID;
 
-        if (!this.container) {
-            console.error(`Container not found with ID: ${containerID}`);
-            return;
+                if (!this.container) {
+                    console.error(`Container not found with ID: ${containerID}`);
+                    return;
+                }
+
+                this.passwordInput = this.container.querySelector('input[type="password"]');
+                this.eyeIcon = this.container.querySelector(`#${toggleID} i`);
+
+                if (!this.passwordInput) {
+                    console.error("Password input not found. Check HTML structure.");
+                    return;
+                }
+
+                this.setupEventListeners();
+            }
+
+            setupEventListeners() {
+                this.eyeIcon.addEventListener("click", () => this.toggleVisibility());
+            }
+
+            toggleVisibility() {
+                if (this.passwordInput.type === "password") {
+                    this.passwordInput.type = "text";
+                    this.eyeIcon.classList.remove("fa-eye-slash");
+                    this.eyeIcon.classList.add("fa-eye");
+                } else {
+                    this.passwordInput.type = "password";
+                    this.eyeIcon.classList.remove("fa-eye");
+                    this.eyeIcon.classList.add("fa-eye-slash");
+                }
+            }
         }
 
-        this.passwordInput = this.container.querySelector('input[type="password"]');
-        this.eyeIcon = this.container.querySelector(`#${toggleID} i`);
-
-        if (!this.passwordInput) {
-            console.error("Password input not found. Check HTML structure.");
-            return;
-        }
-
-        this.setupEventListeners();
-    }
-
-    setupEventListeners() {
-        this.eyeIcon.addEventListener("click", () => this.toggleVisibility());
-    }
-
-    toggleVisibility() {
-        if (this.passwordInput.type === "password") {
-            this.passwordInput.type = "text";
-            this.eyeIcon.classList.remove("fa-eye-slash");
-            this.eyeIcon.classList.add("fa-eye");
-        } else {
-            this.passwordInput.type = "password";
-            this.eyeIcon.classList.remove("fa-eye");
-            this.eyeIcon.classList.add("fa-eye-slash");
-        }
-    }
-}
-
-// Initialize for each password input
-const passwordToggle1 = new PasswordToggle('show_hide_password', 'togglePassword1');
-const passwordToggle2 = new PasswordToggle('show_hide_confirm_password', 'togglePassword2');
-</script>
+        // Initialize for each password input
+        const passwordToggle1 = new PasswordToggle('show_hide_password', 'togglePassword1');
+        const passwordToggle2 = new PasswordToggle('show_hide_confirm_password', 'togglePassword2');
+    </script>
 
 </body>
 
