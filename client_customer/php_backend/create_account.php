@@ -38,7 +38,8 @@ function validateInputs()
         $lastName_err = "Please enter your last name.";
     }
 
-    $emailAddress_err = $customerAccount->validateEmail(trim($_POST["email"]));
+    $emailAddress = trim($_POST["email"]);
+    $emailAddress_err = $customerAccount->validateEmail($emailAddress);
     if (empty($emailAddress_err)) {
         $emailAddress = $customerAccount->getEmail();
     }
