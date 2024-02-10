@@ -6,9 +6,9 @@ abstract class UserAccount
     private $hashedPassword;
 
 
-    public function login()
-    {
-    }
+    abstract public function login($email, $password);
+    abstract public function isIdUnique($id);
+    abstract public function isEmailUnique($email);
 
     public function validatePassword($password)
     {
@@ -51,10 +51,6 @@ abstract class UserAccount
     {
         return $this->hashedPassword;
     }
-
-
-    abstract public function isIdUnique($id);
-    abstract public function isEmailUnique($email);
 }
 
 class CustomerAccount extends UserAccount
@@ -65,6 +61,37 @@ class CustomerAccount extends UserAccount
     {
         $this->conn = $conn;
     }
+
+    public function login($email, $password)
+    {
+        try {
+
+            $stmt = $this->conn->prepare("SELECT * FROM tbl_customer WHERE email = ?");
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $hashedPassword = $row["password"];
+                    if (!password_verify($password, $hashedPassword)) {
+                        return "Incorrect email or password";
+                    } else {
+                        session_start();
+                        $_SESSION["loggedin"] = true;
+                        $_SESSION["customerid"] = $row["customerid"];
+
+                        header("location: ./dashboard.php");
+                    }
+                }
+            } else {
+                return "Incorrect email or password";
+            }
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
 
     public function register($customerId, $firstName, $lastName, $emailAddress, $mobileNumber, $hashedPassword)
     {
