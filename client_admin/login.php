@@ -1,3 +1,7 @@
+<?php
+require_once "./php/backend_login_page.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,66 +40,74 @@
                         <h1 style="margin: 0;">Welcome Back</h1>
                         <p style="margin: 0;">The <span style="color: #194257;">TWIN PEAKS</span> community is excited to see you again!</p>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control form-control-lg fs-6 input-field" placeholder="Email Adress">
-                    </div>
-                    <div class="input-group mb-2" id ="show_hide_password">
-                        <input type="password" class="form-control form-control-lg fs-6 input-field" placeholder="Password">
-                        <div class="input-group-text">
-                            <a href="#" id="togglePassword"><i class="fa-solid fa-eye-slash" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                    <div class="input-group mb-4 d-flex justify-content-between">
-                        <div class="form-check">
-                            <input type="checkbox" id="formCheck" class="form-check-input chk-box">
-                            <label for="formCheck" class="form-check-label">
-                                <small>Remember Me</small>
-                            </label>
-                        </div>
-                        <div class="forgot">
-                            <small><a href="#" style="text-decoration: none; color: #343A40;">Forgot
-                                    Password?</a></small>
-                        </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <button class="btn btn-lg w-100 fs-6" style="background-color: #194257; color: whitesmoke; font-weight: 600;">Sign
-                            In</button>
-                    </div>
 
-                    <!-- Tanawon kung sayon lang ba ang google login -->
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
+                        <div class="input-group mb-3">
+                            <input name="email" type="text" class="form-control input-field <?php echo (!empty($emailAddress_err) || !empty($login_err)) ? 'is-invalid' : ''; ?>" placeholder="Email Adress" value="<?php echo $emailAddress; ?>">
+                            <div class="invalid-feedback">
+                                <?php echo $emailAddress_err; ?>
+                            </div>
+                        </div>
+                        <div class="input-group mb-2" id="show_hide_password">
+                            <input name="password" type="password" class="form-control input-field <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" placeholder="Password" value="<?php echo $password; ?>">
+                            <div class="input-group-text">
+                                <a href="#" id="togglePassword"><i class="fa-solid fa-eye-slash" aria-hidden="true"></i></a>
+                            </div>
+                            <div class="invalid-feedback">
+                                <?php echo $password_err; ?>
+                            </div>
+                        </div>
+                        <div class="input-group mb-4 d-flex justify-content-between">
+                            <div class="form-check">
+                                <input type="checkbox" id="formCheck" class="form-check-input chk-box">
+                                <label for="formCheck" class="form-check-label">
+                                    <small>Remember Me</small>
+                                </label>
+                            </div>
+                            <div class="forgot">
+                                <small><a href="#" style="text-decoration: none; color: #343A40;">Forgot
+                                        Password?</a></small>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <button class="btn btn-lg w-100 fs-6" style="background-color: #194257; color: whitesmoke; font-weight: 600;">Sign
+                                In</button>
+                        </div>
 
-                    <!-- <div class="input-group mb-5">
+                        <!-- Tanawon kung sayon lang ba ang google login -->
+
+                        <!-- <div class="input-group mb-5">
                         <button class="btn btn-lg btn-light w-100 fs-6 google"><img src="/assets/images/google.png"
                                 alt="google" style="width: 20px;" class="me-2"><small>Sign in with
                                 Google</small></button>
-                    </div> -->
-                    <div class="row" style="text-align: center;">
-                        <small>Don't have an account? <a href="./register_page.php" style="text-decoration: none; color: #343A40;"><strong style="font-weight: bold;">SignUp!</strong></a></small>
+                            </div> -->
+                        <div class="row" style="text-align: center;">
+                            <small>Don't have an account? <a href="./register_page.php" style="text-decoration: none; color: #343A40;"><strong style="font-weight: bold;">SignUp!</strong></a></small>
+                        </div>
+                    </form>
                 </div>
-
             </div>
         </div>
     </div>
-    </div>
 
-<!-- for hiding and showing password -->
-<!-- cy iseparate lang ni nga script sa lain nga file para mareuse patulon kayong pathing sakoa pag mag include ug laing file -->
-<script>
-    const passwordInput = document.querySelector("#show_hide_password input[type='password']");
-    const eyeIcon = document.querySelector("#show_hide_password i.fa-eye-slash");
+    <!-- for hiding and showing password -->
+    <!-- cy iseparate lang ni nga script sa lain nga file para mareuse patulon kayong pathing sakoa pag mag include ug laing file -->
+    <script>
+        const passwordInput = document.querySelector("#show_hide_password input[type='password']");
+        const eyeIcon = document.querySelector("#show_hide_password i.fa-eye-slash");
 
-document.querySelector("#togglePassword").addEventListener("click", function () {
-    if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        eyeIcon.classList.remove("fa-eye-slash");
-        eyeIcon.classList.add("fa-eye");
-    } else {
-        passwordInput.type = "password";
-        eyeIcon.classList.remove("fa-eye");
-        eyeIcon.classList.add("fa-eye-slash");
-    }
-});
-</script>
+        document.querySelector("#togglePassword").addEventListener("click", function() {
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                eyeIcon.classList.remove("fa-eye-slash");
+                eyeIcon.classList.add("fa-eye");
+            } else {
+                passwordInput.type = "password";
+                eyeIcon.classList.remove("fa-eye");
+                eyeIcon.classList.add("fa-eye-slash");
+            }
+        });
+    </script>
 </body>
 
 </html>
