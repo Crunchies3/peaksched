@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/register_page_styles.css">
+    <script src="https://kit.fontawesome.com/3a742f337b.js" crossorigin="anonymous"></script>
     <title>Login</title>
 </head>
 
@@ -38,8 +39,11 @@
                     <div class="input-group mb-3">
                         <input type="text" class="form-control form-control-lg fs-6 input-field" placeholder="Email Adress">
                     </div>
-                    <div class="input-group mb-2">
-                        <input type="password" class="form-control form-control-lg fs-6 input-field" placeholder="password">
+                    <div class="input-group mb-2" id ="show_hide_password">
+                        <input type="password" class="form-control form-control-lg fs-6 input-field" placeholder="Password">
+                        <div class="input-group-text">
+                            <a href="#" id="togglePassword"><i class="fa-solid fa-eye-slash" aria-hidden="true"></i></a>
+                        </div>
                     </div>
                     <div class="input-group mb-4 d-flex justify-content-between">
                         <div class="form-check">
@@ -73,6 +77,25 @@
         </div>
     </div>
     </div>
+
+<!-- for hiding and showing password -->
+<!-- cy iseparate lang ni nga script sa lain nga file para mareuse patulon kayong pathing sakoa pag mag include ug laing file -->
+<script>
+    const passwordInput = document.querySelector("#show_hide_password input[type='password']");
+    const eyeIcon = document.querySelector("#show_hide_password i.fa-eye-slash");
+
+document.querySelector("#togglePassword").addEventListener("click", function () {
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        eyeIcon.classList.remove("fa-eye-slash");
+        eyeIcon.classList.add("fa-eye");
+    } else {
+        passwordInput.type = "password";
+        eyeIcon.classList.remove("fa-eye");
+        eyeIcon.classList.add("fa-eye-slash");
+    }
+});
+</script>
 </body>
 
 </html>
