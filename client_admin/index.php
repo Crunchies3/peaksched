@@ -80,10 +80,6 @@ require_once "./php/backend_login_page.php";
                             <button class="btn btn-lg w-100 fs-6" style="background-color: #124F6F; color: whitesmoke; font-weight: 600;">Sign
                                 In</button>
                         </div>
-                        <div class="row" style="text-align: center;">
-                            <small class="signup-now">Don't have an account? <a href="./register_page.php" style="text-decoration: none; color: #124F6F;">Sign
-                                    Up!</a></small>
-                        </div>
                     </form>
                 </div>
             </div>
