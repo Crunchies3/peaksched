@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+    header("location: dashboard.php");
+    exit;
+}
+
 require_once './php_backend/login_account.php';
 ?>
 
@@ -10,6 +17,7 @@ require_once './php_backend/login_account.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/styles.css">
+    <script src="https://kit.fontawesome.com/3a742f337b.js" crossorigin="anonymous"></script> <!-- MATA SA PASSWORd -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <title>Login</title>
 </head>
@@ -48,10 +56,15 @@ require_once './php_backend/login_account.php';
                                 <?php echo $emailAddress_err; ?>
                             </div>
                         </div>
-                        <div class="input-group mb-3">
-                            <input name="password" type="password" class="form-control input-field <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" placeholder="password" value="<?php echo $password; ?>">
-                            <div class="invalid-feedback">
-                                <?php echo $password_err; ?>
+                        <div class="input-group mb-2">
+                            <div class="input-group mb-2" id="show_hide_password">
+                                <input name="password" type="password" class="form-control input-field <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" placeholder="Password" value="<?php echo $password; ?>">
+                                <div class="input-group-text">
+                                    <a href="#" id="togglePassword"><i class="fa-solid fa-eye-slash" style="color: #124F6F;" aria-hidden="true"></i></a>
+                                </div>
+                                <div class="invalid-feedback">
+                                    <?php echo $password_err; ?>
+                                </div>
                             </div>
                         </div>
                         <div class="input-group mb-4 d-flex justify-content-end">
@@ -85,6 +98,24 @@ require_once './php_backend/login_account.php';
             </div>
         </div>
     </div>
+
+    <script>
+        const passwordInput = document.querySelector("#show_hide_password input[type='password']");
+        const eyeIcon = document.querySelector("#show_hide_password i.fa-eye-slash");
+
+        document.querySelector("#togglePassword").addEventListener("click", function() {
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                eyeIcon.classList.remove("fa-eye-slash");
+                eyeIcon.classList.add("fa-eye");
+            } else {
+                passwordInput.type = "password";
+                eyeIcon.classList.remove("fa-eye");
+                eyeIcon.classList.add("fa-eye-slash");
+            }
+        });
+    </script>
+
 </body>
 
 </html>

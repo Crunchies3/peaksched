@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+    header("location: dashboard.php");
+    exit;
+}
+
 require_once './php_backend/create_account.php';
 ?>
 
@@ -11,6 +18,7 @@ require_once './php_backend/create_account.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/3a742f337b.js" crossorigin="anonymous"></script>
     <title>Create </title>
 </head>
 
@@ -67,8 +75,12 @@ require_once './php_backend/create_account.php';
                                 <?php echo $mobileNumber_err; ?>
                             </div>
                         </div>
-                        <div class="mb-2 col-12">
+                        <div class="input-group mb-2 col-12" id="show_hide_password">
                             <input name="password" type="password" class="form-control fs-6 input-field <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" placeholder="Password" value="<?php echo $password; ?>">
+                            <div class="input-group-text">
+                                <a href="#" id="togglePassword1" style="color: #124F6F;">
+                                    <i class="fa-solid fa-eye-slash" aria-hidden="true"></i></a>
+                            </div>
                             <div class="invalid-feedback">
                                 <?php echo $password_err; ?>
                             </div>
@@ -100,6 +112,50 @@ require_once './php_backend/create_account.php';
             </div>
         </div>
     </div>
+
+    <script>
+        class PasswordToggle {
+            constructor(containerID, toggleID) {
+                this.container = document.getElementById(containerID);
+                this.toggleID = toggleID;
+
+                if (!this.container) {
+                    console.error(`Container not found with ID: ${containerID}`);
+                    return;
+                }
+
+                this.passwordInput = this.container.querySelector('input[type="password"]');
+                this.eyeIcon = this.container.querySelector(`#${toggleID} i`);
+
+                if (!this.passwordInput) {
+                    console.error("Password input not found. Check HTML structure.");
+                    return;
+                }
+
+                this.setupEventListeners();
+            }
+
+            setupEventListeners() {
+                this.eyeIcon.addEventListener("click", () => this.toggleVisibility());
+            }
+
+            toggleVisibility() {
+                if (this.passwordInput.type === "password") {
+                    this.passwordInput.type = "text";
+                    this.eyeIcon.classList.remove("fa-eye-slash");
+                    this.eyeIcon.classList.add("fa-eye");
+                } else {
+                    this.passwordInput.type = "password";
+                    this.eyeIcon.classList.remove("fa-eye");
+                    this.eyeIcon.classList.add("fa-eye-slash");
+                }
+            }
+        }
+
+        // Initialize for each password input
+        const passwordToggle1 = new PasswordToggle('show_hide_password', 'togglePassword1');
+        const passwordToggle2 = new PasswordToggle('show_hide_confirm_password', 'togglePassword2');
+    </script>
 </body>
 
 </html>
