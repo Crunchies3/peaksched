@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+    header("location: index.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -105,7 +114,9 @@
             </div>
         </aside>
         <div class="main p-3">
-            <div id="calendar"></div>
+            <!-- <div id="calendar"></div> -->
+
+            <a href="./php/logout.php" class="btn btn-danger"> logout</a>
         </div>
     </div>
     <script src="./js/script.js"></script>

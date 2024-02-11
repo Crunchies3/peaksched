@@ -1,4 +1,13 @@
-<?php require_once './php/backend_register_page.php'; ?>
+<?php
+session_start();
+
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+    header("location: dashboard.php");
+    exit;
+}
+
+require_once './php/backend_register_page.php';
+?>
 
 
 <!DOCTYPE html>
