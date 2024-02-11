@@ -48,7 +48,7 @@ require_once "./php/backend_login_page.php";
 
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
                         <div class="input-group mb-3">
-                            <input name="email" type="email" class="form-control input-field <?php echo (!empty($emailAddress_err) || !empty($login_err)) ? 'is-invalid' : ''; ?>" placeholder="Email Adress" value="<?php echo $emailAddress; ?>">
+                            <input name="email" type="email" class="form-control input-field <?php echo (!empty($emailAddress_err) || !empty($login_err)) ? 'is-invalid' : ''; ?>" placeholder="Email Address" value="<?php echo $emailAddress; ?>">
                             <div class="invalid-feedback">
                                 <?php echo $emailAddress_err; ?>
                             </div>

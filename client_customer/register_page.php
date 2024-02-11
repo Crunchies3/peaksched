@@ -64,7 +64,7 @@ require_once './php_backend/create_account.php';
                             </div>
                         </div>
                         <div class="mb-2 col-12">
-                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="Email Adress" value="<?php echo $emailAddress; ?>">
+                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="Email Address" value="<?php echo $emailAddress; ?>">
                             <div class="invalid-feedback">
                                 <?php echo $emailAddress_err; ?>
                             </div>
