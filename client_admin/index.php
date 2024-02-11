@@ -58,13 +58,13 @@ require_once "./php/backend_login_page.php";
                                 </div>
                             </div>
                         </div>
-                        <div class="input-group mb-4 d-flex justify-content-between">
-                            <div class="form-check">
+                        <div class="input-group mb-4 d-flex justify-content-end">
+                            <!-- <div class="form-check">
                                 <input type="checkbox" id="formCheck" class="form-check-input chk-box">
                                 <label for="formCheck" class="form-check-label">
                                     <small>Remember Me</small>
                                 </label>
-                            </div>
+                            </div> -->
                             <div class="forgot">
                                 <small class="forgot-password"><a href="#" style="text-decoration: none; color: #124F6F;">Forgot
                                         Password?</a></small>
