@@ -1,4 +1,13 @@
-<?php require_once './php/backend_register_page.php'; ?>
+<?php
+session_start();
+
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+    header("location: dashboard.php");
+    exit;
+}
+
+require_once './php/backend_register_page.php';
+?>
 
 
 <!DOCTYPE html>
@@ -30,8 +39,8 @@
         <div class="row box-area shadow-lg">
 
             <div class="col-lg-6 d-flex justify-content-center align-items-center flex-column left-box">
-                <div class="feature-image mb-3">
-                    <img src="./images/twin-peaks-logo.png" alt="Twin Peaks" style="width: 250px;" class="mt-4 mb-3">
+                <div class="peak-sched">
+                    <h1>#PeakSched</h1>
                 </div>
             </div>
 
@@ -68,8 +77,12 @@
                                 <?php echo $mobileNumber_err; ?>
                             </div>
                         </div>
-                        <div class="mb-2 col-12">
+                        <div class="input-group mb-2 col-12" id="show_hide_password">
                             <input name="password" type="password" class="form-control fs-6 input-field <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" placeholder="Password" value="<?php echo $password; ?>">
+                            <div class="input-group-text">
+                                <a href="#" id="togglePassword1" style="color: #124F6F;">
+                                    <i class="fa-solid fa-eye-slash" aria-hidden="true"></i></a>
+                            </div>
                             <div class="invalid-feedback">
                                 <?php echo $password_err; ?>
                             </div>
@@ -85,7 +98,7 @@
                                 Up</button>
                         </div>
                         <div style="text-align: center;">
-                            <small class="signin-now">Already have an account? <a href="./login.php" style="text-decoration: none;">Sign In!</a></small>
+                            <small class="signin-now">Already have an account? <a href="./index.php" style="text-decoration: none;">Sign In!</a></small>
                         </div>
                     </form>
                 </div>
@@ -137,7 +150,6 @@
         const passwordToggle1 = new PasswordToggle('show_hide_password', 'togglePassword1');
         const passwordToggle2 = new PasswordToggle('show_hide_confirm_password', 'togglePassword2');
     </script>
-
 </body>
 
 </html>

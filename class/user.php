@@ -82,7 +82,7 @@ class AdminAccount extends UserAccount
                         $_SESSION["loggedin"] = true;
                         $_SESSION["customerid"] = $row["customerid"];
 
-                        header("location: ./index.php");
+                        header("location: ./dashboard.php");
                     }
                 }
             } else {
@@ -141,7 +141,7 @@ class AdminAccount extends UserAccount
             $stmt->bind_param("ssssss", $adminId, $firstName, $lastName, $emailAddress, $mobileNumber, $hashedPassword);
             $stmt->execute();
             $stmt->close();
-            header("location: login.php");
+            header("location: dashboard.php");
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
@@ -198,7 +198,7 @@ class CustomerAccount extends UserAccount
             $stmt->bind_param("ssssss", $customerId, $firstName, $lastName, $emailAddress, $mobileNumber, $hashedPassword);
             $stmt->execute();
             $stmt->close();
-            header("location: index.php");
+            header("location: dashboard.php");
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
