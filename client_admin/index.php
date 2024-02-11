@@ -48,7 +48,7 @@ require_once "./php/backend_login_page.php";
 
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
                         <div class="input-group mb-3">
-                            <input name="email" type="email" class="form-control input-field <?php echo (!empty($emailAddress_err) || !empty($login_err)) ? 'is-invalid' : ''; ?>" placeholder="Email Adress" value="<?php echo $emailAddress; ?>">
+                            <input name="email" type="email" class="form-control input-field <?php echo (!empty($emailAddress_err) || !empty($login_err)) ? 'is-invalid' : ''; ?>" placeholder="Email Address" value="<?php echo $emailAddress; ?>">
                             <div class="invalid-feedback">
                                 <?php echo $emailAddress_err; ?>
                             </div>
@@ -79,10 +79,6 @@ require_once "./php/backend_login_page.php";
                         <div class="input-group mb-3">
                             <button class="btn btn-lg w-100 fs-6" style="background-color: #124F6F; color: whitesmoke; font-weight: 600;">Sign
                                 In</button>
-                        </div>
-                        <div class="row" style="text-align: center;">
-                            <small class="signup-now">Don't have an account? <a href="./register_page.php" style="text-decoration: none; color: #124F6F;">Sign
-                                    Up!</a></small>
                         </div>
                     </form>
                 </div>
