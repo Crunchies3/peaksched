@@ -49,9 +49,6 @@ require_once './php/backend_register_page.php';
                     <div class="header-text mb-1">
                         <h1 class="title">Sign Up</h1>
                     </div>
-                    <div class="header-text mb-3">
-                        <small class="sub-title">Clean Home, Clear Mind: Get Started!</small>
-                    </div>
                     <form class="row g-2" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
                         <div class="col-md-6 mb-2">
                             <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="First name" aria-label="First name" value="<?php echo $firstName; ?>">
