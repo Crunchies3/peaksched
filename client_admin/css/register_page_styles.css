@@ -169,3 +169,9 @@ body {
     color: white;
     font-weight: bold;
 }
+
+.password-reminder {
+    text-align: left;
+    padding: 0 10px;
+    color: rgb(178, 178, 178);
+}

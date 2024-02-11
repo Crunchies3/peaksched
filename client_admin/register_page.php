@@ -77,7 +77,7 @@ require_once './php/backend_register_page.php';
                                 <?php echo $mobileNumber_err; ?>
                             </div>
                         </div>
-                        <div class="input-group mb-2 col-12" id="show_hide_password">
+                        <div class="input-group col-12" id="show_hide_password">
                             <input name="password" type="password" class="form-control fs-6 input-field <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" placeholder="Password" value="<?php echo $password; ?>">
                             <div class="input-group-text">
                                 <a href="#" id="togglePassword1" style="color: #124F6F;">
@@ -86,6 +86,9 @@ require_once './php/backend_register_page.php';
                             <div class="invalid-feedback">
                                 <?php echo $password_err; ?>
                             </div>
+                        </div>
+                        <div class="mb-2 password-reminder">
+                            <small>Password must be atleast 8 characters long and include a mix of uppercase letters, lowercase letters, and numbers.</small>
                         </div>
                         <div class="mb-2 col-12">
                             <input name="confirmPassword" type="password" class="form-control fs-6 input-field <?php echo (!empty($confirmPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Confirm Password" value="<?php echo $confirmPassword; ?>">
