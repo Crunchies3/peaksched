@@ -68,8 +68,12 @@
                                 <?php echo $mobileNumber_err; ?>
                             </div>
                         </div>
-                        <div class="mb-2 col-12">
+                        <div class="input-group mb-2 col-12" id="show_hide_password">
                             <input name="password" type="password" class="form-control fs-6 input-field <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" placeholder="Password" value="<?php echo $password; ?>">
+                            <div class="input-group-text">
+                                <a href="#" id="togglePassword1">
+                                    <i class="fa-solid fa-eye-slash" aria-hidden="true"></i></a>
+                            </div>
                             <div class="invalid-feedback">
                                 <?php echo $password_err; ?>
                             </div>
@@ -85,7 +89,7 @@
                                 Up</button>
                         </div>
                         <div style="text-align: center;">
-                            <small class="signin-now">Already have an account? <a href="./login.php" style="text-decoration: none;">Sign In!</a></small>
+                            <small class="signin-now">Already have an account? <a href="./index.php" style="text-decoration: none;">Sign In!</a></small>
                         </div>
                     </form>
                 </div>
