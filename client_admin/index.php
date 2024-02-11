@@ -71,10 +71,13 @@ require_once "./php/backend_login_page.php";
                                     <small>Remember Me</small>
                                 </label>
                             </div> -->
-                            <div class="forgot">
+
+                            <!-- //TODO: i implement pa nato ang forgot password -->
+
+                            <!-- <div class="forgot">
                                 <small class="forgot-password"><a href="#" style="text-decoration: none; color: #124F6F;">Forgot
                                         Password?</a></small>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="input-group mb-3">
                             <button class="btn btn-lg w-100 fs-6" style="background-color: #124F6F; color: whitesmoke; font-weight: 600;">Sign
