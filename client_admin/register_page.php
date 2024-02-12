@@ -17,14 +17,6 @@
 
 <body>
 
-    <div class="left-section">
-        <div class="background-white"></div>
-    </div>
-    <div class="right-section">
-        <div class="background-blue"></div>
-    </div>
-
-
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
 
         <div class="row box-area shadow-lg">
@@ -68,8 +60,15 @@
                                 <?php echo $mobileNumber_err; ?>
                             </div>
                         </div>
-                        <div class="mb-2 col-12">
+
+                        <!-- //! mao ni ang part na naay toggle -->
+                        
+                        <div class="input-group col-12" id="show_hide_password">
                             <input name="password" type="password" class="form-control fs-6 input-field <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" placeholder="Password" value="<?php echo $password; ?>">
+                            <div class="input-group-text">
+                                <a href="#" id="togglePassword1" style="color: #124F6F;">
+                                    <i class="fa-solid fa-eye-slash" aria-hidden="true"></i></a>
+                            </div>
                             <div class="invalid-feedback">
                                 <?php echo $password_err; ?>
                             </div>

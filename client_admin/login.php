@@ -17,17 +17,9 @@ require_once "./php/backend_login_page.php";
 
 <body>
 
-    <div class="left-section">
-        <div class="background-white"></div>
-    </div>
-    <div class="right-section">
-        <div class="background-blue"></div>
-    </div>
-
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
 
         <div class="row box-area shadow-lg">
-
             <div class="col-lg-6 d-flex justify-content-center align-items-center flex-column left-box">
                 <div class="feature-image mb-3">
                     <img src="./images/twin-peaks-logo.png" alt="Twin Peaks" style="width: 250px;" class="mt-4 mb-3">
@@ -47,12 +39,19 @@ require_once "./php/backend_login_page.php";
                                 <?php echo $emailAddress_err; ?>
                             </div>
                         </div>
+
                         <div class="input-group mb-2">
-                            <input name="password" type="password" class="form-control input-field <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" placeholder="password" value="<?php echo $password; ?>">
-                            <div class="invalid-feedback">
-                                <?php echo $password_err; ?>
+                            <div class="input-group mb-2" id="show_hide_password">
+                                <input name="password" type="password" class="form-control input-field <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" placeholder="Password" value="<?php echo $password; ?>">
+                                <div class="input-group-text">
+                                    <a href="#" id="togglePassword"><i class="fa-solid fa-eye-slash" style="color: #124F6F;" aria-hidden="true"></i></a>
+                                </div>
+                                <div class="invalid-feedback">
+                                    <?php echo $password_err; ?>
+                                </div>
                             </div>
                         </div>
+
                         <div class="input-group mb-4 d-flex justify-content-between">
                             <div class="form-check">
                                 <input type="checkbox" id="formCheck" class="form-check-input chk-box">
