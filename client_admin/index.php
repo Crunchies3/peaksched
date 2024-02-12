@@ -23,20 +23,12 @@ require_once "./php/backend_login_page.php";
 
 <body>
 
-    <div class="left-section">
-        <div class="background-white"></div>
-    </div>
-    <div class="right-section">
-        <div class="background-blue"></div>
-    </div>
-
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
 
         <div class="row box-area shadow-lg">
-
             <div class="col-lg-6 d-flex justify-content-center align-items-center flex-column left-box">
-                <div class="peak-sched">
-                    <h1>#PeakSched</h1>
+                <div class="feature-image mb-3">
+                    <img src="./images/twin-peaks-logo.png" alt="Twin Peaks" style="width: 250px;" class="mt-4 mb-3">
                 </div>
             </div>
 
@@ -48,11 +40,12 @@ require_once "./php/backend_login_page.php";
 
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
                         <div class="input-group mb-3">
-                            <input name="email" type="email" class="form-control input-field <?php echo (!empty($emailAddress_err) || !empty($login_err)) ? 'is-invalid' : ''; ?>" placeholder="Email Address" value="<?php echo $emailAddress; ?>">
+                            <input name="email" type="email" class="form-control input-field <?php echo (!empty($emailAddress_err) || !empty($login_err)) ? 'is-invalid' : ''; ?>" placeholder="Email Adress" value="<?php echo $emailAddress; ?>">
                             <div class="invalid-feedback">
                                 <?php echo $emailAddress_err; ?>
                             </div>
                         </div>
+
                         <div class="input-group mb-2">
                             <div class="input-group mb-2" id="show_hide_password">
                                 <input name="password" type="password" class="form-control input-field <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" placeholder="Password" value="<?php echo $password; ?>">
@@ -64,24 +57,32 @@ require_once "./php/backend_login_page.php";
                                 </div>
                             </div>
                         </div>
-                        <div class="input-group mb-4 d-flex justify-content-end">
-                            <!-- <div class="form-check">
+
+                        <div class="input-group mb-4 d-flex justify-content-between">
+                            <div class="form-check">
                                 <input type="checkbox" id="formCheck" class="form-check-input chk-box">
                                 <label for="formCheck" class="form-check-label">
                                     <small>Remember Me</small>
                                 </label>
-                            </div> -->
-
-                            <!-- //TODO: i implement pa nato ang forgot password -->
-
-                            <!-- <div class="forgot">
+                            </div>
+                            <div class="forgot">
                                 <small class="forgot-password"><a href="#" style="text-decoration: none; color: #124F6F;">Forgot
                                         Password?</a></small>
-                            </div> -->
+                            </div>
                         </div>
                         <div class="input-group mb-3">
                             <button class="btn btn-lg w-100 fs-6" style="background-color: #124F6F; color: whitesmoke; font-weight: 600;">Sign
                                 In</button>
+                        </div>
+                        <!-- Tanawon kung sayon lang ba ang google login -->
+                        <!-- <div class="input-group mb-5">
+                <button class="btn btn-lg btn-light w-100 fs-6 google"><img src="/assets/images/google.png"
+                        alt="google" style="width: 20px;" class="me-2"><small>Sign in with
+                        Google</small></button>
+                    </div> -->
+                        <div class="row" style="text-align: center;">
+                            <small class="signup-now">Don't have an account? <a href="./register_page.php" style="text-decoration: none; color: #124F6F;">Sign
+                                    Up!</a></small>
                         </div>
                     </form>
                 </div>
