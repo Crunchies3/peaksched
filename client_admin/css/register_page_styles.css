@@ -20,7 +20,6 @@ body {
 }
 
 .left-box {
-    padding: 40px 30px 40px 40px;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     background-color: #194257;
@@ -29,11 +28,12 @@ body {
 
 .input-field,
 .google {
-    border-color: rgb(229, 229, 229);
+    border-color: rgb(203, 203, 203);
 }
 
-::placeholder {
+.input-field::placeholder {
     font-size: 16px;
+    color: #9c9c9c;
 }
 
 @media only screen and (max-wifht: 768px) {
@@ -55,6 +55,7 @@ body {
 .form-check .form-check-input {
     float: left;
     margin-left: -1.2em;
+    border-color: rgb(203, 203, 203);
 }
 
 .lbl-chk {
@@ -72,16 +73,6 @@ body {
 }
 
 .signin-now a {
-    color: #124F6F;
-    font-weight: 700;
-}
-
-.signup-now a {
-    color: #124F6F;
-    font-weight: 700;
-}
-
-.forgot-password a {
     color: #124F6F;
     font-weight: 700;
 }
@@ -109,8 +100,6 @@ body {
         border-bottom-right-radius: 20px;
         /* Set bottom-right border radius to 0 for mobile */
     }
-
-
 }
 
 .title {
@@ -121,11 +110,6 @@ body {
 /* .sub-title {
     font-family: 'Roboto';
 } */
-
-.peak-sched {
-    color: white;
-    font-weight: bold;
-}
 
 .password-reminder {
     text-align: left;

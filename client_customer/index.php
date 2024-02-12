@@ -23,21 +23,12 @@ require_once './php_backend/login_account.php';
 </head>
 
 <body>
-
-    <div class="left-section">
-        <div class="background-white"></div>
-    </div>
-    <div class="right-section">
-        <div class="background-blue"></div>
-    </div>
-
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
 
         <div class="row box-area shadow-lg">
-
             <div class="col-lg-6 d-flex justify-content-center align-items-center flex-column left-box">
                 <div class="feature-image mb-3">
-                    <img src="./images/twin-peaks-logo.png" alt="Twin Peaks" style="width: 250px;" class="mt-4 mb-3">
+                    <img src="./images/twinpeaks.png" alt="Twin Peaks" style="width: 250px;" class="mt-4 mb-3">
                 </div>
             </div>
 
@@ -67,23 +58,25 @@ require_once './php_backend/login_account.php';
                                 </div>
                             </div>
                         </div>
-                        <div class="input-group mb-4 d-flex justify-content-end">
-                            <!-- <div class="form-check">
-                                <input type="checkbox" id="formCheck" class="form-check-input chk-box">
+                        <div class="input-group mb-4 d-flex justify-content-between">
+                            <!-- //TODO: i implement pa nato ang remember me -->
+
+                            <div class="form-check">
+                                <input type="checkbox" id="formCheck" class="form-check-input">
                                 <label for="formCheck" class="form-check-label">
                                     <small>Remember Me</small>
                                 </label>
-                            </div> -->
+                            </div>
 
                             <!-- //TODO: i implement pa nato ang forgot password -->
 
-                            <!-- <div class="forgot">
-                                <small><a href="#" style="text-decoration: underlined; color: #124F6F; font-weight: bold;">Forgot
+                            <div class="forgot">
+                                <small><a href="#" style="text-decoration: none; color: #124F6F; font-weight: bold;">Forgot
                                         Password?</a></small>
-                            </div> -->
+                            </div>
                         </div>
                         <div class="input-group mb-5">
-                            <button class="btn btn-lg w-100 fs-6" style="background-color: #124F6F; color: whitesmoke; font-weight: 600;">Sign
+                            <button class="btn btn-lg w-100 fs-6" style="background-color: #124F6F; color: whitesmoke; font-weight: 600;">Log
                                 In</button>
                         </div>
                         <!-- Tanawon kung sayon lang ba ang google login -->

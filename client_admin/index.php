@@ -34,13 +34,15 @@ require_once "./php/backend_login_page.php";
 
             <div class="col-md-6 right-box">
                 <div class="row align-items-center">
-                    <div class="header-text mb-4">
+                    <div class="header-text mt-5">
                         <h1 class="title">Log In</h1>
                     </div>
-
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
+                    <div class="header-text mb-4">
+                        <small class="sub-title fs-7">Log in to your admin account.</small>
+                    </div>
+                    <form class="g-2" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
                         <div class="input-group mb-3">
-                            <input name="email" type="email" class="form-control input-field <?php echo (!empty($emailAddress_err) || !empty($login_err)) ? 'is-invalid' : ''; ?>" placeholder="Email Adress" value="<?php echo $emailAddress; ?>">
+                            <input name="email" type="email" class="form-control input-field <?php echo (!empty($emailAddress_err) || !empty($login_err)) ? 'is-invalid' : ''; ?>" placeholder="Email Address" value="<?php echo $emailAddress; ?>">
                             <div class="invalid-feedback">
                                 <?php echo $emailAddress_err; ?>
                             </div>
@@ -66,12 +68,12 @@ require_once "./php/backend_login_page.php";
                                 </label>
                             </div>
                             <div class="forgot">
-                                <small class="forgot-password"><a href="#" style="text-decoration: none; color: #124F6F;">Forgot
+                                <small class="forgot-password"><a href="#" style="text-decoration: none; color: #124F6F; font-weight: bold;">Forgot
                                         Password?</a></small>
                             </div>
                         </div>
-                        <div class="input-group mb-3">
-                            <button class="btn btn-lg w-100 fs-6" style="background-color: #124F6F; color: whitesmoke; font-weight: 600;">Sign
+                        <div class="input-group mb-5">
+                            <button class="btn btn-lg w-100 fs-6" style="background-color: #124F6F; color: whitesmoke; font-weight: 600;">Log
                                 In</button>
                         </div>
                         <!-- Tanawon kung sayon lang ba ang google login -->
@@ -81,7 +83,7 @@ require_once "./php/backend_login_page.php";
                         Google</small></button>
                     </div> -->
                         <div class="row" style="text-align: center;">
-                            <small class="signup-now">Don't have an account? <a href="./register_page.php" style="text-decoration: none; color: #124F6F;">Sign
+                            <small class="signin-now">Don't have an account? <a href="./register_page.php" style="text-decoration: none; color: #124F6F;">Sign
                                     Up!</a></small>
                         </div>
                     </form>

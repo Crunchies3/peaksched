@@ -42,6 +42,7 @@ require_once './php/backend_register_page.php';
                         <h1 class="title">Sign Up</h1>
                     </div>
                     <div class="header-text mb-3">
+                        <small class="sub-title fs-7">Sign up for your admin account.</small>
                     </div>
                     <form class="row g-2" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
                         <div class="col-md-6 mb-2">
@@ -57,7 +58,7 @@ require_once './php/backend_register_page.php';
                             </div>
                         </div>
                         <div class="mb-2 col-12">
-                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="Email Adress" value="<?php echo $emailAddress; ?>">
+                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="Email Address" value="<?php echo $emailAddress; ?>">
                             <div class="invalid-feedback">
                                 <?php echo $emailAddress_err; ?>
                             </div>
@@ -95,7 +96,7 @@ require_once './php/backend_register_page.php';
                                 Up</button>
                         </div>
                         <div style="text-align: center;">
-                            <small class="signin-now">Already have an account? <a href="./index.php" style="text-decoration: none;">Sign In!</a></small>
+                            <small class="signin-now">Already have an account? <a href="./index.php" style="text-decoration: none;">Log In!</a></small>
                         </div>
                     </form>
                 </div>
