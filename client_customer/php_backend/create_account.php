@@ -1,6 +1,6 @@
 <?php
 require_once "./php_backend/config.php";
-require_once "../class/user.php";
+require_once "../class/customer_account.php";
 
 $firstName = $lastName = $emailAddress = $mobileNumber = $password = $confirmPassword = $checkbox =  $customerId = $hashedPassword = "";
 // variables that will hold error messages
