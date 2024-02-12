@@ -1,13 +1,4 @@
-<?php
-session_start();
-
-if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header("location: dashboard.php");
-    exit;
-}
-
-require_once './php/backend_register_page.php';
-?>
+<?php require_once './php/backend_register_page.php'; ?>
 
 
 <!DOCTYPE html>
@@ -26,21 +17,13 @@ require_once './php/backend_register_page.php';
 
 <body>
 
-    <div class="left-section">
-        <div class="background-white"></div>
-    </div>
-    <div class="right-section">
-        <div class="background-blue"></div>
-    </div>
-
-
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
 
         <div class="row box-area shadow-lg">
 
             <div class="col-lg-6 d-flex justify-content-center align-items-center flex-column left-box">
-                <div class="peak-sched">
-                    <h1>#PeakSched</h1>
+                <div class="feature-image mb-3">
+                    <img src="./images/twin-peaks-logo.png" alt="Twin Peaks" style="width: 250px;" class="mt-4 mb-3">
                 </div>
             </div>
 
@@ -48,6 +31,9 @@ require_once './php/backend_register_page.php';
                 <div class="row align-items-center">
                     <div class="header-text mb-1">
                         <h1 class="title">Sign Up</h1>
+                    </div>
+                    <div class="header-text mb-3">
+                        <small class="sub-title">Clean Home, Clear Mind: Get Started!</small>
                     </div>
                     <form class="row g-2" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
                         <div class="col-md-6 mb-2">
@@ -63,7 +49,7 @@ require_once './php/backend_register_page.php';
                             </div>
                         </div>
                         <div class="mb-2 col-12">
-                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="Email Address" value="<?php echo $emailAddress; ?>">
+                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="Email Adress" value="<?php echo $emailAddress; ?>">
                             <div class="invalid-feedback">
                                 <?php echo $emailAddress_err; ?>
                             </div>
@@ -74,6 +60,9 @@ require_once './php/backend_register_page.php';
                                 <?php echo $mobileNumber_err; ?>
                             </div>
                         </div>
+
+                        <!-- //! mao ni ang part na naay toggle -->
+
                         <div class="input-group col-12" id="show_hide_password">
                             <input name="password" type="password" class="form-control fs-6 input-field <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" placeholder="Password" value="<?php echo $password; ?>">
                             <div class="input-group-text">
@@ -83,9 +72,9 @@ require_once './php/backend_register_page.php';
                             <div class="invalid-feedback">
                                 <?php echo $password_err; ?>
                             </div>
-                        </div>
-                        <div class="mb-2 password-reminder">
-                            <small>Password must be atleast 8 characters long and include a mix of uppercase letters, lowercase letters, and numbers.</small>
+                            <div class="mb-2 password-reminder">
+                                <small>Password must be atleast 8 characters long and include a mix of uppercase letters, lowercase letters, and numbers.</small>
+                            </div>
                         </div>
                         <div class="mb-2 col-12">
                             <input name="confirmPassword" type="password" class="form-control fs-6 input-field <?php echo (!empty($confirmPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Confirm Password" value="<?php echo $confirmPassword; ?>">
@@ -150,6 +139,7 @@ require_once './php/backend_register_page.php';
         const passwordToggle1 = new PasswordToggle('show_hide_password', 'togglePassword1');
         const passwordToggle2 = new PasswordToggle('show_hide_confirm_password', 'togglePassword2');
     </script>
+
 </body>
 
 </html>
