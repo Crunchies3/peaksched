@@ -1,6 +1,6 @@
 <?php
 require_once "config.php";
-require_once "../class/user.php";
+require_once '../class/admin_account.php';
 
 $emailAddress = $password = "";
 

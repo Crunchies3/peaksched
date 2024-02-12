@@ -6,8 +6,8 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     exit;
 }
 
- require_once './php/backend_register_page.php'; 
- ?>
+require_once './php/backend_register_page.php';
+?>
 
 
 <!DOCTYPE html>
@@ -42,7 +42,6 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                         <h1 class="title">Sign Up</h1>
                     </div>
                     <div class="header-text mb-3">
-                        <small class="sub-title">Clean Home, Clear Mind: Get Started!</small>
                     </div>
                     <form class="row g-2" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
                         <div class="col-md-6 mb-2">
@@ -81,11 +80,11 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                             <div class="invalid-feedback">
                                 <?php echo $password_err; ?>
                             </div>
-                            <div class="mb-2 password-reminder">
-                                <small>Password must be atleast 8 characters long and include a mix of uppercase letters, lowercase letters, and numbers.</small>
-                            </div>
                         </div>
-                        <div class="mb-2 col-12">
+                        <div class="mb-2 password-reminder">
+                            <small>Password must be atleast 8 characters long and include a mix of uppercase letters, lowercase letters, and numbers.</small>
+                        </div>
+                        <div class="mb-4 col-12">
                             <input name="confirmPassword" type="password" class="form-control fs-6 input-field <?php echo (!empty($confirmPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Confirm Password" value="<?php echo $confirmPassword; ?>">
                             <div class="invalid-feedback">
                                 <?php echo $confirmPassword_err; ?>

@@ -1,6 +1,6 @@
 <?php
 
-require_once "./classes/user_account.php";
+require_once "user_account.php";
 
 class CustomerAccount extends UserAccount
 {
