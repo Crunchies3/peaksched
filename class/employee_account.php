@@ -2,20 +2,22 @@
 
 require_once "user_account.php";
 
-class AdminAccount extends UserAccount
+class EmployeeAccount extends UserAccount
 {
     public $conn;
+    public $type;
 
-    function __construct($conn)
+    function __construct($conn, $type)
     {
         $this->conn = $conn;
+        $this->type = $type;
     }
 
     public function login($email, $password)
     {
         try {
 
-            $stmt = $this->conn->prepare("SELECT * FROM tbl_admin WHERE email = ?");
+            $stmt = $this->conn->prepare("SELECT * FROM tbl_employee WHERE email = ?");
             $stmt->bind_param("s", $email);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -28,9 +30,14 @@ class AdminAccount extends UserAccount
                     } else {
                         session_start();
                         $_SESSION["loggedin"] = true;
-                        $_SESSION["adminid"] = $row["adminid"];
+                        $_SESSION["employeeid"] = $row["employeeid"];
+                        $_SESSION["type"] = $row["type"];
 
-                        header("location: ./dashboard.php");
+                        if ($row["type"] == "supervisor") {
+                            header("location: ./dashboard_supervisor.php");
+                        } else {
+                            header("location: ./dashboard_worker.php");
+                        }
                     }
                 }
             } else {
@@ -41,11 +48,26 @@ class AdminAccount extends UserAccount
         }
     }
 
-    public function isIdUnique($id)
+    // TODO: makapili dapat kung worker or supervisor ang i register
+    public function register($customerId, $firstName, $lastName, $emailAddress, $mobileNumber, $hashedPassword)
     {
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM tbl_admin WHERE adminid = ?");
-            $stmt->bind_param("s", $id);
+            $stmt = $this->conn->prepare("INSERT INTO tbl_employee (employeeid, firstname, lastname, email, mobilenumber, password, type) VALUES (?,?,?,?,?,?,?)");
+            $stmt->bind_param("sssssss", $customerId, $firstName, $lastName, $emailAddress, $mobileNumber, $hashedPassword, $this->type);
+            $stmt->execute();
+            $stmt->close();
+            header("location: dashboard.php");
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+        $this->conn->close();
+    }
+
+    public function isIdUnique($customerId)
+    {
+        try {
+            $stmt = $this->conn->prepare("SELECT * FROM tbl_customer WHERE customerid = ?");
+            $stmt->bind_param("s", $customerId);
 
             $stmt->execute();
             $result = $stmt->get_result();
@@ -64,7 +86,7 @@ class AdminAccount extends UserAccount
     public function isEmailUnique($email)
     {
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM tbl_admin WHERE email = ?");
+            $stmt = $this->conn->prepare("SELECT * FROM tbl_customer WHERE email = ?");
             $stmt->bind_param("s", $email);
 
             $stmt->execute();
@@ -79,20 +101,5 @@ class AdminAccount extends UserAccount
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
-    }
-
-
-    public function register($adminId, $firstName, $lastName, $emailAddress, $mobileNumber, $hashedPassword)
-    {
-        try {
-            $stmt = $this->conn->prepare("INSERT INTO tbl_admin (adminid, firstname, lastname, email, mobilenumber, password) VALUES (?,?,?,?,?,?)");
-            $stmt->bind_param("ssssss", $adminId, $firstName, $lastName, $emailAddress, $mobileNumber, $hashedPassword);
-            $stmt->execute();
-            $stmt->close();
-            header("location: dashboard.php");
-        } catch (Exception $e) {
-            echo 'Caught exception: ',  $e->getMessage(), "\n";
-        }
-        $this->conn->close();
     }
 }

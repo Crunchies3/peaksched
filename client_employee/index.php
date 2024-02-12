@@ -2,10 +2,16 @@
 session_start();
 
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header("location: dashboard.php");
+
+    if ($_SESSION["type"] == "supervisor") {
+        header("location: dashboard_supervisor.php");
+    } else {
+        header("location: dashboard_worker.php");
+    }
+
     exit;
 }
-require_once "./php/backend_login_page.php";
+require_once "./php/backend_login.php";
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +21,7 @@ require_once "./php/backend_login_page.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/register_page_styles.css">
+    <link rel="stylesheet" href="./css/login_page_styles.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/3a742f337b.js" crossorigin="anonymous"></script> <!-- MATA SA PASSWORd -->
     <title>Login</title>
@@ -38,7 +44,7 @@ require_once "./php/backend_login_page.php";
                         <h1 class="title">Log In</h1>
                     </div>
                     <div class="header-text mb-4">
-                        <small class="sub-title fs-7">Log in to your admin account.</small>
+                        <small class="sub-title fs-7">Log in to your employee account.</small>
                     </div>
                     <form class="g-2" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
                         <div class="input-group mb-3">
@@ -72,7 +78,7 @@ require_once "./php/backend_login_page.php";
                                         Password?</a></small>
                             </div>
                         </div>
-                        <div class="input-group mb-5">
+                        <div class="input-group mb-4">
                             <button class="btn btn-lg w-100 fs-6" style="background-color: #124F6F; color: whitesmoke; font-weight: 600;">Log
                                 In</button>
                         </div>
@@ -82,10 +88,6 @@ require_once "./php/backend_login_page.php";
                         alt="google" style="width: 20px;" class="me-2"><small>Sign in with
                         Google</small></button>
                     </div> -->
-                        <div class="row" style="text-align: center;">
-                            <small class="signin-now">Don't have an account? <a href="./register_page.php" style="text-decoration: none; color: #124F6F;">Sign
-                                    Up!</a></small>
-                        </div>
                     </form>
                 </div>
             </div>

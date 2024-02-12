@@ -23,22 +23,13 @@ require_once './php_backend/create_account.php';
 </head>
 
 <body>
-
-    <div class="left-section">
-        <div class="background-white"></div>
-    </div>
-    <div class="right-section">
-        <div class="background-blue"></div>
-    </div>
-
-
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
 
         <div class="row box-area shadow-lg">
 
             <div class="col-lg-6 d-flex justify-content-center align-items-center flex-column left-box">
-                <div class="feature-image mb-3">
-                    <img src="./images/twin-peaks-logo.png" alt="Twin Peaks" style="width: 250px;" class="mt-4 mb-3">
+                <div class="feature-image mb-3 ">
+                    <img src="./images/twinpeaks.png" alt="Twin Peaks" class="mt-4 mb-3 logo">
                 </div>
             </div>
 
@@ -108,7 +99,7 @@ require_once './php_backend/create_account.php';
                                 Up</button>
                         </div>
                         <div style="text-align: center;">
-                            <small class="signin-now">Already have an account? <a href="./index.php" style="text-decoration: none;">Sign In!</a></small>
+                            <small class="signin-now">Already have an account? <a href="./index.php" style="text-decoration: none;">Log In!</a></small>
                         </div>
                     </form>
                 </div>
