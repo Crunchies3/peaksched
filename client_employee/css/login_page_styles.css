@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto");
+
+body {
+    background: white;
+    font-family: 'Poppins';
+}
+
+.box-area {
+    width: 1000px;
+    border-radius: 20px;
+}
+
+.right-box {
+    padding: 40px 30px 40px 40px;
+    background-color: #ffffff;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+}
+
+.left-box {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-color: #194257;
+}
+
+
+.input-field,
+.google {
+    border-color: rgb(203, 203, 203);
+}
+
+.input-field::placeholder {
+    font-size: 16px;
+    color: #9c9c9c;
+}
+
+@media only screen and (max-wifht: 768px) {
+    .box-area {
+        margin: 0 10px;
+
+    }
+
+    .left-box {
+        height: 100px;
+        overflow: hidden;
+    }
+
+    .right-box {
+        padding: 20px;
+    }
+}
+
+.form-check .form-check-input {
+    float: left;
+    margin-left: -1.2em;
+    border-color: rgb(203, 203, 203);
+}
+
+.lbl-chk {
+    margin-left: .2rem;
+}
+
+.form-check-input:checked {
+    background-color: #124F6F;
+    border-color: #124F6F;
+}
+
+.terms-service a {
+    color: #124F6F;
+    font-weight: 700;
+}
+
+.signin-now a {
+    color: #124F6F;
+    font-weight: 700;
+}
+
+@media (max-width: 990px) {
+
+    .left-box {
+        border-top-left-radius: 20px;
+        /* Set border radius for mobile */
+        border-top-right-radius: 20px;
+        /* Set border radius for mobile */
+        border-bottom-left-radius: 0;
+        /* Set bottom-left border radius to 0 for mobile */
+        border-bottom-right-radius: 0;
+        /* Set bottom-right border radius to 0 for mobile */
+    }
+
+    .right-box {
+        border-top-left-radius: 0;
+        /* Set border radius for mobile */
+        border-top-right-radius: 0;
+        /* Set border radius for mobile */
+        border-bottom-left-radius: 20px;
+        /* Set bottom-left border radius to 0 for mobile */
+        border-bottom-right-radius: 20px;
+        /* Set bottom-right border radius to 0 for mobile */
+    }
+}
+
+.title {
+    font-family: 'Poppins';
+    font-weight: bold;
+}
+
+/* .sub-title {
+    font-family: 'Roboto';
+} */
+
+.password-reminder {
+    text-align: left;
+    padding: 0 10px;
+    color: rgb(178, 178, 178);
+}
