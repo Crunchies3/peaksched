@@ -166,4 +166,25 @@ class CustomerAccount extends UserAccount
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
     }
+
+    public function doesTokenExist($tokenHash)
+    {
+        try {
+            $stmt = $this->conn->prepare("SELECT * FROM tbl_customer WHERE reset_token_hash = ?");
+            $stmt->bind_param("s", $tokenHash);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows == 0) {
+                return false;
+            } else {
+                while ($row = $result->fetch_assoc()) {
+                    $this->tokenExpiry = $row["reset_token_expires_at"];
+                }
+                return true;
+            }
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
 }

@@ -2,8 +2,9 @@
 
 abstract class UserAccount
 {
-    private $email;
-    private $hashedPassword;
+    protected $email;
+    protected $hashedPassword;
+    protected $tokenExpiry;
 
 
     abstract public function login($email, $password);
@@ -13,6 +14,7 @@ abstract class UserAccount
     abstract public function doesEmailExist($email);
     abstract public function addResetToken($tokenHash, $expiry, $email);
     abstract public function sendForgotPasswordLink($email, $token);
+    abstract public function doesTokenExist($tokenHash);
 
 
     public function validatePassword($password)
@@ -61,5 +63,10 @@ abstract class UserAccount
     public function getHashedToken($token)
     {
         return hash("sha256", $token);
+    }
+
+    public function getTokenExpiry()
+    {
+        return $this->tokenExpiry;
     }
 }
