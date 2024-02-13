@@ -102,4 +102,12 @@ class EmployeeAccount extends UserAccount
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
+
+    public function doesEmailExist($email)
+    {
+    }
+
+    public function addResetToken($token)
+    {
+    }
 }

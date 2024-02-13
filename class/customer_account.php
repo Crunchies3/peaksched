@@ -95,4 +95,33 @@ class CustomerAccount extends UserAccount
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
+
+    public function doesEmailExist($email)
+    {
+        try {
+            $stmt = $this->conn->prepare("SELECT * FROM tbl_customer WHERE email = ?");
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows == 0) {
+                return false;
+            } else {
+                return true;
+            }
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function addResetToken($tokenHash, $expiry, $email)
+    {
+        try {
+            $stmt = $this->conn->prepare("UPDATE tbl_customer SET reset_token_hash = ? , reset_token_expires_at = ? WHERE email = ?");
+            $stmt->bind_param("sss", $tokenHash, $expiry, $email);
+            $stmt->execute();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
 }

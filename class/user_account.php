@@ -10,6 +10,10 @@ abstract class UserAccount
     abstract public function register($customerId, $firstName, $lastName, $emailAddress, $mobileNumber, $hashedPassword);
     abstract public function isIdUnique($id);
     abstract public function isEmailUnique($email);
+    abstract public function doesEmailExist($email);
+    abstract public function addResetToken($tokenHash, $expiry, $email);
+
+
     public function validatePassword($password)
     {
         if (empty($password)) {
@@ -53,7 +57,12 @@ abstract class UserAccount
         return $this->hashedPassword;
     }
 
-    public function forgotPassword()
+    public function getHashedToken($token)
+    {
+        return hash("sha256", $token);
+    }
+
+    public function sendForgotPasswordLink($email)
     {
     }
 }
