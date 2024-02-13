@@ -95,4 +95,8 @@ class AdminAccount extends UserAccount
         }
         $this->conn->close();
     }
+
+    public function rememberMe($cookie)
+    {
+    }
 }

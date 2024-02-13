@@ -10,6 +10,7 @@ abstract class UserAccount
     abstract public function register($customerId, $firstName, $lastName, $emailAddress, $mobileNumber, $hashedPassword);
     abstract public function isIdUnique($id);
     abstract public function isEmailUnique($email);
+    abstract public function rememberMe($cookie);
 
     public function validatePassword($password)
     {
@@ -52,5 +53,9 @@ abstract class UserAccount
     public function getHashedPassword()
     {
         return $this->hashedPassword;
+    }
+
+    public function forgotPassword()
+    {
     }
 }
