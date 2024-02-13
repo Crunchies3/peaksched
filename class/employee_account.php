@@ -107,7 +107,15 @@ class EmployeeAccount extends UserAccount
     {
     }
 
-    public function addResetToken($token)
+    public function addResetToken($tokenHash, $expiry, $email)
+    {
+    }
+
+    public function sendForgotPasswordLink($email, $token)
+    {
+    }
+
+    public function doesTokenExist($tokenHash)
     {
     }
 }
