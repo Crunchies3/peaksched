@@ -65,7 +65,7 @@ require_once './php_backend/login_account.php';
                             <!-- //TODO: i implement pa nato ang forgot password -->
 
                             <div class="forgot">
-                                <small><a href="#" style="text-decoration: none; color: #124F6F; font-weight: bold;">Forgot
+                                <small><a href="forgot_password_page.php" style="text-decoration: none; color: #124F6F; font-weight: bold;">Forgot
                                         Password?</a></small>
                             </div>
                         </div>

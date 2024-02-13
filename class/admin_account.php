@@ -95,4 +95,12 @@ class AdminAccount extends UserAccount
         }
         $this->conn->close();
     }
+
+    public function doesEmailExist($email)
+    {
+    }
+
+    public function addResetToken($token)
+    {
+    }
 }
