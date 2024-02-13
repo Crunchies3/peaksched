@@ -33,5 +33,7 @@ function validateInputs()
 
     if (empty($emailAddress_err)) {
         $customerAccount->addResetToken($tokenHash, $expiry, $emailAddress);
+        $customerAccount->sendForgotPasswordLink($emailAddress, $token);
+        echo "Messae sent, please check your inbox.";
     }
 }

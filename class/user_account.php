@@ -12,6 +12,7 @@ abstract class UserAccount
     abstract public function isEmailUnique($email);
     abstract public function doesEmailExist($email);
     abstract public function addResetToken($tokenHash, $expiry, $email);
+    abstract public function sendForgotPasswordLink($email, $token);
 
 
     public function validatePassword($password)
@@ -60,9 +61,5 @@ abstract class UserAccount
     public function getHashedToken($token)
     {
         return hash("sha256", $token);
-    }
-
-    public function sendForgotPasswordLink($email)
-    {
     }
 }
