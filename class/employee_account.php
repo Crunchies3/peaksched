@@ -102,8 +102,4 @@ class EmployeeAccount extends UserAccount
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-
-    public function rememberMe($cookie)
-    {
-    }
 }

@@ -58,15 +58,9 @@ require_once './php_backend/login_account.php';
                                 </div>
                             </div>
                         </div>
-                        <div class="input-group mb-4 d-flex justify-content-between">
-                            <!-- //TODO: i implement pa nato ang remember me -->
+                        <div class="input-group mb-4 d-flex justify-content-end">
+                            <!-- //! Tanggal ang remember me -->
 
-                            <div class="form-check">
-                                <input type="checkbox" id="formCheck" class="form-check-input">
-                                <label for="formCheck" class="form-check-label">
-                                    <small>Remember Me</small>
-                                </label>
-                            </div>
 
                             <!-- //TODO: i implement pa nato ang forgot password -->
 
