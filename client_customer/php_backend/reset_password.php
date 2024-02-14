@@ -4,7 +4,7 @@ require_once "../class/customer_account.php";
 
 $token = $_GET["token"];
 
-$password = $confirmPassword = $hashedPassword = $tokenHash = "";
+$password = $confirmPassword = $hashedPassword = $tokenHash = $status = $visibility = "";
 // variables that will hold error messages
 $password_err = $confirmPassword_err = $tokenHash_err = "";
 
@@ -17,30 +17,36 @@ validateInputs();
 
 function validateToken()
 {
-    global $customerAccount, $token, $tokenHash, $tokenHash_err;
+    global $customerAccount, $token, $tokenHash, $tokenHash_err, $status, $visibility;
 
     $tokenHash = $customerAccount->getHashedToken($token);
     if (!$customerAccount->doesTokenExist($tokenHash)) {
         $tokenHash_err = "Invalid reset link";
+        $status = "disabled";
     }
 
     if (empty($tokenHash_err) && strtotime($customerAccount->getTokenExpiry()) <= time()) {
         $tokenHash_err = "Expired reset link";
+        $status = "disabled";
     }
 
     if (empty($tokenHash_err)) {
-        echo "Token is valid and has not expired";
+        $visibility = "hidden";
     }
 }
 
 function validateInputs()
 {
-    global $password_err, $confirmPassword_err;
-    global $password, $confirmPassword, $hashedPassword, $customerAccount;
+    global $password_err, $confirmPassword_err, $tokenHash_err;
+    global $password, $confirmPassword, $hashedPassword, $customerAccount, $token;
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         return;
     }
+
+    $token = $_POST["token"];
+    validateToken($token);
+
 
     $password = trim($_POST["password"]);
     $password_err = $customerAccount->validatePassword($password);
@@ -56,6 +62,6 @@ function validateInputs()
     }
 
 
-    if (empty($firstName_err) && empty($lastName_err) && empty($emailAddress_err) && empty($mobileNumber_err) && empty($password_err) && empty($confirmPassword_err) && empty($checkBox_err)) {
+    if (empty($password_err) && empty($confirmPassword_err)) {
     }
 }
