@@ -180,9 +180,22 @@ class CustomerAccount extends UserAccount
             } else {
                 while ($row = $result->fetch_assoc()) {
                     $this->tokenExpiry = $row["reset_token_expires_at"];
+                    $this->id = $row["customerid"];
                 }
                 return true;
             }
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function forgotResetPassword($hashedPassword, $id)
+    {
+        try {
+            $stmt = $this->conn->prepare("UPDATE tbl_customer SET password = ?, reset_token_hash = null, reset_token_expires_at = null WHERE customerid = ?");
+            $stmt->bind_param("ss", $hashedPassword, $id);
+            $stmt->execute();
+            header("location: ./reset_password_success.php");
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }

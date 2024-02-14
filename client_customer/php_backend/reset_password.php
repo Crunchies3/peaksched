@@ -2,18 +2,22 @@
 require_once "./php_backend/config.php";
 require_once "../class/customer_account.php";
 
-$token = $_GET["token"];
 
-$password = $confirmPassword = $hashedPassword = $tokenHash = $status = $visibility = "";
+$password = $confirmPassword = $hashedPassword = $tokenHash = $status = $visibility = $token = "";
 // variables that will hold error messages
 $password_err = $confirmPassword_err = $tokenHash_err = "";
 
+if (isset($_GET["token"])) {
+    $token = $_GET["token"];
+}
+
 $customerAccount = new CustomerAccount($conn);
 
-validateToken();
+if ($token != null) {
+    validateToken();
+}
 
 validateInputs();
-
 
 function validateToken()
 {
@@ -37,7 +41,7 @@ function validateToken()
 
 function validateInputs()
 {
-    global $password_err, $confirmPassword_err, $tokenHash_err;
+    global $password_err, $confirmPassword_err;
     global $password, $confirmPassword, $hashedPassword, $customerAccount, $token;
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
@@ -63,5 +67,6 @@ function validateInputs()
 
 
     if (empty($password_err) && empty($confirmPassword_err)) {
+        $customerAccount->forgotResetPassword($hashedPassword, $customerAccount->getId());
     }
 }

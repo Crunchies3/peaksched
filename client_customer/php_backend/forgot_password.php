@@ -6,13 +6,15 @@ $emailAddress = "";
 
 $emailAddress_err = "";
 
+$visibility = "hidden";
+
 $customerAccount = new CustomerAccount($conn);
 
 validateInputs();
 
 function validateInputs()
 {
-    global $emailAddress, $customerAccount, $emailAddress_err;
+    global $emailAddress, $customerAccount, $emailAddress_err, $visibility;
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         return;
@@ -34,6 +36,6 @@ function validateInputs()
     if (empty($emailAddress_err)) {
         $customerAccount->addResetToken($tokenHash, $expiry, $emailAddress);
         $customerAccount->sendForgotPasswordLink($emailAddress, $token);
-        echo "Messae sent, please check your inbox.";
+        $visibility = "";
     }
 }
