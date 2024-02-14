@@ -39,30 +39,38 @@ require_once './php_backend/reset_password.php';
                     <div class="header-text mb-4">
                         <small class="sub-title fs-7">Make sure it's a good one.</small>
                     </div>
+                    <div class="alert alert-danger" role="alert" <?php echo $visibility ?>>
+                        Invalid reset link. Request a new password again.
+                    </div>
                     <form class="g-2" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
-                        <div class="input-group col-12" id="show_hide_password">
-                            <input name="password" type="password" class="form-control fs-6 input-field <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" placeholder="Password" value="<?php echo $password; ?>">
-                            <div class="input-group-text">
-                                <a href="#" id="togglePassword1" style="color: #124F6F;">
-                                    <i class="fa-solid fa-eye-slash" aria-hidden="true"></i></a>
+
+                        <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
+
+                        <fieldset <?php echo $status ?>>
+                            <div class="input-group col-12" id="show_hide_password">
+                                <input name="password" type="password" class="form-control fs-6 input-field mb-2 <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" placeholder="Password" value="<?php echo $password; ?>">
+                                <div class="input-group-text">
+                                    <a href="#" id="togglePassword1" style="color: #124F6F;">
+                                        <i class="fa-solid fa-eye-slash" aria-hidden="true"></i></a>
+                                </div>
+                                <div class="invalid-feedback">
+                                    <?php echo $password_err; ?>
+                                </div>
                             </div>
-                            <div class="invalid-feedback">
-                                <?php echo $password_err; ?>
+                            <div class="mb-3 password-reminder">
+                                <small>Password must be atleast 8 characters long and include a mix of uppercase letters, lowercase letters, and numbers.</small>
                             </div>
-                        </div>
-                        <div class="mb-2 password-reminder">
-                            <small>Password must be atleast 8 characters long and include a mix of uppercase letters, lowercase letters, and numbers.</small>
-                        </div>
-                        <div class="mb-4 col-12">
-                            <input name="confirmPassword" type="password" class="form-control fs-6 input-field <?php echo (!empty($confirmPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Confirm Password" value="<?php echo $confirmPassword; ?>">
-                            <div class="invalid-feedback">
-                                <?php echo $confirmPassword_err; ?>
+                            <div class="mb-4 col-12">
+                                <input name="confirmPassword" type="password" class="form-control fs-6 input-field <?php echo (!empty($confirmPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Confirm Password" value="<?php echo $confirmPassword; ?>">
+                                <div class="invalid-feedback">
+                                    <?php echo $confirmPassword_err; ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="input-group mb-5">
-                            <button class="btn btn-lg w-100 fs-6" style="background-color: #124F6F; color: whitesmoke; font-weight: 600;">Submit
-                            </button>
-                        </div>
+                            <div class="input-group mb-5">
+                                <button class="btn btn-lg w-100 fs-6" style="background-color: #124F6F; color: whitesmoke; font-weight: 600;">Submit
+                                </button>
+                            </div>
+                        </fieldset>
                     </form>
                 </div>
             </div>

@@ -6,8 +6,9 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     exit;
 }
 
-require_once './php_backend/forgot_password.php';
 ?>
+
+<!-- //TODO: Tarungon ang ui -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,29 +35,16 @@ require_once './php_backend/forgot_password.php';
             <div class="col-lg-6 right-box">
                 <div class="row align-items-center">
                     <div class="header-text mt-5">
-                        <h1 class="title">Forgot Password</h1>
+                        <h1 class="title">Success!</h1>
                     </div>
-                    <div class="header-text mb-4">
-                        <small class="sub-title fs-7">Please enter your email address</small>
+                    <div class="header-text mb-5">
+                        <small class="sub-title fs-6">Password Successfully Changed</small>
                     </div>
-                    <div class="alert alert-success" role="alert" <?php echo $visibility ?>>
-                        Email sent, please check your inbox.
+                    <div class="row" style="text-align: start;">
+                        <small class="signin-now"><a href="./index.php" style="text-decoration: none; color: #124F6F;">
+                                Please Login to your account again. </a></small>
                     </div>
-                    <form class="g-2" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
-                        <div class="input-group mb-4">
-                            <input name="email" type="email" class="form-control input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="Email Address" value="<?php echo $emailAddress; ?>">
-                            <div class="invalid-feedback">
-                                <?php echo $emailAddress_err; ?>
-                            </div>
-                        </div>
-                        <div class="input-group mb-5">
-                            <button href="forgot_password_verification.php" class="btn btn-lg w-100 fs-6" style="background-color: #124F6F; color: whitesmoke; font-weight: 600;">Send
-                            </button>
-                        </div>
-                        <div class="row" style="text-align: center;">
-                            <small class="signin-now"> <a href="index.php" style="text-decoration: underlined; color: #124F6F;">Login with password</a></small>
-                        </div>
-                    </form>
+
                 </div>
             </div>
         </div>
