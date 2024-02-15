@@ -5,8 +5,10 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     header("location: dashboard.php");
     exit;
 }
-
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/client_employee/php/forgot_password.php";
+
+$jsScript = $_SERVER['DOCUMENT_ROOT'] . "/peaksched/js/form_loading_spinner.js";
+
 ?>
 
 <!-- //TODO: Butngan ug spinner after pag submit -->
@@ -65,19 +67,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/client_employee/php/forgot_
         </div>
     </div>
 
-    <script>
-        $(document).ready(function() {
-            $("#btnSubmit").click(function() {
-                // disable button
-                $(this).prop("disabled", true);
-                // add spinner to button
-                $(this).html(
-                    `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...`
-                );
-                $("#emailForm").submit();
-            });
-        });
-    </script>
+    <script src="js/form_loading_spinner.js"></script>
 
 </body>
 

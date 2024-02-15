@@ -65,19 +65,7 @@ require_once 'php_backend/forgot_password.php';
         </div>
     </div>
 
-    <script>
-        $(document).ready(function() {
-            $("#btnSubmit").click(function() {
-                // disable button
-                $(this).prop("disabled", true);
-                // add spinner to button
-                $(this).html(
-                    `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...`
-                );
-                $("#emailForm").submit();
-            });
-        });
-    </script>
+    <script src="js/form_loading_spinner.js"></script>
 
 
 
