@@ -6,7 +6,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     exit;
 }
 
-require_once './php_backend/create_account.php';
+require_once 'php_backend/create_account.php';
 ?>
 
 <!DOCTYPE html>

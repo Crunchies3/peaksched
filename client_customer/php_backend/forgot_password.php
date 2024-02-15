@@ -1,6 +1,6 @@
 <?php
-require_once "./php_backend/config.php";
-require_once "../class/customer_account.php";
+require_once "config.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/customer_account.php";
 
 $emailAddress = "";
 
@@ -39,3 +39,5 @@ function validateInputs()
         $visibility = "";
     }
 }
+
+$conn->close();
