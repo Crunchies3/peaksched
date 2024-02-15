@@ -1,6 +1,6 @@
 <?php
-require_once "/xampp/htdocs/PeakSched/client_admin/php/config.php";
-require_once "/xampp/htdocs/PeakSched/class/admin_account.php";
+require_once "config.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/admin_account.php";
 
 
 $password = $confirmPassword = $hashedPassword = $tokenHash = $status = $visibility = $token = "";

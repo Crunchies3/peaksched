@@ -6,7 +6,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     exit;
 }
 
-require_once './php/backend_register_page.php';
+require_once 'php/backend_register_page.php';
 ?>
 
 

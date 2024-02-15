@@ -5,7 +5,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     header("location: dashboard.php");
     exit;
 }
-require_once "./php/backend_login_page.php";
+require_once "php/backend_login_page.php";
 ?>
 
 <!DOCTYPE html>

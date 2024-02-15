@@ -6,7 +6,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     exit;
 }
 
-require_once '../client_admin/php/forgot_password.php';
+require_once 'php/forgot_password.php';
 ?>
 
 <!-- //TODO: Butngan ug spinner after pag submit -->
