@@ -34,4 +34,3 @@ function validateInputs()
     }
 }
 
-$conn->close();

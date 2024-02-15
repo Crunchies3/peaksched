@@ -39,5 +39,3 @@ function validateInputs()
         $visibility = "";
     }
 }
-
-$conn->close();

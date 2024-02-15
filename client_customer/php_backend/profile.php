@@ -10,4 +10,4 @@ $email = $customer->getEmail();
 $mobileNumber = $customer->getMobileNumber();
 $password = $customer->getHashedPassword();
 
-$conn->close();
+
