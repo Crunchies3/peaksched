@@ -1,6 +1,6 @@
 <?php
-require_once "/xampp/htdocs/PeakSched/client_employee/php/config.php";
-require_once "/xampp/htdocs/PeakSched/class/employee_account.php";
+require_once "config.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/employee_account.php";
 
 
 $password = $confirmPassword = $hashedPassword = $tokenHash = $status = $visibility = $token = "";
@@ -11,7 +11,7 @@ if (isset($_GET["token"])) {
     $token = $_GET["token"];
 }
 
-$employeeAccount = new EmployeeAccount($conn,"worker");
+$employeeAccount = new EmployeeAccount($conn, "worker");
 
 if ($token != null) {
     validateToken();

@@ -6,7 +6,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     exit;
 }
 
-require_once './php_backend/reset_password.php';
+require_once 'php_backend/reset_password.php';
 ?>
 
 <!DOCTYPE html>

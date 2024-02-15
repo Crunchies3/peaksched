@@ -1,12 +1,13 @@
 <?php
-require_once "./php_backend/config.php";
-require_once "../class/customer_account.php";
+require_once "config.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/customer_account.php";
 
 $firstName = $lastName = $emailAddress = $mobileNumber = $password = $confirmPassword = $checkbox =  $customerId = $hashedPassword = "";
 // variables that will hold error messages
 $firstName_err = $lastName_err = $emailAddress_err = $mobileNumber_err = $password_err = $confirmPassword_err = $checkBox_err = "";
 
 $customerAccount = new CustomerAccount($conn);
+
 
 validateInputs();
 
@@ -75,3 +76,4 @@ function validateInputs()
         $customerAccount->register($customerId, $firstName, $lastName, $emailAddress, $mobileNumber, $hashedPassword);
     }
 }
+

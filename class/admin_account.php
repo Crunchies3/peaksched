@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 //Load Composer's autoloader
-require '../vendor/autoload.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/vendor/autoload.php";
 $mail = new PHPMailer(true);
 
 class AdminAccount extends UserAccount

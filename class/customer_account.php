@@ -6,8 +6,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/vendor/autoload.php";
 //Load Composer's autoloader
-require '../vendor/autoload.php';
 $mail = new PHPMailer(true);
 
 class CustomerAccount extends UserAccount

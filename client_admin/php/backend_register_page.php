@@ -1,6 +1,6 @@
 <?php
 require_once 'config.php';
-require_once '../class/admin_account.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/admin_account.php";
 
 $firstName = $lastName = $emailAddress = $mobileNumber = $password = $confirmPassword =  $adminId = $hashedPassword = "";
 

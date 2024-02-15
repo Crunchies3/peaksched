@@ -1,6 +1,7 @@
 <?php
 require_once "config.php";
-require_once '../class/employee_account.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/employee_account.php";
+
 
 $emailAddress = $password = "";
 
