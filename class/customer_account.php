@@ -12,7 +12,6 @@ $mail = new PHPMailer(true);
 
 class CustomerAccount extends UserAccount
 {
-    public $conn;
 
     function __construct($conn)
     {
@@ -39,6 +38,7 @@ class CustomerAccount extends UserAccount
                         $_SESSION["customerid"] = $row["customerid"];
 
                         header("location: ./dashboard.php");
+                        $this->conn->close();
                     }
                 }
             } else {
@@ -58,10 +58,10 @@ class CustomerAccount extends UserAccount
             $stmt->execute();
             $stmt->close();
             header("location: dashboard.php");
+            $this->conn->close();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
-        $this->conn->close();
     }
 
     public function isIdUnique($customerId)
@@ -162,6 +162,7 @@ class CustomerAccount extends UserAccount
             END;
 
             $mail->send();
+            $this->conn->close();
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
@@ -196,6 +197,7 @@ class CustomerAccount extends UserAccount
             $stmt->bind_param("ss", $hashedPassword, $id);
             $stmt->execute();
             header("location: ./reset_password_success.php");
+            $this->conn->close();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }

@@ -4,7 +4,6 @@ require_once "user_account.php";
 
 class EmployeeAccount extends UserAccount
 {
-    public $conn;
     public $type;
 
     function __construct($conn, $type)

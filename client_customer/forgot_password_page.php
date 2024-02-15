@@ -9,6 +9,8 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 require_once './php_backend/forgot_password.php';
 ?>
 
+<!-- //TODO: Butngan ug spinner after pag submit -->
+
 <!DOCTYPE html>
 <html lang="en">
 
