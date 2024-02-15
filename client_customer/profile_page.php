@@ -5,6 +5,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
 }
+
+require_once "./php_backend/profile.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +16,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title>Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -38,7 +41,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="dashboard.php" class="sidebar-link">
                         <i class="bi bi-speedometer2"></i>
                         <span>Dashboard</span>
                     </a>
@@ -80,16 +83,24 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 </li> -->
             </ul>
             <div class="sidebar-footer">
-                <a href="profile_page.php" class="sidebar-link">
+                <a href="#" class="sidebar-link">
                     <i class="bi bi-person-circle"></i>
                     <span>Profile</span>
                 </a>
             </div>
         </aside>
         <div class="main p-3">
-            <a class="btn btn-danger" href="./php_backend/logout.php">
-                Logout
-            </a>
+            <h1><?php echo $firstName ?></h1>
+            <h4><?php echo $lastName ?></h4>
+            <h4><?php echo $email ?></h4>
+            <h4><?php echo $mobileNumber ?></h4>
+            <h4><?php echo $password ?></h4>
+
+
+            <form class="g-2" action="./php_backend/update_profile.php" method="post" novalidate>
+                <input name="email" type="email" class="form-control input-field" placeholder="First Name">
+            </form>
+
         </div>
     </div>
     <script src="./js/script.js"></script>

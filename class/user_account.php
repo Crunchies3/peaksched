@@ -91,12 +91,16 @@ abstract class UserAccount
         return $this->lastName;
     }
 
-    public function getMobileNumebr()
+    public function getMobileNumber()
     {
         return $this->mobileNumber;
     }
 
     // *Setter
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
     public function setEmail($email)
     {

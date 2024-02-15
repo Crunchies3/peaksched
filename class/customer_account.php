@@ -34,8 +34,20 @@ class CustomerAccount extends UserAccount
                         return "Incorrect email or password";
                     } else {
                         session_start();
+
+                        $customerAccount = new CustomerAccount($this->conn);
+
+                        $customerAccount->setId($row["customerid"]);
+                        $customerAccount->setFirstname($row["firstname"]);
+                        $customerAccount->setLastName($row["lastname"]);
+                        $customerAccount->setEmail($row["email"]);
+                        $customerAccount->setMobileNumebr($row["mobilenumber"]);
+                        $customerAccount->setHashedPassword($row["password"]);
+
+
+
                         $_SESSION["loggedin"] = true;
-                        $_SESSION["customerid"] = $row["customerid"];
+                        $_SESSION["customerUser"] = serialize($customerAccount);
 
                         header("location: ./dashboard.php");
                         $this->conn->close();
@@ -190,6 +202,8 @@ class CustomerAccount extends UserAccount
         }
     }
 
+
+    //TODO: ibutang sa abstract 
     public function forgotResetPassword($hashedPassword, $id)
     {
         try {
