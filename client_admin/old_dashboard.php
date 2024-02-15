@@ -23,14 +23,14 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
     <script src="./js/full_calendar.js"></script>
 
-    <link rel="stylesheet" href="./css/dashboard.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
 
 </head>
 
 <body>
     <div class="wrapper">
         <aside id="sidebar">
-            <div class="d-flex ">
+            <div class="d-flex">
                 <button id="toggle-btn" type="button">
                     <i class="bi bi-apple"></i>
                 </button>
@@ -41,8 +41,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
-                        <i class="bi bi-house-door"></i>
-                        <span>Home</span>
+                        <i class="bi bi-speedometer2"></i>
+                        <span>Dashboard</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -53,17 +53,34 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 </li>
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
-                        <i class="bi bi-chat-dots"></i>
-                        <span>Notification</span>
+                        <i class="bi bi-hourglass"></i>
+                        <span>Pending Request</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
-                        <i class="bi bi-person"></i>
-                        <span>Profile</span>
+                        <i class="bi bi-list-task"></i>
+                        <span>Services</span>
                     </a>
                 </li>
-            
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="bi bi-people"></i>
+                        <span>Employees</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="bi bi-emoji-smile"></i>
+                        <span>Customers</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="bi bi-gear"></i>
+                        <span>Setings</span>
+                    </a>
+                </li>
                 <!-- <li class="sidebar-item">
                     <a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse"
                         data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
@@ -90,16 +107,16 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
             </ul>
             <div class="sidebar-footer">
-                <a href="./php/logout.php" class="sidebar-link">
-                    <i class="bi bi-box-arrow-left"></i>
-                    <span>Logout</span>
+                <a href="#" class="sidebar-link">
+                    <i class="bi bi-person-circle"></i>
+                    <span>Profile</span>
                 </a>
             </div>
         </aside>
         <div class="main p-3">
             <!-- <div id="calendar"></div> -->
 
-        
+            <a href="./php/logout.php" class="btn btn-danger"> logout</a>
         </div>
     </div>
     <script src="./js/script.js"></script>
