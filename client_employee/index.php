@@ -68,7 +68,7 @@ require_once "./php/backend_login.php";
 
                         <div class="input-group mb-4 d-flex justify-content-end">
                             <div class="forgot">
-                                <small class="forgot-password"><a href="#" style="text-decoration: none; color: #124F6F; font-weight: bold;">Forgot
+                                <small class="forgot-password"><a href="./forgot_password_page.php" style="text-decoration: none; color: #124F6F; font-weight: bold;">Forgot
                                         Password?</a></small>
                             </div>
                         </div>
