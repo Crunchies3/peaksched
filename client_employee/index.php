@@ -11,7 +11,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
     exit;
 }
-require_once "./php/backend_login.php";
+require_once "php/backend_login.php";
 ?>
 
 <!DOCTYPE html>
