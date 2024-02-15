@@ -5,6 +5,9 @@ abstract class UserAccount
     protected $conn;
     protected $id;
     protected $email;
+    protected $firstName;
+    protected $lastName;
+    protected $mobileNumber;
     protected $hashedPassword;
     protected $tokenExpiry;
 
@@ -32,7 +35,7 @@ abstract class UserAccount
         } elseif (!preg_match("#[a-z]+#", $password)) {
             return "Your Password Must Contain At Least 1 Lowercase Letter!";
         } else {
-            $this->hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            $this->setHashedPassword(password_hash($password, PASSWORD_DEFAULT));
             return "";
         }
     }
@@ -47,11 +50,12 @@ abstract class UserAccount
         } else if (!$this->isEmailUnique($email)) {
             return "Email already exist";
         } else {
-            $this->email = $email;
+            $this->setEmail($email);
             return "";
         }
     }
 
+    // *Getter
     public function getEmail()
     {
         return $this->email;
@@ -75,5 +79,47 @@ abstract class UserAccount
     public function getTokenExpiry()
     {
         return $this->tokenExpiry;
+    }
+
+    public function getFirstname()
+    {
+        return $this->firstName;
+    }
+
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    public function getMobileNumebr()
+    {
+        return $this->mobileNumber;
+    }
+
+    // *Setter
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    public function setFirstname($firstName)
+    {
+        $this->firstName = $firstName;
+    }
+
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+    }
+
+    public function setMobileNumebr($mobileNumber)
+    {
+        $this->mobileNumber = $mobileNumber;
+    }
+
+    public function setHashedPassword($hashedPassword)
+    {
+        $this->hashedPassword = $hashedPassword;
     }
 }
