@@ -22,13 +22,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <script src="./js/full_calendar.js"></script>
-    <link rel="stylesheet" href="./css/dashboard_styles.css" />
+    <link rel="stylesheet" href="./css/old-dashboard.css" />
 
 </head>
 
 <body>
     <div class="wrapper">
-        <aside id="sidebar" class="shadow-lg">
+        <aside id="sidebar">
             <div class="d-flex">
                 <button id="toggle-btn" type="button">
                     <i class="bi bi-apple"></i>
@@ -39,7 +39,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link selected">
+                    <a href="#" class="sidebar-link">
                         <i class="bi bi-speedometer2"></i>
                         <span>Dashboard</span>
                     </a>
@@ -53,30 +53,47 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
                         <i class="bi bi-gear"></i>
-                        <span>Notification</span>
+                        <span>Setings</span>
                     </a>
                 </li>
-                <li class="sidebar-footer">
-                    <a href="profile_page.php" class="sidebar-link">
-                        <i class="bi bi-person-circle"></i>
-                        <span>Profile</span>
+                <!-- <li class="sidebar-item">
+                    <a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
+                        <i class="bi bi-layout-text-window-reverse"></i>
+                        <span>Multi Level</span>
                     </a>
-                </li>
+                    <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
+                                Two Links
+                            </a>
+                            <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link">Link 1</a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link">Link 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li> -->
             </ul>
             <div class="sidebar-footer">
-                <a href="php_backend/logout.php" class="sidebar-link">
-                    <i class="bi bi-box-arrow-left"></i>
-                    <span>Logout</span>
+                <a href="profile_page.php" class="sidebar-link">
+                    <i class="bi bi-person-circle"></i>
+                    <span>Profile</span>
                 </a>
             </div>
         </aside>
-        <div class="main">
+        <div class="main p-3">
             <div id="calendar"></div>
-            <!-- <a class="btn btn-danger" href="./php_backend/logout.php">
-                Logout
-            </a> -->
         </div>
-        <script src="./js/script.js"></script>
+
+
+    </div>
+    <script src="./js/script.js"></script>
 </body>
 
 </html>

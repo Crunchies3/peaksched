@@ -5,9 +5,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
 }
-
-require_once "php_backend/profile.php";
-
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +13,7 @@ require_once "php_backend/profile.php";
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profile</title>
+    <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -24,13 +21,13 @@ require_once "php_backend/profile.php";
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/bootstrap5@6.1.10/index.global.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="./css/dashboard.css" />
+    <link rel="stylesheet" href="./css/dashboard_styles.css" />
 
 </head>
 
 <body>
     <div class="wrapper">
-        <aside id="sidebar">
+        <aside id="sidebar" class="shadow-lg">
             <div class="d-flex">
                 <button id="toggle-btn" type="button">
                     <i class="bi bi-apple"></i>
@@ -55,55 +52,41 @@ require_once "php_backend/profile.php";
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
                         <i class="bi bi-gear"></i>
-                        <span>Setings</span>
+                        <span>Notification</span>
                     </a>
                 </li>
-                <!-- <li class="sidebar-item">
-                    <a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse"
-                        data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
-                        <i class="bi bi-layout-text-window-reverse"></i>
-                        <span>Multi Level</span>
+                <li class="sidebar-footer">
+                    <a href="profile_page.php" class="sidebar-link selected">
+                        <i class="bi bi-person-circle"></i>
+                        <span>Profile</span>
                     </a>
-                    <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"
-                                data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
-                                Two Links
-                            </a>
-                            <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Link 1</a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Link 2</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li> -->
+                </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="#" class="sidebar-link">
-                    <i class="bi bi-person-circle"></i>
-                    <span>Profile</span>
+                <a href="php_backend/logout.php" class="sidebar-link">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Logout</span>
                 </a>
             </div>
         </aside>
-        <div class="main p-3">
-            <h1><?php echo $firstName ?></h1>
-            <h4><?php echo $lastName ?></h4>
-            <h4><?php echo $email ?></h4>
-            <h4><?php echo $mobileNumber ?></h4>
-            <h4><?php echo $password ?></h4>
+        <section class="main">
+            <div class="row">
+                <div class="col-lg-3" style="background-color: red; height: 816px;">
+                    <div class="d-flex justify-content-center p-3">
+                        <div class="col-lg-12" style="background-color: green; height: 100px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9" style="background-color: blue;">
+                    <div class="d-flex justify-content-center p-3">
+                        <div class="col-lg-12" style="background-color: green; height: 750px;">
+                        </div>
+                    </div>
+                </div>
 
+        </section>
 
-            <form class="g-2" action="./php_backend/update_profile.php" method="post" novalidate>
-                <input name="email" type="email" class="form-control input-field" placeholder="First Name">
-            </form>
-
-        </div>
-    </div>
-    <script src="./js/script.js"></script>
+        <script src="./js/script.js"></script>
 </body>
 
 </html>
