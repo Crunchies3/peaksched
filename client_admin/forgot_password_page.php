@@ -18,7 +18,8 @@ require_once 'php/forgot_password.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="css/register_page_styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/3a742f337b.js" crossorigin="anonymous"></script> <!-- MATA SA PASSWORd -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <title>Login</title>
@@ -44,7 +45,7 @@ require_once 'php/forgot_password.php';
                     <div class="alert alert-success" role="alert" <?php echo $visibility ?>>
                         Email sent, please check your inbox.
                     </div>
-                    <form class="g-2" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
+                    <form class="g-2" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate id="emailForm">
                         <div class="input-group mb-4">
                             <input name="email" type="email" class="form-control input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="Email Address" value="<?php echo $emailAddress; ?>">
                             <div class="invalid-feedback">
@@ -52,7 +53,7 @@ require_once 'php/forgot_password.php';
                             </div>
                         </div>
                         <div class="input-group mb-5">
-                            <button href="forgot_password_verification.php" class="btn btn-lg w-100 fs-6" style="background-color: #124F6F; color: whitesmoke; font-weight: 600;">Send
+                            <button id="btnSubmit" class="btn btn-lg w-100 fs-6" style="background-color: #124F6F; color: whitesmoke; font-weight: 600;">Send
                             </button>
                         </div>
                         <div class="row" style="text-align: center;">
@@ -63,6 +64,21 @@ require_once 'php/forgot_password.php';
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $("#btnSubmit").click(function() {
+                // disable button
+                $(this).prop("disabled", true);
+                // add spinner to button
+                $(this).html(
+                    `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...`
+                );
+                $("#emailForm").submit();
+            });
+        });
+    </script>
+
 </body>
 
 </html>
