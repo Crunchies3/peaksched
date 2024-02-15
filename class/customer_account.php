@@ -12,7 +12,6 @@ $mail = new PHPMailer(true);
 
 class CustomerAccount extends UserAccount
 {
-    public $conn;
 
     function __construct($conn)
     {

@@ -4,8 +4,6 @@ require_once "user_account.php";
 
 class AdminAccount extends UserAccount
 {
-    public $conn;
-
     function __construct($conn)
     {
         $this->conn = $conn;

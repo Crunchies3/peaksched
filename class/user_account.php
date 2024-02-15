@@ -2,6 +2,7 @@
 
 abstract class UserAccount
 {
+    protected $conn;
     protected $id;
     protected $email;
     protected $hashedPassword;
