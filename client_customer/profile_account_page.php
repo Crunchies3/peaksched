@@ -5,6 +5,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
 }
+
+require_once "php_backend/profile_account.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -93,39 +96,27 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             <div class="row p-3 rounded" style="background-color: #e5e5e5;">
                                 <h1 class="mb-4">Your Profile</h1>
                                 <div class="col-lg mb-4">
-                                    <h5 class="mb-0">Cyril Charles Alvez</h5>
-                                    <small>alvezcyrilcharles@outlook.com</small>
+                                    <h5 class="mb-0"><?php echo $firstName . " " .  $lastName ?></h5>
+                                    <small><?php echo $email ?></small>
                                 </div>
                                 <h5 class="mb-4">Basic Information</h5>
                                 <div class="col-lg">
                                     <form class="row g-4" novalidate id="basicInformationFrm">
                                         <div class="col-md-6 mb-2">
                                             <label class="form-label">First Name</label>
-                                            <input disabled name="firstName" type="text" class="form-control input-field" placeholder="First name" aria-label="First name" value="Cyril Charles">
-                                            <div class="invalid-feedback">
-                                                <?php echo $firstName_err; ?>
-                                            </div>
+                                            <input disabled name="firstName" type="text" class="form-control input-field" placeholder="First name" aria-label="First name" value="<?php echo $firstName ?>">
                                         </div>
                                         <div class="col-md-6 mb-2">
                                             <label class="form-label">Last Name</label>
-                                            <input disabled name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="Last name" aria-label="Last name" value="Alvez">
-                                            <div class="invalid-feedback">
-                                                <?php echo $lastName_err; ?>
-                                            </div>
+                                            <input disabled name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="Last name" aria-label="Last name" value="<?php echo $lastName ?>">
                                         </div>
                                         <div class="mb-2 col-lg-6">
                                             <label class="form-label">Email Address</label>
-                                            <input disabled name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="Email Address" value="alvezcyrilcharles@outlook.com">
-                                            <div class="invalid-feedback">
-                                                <?php echo $emailAddress_err; ?>
-                                            </div>
+                                            <input disabled name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="Email Address" value="<?php echo $email ?>">
                                         </div>
                                         <div class="mb-4 col-lg-6">
                                             <label class="form-label">Phone Number</label>
-                                            <input disabled name="mobile" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Mobile Number" value="09550717073">
-                                            <div class="invalid-feedback">
-                                                <?php echo $mobileNumber_err; ?>
-                                            </div>
+                                            <input disabled name="mobile" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Mobile Number" value="<?php echo $mobileNumber ?>">
                                         </div>
                                     </form>
                                     <div class="mb-2 col-md-3">
@@ -155,10 +146,42 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+
+                <!-- //TODO: need ug client validation. mo refresh man if server side. prevent pressing save changes if naay invalid input-->
+                <form class="g-4" novalidate id="basicInformationFrm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                    <div class="col-md-12 mb-3">
+                        <label class="form-label">First Name</label>
+                        <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="First name" aria-label="First name" value="<?php echo $firstName ?>">
+                        <div class="invalid-feedback">
+                            <?php echo $firstName_err; ?>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label class="form-label">Last Name</label>
+                        <input name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="Last name" aria-label="Last name" value="<?php echo $lastName ?>">
+                        <div class="invalid-feedback">
+                            <?php echo $lastName_err; ?>
+                        </div>
+                    </div>
+                    <div class="mb-3 col-lg-12">
+                        <label class="form-label">Email Address</label>
+                        <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="Email Address" value="<?php echo $email ?>">
+                        <div class="invalid-feedback">
+                            <?php echo $emailAddress_err; ?>
+                        </div>
+                    </div>
+                    <div class="mb-4 col-lg-12">
+                        <label class="form-label">Phone Number</label>
+                        <input name="mobile" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Mobile Number" value="<?php echo $mobileNumber ?>">
+                        <div class="invalid-feedback">
+                            <?php echo $mobileNumber_err; ?>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-primary" style="background-color: #124F6F; color: whitesmoke; font-weight: 600;">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

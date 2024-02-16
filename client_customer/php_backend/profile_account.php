@@ -9,5 +9,3 @@ $lastName = $customer->getLastName();
 $email = $customer->getEmail();
 $mobileNumber = $customer->getMobileNumber();
 $password = $customer->getHashedPassword();
-
-
