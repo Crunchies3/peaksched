@@ -74,7 +74,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         <section class="main">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-xxl-3">
+                    <div class="col-xxl-3" id="choices">
                         <a class="choices mb-3 p-3 btn selected-choice">
                             <h5>Account Setting</h5>
                             <small>Details about your Personal Information</small>

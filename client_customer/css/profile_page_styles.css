@@ -28,3 +28,18 @@ label {
 #basicInformationFrm .form-control:disabled {
     background-color: rgb(255, 255, 255);
 }
+
+@media only screen and (max-width: 1399px) {
+    #choices small {
+        display: none;
+    }
+
+    /* .choices {
+        display: none;
+    } */
+
+    /* #sidebar {
+        display: none;
+    } */
+
+}
