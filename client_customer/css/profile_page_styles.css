@@ -15,9 +15,12 @@
     border-width: 2px;
 }
 
+
+
 #contents h5,
 label {
     font-weight: bold;
+    color: #bbbbbb;
 }
 
 #contents .input-field::placeholder {
@@ -42,4 +45,79 @@ label {
         display: none;
     } */
 
+}
+
+#accountSettingArea {
+    background-color: white;
+    border: 1px #BBBBBB;
+    border-style: solid;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 30px;
+}
+
+#securitySettingArea {
+    background-color: white;
+    border: 1px #BBBBBB;
+    border-style: solid;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top: none;
+    padding: 30px;
+}
+
+#settingsArea {
+    padding-top: 27.2px;
+}
+
+#settingsArea h5 {
+    margin-bottom: 35px;
+    font-weight: bold;
+}
+
+#settingsArea .chosen {
+    background-color: #124F6F;
+    color: #ececec;
+}
+
+#settingsArea .un-chosen {
+    background-color: #ffffff;
+    color: #a3a3a3;
+    border: 1px #a3a3a3;
+    border-style: solid;
+}
+
+#settingsArea .input-field {
+    background-color: #F7F8FC;
+    color: #a3a3a3;
+    border: 1px #a3a3a3;
+    border-style: solid;
+}
+
+#addressButton {
+    margin-left: 10px;
+}
+
+.save-changes-button {
+    background-color: #124F6F;
+    color: #ececec;
+}
+
+.change-password-button {
+    background-color: #ffffff;
+    color: #124F6F;
+    border: 2px #124F6F;
+    border-style: solid;
+}
+
+.save-changes-button:hover {
+    background-color: #124F6F;
+    color: #ececec;
+}
+
+.change-password-button:hover {
+    background-color: #ffffff;
+    color: #124F6F;
+    border: 2px #124F6F;
+    border-style: solid;
 }

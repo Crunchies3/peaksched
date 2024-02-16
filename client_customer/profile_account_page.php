@@ -45,7 +45,7 @@ require_once "php_backend/profile_account.php";
                 <li class="sidebar-item">
                     <a href="dashboard.php" class="sidebar-link">
                         <i class="bi bi-speedometer2"></i>
-                        <span>Dashboard</span>
+                        <span>Home</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -62,8 +62,8 @@ require_once "php_backend/profile_account.php";
                 </li>
                 <li class="sidebar-footer">
                     <a href="profile_page.php" class="sidebar-link selected">
-                        <i class="bi bi-person-circle"></i>
-                        <span>Profile</span>
+                        <i class="bi bi-gear"></i>
+                        <span>Settings</span>
                     </a>
                 </li>
             </ul>
@@ -75,56 +75,81 @@ require_once "php_backend/profile_account.php";
             </div>
         </aside>
         <section class="main">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xxl-3" id="choices">
-                        <a class="choices mb-3 p-3 btn selected-choice">
-                            <h5>Account Setting</h5>
-                            <small>Details about your Personal Information</small>
-                        </a>
-                        <a class="choices mb-3 p-3 btn" href="./profile_security_page.php">
-                            <h5>Login & Security</h5>
-                            <small>Details about your Security Information</small>
-                        </a>
-                        <a class="choices mb-3 p-3 btn" href="./profile_addresses_page.php">
-                            <h5>Addresses</h5>
-                            <small>Details about your Addresses and Locations</small>
-                        </a>
+            <div class="container-fluid" id="settingsArea">
+                <div class="mb-4">
+                    <h1>Settings</h1>
+                </div>
+                <div class="mb-4">
+                    <a href="" class="btn chosen">Account</a>
+                    <a href="" class="btn un-chosen" id="addressButton">Addresses</a>
+                </div>
+                <div class="container-fluid" id="accountSettingArea">
+                    <div>
+                        <h5>Account Settings</h5>
                     </div>
-                    <div class="col-lg" id="contents">
-                        <div class="container-fluid">
-                            <div class="row p-3 rounded" style="background-color: #e5e5e5;">
-                                <h1 class="mb-4">Your Profile</h1>
-                                <div class="col-lg mb-4">
-                                    <h5 class="mb-0"><?php echo $firstName . " " .  $lastName ?></h5>
-                                    <small><?php echo $email ?></small>
-                                </div>
-                                <h5 class="mb-4">Basic Information</h5>
-                                <div class="col-lg">
-                                    <form class="row g-4" novalidate id="basicInformationFrm">
-                                        <div class="col-md-6 mb-2">
-                                            <label class="form-label">First Name</label>
-                                            <input disabled name="firstName" type="text" class="form-control input-field" placeholder="First name" aria-label="First name" value="<?php echo $firstName ?>">
-                                        </div>
-                                        <div class="col-md-6 mb-2">
-                                            <label class="form-label">Last Name</label>
-                                            <input disabled name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="Last name" aria-label="Last name" value="<?php echo $lastName ?>">
-                                        </div>
-                                        <div class="mb-2 col-lg-6">
-                                            <label class="form-label">Email Address</label>
-                                            <input disabled name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="Email Address" value="<?php echo $email ?>">
-                                        </div>
-                                        <div class="mb-4 col-lg-6">
-                                            <label class="form-label">Phone Number</label>
-                                            <input disabled name="mobile" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Mobile Number" value="<?php echo $mobileNumber ?>">
-                                        </div>
-                                    </form>
-                                    <div class="mb-2 col-md-3">
-                                        <button class="btn btn-lg w-100 fs-6" data-bs-toggle="modal" data-bs-target="#updateInfoModal" style="background-color: #124F6F; color: whitesmoke; font-weight: 600;">Edit Info</button>
-                                    </div>
-                                </div>
+                    <form class="row" method="post" novalidate>
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label mb-1">FIRST NAME</label>
+                            <input name="firstName" type="text" class="form-control input-field" placeholder="current password" aria-label="Current Password" value="">
+                            <div class="invalid-feedback">
+                                <?php echo $firstName_err; ?>
                             </div>
                         </div>
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label mb-1">LAST NAME</label>
+                            <input name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="new password" aria-label="Last name" value="">
+                            <div class="invalid-feedback">
+                                <?php echo $lastName_err; ?>
+                            </div>
+                        </div>
+                        <div class="mb-4 col-lg-6 mb-4">
+                            <label class="form-label mb-1">EMAIL ADDRESS</label>
+                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="confirm new password" value="">
+                            <div class="invalid-feedback">
+                                <?php echo $emailAddress_err; ?>
+                            </div>
+                        </div>
+                        <div class="mb-4 col-lg-6 mb-4">
+                            <label class="form-label mb-1">PHONE NUMBER</label>
+                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="confirm new password" value="">
+                            <div class="invalid-feedback">
+                                <?php echo $emailAddress_err; ?>
+                            </div>
+                        </div>
+                        <div class="mb-0 col-xl-2">
+                            <button class="btn btn-lg fs-6 w-100 save-changes-button">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="container-fluid" id="securitySettingArea">
+                    <div>
+                        <h5>Security</h5>
+                    </div>
+                    <form class="row" method="post" novalidate>
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label mb-1">CURRENT PASSWORD</label>
+                            <input name="firstName" type="text" class="form-control input-field" placeholder="current password" aria-label="Current Password" value="">
+                            <div class="invalid-feedback">
+                                <?php echo $firstName_err; ?>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label mb-1">NEW PASSWORD</label>
+                            <input name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="new password" aria-label="Last name" value="">
+                            <div class="invalid-feedback">
+                                <?php echo $lastName_err; ?>
+                            </div>
+                        </div>
+                        <div class="mb-4 col-lg-6 mb-4">
+                            <label class="form-label mb-1">CONFIRM NEW PASSWORD</label>
+                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="confirm new password" value="">
+                            <div class="invalid-feedback">
+                                <?php echo $emailAddress_err; ?>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="mb-0 col-xl-2">
+                        <button class="w-100 btn btn-lg fs-6 change-password-button">Change password</button>
                     </div>
                 </div>
             </div>
