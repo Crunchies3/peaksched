@@ -21,8 +21,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/bootstrap5@6.1.10/index.global.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-    <script src="./js/full_calendar.js"></script>
     <link rel="stylesheet" href="./css/dashboard_styles.css" />
+    <link rel="stylesheet" href="./css/profile_page_styles.css" />
+
 
 </head>
 
@@ -39,7 +40,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link selected">
+                    <a href="dashboard.php" class="sidebar-link">
                         <i class="bi bi-speedometer2"></i>
                         <span>Dashboard</span>
                     </a>
@@ -57,7 +58,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </a>
                 </li>
                 <li class="sidebar-footer">
-                    <a href="profile_account_page.php" class="sidebar-link">
+                    <a href="profile_page.php" class="sidebar-link selected">
                         <i class="bi bi-person-circle"></i>
                         <span>Profile</span>
                     </a>
@@ -70,12 +71,34 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 </a>
             </div>
         </aside>
-        <div class="main">
-            <div id="calendar"></div>
-            <!-- <a class="btn btn-danger" href="./php_backend/logout.php">
-                Logout
-            </a> -->
-        </div>
+        <section class="main">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <a class="choices mb-3 p-3 btn" href="profile_account_page.php">
+                            <h5>Account Setting</h5>
+                            <small>Details about your Personal Information</small>
+                        </a>
+                        <a class="choices mb-3 p-3 btn selected-choice">
+                            <h5>Password & Security</h5>
+                            <small>Details about your Security Information</small>
+                        </a>
+                        <a class="choices mb-3 p-3 btn" href="./profile_addresses_page.php">
+                            <h5>Addresses</h5>
+                            <small>Details about your Addresses and Locations</small>
+                        </a>
+                    </div>
+                    <div class="col-lg-9" style="background-color: blue;">
+                        <div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
         <script src="./js/script.js"></script>
 </body>
 

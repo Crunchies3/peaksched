@@ -1,0 +1,20 @@
+.choices {
+    background-color: #e5e5e5;
+    border-radius: 10px;
+    width: 100%;
+    text-align: start;
+}
+
+.choices h5 {
+    font-weight: bold;
+}
+
+.selected-choice {
+    border-style: solid;
+    border-color: #124F6F;
+    border-width: 2px;
+}
+
+#userProfile h5 {
+    font-weight: bold;
+}
