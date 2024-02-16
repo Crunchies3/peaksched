@@ -74,7 +74,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         <section class="main">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-3">
+                    <div class="col-xxl-3">
                         <a class="choices mb-3 p-3 btn" href="profile_account_page.php">
                             <h5>Account Setting</h5>
                             <small>Details about your Personal Information</small>
@@ -116,7 +116,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                             </div>
                                         </div>
                                     </form>
-                                    <div class="mb-2 col-md-3">
+                                    <div class="mb-2 col-lg-3">
                                         <button class="btn btn-lg w-100 fs-6" style="background-color: #124F6F; color: whitesmoke; font-weight: 600;">Save changes</button>
                                     </div>
                                 </div>

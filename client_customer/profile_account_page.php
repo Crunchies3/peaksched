@@ -83,7 +83,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             <h5>Login & Security</h5>
                             <small>Details about your Security Information</small>
                         </a>
-                        <a class="choices mb-3 p-3 btn">
+                        <a class="choices mb-3 p-3 btn" href="./profile_addresses_page.php">
                             <h5>Addresses</h5>
                             <small>Details about your Addresses and Locations</small>
                         </a>
