@@ -1,0 +1,30 @@
+.choices {
+    background-color: #e5e5e5;
+    border-radius: 10px;
+    width: 100%;
+    text-align: start;
+}
+
+.choices h5 {
+    font-weight: bold;
+}
+
+.selected-choice {
+    border-style: solid;
+    border-color: #124F6F;
+    border-width: 2px;
+}
+
+#contents h5,
+label {
+    font-weight: bold;
+}
+
+#contents .input-field::placeholder {
+    font-size: 16px;
+    color: #cdcdcd;
+}
+
+#basicInformationFrm .form-control:disabled {
+    background-color: rgb(255, 255, 255);
+}

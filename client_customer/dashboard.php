@@ -57,7 +57,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </a>
                 </li>
                 <li class="sidebar-footer">
-                    <a href="profile_page.php" class="sidebar-link">
+                    <a href="profile_account_page.php" class="sidebar-link">
                         <i class="bi bi-person-circle"></i>
                         <span>Profile</span>
                     </a>

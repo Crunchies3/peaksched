@@ -22,6 +22,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="./css/dashboard_styles.css" />
+    <link rel="stylesheet" href="./css/profile_page_styles.css" />
+
 
 </head>
 
@@ -70,20 +72,32 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             </div>
         </aside>
         <section class="main">
-            <div class="row">
-                <div class="col-lg-3" style="background-color: red; height: 816px;">
-                    <div class="d-flex justify-content-center p-3">
-                        <div class="col-lg-12" style="background-color: green; height: 100px;">
-                        </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <a class="choices mb-3 p-3 btn" href="./profile_account_page.php">
+                            <h5>Account Setting</h5>
+                            <small>Details about your Personal Information</small>
+                        </a>
+                        <a class="choices mb-3 p-3 btn" href="./profile_security_page.php">
+                            <h5>Login & Security</h5>
+                            <small>Details about your Security Information</small>
+                        </a>
+                        <a class="choices mb-3 p-3 btn selected-choice">
+                            <h5>Addresses</h5>
+                            <small>Details about your Addresses and Locations</small>
+                        </a>
                     </div>
-                </div>
-                <div class="col-lg-9" style="background-color: blue;">
-                    <div class="d-flex justify-content-center p-3">
-                        <div class="col-lg-12" style="background-color: green; height: 750px;">
-                        </div>
-                    </div>
-                </div>
+                    <div class="col-lg" id="contents">
+                        <div class="container-fluid">
+                            <div class="p-3 rounded" style="background-color: #e5e5e5;">
 
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </section>
 
         <script src="./js/script.js"></script>
