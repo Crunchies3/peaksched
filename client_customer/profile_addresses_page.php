@@ -90,48 +90,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </div>
                     <div class="col-lg" id="contents">
                         <div class="container-fluid">
-                            <div class="row p-3 rounded" style="background-color: #e5e5e5;">
-                                <h1 class="mb-4">Your Profile</h1>
-                                <div class="col-lg mb-4">
-                                    <h5 class="mb-0">Cyril Charles Alvez</h5>
-                                    <small>alvezcyrilcharles@outlook.com</small>
-                                </div>
-                                <h5 class="mb-4">Basic Information</h5>
-                                <div class="col-lg">
-                                    <form class="row g-4" method="post" novalidate>
-                                        <div class="col-md-6 mb-2">
-                                            <label class="form-label">First Name</label>
-                                            <input name="firstName" type="text" class="form-control input-field" placeholder="First name" aria-label="First name" value="Cyril Charles">
-                                            <div class="invalid-feedback">
-                                                <?php echo $firstName_err; ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 mb-2">
-                                            <label class="form-label">Last Name</label>
-                                            <input name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="Last name" aria-label="Last name" value="Alvez">
-                                            <div class="invalid-feedback">
-                                                <?php echo $lastName_err; ?>
-                                            </div>
-                                        </div>
-                                        <div class="mb-2 col-lg-6">
-                                            <label class="form-label">Email Address</label>
-                                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="Email Address" value="alvezcyrilcharles@outlook.com">
-                                            <div class="invalid-feedback">
-                                                <?php echo $emailAddress_err; ?>
-                                            </div>
-                                        </div>
-                                        <div class="mb-2 col-lg-6">
-                                            <label class="form-label">Mobile Number</label>
-                                            <input name="mobile" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Mobile Number" value="09550717073">
-                                            <div class="invalid-feedback">
-                                                <?php echo $mobileNumber_err; ?>
-                                            </div>
-                                        </div>
-                                        <div class="mb-2 col-md-3">
-                                            <button class="btn btn-lg w-100 fs-6" style="background-color: #124F6F; color: whitesmoke; font-weight: 600;">Save changes</button>
-                                        </div>
-                                    </form>
-                                </div>
+                            <div class="p-3 rounded" style="background-color: #e5e5e5;">
+
                             </div>
                         </div>
                     </div>
