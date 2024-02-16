@@ -80,7 +80,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             <small>Details about your Personal Information</small>
                         </a>
                         <a class="choices mb-3 p-3 btn" href="./profile_security_page.php">
-                            <h5>Password & Security</h5>
+                            <h5>Login & Security</h5>
                             <small>Details about your Security Information</small>
                         </a>
                         <a class="choices mb-3 p-3 btn">
@@ -88,7 +88,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             <small>Details about your Addresses and Locations</small>
                         </a>
                     </div>
-                    <div class="col-lg" id="userProfile">
+                    <div class="col-lg" id="contents">
                         <div class="container-fluid">
                             <div class="row p-3 rounded" style="background-color: #e5e5e5;">
                                 <h1 class="mb-4">Your Profile</h1>
@@ -98,39 +98,39 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                 </div>
                                 <h5 class="mb-4">Basic Information</h5>
                                 <div class="col-lg">
-                                    <form class="row g-4" method="post" novalidate>
+                                    <form class="row g-4" novalidate id="basicInformationFrm">
                                         <div class="col-md-6 mb-2">
                                             <label class="form-label">First Name</label>
-                                            <input name="firstName" type="text" class="form-control input-field" placeholder="First name" aria-label="First name" value="Cyril Charles">
+                                            <input disabled name="firstName" type="text" class="form-control input-field" placeholder="First name" aria-label="First name" value="Cyril Charles">
                                             <div class="invalid-feedback">
                                                 <?php echo $firstName_err; ?>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-2">
                                             <label class="form-label">Last Name</label>
-                                            <input name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="Last name" aria-label="Last name" value="Alvez">
+                                            <input disabled name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="Last name" aria-label="Last name" value="Alvez">
                                             <div class="invalid-feedback">
                                                 <?php echo $lastName_err; ?>
                                             </div>
                                         </div>
                                         <div class="mb-2 col-lg-6">
                                             <label class="form-label">Email Address</label>
-                                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="Email Address" value="alvezcyrilcharles@outlook.com">
+                                            <input disabled name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="Email Address" value="alvezcyrilcharles@outlook.com">
                                             <div class="invalid-feedback">
                                                 <?php echo $emailAddress_err; ?>
                                             </div>
                                         </div>
-                                        <div class="mb-2 col-lg-6">
-                                            <label class="form-label">Mobile Number</label>
-                                            <input name="mobile" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Mobile Number" value="09550717073">
+                                        <div class="mb-4 col-lg-6">
+                                            <label class="form-label">Phone Number</label>
+                                            <input disabled name="mobile" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Mobile Number" value="09550717073">
                                             <div class="invalid-feedback">
                                                 <?php echo $mobileNumber_err; ?>
                                             </div>
                                         </div>
-                                        <div class="mb-2 col-md-3">
-                                            <button class="btn btn-lg w-100 fs-6" style="background-color: #124F6F; color: whitesmoke; font-weight: 600;">Save changes</button>
-                                        </div>
                                     </form>
+                                    <div class="mb-2 col-md-3">
+                                        <button class="btn btn-lg w-100 fs-6" data-bs-toggle="modal" data-bs-target="#updateInfoModal" style="background-color: #124F6F; color: whitesmoke; font-weight: 600;">Edit Info</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -147,15 +147,14 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 
 <!-- Modal -->
-<div class="modal" id="exampleModal" data-bs-backdrop="true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="width: 400px;">
+<div class="modal fade" id="updateInfoModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="updateInfoModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
-                <h5 class="modal-title" style="font-size: 16px;" id="exampleModalLabel">Appointment</h5>
+                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Main Details</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

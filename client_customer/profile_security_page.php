@@ -80,7 +80,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             <small>Details about your Personal Information</small>
                         </a>
                         <a class="choices mb-3 p-3 btn selected-choice">
-                            <h5>Password & Security</h5>
+                            <h5>Login & Security</h5>
                             <small>Details about your Security Information</small>
                         </a>
                         <a class="choices mb-3 p-3 btn" href="./profile_addresses_page.php">
@@ -88,11 +88,40 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             <small>Details about your Addresses and Locations</small>
                         </a>
                     </div>
-                    <div class="col-lg-9" style="background-color: blue;">
-                        <div>
-
+                    <div class="col-lg" id="contents">
+                        <div class="container-fluid">
+                            <div class="row p-3 rounded" style="background-color: #e5e5e5;">
+                                <h1 class="mb-4">Update Your Password</h1>
+                                <div class="col-lg">
+                                    <form class="row g-4" method="post" novalidate>
+                                        <div class="col-md-6 mb-2">
+                                            <label class="form-label">Current Password</label>
+                                            <input name="firstName" type="text" class="form-control input-field" placeholder="current password" aria-label="Current Password" value="">
+                                            <div class="invalid-feedback">
+                                                <?php echo $firstName_err; ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label class="form-label">New Password</label>
+                                            <input name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="new password" aria-label="Last name" value="">
+                                            <div class="invalid-feedback">
+                                                <?php echo $lastName_err; ?>
+                                            </div>
+                                        </div>
+                                        <div class="mb-4 col-lg-6">
+                                            <label class="form-label">Confirm New Password</label>
+                                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="confirm new password" value="">
+                                            <div class="invalid-feedback">
+                                                <?php echo $emailAddress_err; ?>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="mb-2 col-md-3">
+                                        <button class="btn btn-lg w-100 fs-6" style="background-color: #124F6F; color: whitesmoke; font-weight: 600;">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
                     </div>
 
                 </div>

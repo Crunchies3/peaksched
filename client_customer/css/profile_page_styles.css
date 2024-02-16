@@ -15,6 +15,16 @@
     border-width: 2px;
 }
 
-#userProfile h5 {
+#contents h5,
+label {
     font-weight: bold;
+}
+
+#contents .input-field::placeholder {
+    font-size: 16px;
+    color: #cdcdcd;
+}
+
+#basicInformationFrm .form-control:disabled {
+    background-color: rgb(255, 255, 255);
 }
