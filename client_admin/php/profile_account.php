@@ -12,18 +12,21 @@ $email = $admin->getEmail();
 $mobileNumber = $admin->getMobileNumber();
 $password = $admin->getHashedPassword();
 
+$firstName_err = $lastName_err = $email_err = $mobileNumber_err = "";
+$currentPassword_err = $newPassword_err = $confirmPassword_err = "";
+
+
+
 if (isset($_POST['updateInfo'])) {
-    updateDetails();
+    updateDetails($firstName_err, $lastName_err, $email_err, $mobileNumber_err, $firstName, $lastName, $email, $mobileNumber, $admin);
 } else if (isset($_POST['changePassword'])) {
     changePassword();
 }
 
 
-function updateDetails()
+function updateDetails(&$firstName_err, &$lastName_err, &$email_err, &$mobileNumber_err, &$firstName, &$lastName, &$email, &$mobileNumber, $admin)
 {
-    global $firstName_err, $lastName_err, $emailAddress_err, $mobileNumber_err, $changed_err;
-    global $newFirstName, $newLastName, $newEmailAddress, $newMobileNumber;
-    global $firstName, $lastName, $email, $mobileNumber, $admin, $admin;
+
 
     $firstName = $lastName = $mobileNumber = "";
 
@@ -31,15 +34,15 @@ function updateDetails()
         return;
     }
 
-    $newFirstName = trim($_POST["firstName"]);
+    $firstName = trim($_POST["firstName"]);
 
-    if (empty($newFirstName)) {
+    if (empty($firstName)) {
         $firstName_err = "Please enter your first name.";
     }
 
-    $newLastName = trim($_POST["lastName"]);
+    $lastName = trim($_POST["lastName"]);
 
-    if (empty($newLastName)) {
+    if (empty($lastName)) {
         $lastName_err = "Please enter your last name.";
     }
 
@@ -53,17 +56,17 @@ function updateDetails()
     }
 
 
-    $newMobileNumber = trim($_POST["mobile"]);
+    $mobileNumber = trim($_POST["mobile"]);
 
-    if (empty($newMobileNumber)) {
+    if (empty($mobileNumber)) {
         $mobileNumber_err = "Please enter your mobile number.";
-    } else if (!is_numeric($newMobileNumber)) {
+    } else if (!is_numeric($mobileNumber)) {
         $mobileNumber_err = "Please enter a valid mobile number.";
     }
 
 
     if (empty($firstName_err) && empty($lastName_err) && empty($emailAddress_err) && empty($mobileNumber_err) && empty($changed_err)) {
-        $admin->updateUserDetails($newFirstName, $newLastName, $newEmailAddress, $newMobileNumber);
+        $admin->updateUserDetails($firstName, $lastName, $newEmail, $mobileNumber);
     }
 }
 
