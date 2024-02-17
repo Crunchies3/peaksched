@@ -20,6 +20,10 @@ abstract class UserAccount
     abstract public function addResetToken($tokenHash, $expiry, $email);
     abstract public function sendForgotPasswordLink($email, $token);
     abstract public function doesTokenExist($tokenHash);
+    abstract public function verifyPassword($password);
+    abstract public function updatePassword($password);
+
+
 
 
     public function validatePassword($password)
@@ -39,6 +43,7 @@ abstract class UserAccount
             return "";
         }
     }
+
 
     public function validateEmail($email)
     {
@@ -97,6 +102,12 @@ abstract class UserAccount
     }
 
     // *Setter
+
+    public function setConn($conn)
+    {
+        $this->conn = $conn;
+    }
+
     public function setId($id)
     {
         $this->id = $id;

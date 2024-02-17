@@ -208,4 +208,12 @@ class EmployeeAccount extends UserAccount
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
+
+    public function verifyPassword($password)
+    {
+    }
+
+    public function updatePassword($password)
+    {
+    }
 }

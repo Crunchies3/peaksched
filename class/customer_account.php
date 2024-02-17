@@ -216,4 +216,33 @@ class CustomerAccount extends UserAccount
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
+
+    public function verifyPassword($password)
+    {
+        try {
+            if (!password_verify($password, $this->hashedPassword)) {
+                return "Incorrect password.";
+            } else {
+                return;
+            }
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+
+    // TODO: I update dapat nako ang object sa session
+    public function updatePassword($password)
+    {
+        $email = $this->getEmail();
+        try {
+            $stmt = $this->conn->prepare("UPDATE tbl_customer SET password = ? WHERE email = ?");
+            $stmt->bind_param("ss", $password, $email);
+            $stmt->execute();
+            $this->setHashedPassword($password);
+            $this->conn->close();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
 }

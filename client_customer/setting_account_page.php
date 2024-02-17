@@ -86,7 +86,7 @@ require_once "php_backend/settings_account.php";
                     <form id="updateAccountDetails" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <div class="col-md-6 mb-4">
                             <label class="form-label mb-1">FIRST NAME</label>
-                            <input name="firstName" type="text" class="form-control input-field" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $firstName ?>">
+                            <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $firstName ?>">
                             <div class="invalid-feedback">
                                 <?php echo $firstName_err; ?>
                             </div>
@@ -100,16 +100,16 @@ require_once "php_backend/settings_account.php";
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">EMAIL ADDRESS</label>
-                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your email address" value="<?php echo $email ?>">
+                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your email address" value="<?php echo $email ?>">
                             <div class="invalid-feedback">
-                                <?php echo $emailAddress_err; ?>
+                                <?php echo $email_err; ?>
                             </div>
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">PHONE NUMBER</label>
-                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your mobile number" value="<?php echo $mobileNumber ?>">
+                            <input name="mobile" type="email" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your mobile number" value="<?php echo $mobileNumber ?>">
                             <div class="invalid-feedback">
-                                <?php echo $emailAddress_err; ?>
+                                <?php echo $mobileNumber_err; ?>
                             </div>
                         </div>
                     </form>
@@ -118,7 +118,7 @@ require_once "php_backend/settings_account.php";
                             <button data-bs-toggle="modal" data-bs-target="#updateInfoModal" class="btn btn-lg fs-6 w-100 save-changes-button">Save changes</button>
                         </div>
                         <div class="mb-0 col-xxl-2">
-                            <button form="updateAccountDetails" name="discardChanges" class="btn btn-lg fs-6 w-100 discard-changes-button">Discard changes</button>
+                            <a href="./setting_account_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 discard-changes-button">Discard changes</a>
                         </div>
                     </div>
                 </div>
@@ -129,23 +129,23 @@ require_once "php_backend/settings_account.php";
                     <form class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" id="securityForm" novalidate>
                         <div class="col-lg-6 mb-4">
                             <label class="form-label mb-1">CURRENT PASSWORD</label>
-                            <input name="currentPassword" type="password" class="form-control input-field" placeholder="Enter your current password" aria-label="Current Password" value="">
+                            <input name="currentPassword" type="password" class="form-control input-field <?php echo (!empty($currentPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your current password" aria-label="Current Password" value="<?php echo $currentPassword; ?>">
                             <div class="invalid-feedback">
-                                <?php echo $firstName_err; ?>
+                                <?php echo $currentPassword_err; ?>
                             </div>
                         </div>
                         <div class="col-lg-6 mb-4">
                             <label class="form-label mb-1">NEW PASSWORD</label>
-                            <input name="newPassword" type="password" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your new password" aria-label="Last name" value="">
+                            <input name="newPassword" type="password" class="form-control input-field <?php echo (!empty($newPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your new password" aria-label="Last name" value="<?php echo $newPassword; ?>">
                             <div class="invalid-feedback">
-                                <?php echo $lastName_err; ?>
+                                <?php echo $newPassword_err; ?>
                             </div>
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">CONFIRM NEW PASSWORD</label>
-                            <input name="confirmPassword" type="password" class="form-control fs-6 input-field mb-2 <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="Re-enter your new password" value="">
+                            <input name="confirmPassword" type="password" class="form-control fs-6 input-field mb-2 <?php echo (!empty($confirmPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Re-enter your new password" value="<?php echo $confirmPassword; ?>">
                             <div class="invalid-feedback">
-                                <?php echo $emailAddress_err; ?>
+                                <?php echo $confirmPassword_err; ?>
                             </div>
                             <div class="password-reminder">
                                 <small>Password must be atleast 8 characters long and include a mix of uppercase letters, lowercase letters, and numbers.</small>
@@ -157,7 +157,7 @@ require_once "php_backend/settings_account.php";
                             <button data-bs-toggle="modal" data-bs-target="#updatePasswordModal" type="submit" class="btn btn-lg fs-6 w-100 change-password-button">Change password</button>
                         </div>
                         <div class="mb-0 col-xxl-2">
-                            <button form="updateAccountDetails" name="discardChanges" class="btn btn-lg fs-6 w-100 discard-changes-button">Discard changes</button>
+                            <a href="./setting_account_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 discard-changes-button">Discard changes</a>
                         </div>
                     </div>
                 </div>
