@@ -21,8 +21,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/bootstrap5@6.1.10/index.global.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-    <script src="./js/full_calendar.js"></script>
     <link rel="stylesheet" href="./css/dashboard_styles.css" />
+    <link rel="stylesheet" href="./css/profile_page_styles.css" />
+
 
 </head>
 
@@ -39,7 +40,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link selected">
+                    <a href="dashboard.php" class="sidebar-link">
                         <i class="bi bi-house"></i>
                         <span>Home</span>
                     </a>
@@ -57,7 +58,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </a>
                 </li>
                 <li class="sidebar-footer">
-                    <a href="profile_account_page.php" class="sidebar-link">
+                    <a href="profile_account_page.php" class="sidebar-link selected">
                         <i class="bi bi-gear"></i>
                         <span>Settings</span>
                     </a>
@@ -70,13 +71,30 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 </a>
             </div>
         </aside>
-        <div class="main">
-            <div id="calendar"></div>
-            <!-- <a class="btn btn-danger" href="./php_backend/logout.php">
-                Logout
-            </a> -->
-        </div>
-        <script src="./js/script.js"></script>
+        <section class="main">
+            <div class="container-fluid" id="settingsArea">
+                <div class="mb-4">
+                    <h1>Settings</h1>
+                </div>
+                <div class="mb-4">
+                    <a href="profile_account_page.php" class="btn un-chosen">Account</a>
+                    <a href="profile_addresses_page.php" class="btn chosen" id="addressButton">Addresses</a>
+                </div>
+                <div class="container-fluid" id="accountSettingArea">
+                    <div>
+                        <h5>Location</h5>
+                    </div>
+                    <div class="mb-0 col-xl-2">
+                        <button class="btn btn-lg fs-6 w-100 save-changes-button">Add New Adress</button>
+                    </div>
+                </div>
+
+
+            </div>
+    </div>
+    </section>
+
+    <script src="./js/script.js"></script>
 </body>
 
 </html>
