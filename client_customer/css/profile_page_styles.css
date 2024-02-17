@@ -19,8 +19,9 @@
 
 #contents h5,
 label {
-    font-weight: bold;
-    color: #bbbbbb;
+    font-weight: 600;
+    color: #7d7d7d;
+
 }
 
 #contents .input-field::placeholder {
@@ -89,9 +90,13 @@ label {
 
 #settingsArea .input-field {
     background-color: #F7F8FC;
-    color: #a3a3a3;
-    border: 1px #a3a3a3;
+    color: #222222;
+    border: 1px #BBBBBB;
     border-style: solid;
+}
+
+#settingsArea .input-field::placeholder {
+    color: #a3a3a3;
 }
 
 #addressButton {

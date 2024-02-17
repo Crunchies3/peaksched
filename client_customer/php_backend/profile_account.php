@@ -9,3 +9,18 @@ $lastName = $customer->getLastName();
 $email = $customer->getEmail();
 $mobileNumber = $customer->getMobileNumber();
 $password = $customer->getHashedPassword();
+
+if (isset($_POST['updateInfo'])) {
+    updateDetails();
+} else if (isset($_POST['changePassword'])) {
+    changePassword();
+}
+
+
+function updateDetails()
+{
+}
+
+function changePassword()
+{
+}
