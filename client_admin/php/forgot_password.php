@@ -10,11 +10,10 @@ $visibility = "hidden";
 
 $adminAccount = new AdminAccount($conn);
 
-validateInputs();
+validateInputs($emailAddress, $adminAccount, $emailAddress_err, $visibility);
 
-function validateInputs()
+function validateInputs(&$emailAddress, &$adminAccount, &$emailAddress_err, &$visibility)
 {
-    global $emailAddress, $adminAccount, $emailAddress_err, $visibility;
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         return;

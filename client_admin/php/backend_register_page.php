@@ -2,20 +2,21 @@
 require_once 'config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/admin_account.php";
 
+//variables that will hold the data
 $firstName = $lastName = $emailAddress = $mobileNumber = $password = $confirmPassword =  $adminId = $hashedPassword = "";
-
 // variables that will hold error messages
 $firstName_err = $lastName_err = $emailAddress_err = $mobileNumber_err = $password_err = $confirmPassword_err = "";
 
 
 $adminAccount = new AdminAccount($conn);
 
-validateInputs();
+validateInputs($firstName_err, $lastName_err, $emailAddress_err, $mobileNumber_err, $password_err, $confirmPassword_err, $adminAccount,
+$firstName, $lastName, $emailAddress, $mobileNumber, $password, $confirmPassword, $adminId, $hashedPassword);
 
-function validateInputs()
+function validateInputs(&$firstName_err, &$lastName_err, &$emailAddress_err, &$mobileNumber_err, &$password_err, &$confirmPassword_err, $adminAccount,
+&$firstName, &$lastName, &$emailAddress, &$mobileNumber, &$password, &$confirmPassword, &$adminId, &$hashedPassword)
+
 {
-    global $firstName_err, $lastName_err, $emailAddress_err, $mobileNumber_err, $password_err, $confirmPassword_err;
-    global $firstName, $lastName, $emailAddress, $mobileNumber, $password, $confirmPassword, $adminId, $hashedPassword, $adminAccount;
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         return;

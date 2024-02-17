@@ -14,14 +14,14 @@ if (isset($_GET["token"])) {
 $adminAccount = new AdminAccount($conn);
 
 if ($token != null) {
-    validateToken();
+    validateToken($adminAccount, $token, $tokenHash, $tokenHash_err, $status, $visibility);
 }
 
-validateInputs();
+validateInputs($password_err, $confirmPassword_err,$password, $confirmPassword, $hashedPassword, $adminAccount, $token);
 
-function validateToken()
+function validateToken($adminAccount, &$token, &$tokenHash, &$tokenHash_err, &$status, &$visibility)
 {
-    global $adminAccount, $token, $tokenHash, $tokenHash_err, $status, $visibility;
+
 
     $tokenHash = $adminAccount->getHashedToken($token);
     if (!$adminAccount->doesTokenExist($tokenHash)) {
@@ -39,10 +39,9 @@ function validateToken()
     }
 }
 
-function validateInputs()
+function validateInputs(&$password_err, &$confirmPassword_err, &$password, &$confirmPassword, &$hashedPassword, $adminAccount, &$token)
 {
-    global $password_err, $confirmPassword_err;
-    global $password, $confirmPassword, $hashedPassword, $adminAccount, $token;
+
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         return;
