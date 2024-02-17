@@ -35,10 +35,20 @@ class EmployeeAccount extends UserAccount
                     if (!password_verify($password, $hashedPassword)) {
                         return "Incorrect email or password";
                     } else {
+                        $this->conn->close();
                         session_start();
+                        $this->setConn($this->conn);
+                        $this->setId($row["employeeid"]);
+                        $this->setFirstname($row["firstname"]);
+                        $this->setLastName($row["lastname"]);
+                        $this->setEmail($row["email"]);
+                        $this->setMobileNumebr($row["mobilenumber"]);
+                        $this->setHashedPassword($row["password"]);
+                        $this->setType($row["type"]);
+
+
                         $_SESSION["loggedin"] = true;
-                        $_SESSION["employeeid"] = $row["employeeid"];
-                        $_SESSION["type"] = $row["type"];
+                        $_SESSION["employeeUser"] = serialize($this);
 
                         if ($row["type"] == "supervisor") {
                             header("location: ./dashboard_supervisor.php");
@@ -68,6 +78,16 @@ class EmployeeAccount extends UserAccount
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
         $this->conn->close();
+    }
+
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    public function setType($type)
+    {
+        $this->type = $type;
     }
 
     public function isIdUnique($customerId)
@@ -209,11 +229,39 @@ class EmployeeAccount extends UserAccount
         }
     }
 
-    public function verifyPassword($password)
+    public function changeUserPassword($newHashedPassword)
     {
+        $employeeId = $this->getId();
+        try {
+            $stmt = $this->conn->prepare("UPDATE tbl_employee SET password = ? WHERE employeeid = ?");
+            $stmt->bind_param("ss", $newHashedPassword, $employeeId);
+            $stmt->execute();
+            $this->conn->close();
+            $this->setHashedPassword($newHashedPassword);
+
+            $_SESSION["employeeUser"] = serialize($this);
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
     }
 
-    public function updatePassword($password)
+    public function updateUserDetails($newFirstName, $newLastName, $newEmailAddress, $newMobileNumber)
     {
+        $employeeId = $this->getId();
+        try {
+            $stmt = $this->conn->prepare("UPDATE tbl_employee SET firstname = ?,lastname = ?,email = ?,mobilenumber = ? WHERE employeeid = ?");
+            $stmt->bind_param("sssss", $newFirstName, $newLastName, $newEmailAddress, $newMobileNumber, $employeeId);
+            $stmt->execute();
+            $this->conn->close();
+
+            $this->setFirstname($newFirstName);
+            $this->setLastName($newLastName);
+            $this->setEmail($newEmailAddress);
+            $this->setMobileNumebr($newMobileNumber);
+
+            $_SESSION["employeeUser"] = serialize($this);
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
     }
 }
