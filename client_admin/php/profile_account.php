@@ -3,15 +3,14 @@ require_once "config.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/admin_account.php";
 
 
-$adminAccount = new AdminAccount($conn);
 $admin = unserialize($_SESSION["adminUser"]);
+$admin->setConn($conn);
 
 $firstName = $admin->getFirstName();
 $lastName = $admin->getLastName();
 $email = $admin->getEmail();
 $mobileNumber = $admin->getMobileNumber();
 $password = $admin->getHashedPassword();
-$adminid = $admin->getId();
 
 if (isset($_POST['updateInfo'])) {
     updateDetails();
@@ -24,7 +23,9 @@ function updateDetails()
 {
     global $firstName_err, $lastName_err, $emailAddress_err, $mobileNumber_err, $changed_err;
     global $newFirstName, $newLastName, $newEmailAddress, $newMobileNumber;
-    global $firstName,$lastName,$email,$mobileNumber,$admin, $adminid,$adminAccount;
+    global $firstName, $lastName, $email, $mobileNumber, $admin, $admin;
+
+    $firstName = $lastName = $mobileNumber = "";
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         return;
@@ -42,12 +43,13 @@ function updateDetails()
         $lastName_err = "Please enter your last name.";
     }
 
-    $newEmailAddress = trim($_POST["email"]);
+    $newEmail = trim($_POST["email"]);
 
-    if (empty($newEmailAddress)) {
-        $emailAddress_err = "Please enter an email address";
-    } else if (!filter_var($newEmailAddress, FILTER_VALIDATE_EMAIL)) {
-        $emailAddress_err = "Please enter a valid email address";
+    if (!$newEmail == $email) {
+        $email_err = $admin->validateEmail($newEmail);
+    }
+    if (empty($email_err)) {
+        $newEmail = $admin->getEmail();
     }
 
 
@@ -59,29 +61,16 @@ function updateDetails()
         $mobileNumber_err = "Please enter a valid mobile number.";
     }
 
-    if($newFirstName == $firstName && $newLastName == $lastName && $newEmailAddress == $email && $newMobileNumber == $mobileNumber){
-        //kamo na bahala kung idisplay pa ninyo ni nga error or dli na, 
-        $changed_err = "Nothing has changed";
-    }
 
     if (empty($firstName_err) && empty($lastName_err) && empty($emailAddress_err) && empty($mobileNumber_err) && empty($changed_err)) {
-        $adminAccount->updateUserDetails($newFirstName,$newLastName,$newEmailAddress,$newMobileNumber,$adminid);
-        $firstName = $newFirstName;
-        $lastName = $newLastName;
-        $email = $newEmailAddress;
-        $mobileNumber = $newMobileNumber;
-        $admin->setFirstname($newFirstName);
-        $admin->setLastName($newLastName);
-        $admin->setEmail($newEmailAddress);
-        $admin->setMobileNumebr($newMobileNumber);
-        $_SESSION["adminUser"] = serialize($admin);
+        $admin->updateUserDetails($newFirstName, $newLastName, $newEmailAddress, $newMobileNumber);
     }
 }
 
 function changePassword()
 {
     global $currentPassword_err, $newPassword_err, $confirmPassword_err;
-    global $currentPassword, $password, $newPassword, $confirmPassword, $newHashedPassword, $admin, $adminid,$adminAccount;
+    global $currentPassword, $password, $newPassword, $confirmPassword, $newHashedPassword, $admin, $admin;
 
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
@@ -89,8 +78,9 @@ function changePassword()
     }
 
     $currentPassword = trim($_POST["currentPassword"]);
-
-    if (!password_verify($currentPassword, $password)) {
+    if (empty($currentPassword)) {
+        $currentPassword_err = "Please enter a password.";
+    } else if (!password_verify($currentPassword, $password)) {
         $currentPassword_err = "Incorrect Current Password";
     }
 
@@ -107,6 +97,6 @@ function changePassword()
         $confirmPassword_err = "Password does not match.";
     }
     if (empty($currentPassword_err) && empty($newPassword_err) && empty($confirmPassword_err)) {
-        $adminAccount->changeUserPassword($newHashedPassword,$adminid);
+        $admin->changeUserPassword($newHashedPassword);
     }
 }
