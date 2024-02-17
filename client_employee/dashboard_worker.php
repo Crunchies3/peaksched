@@ -21,26 +21,27 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/bootstrap5@6.1.10/index.global.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="./css/dashboard.css" />
+    <script src="./js/full_calendar.js"></script>
+    <link rel="stylesheet" href="./css/dashboard_styles.css" />
 
 </head>
 
 <body>
     <div class="wrapper">
-        <aside id="sidebar">
-            <div class="d-flex">
+        <aside id="sidebar" class="shadow-lg">
+            <div class="d-flex mb-2">
                 <button id="toggle-btn" type="button">
-                    <i class="bi bi-apple"></i>
+                    <i class="bi bi-tree-fill"></i>
                 </button>
                 <div class="sidebar-logo">
-                    <a href="#">PeakSched</a>
+                    <a href="#">TwinPeaks</a>
                 </div>
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="bi bi-speedometer2"></i>
-                        <span>Dashboard</span>
+                    <a href="" class="sidebar-link selected">
+                        <i class="bi bi-house-fill"></i>
+                        <span>Home</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -51,48 +52,31 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 </li>
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
-                        <i class="bi bi-gear"></i>
-                        <span>Setings</span>
+                        <i class="bi bi-bell"></i>
+                        <span>Notifications</span>
                     </a>
                 </li>
-                <!-- <li class="sidebar-item">
-                    <a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse"
-                        data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
-                        <i class="bi bi-layout-text-window-reverse"></i>
-                        <span>Multi Level</span>
+                <li class="sidebar-footer">
+                    <a href="setting_account_page.php" class="sidebar-link ">
+                        <i class="bi bi-gear"></i>
+                        <span>Settings</span>
                     </a>
-                    <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"
-                                data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
-                                Two Links
-                            </a>
-                            <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Link 1</a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Link 2</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li> -->
+                </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="#" class="sidebar-link">
-                    <i class="bi bi-person-circle"></i>
-                    <span>Profile</span>
+                <a href="php_backend/logout.php" class="sidebar-link">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Logout</span>
                 </a>
             </div>
         </aside>
-        <div class="main p-3">
-            <a class="btn btn-danger" href="./php/logout.php">
-                Logout Worker
-            </a>
+        <div class="main">
+            <div id="calendar"></div>
+            <!-- <a class="btn btn-danger" href="./php_backend/logout.php">
+                Logout
+            </a> -->
         </div>
-    </div>
-    <script src="./js/script.js"></script>
+        <script src="./js/script.js"></script>
 </body>
 
 </html>

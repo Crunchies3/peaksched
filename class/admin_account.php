@@ -35,7 +35,7 @@ class AdminAccount extends UserAccount
                         session_start();
 
                         $this->setConn($this->conn);
-                        $this->setId($row["customerid"]);
+                        $this->setId($row["adminid"]);
                         $this->setFirstname($row["firstname"]);
                         $this->setLastName($row["lastname"]);
                         $this->setEmail($row["email"]);
