@@ -6,7 +6,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
-// require_once "php/profile_account.php";
+require_once "php/profile_account.php";
 
 ?>
 
@@ -68,7 +68,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="php_backend/logout.php" class="sidebar-link">
+                <a href="php/logout.php" class="sidebar-link">
                     <i class="bi bi-box-arrow-left"></i>
                     <span>Logout</span>
                 </a>
@@ -90,34 +90,34 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <form class="row" method="post" novalidate>
                         <div class="col-md-6 mb-4">
                             <label class="form-label mb-1">FIRST NAME</label>
-                            <input name="firstName" type="text" class="form-control input-field" placeholder="first Name" aria-label="First name" value="">
+                            <input name="firstName" type="text" class="form-control input-field" placeholder="first Name" aria-label="First name" value="<?php echo $firstName ?>">
                             <div class="invalid-feedback">
                                 <?php echo $firstName_err; ?>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
                             <label class="form-label mb-1">LAST NAME</label>
-                            <input name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="last name" aria-label="Last name" value="">
+                            <input name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="last name" aria-label="Last name" value="<?php echo $lastName ?>">
                             <div class="invalid-feedback">
                                 <?php echo $lastName_err; ?>
                             </div>
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">EMAIL ADDRESS</label>
-                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="email address" value="">
+                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="email address" value="<?php echo $email ?>">
                             <div class="invalid-feedback">
                                 <?php echo $emailAddress_err; ?>
                             </div>
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">PHONE NUMBER</label>
-                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="phone number" value="">
+                            <input name="mobile" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="phone number" value="<?php echo $mobileNumber ?>">
                             <div class="invalid-feedback">
-                                <?php echo $emailAddress_err; ?>
+                                <?php echo $mobileNumber_err; ?>
                             </div>
                         </div>
                         <div class="mb-0 col-xl-2">
-                            <button class="btn btn-lg fs-6 w-100 save-changes-button">Save changes</button>
+                            <button name= "updateInfo"class="btn btn-lg fs-6 w-100 save-changes-button">Save changes</button>
                         </div>
                     </form>
                 </div>
@@ -125,32 +125,33 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <div>
                         <h5>Security</h5>
                     </div>
-                    <form class="row" method="post" novalidate>
+                    <form class="row" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
                         <div class="col-md-6 mb-4">
                             <label class="form-label mb-1">CURRENT PASSWORD</label>
-                            <input name="firstName" type="text" class="form-control input-field" placeholder="current password" aria-label="Current Password" value="">
+                            <input name="currentPassword" type="password" class="form-control input-field <?php echo (!empty($currentPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="current password" value="">
                             <div class="invalid-feedback">
-                                <?php echo $firstName_err; ?>
+                                <?php echo $currentPassword_err; ?>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
                             <label class="form-label mb-1">NEW PASSWORD</label>
-                            <input name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="new password" aria-label="Last name" value="">
+                            <input name="newPassword" type="password" class="form-control input-field <?php echo (!empty($newPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="new password" value="">
                             <div class="invalid-feedback">
-                                <?php echo $lastName_err; ?>
+                                <?php echo $newPassword_err; ?>
                             </div>
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">CONFIRM NEW PASSWORD</label>
-                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="confirm new password" value="">
+                            <input name="confirmPassword" type="password" class="form-control fs-6 input-field <?php echo (!empty($confirmPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="confirm new password" value="">
                             <div class="invalid-feedback">
-                                <?php echo $emailAddress_err; ?>
+                                <?php echo $confirmPassword_err; ?>
                             </div>
                         </div>
+                        <!-- ichange lang ang arrangement aning button igo ra nako gisulod sa form aron maread ig tuplukon -->
+                        <div class="mb-0 col-xl-2">
+                            <button name= "changePassword" class="w-100 btn btn-lg fs-6 change-password-button">Change password</button>
+                        </div>
                     </form>
-                    <div class="mb-0 col-xl-2">
-                        <button class="w-100 btn btn-lg fs-6 change-password-button">Change password</button>
-                    </div>
                 </div>
             </div>
         </section>
