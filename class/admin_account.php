@@ -33,10 +33,20 @@ class AdminAccount extends UserAccount
                         return "Incorrect email or password";
                     } else {
                         session_start();
+                        $adminAccount = new AdminAccount($this->conn);
+
+                        $adminAccount->setId($row["adminid"]);
+                        $adminAccount->setFirstname($row["firstname"]);
+                        $adminAccount->setLastName($row["lastname"]);
+                        $adminAccount->setEmail($row["email"]);
+                        $adminAccount->setMobileNumebr($row["mobilenumber"]);
+                        $adminAccount->setHashedPassword($row["password"]);
+
                         $_SESSION["loggedin"] = true;
-                        $_SESSION["adminid"] = $row["adminid"];
+                        $_SESSION["adminUser"] = serialize($adminAccount);
 
                         header("location: ./dashboard.php");
+                        $this->conn->close();
                     }
                 }
             } else {
@@ -195,6 +205,28 @@ class AdminAccount extends UserAccount
             $stmt->execute();
             header("location: ./reset_password_success.php");
             $this->conn->close();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+    public function updateUserDetails($newFirstName,$newLastName,$newEmailAddress,$newMobileNumber,$adminid)
+    {
+        try {
+            $stmt = $this->conn->prepare("UPDATE tbl_admin SET firstname = ?,lastname = ?,email = ?,mobilenumber = ? WHERE adminid = ?");
+            $stmt->bind_param("sssss", $newFirstName, $newLastName, $newEmailAddress, $newMobileNumber, $adminid);
+            $stmt->execute();
+                echo '<script>alert("Details Successfully Changed")</script>';
+            $this->conn->close();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+    public function changeUserPassword($newHashedPassword,$adminid){
+        try {
+            $stmt = $this->conn->prepare("UPDATE tbl_admin SET password = ? WHERE adminid = ?");
+            $stmt->bind_param("ss", $newHashedPassword, $adminid);
+            $stmt->execute();
+            echo '<script>alert("Password Successfully Changed")</script>';
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
