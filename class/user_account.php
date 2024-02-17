@@ -20,8 +20,9 @@ abstract class UserAccount
     abstract public function addResetToken($tokenHash, $expiry, $email);
     abstract public function sendForgotPasswordLink($email, $token);
     abstract public function doesTokenExist($tokenHash);
-    abstract public function verifyPassword($password);
-    abstract public function updatePassword($password);
+    abstract public function forgotResetPassword($hashedPassword, $id);
+    abstract public function updateUserDetails($newFirstName, $newLastName, $newEmailAddress, $newMobileNumber);
+    abstract public function changeUserPassword($newHashedPassword);
 
 
 

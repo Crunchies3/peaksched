@@ -33,24 +33,21 @@ class CustomerAccount extends UserAccount
                     if (!password_verify($password, $hashedPassword)) {
                         return "Incorrect email or password";
                     } else {
+
+                        $this->conn->close();
                         session_start();
-
-                        $customerAccount = new CustomerAccount($this->conn);
-
-                        $customerAccount->setId($row["customerid"]);
-                        $customerAccount->setFirstname($row["firstname"]);
-                        $customerAccount->setLastName($row["lastname"]);
-                        $customerAccount->setEmail($row["email"]);
-                        $customerAccount->setMobileNumebr($row["mobilenumber"]);
-                        $customerAccount->setHashedPassword($row["password"]);
-
-
+                        $this->setConn($this->conn);
+                        $this->setId($row["customerid"]);
+                        $this->setFirstname($row["firstname"]);
+                        $this->setLastName($row["lastname"]);
+                        $this->setEmail($row["email"]);
+                        $this->setMobileNumebr($row["mobilenumber"]);
+                        $this->setHashedPassword($row["password"]);
 
                         $_SESSION["loggedin"] = true;
-                        $_SESSION["customerUser"] = serialize($customerAccount);
+                        $_SESSION["customerUser"] = serialize($this);
 
                         header("location: ./dashboard.php");
-                        $this->conn->close();
                     }
                 }
             } else {
@@ -232,15 +229,37 @@ class CustomerAccount extends UserAccount
 
 
     // TODO: I update dapat nako ang object sa session
-    public function updatePassword($password)
+    public function changeUserPassword($newHashedPassword)
     {
-        $email = $this->getEmail();
+        $customerId = $this->getId();
         try {
-            $stmt = $this->conn->prepare("UPDATE tbl_customer SET password = ? WHERE email = ?");
-            $stmt->bind_param("ss", $password, $email);
+            $stmt = $this->conn->prepare("UPDATE tbl_customer SET password = ? WHERE customerid = ?");
+            $stmt->bind_param("ss", $newHashedPassword, $customerId);
             $stmt->execute();
-            $this->setHashedPassword($password);
             $this->conn->close();
+            $this->setHashedPassword($newHashedPassword);
+
+            $_SESSION["customerUser"] = serialize($this);
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function updateUserDetails($newFirstName, $newLastName, $newEmailAddress, $newMobileNumber)
+    {
+        $customerId = $this->getId();
+        try {
+            $stmt = $this->conn->prepare("UPDATE tbl_customer SET firstname = ?,lastname = ?,email = ?,mobilenumber = ? WHERE customerid = ?");
+            $stmt->bind_param("sssss", $newFirstName, $newLastName, $newEmailAddress, $newMobileNumber, $customerId);
+            $stmt->execute();
+            $this->conn->close();
+
+            $this->setFirstname($newFirstName);
+            $this->setLastName($newLastName);
+            $this->setEmail($newEmailAddress);
+            $this->setMobileNumebr($newMobileNumber);
+
+            $_SESSION["customerUser"] = serialize($this);
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }

@@ -26,7 +26,7 @@ $currentPassword_err = $newPassword_err = $confirmPassword_err = "";
 if (isset($_POST['updateInfo'])) {
     updateDetails($firstName_err, $lastName_err, $email_err, $mobileNumber_err, $firstName, $lastName, $email, $mobileNumber, $customer);
 } else if (isset($_POST['changePassword'])) {
-    changePassword($currentPassword, $newPassword, $confirmPassword, $currentPassword_err, $newPassword_err, $confirmPassword_err, $customer);
+    changePassword($currentPassword, $newPassword, $confirmPassword, $currentPassword_err, $newPassword_err, $confirmPassword_err, $customer, $password);
 }
 
 
@@ -34,7 +34,7 @@ if (isset($_POST['updateInfo'])) {
 
 function updateDetails(&$firstName_err, &$lastName_err, &$email_err, &$mobileNumber_err, &$firstName, &$lastName, &$email, &$mobileNumber, $customer)
 {
-    $firstName = $lastName = $email = $mobileNumber = "";
+    $firstName = $lastName = $mobileNumber = "";
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         return;
@@ -52,10 +52,13 @@ function updateDetails(&$firstName_err, &$lastName_err, &$email_err, &$mobileNum
         $lastName_err = "Please enter your last name.";
     }
 
-    $email = trim($_POST["email"]);
-    $email_err = $customer->validateEmail($email);
+    $newEmail = trim($_POST["email"]);
+
+    if (!$newEmail == $email) {
+        $email_err = $customer->validateEmail($newEmail);
+    }
     if (empty($email_err)) {
-        $email = $customer->getEmail();
+        $newEmail = $customer->getEmail();
     }
 
     $mobileNumber = trim($_POST["mobile"]);
@@ -64,11 +67,15 @@ function updateDetails(&$firstName_err, &$lastName_err, &$email_err, &$mobileNum
     } else if (!is_numeric($mobileNumber)) {
         $mobileNumber_err = "Please enter a valid mobile number.";
     }
+
+    if (empty($firstName_err) && empty($lastName_err) && empty($emailAddress_err) && empty($mobileNumber_err) && empty($changed_err)) {
+        $customer->updateUserDetails($firstName, $lastName, $newEmail, $mobileNumber);
+    }
 }
 
 // Function na modawat sa refences
 
-function changePassword(&$currentPassword, &$newPassword, &$confirmPassword, &$currentPassword_err, &$newPassword_err, &$confirmPassword_err, $customer)
+function changePassword(&$currentPassword, &$newPassword, &$confirmPassword, &$currentPassword_err, &$newPassword_err, &$confirmPassword_err, $customer, $password)
 {
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         return;
@@ -77,8 +84,8 @@ function changePassword(&$currentPassword, &$newPassword, &$confirmPassword, &$c
     $currentPassword = trim($_POST["currentPassword"]);
     if (empty($currentPassword)) {
         $currentPassword_err = "Please enter a password.";
-    } else {
-        $currentPassword_err = $customer->verifyPassword($currentPassword);
+    } else if (!password_verify($currentPassword, $password)) {
+        $currentPassword_err = "Incorrect Current Password";
     }
 
 
@@ -97,6 +104,6 @@ function changePassword(&$currentPassword, &$newPassword, &$confirmPassword, &$c
 
 
     if (empty($password_err) && empty($confirmPassword_err) && empty($newPassword_err)) {
-        $customer->updatePassword($newHashedPassword);
+        $customer->changeUserPassword($newHashedPassword);
     }
 }
