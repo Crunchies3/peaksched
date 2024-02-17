@@ -21,6 +21,7 @@
 label {
     font-weight: 600;
     color: #7d7d7d;
+    font-size: 12px;
 
 }
 
@@ -33,20 +34,7 @@ label {
     background-color: rgb(255, 255, 255);
 }
 
-@media only screen and (max-width: 1399px) {
-    /* #choices small {
-        display: none;
-    } */
-
-    /* .choices {
-        display: none;
-    } */
-
-    /* #sidebar {
-        display: none;
-    } */
-
-}
+@media only screen and (max-width: 1399px) {}
 
 #accountSettingArea {
     background-color: white;
@@ -72,19 +60,26 @@ label {
 }
 
 #settingsArea h5 {
-    margin-bottom: 35px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+#settingsArea h1 {
+    font-size: 24;
     font-weight: bold;
 }
 
 #settingsArea .chosen {
     background-color: #124F6F;
+    border: 1px #124F6F;
+    border-style: solid;
     color: #ececec;
 }
 
 #settingsArea .un-chosen {
     background-color: #ffffff;
-    color: #a3a3a3;
-    border: 1px #a3a3a3;
+    color: #124F6F;
+    border: 1px #124F6F;
     border-style: solid;
 }
 
@@ -104,25 +99,51 @@ label {
 }
 
 .save-changes-button {
+    border: 1px #124F6F;
+    border-style: solid;
     background-color: #124F6F;
     color: #ececec;
 }
 
 .change-password-button {
-    background-color: #ffffff;
-    color: #124F6F;
-    border: 2px #124F6F;
+    border: 1px #124F6F;
     border-style: solid;
-}
-
-.save-changes-button:hover {
     background-color: #124F6F;
     color: #ececec;
 }
 
+.discard-changes-button {
+    background-color: #ffffff;
+    color: #124F6F;
+    border: 1px #124F6F;
+    border-style: solid;
+}
+
+.discard-changes-button:hover {
+    background-color: #ffffff;
+    color: #124F6F;
+    border: 1px #124F6F;
+    border-style: solid;
+}
+
+.save-changes-button:hover {
+    background-color: #ffffff;
+    color: #124F6F;
+    border: 1px #124F6F;
+    border-style: solid;
+}
+
+
 .change-password-button:hover {
     background-color: #ffffff;
     color: #124F6F;
-    border: 2px #124F6F;
+    border: 1px #124F6F;
     border-style: solid;
+}
+
+.password-reminder {
+    text-align: left;
+    padding: 0 10px;
+    color: rgb(178, 178, 178);
+    font-size: 15px;
 }

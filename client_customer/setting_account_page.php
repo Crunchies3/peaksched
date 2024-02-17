@@ -25,7 +25,7 @@ require_once "php_backend/profile_account.php";
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="./css/dashboard_styles.css" />
-    <link rel="stylesheet" href="./css/profile_page_styles.css" />
+    <link rel="stylesheet" href="./css/setting_page_styles.css" />
 
 
 </head>
@@ -33,9 +33,9 @@ require_once "php_backend/profile_account.php";
 <body>
     <div class="wrapper">
         <aside id="sidebar" class="shadow-lg">
-            <div class="d-flex">
+            <div class="d-flex mb-2">
                 <button id="toggle-btn" type="button">
-                    <i class="bi bi-apple"></i>
+                    <i class="bi bi-tree-fill"></i>
                 </button>
                 <div class="sidebar-logo">
                     <a href="#">TwinPeaks</a>
@@ -44,7 +44,7 @@ require_once "php_backend/profile_account.php";
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
                     <a href="dashboard.php" class="sidebar-link">
-                        <i class="bi bi-speedometer2"></i>
+                        <i class="bi bi-house"></i>
                         <span>Home</span>
                     </a>
                 </li>
@@ -56,13 +56,13 @@ require_once "php_backend/profile_account.php";
                 </li>
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
-                        <i class="bi bi-gear"></i>
-                        <span>Notification</span>
+                        <i class="bi bi-bell"></i>
+                        <span>Notifications</span>
                     </a>
                 </li>
                 <li class="sidebar-footer">
                     <a href="profile_page.php" class="sidebar-link selected">
-                        <i class="bi bi-gear"></i>
+                        <i class="bi bi-gear-fill"></i>
                         <span>Settings</span>
                     </a>
                 </li>
@@ -74,7 +74,92 @@ require_once "php_backend/profile_account.php";
                 </a>
             </div>
         </aside>
-        <section class="main">
+        <section class="main" id="main">
+            <div class="container-fluid" id="settingsArea">
+                <div class="mb-4">
+                    <h1>Settings</h1>
+                </div>
+                <div class="container-fluid" id="accountSettingArea">
+                    <div>
+                        <h5>Account Settings</h5>
+                    </div>
+                    <form class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label mb-1">FIRST NAME</label>
+                            <input name="firstName" type="text" class="form-control input-field" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $firstName ?>">
+                            <div class="invalid-feedback">
+                                <?php echo $firstName_err; ?>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label mb-1">LAST NAME</label>
+                            <input name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your last name" aria-label="Last name" value="<?php echo $lastName ?>">
+                            <div class="invalid-feedback">
+                                <?php echo $lastName_err; ?>
+                            </div>
+                        </div>
+                        <div class="mb-4 col-lg-6 mb-4">
+                            <label class="form-label mb-1">EMAIL ADDRESS</label>
+                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your email address" value="<?php echo $email ?>">
+                            <div class="invalid-feedback">
+                                <?php echo $emailAddress_err; ?>
+                            </div>
+                        </div>
+                        <div class="mb-4 col-lg-6 mb-4">
+                            <label class="form-label mb-1">PHONE NUMBER</label>
+                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your mobile number" value="<?php echo $mobileNumber ?>">
+                            <div class="invalid-feedback">
+                                <?php echo $emailAddress_err; ?>
+                            </div>
+                        </div>
+                        <div class="mb-3 col-xxl-2">
+                            <button name="updateInfo" class="btn btn-lg fs-6 w-100 save-changes-button">Save changes</button>
+                        </div>
+                        <div class="mb-0 col-xxl-2">
+                            <button name="discardChanges" class="btn btn-lg fs-6 w-100 discard-changes-button">Discard changes</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="container-fluid" id="securitySettingArea">
+                    <div>
+                        <h5>Security</h5>
+                    </div>
+                    <form class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" id="securityForm" novalidate>
+                        <div class="col-lg-6 mb-4">
+                            <label class="form-label mb-1">CURRENT PASSWORD</label>
+                            <input name="currentPassword" type="password" class="form-control input-field" placeholder="Enter your current password" aria-label="Current Password" value="">
+                            <div class="invalid-feedback">
+                                <?php echo $firstName_err; ?>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-4">
+                            <label class="form-label mb-1">NEW PASSWORD</label>
+                            <input name="newPassword" type="password" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your new password" aria-label="Last name" value="">
+                            <div class="invalid-feedback">
+                                <?php echo $lastName_err; ?>
+                            </div>
+                        </div>
+                        <div class="mb-4 col-lg-6 mb-4">
+                            <label class="form-label mb-1">CONFIRM NEW PASSWORD</label>
+                            <input name="confirmPassword" type="password" class="form-control fs-6 input-field mb-2 <?php echo (!empty($emailAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="Re-enter your new password" value="">
+                            <div class="invalid-feedback">
+                                <?php echo $emailAddress_err; ?>
+                            </div>
+                            <div class="password-reminder">
+                                <small>Password must be atleast 8 characters long and include a mix of uppercase letters, lowercase letters, and numbers.</small>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="mb-0 col-xxl-2">
+                        <button name="changePassword" type="submit" form="securityForm" class="btn btn-lg fs-6 w-100 change-password-button">Change password</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- //! DILI NI SIYA WALAON NA COMMENT -->
+        <!-- <section class="main">
             <div class="container-fluid" id="settingsArea">
                 <div class="mb-4">
                     <h1>Settings</h1>
@@ -153,8 +238,7 @@ require_once "php_backend/profile_account.php";
                     </div>
                 </div>
             </div>
-        </section>
-
+        </section> -->
         <script src="./js/script.js"></script>
 </body>
 

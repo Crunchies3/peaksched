@@ -29,9 +29,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 <body>
     <div class="wrapper">
         <aside id="sidebar" class="shadow-lg">
-            <div class="d-flex">
+            <div class="d-flex mb-2">
                 <button id="toggle-btn" type="button">
-                    <i class="bi bi-apple"></i>
+                    <i class="bi bi-tree-fill"></i>
                 </button>
                 <div class="sidebar-logo">
                     <a href="#">TwinPeaks</a>
@@ -39,9 +39,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link selected">
-                        <i class="bi bi-speedometer2"></i>
-                        <span>Dashboard</span>
+                    <a href="" class="sidebar-link selected">
+                        <i class="bi bi-house-fill"></i>
+                        <span>Home</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -52,14 +52,14 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 </li>
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
-                        <i class="bi bi-gear"></i>
-                        <span>Notification</span>
+                        <i class="bi bi-bell"></i>
+                        <span>Notifications</span>
                     </a>
                 </li>
                 <li class="sidebar-footer">
-                    <a href="profile_account_page.php" class="sidebar-link">
-                        <i class="bi bi-person-circle"></i>
-                        <span>Profile</span>
+                    <a href="setting_account_page.php" class="sidebar-link ">
+                        <i class="bi bi-gear"></i>
+                        <span>Settings</span>
                     </a>
                 </li>
             </ul>
