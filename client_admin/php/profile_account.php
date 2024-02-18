@@ -2,8 +2,10 @@
 require_once "config.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/admin_account.php";
 
-
+$validate = new Validation();
 $admin = unserialize($_SESSION["adminUser"]);
+
+
 $admin->setConn($conn);
 
 $firstName = $admin->getFirstName();
@@ -11,6 +13,7 @@ $lastName = $admin->getLastName();
 $email = $admin->getEmail();
 $mobileNumber = $admin->getMobileNumber();
 $password = $admin->getHashedPassword();
+$currentPassword = $newPassword = $confirmPassword = "";
 
 $firstName_err = $lastName_err = $email_err = $mobileNumber_err = "";
 $currentPassword_err = $newPassword_err = $confirmPassword_err = "";
@@ -18,13 +21,13 @@ $currentPassword_err = $newPassword_err = $confirmPassword_err = "";
 
 
 if (isset($_POST['updateInfo'])) {
-    updateDetails($firstName_err, $lastName_err, $email_err, $mobileNumber_err, $firstName, $lastName, $email, $mobileNumber, $admin);
+    updateDetails($firstName_err, $lastName_err, $email_err, $mobileNumber_err, $firstName, $lastName, $email, $mobileNumber, $admin,$validate);
 } else if (isset($_POST['changePassword'])) {
-    changePassword();
+    changePassword($currentPassword, $newPassword, $confirmPassword, $currentPassword_err, $newPassword_err, $confirmPassword_err, $admin, $password, $validate);
 }
 
 
-function updateDetails(&$firstName_err, &$lastName_err, &$email_err, &$mobileNumber_err, &$firstName, &$lastName, &$email, &$mobileNumber, $admin)
+function updateDetails(&$firstName_err, &$lastName_err, &$email_err, &$mobileNumber_err, &$firstName, &$lastName, &$email, &$mobileNumber, $admin,$validate)
 {
 
 
@@ -35,19 +38,12 @@ function updateDetails(&$firstName_err, &$lastName_err, &$email_err, &$mobileNum
     }
 
     $firstName = trim($_POST["firstName"]);
-
-    if (empty($firstName)) {
-        $firstName_err = "Please enter your first name.";
-    }
+    $firstName_err = $validate->firstName($firstName);
 
     $lastName = trim($_POST["lastName"]);
-
-    if (empty($lastName)) {
-        $lastName_err = "Please enter your last name.";
-    }
+    $lastName_err = $validate->lastName($lastName);
 
     $newEmail = trim($_POST["email"]);
-
     if (!$newEmail == $email) {
         $email_err = $admin->validateEmail($newEmail);
     }
@@ -57,12 +53,7 @@ function updateDetails(&$firstName_err, &$lastName_err, &$email_err, &$mobileNum
 
 
     $mobileNumber = trim($_POST["mobile"]);
-
-    if (empty($mobileNumber)) {
-        $mobileNumber_err = "Please enter your mobile number.";
-    } else if (!is_numeric($mobileNumber)) {
-        $mobileNumber_err = "Please enter a valid mobile number.";
-    }
+    $mobileNumber_err = $validate->mobileNumber($mobileNumber);
 
 
     if (empty($firstName_err) && empty($lastName_err) && empty($emailAddress_err) && empty($mobileNumber_err) && empty($changed_err)) {
@@ -70,10 +61,8 @@ function updateDetails(&$firstName_err, &$lastName_err, &$email_err, &$mobileNum
     }
 }
 
-function changePassword()
+function changePassword(&$currentPassword, &$newPassword, &$confirmPassword, &$currentPassword_err, &$newPassword_err, &$confirmPassword_err, $admin, $password, $validate)
 {
-    global $currentPassword_err, $newPassword_err, $confirmPassword_err;
-    global $currentPassword, $password, $newPassword, $confirmPassword, $newHashedPassword, $admin, $admin;
 
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
@@ -81,11 +70,7 @@ function changePassword()
     }
 
     $currentPassword = trim($_POST["currentPassword"]);
-    if (empty($currentPassword)) {
-        $currentPassword_err = "Please enter a password.";
-    } else if (!password_verify($currentPassword, $password)) {
-        $currentPassword_err = "Incorrect Current Password";
-    }
+    $currentPassword_err = $validate->currentPassword($currentPassword,$password);
 
     $newPassword = trim($_POST["newPassword"]);
     $newPassword_err = $admin->validatePassword($newPassword);
@@ -94,11 +79,8 @@ function changePassword()
     }
 
     $confirmPassword = trim($_POST["confirmPassword"]);
-    if (empty($confirmPassword)) {
-        $confirmPassword_err = "Please enter a password.";
-    } else if ($confirmPassword != $newPassword) {
-        $confirmPassword_err = "Password does not match.";
-    }
+    $confirmPassword_err = $validate->confirmPassword($confirmPassword, $newPassword);
+
     if (empty($currentPassword_err) && empty($newPassword_err) && empty($confirmPassword_err)) {
         $admin->changeUserPassword($newHashedPassword);
     }
