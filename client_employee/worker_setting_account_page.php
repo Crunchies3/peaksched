@@ -153,7 +153,7 @@ require_once "php/settings_account.php";
                         </div>
                     </form>
                     <div class="row">
-                        <div class="mb-0 col-xxl-2">
+                        <div class="mb-3 col-xxl-2">
                             <button data-bs-toggle="modal" data-bs-target="#updatePasswordModal" type="submit" class="btn btn-lg fs-6 w-100 change-password-button">Change password</button>
                         </div>
                         <div class="mb-0 col-xxl-2">

@@ -6,7 +6,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
-require_once "php_backend/settings_account.php";
+require_once "php/profile_account.php";
 
 ?>
 
@@ -35,10 +35,10 @@ require_once "php_backend/settings_account.php";
         <aside id="sidebar" class="shadow-lg">
             <div class="d-flex mb-2">
                 <button id="toggle-btn" type="button">
-                    <i class="bi bi-tree-fill"></i>
+                    <i class="bi bi-calendar-week"></i>
                 </button>
                 <div class="sidebar-logo">
-                    <a href="#">TwinPeaks</a>
+                    <a href="#">PeakSched</a>
                 </div>
             </div>
             <ul class="sidebar-nav">
@@ -55,6 +55,12 @@ require_once "php_backend/settings_account.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="./services_page.php" class="sidebar-link">
+                        <i class="bi bi-file-post"></i>
+                        <span>Services</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
                         <i class="bi bi-bell"></i>
                         <span>Notifications</span>
@@ -68,7 +74,7 @@ require_once "php_backend/settings_account.php";
                 </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="php_backend/logout.php" class="sidebar-link">
+                <a href="php/logout.php" class="sidebar-link">
                     <i class="bi bi-box-arrow-left"></i>
                     <span>Logout</span>
                 </a>

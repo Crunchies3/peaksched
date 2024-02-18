@@ -217,7 +217,6 @@ class AdminAccount extends UserAccount
             $stmt = $this->conn->prepare("UPDATE tbl_admin SET firstname = ?,lastname = ?,email = ?,mobilenumber = ? WHERE adminid = ?");
             $stmt->bind_param("sssss", $newFirstName, $newLastName, $newEmailAddress, $newMobileNumber, $adminid);
             $stmt->execute();
-            echo '<script>alert("Details Successfully Changed")</script>';
             $this->conn->close();
 
             $this->setFirstname($newFirstName);
@@ -226,6 +225,7 @@ class AdminAccount extends UserAccount
             $this->setMobileNumebr($newMobileNumber);
 
             $_SESSION["adminUser"] = serialize($this);
+            header("location: ./setting_account_page.php");
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
@@ -237,11 +237,11 @@ class AdminAccount extends UserAccount
             $stmt = $this->conn->prepare("UPDATE tbl_admin SET password = ? WHERE adminid = ?");
             $stmt->bind_param("ss", $newHashedPassword, $adminid);
             $stmt->execute();
-            echo '<script>alert("Password Successfully Changed")</script>';
             $this->conn->close();
             $this->setHashedPassword($newHashedPassword);
 
             $_SESSION["adminUser"] = serialize($this);
+            header("location: ./setting_account_page.php");
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
