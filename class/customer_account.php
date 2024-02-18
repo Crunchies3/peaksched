@@ -240,6 +240,7 @@ class CustomerAccount extends UserAccount
             $this->setHashedPassword($newHashedPassword);
 
             $_SESSION["customerUser"] = serialize($this);
+            header("location: ./setting_account_page.php");
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
@@ -260,6 +261,7 @@ class CustomerAccount extends UserAccount
             $this->setMobileNumebr($newMobileNumber);
 
             $_SESSION["customerUser"] = serialize($this);
+            header("location: ./setting_account_page.php");
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }

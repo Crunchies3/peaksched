@@ -240,6 +240,12 @@ class EmployeeAccount extends UserAccount
             $this->setHashedPassword($newHashedPassword);
 
             $_SESSION["employeeUser"] = serialize($this);
+
+            if ($this->type == "supervisor") {
+                header("location: ./supervisor_setting_account_page.php");
+            } else {
+                header("location: ./worker_setting_account_page.php");
+            }
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
@@ -260,6 +266,11 @@ class EmployeeAccount extends UserAccount
             $this->setMobileNumebr($newMobileNumber);
 
             $_SESSION["employeeUser"] = serialize($this);
+            if ($this->type == "supervisor") {
+                header("location: ./supervisor_setting_account_page.php");
+            } else {
+                header("location: ./worker_setting_account_page.php");
+            }
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }

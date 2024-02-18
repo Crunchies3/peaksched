@@ -79,20 +79,26 @@ body {
     background-color: #F7F8FC;
     padding: 1.3% 0;
     padding-right: .5%;
+    margin-left: 230px;
+    transition: all .09s ease-in-out;
 
 }
 
+#main.shrink {
+    margin-left: 100px;
+}
+
 #sidebar.shrink {
-    width: 87px;
+    width: 70px;
     min-width: 60px;
 }
 
 #sidebar {
     margin: 1.3% 1%;
     width: 180px;
-    min-width: 215px;
+    min-width: 200px;
     z-index: 1000;
-    transition: all .12s ease-in-out;
+    transition: all .09s ease-in-out;
     display: flex;
     flex-direction: column;
     background-color: #242432;
@@ -101,6 +107,12 @@ body {
     border-color: #151723;
     border-radius: 15px;
     padding: 20px 10px;
+    position: fixed;
+    height: auto;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
 
 }
 
@@ -110,11 +122,11 @@ body {
     background-color: transparent;
     cursor: pointer;
     border: 0;
-    padding: .4rem 1.05rem;
+    padding: .4rem 13px;
 }
 
 #toggle-btn i {
-    font-size: 1.5rem;
+    font-size: 20px;
     color: #D8D8D8;
 }
 
@@ -124,7 +136,7 @@ body {
 
 .sidebar-logo a {
     color: #D8D8D8;
-    font-size: 1rem;
+    font-size: 20px;
     font-weight: 600;
 }
 
@@ -139,7 +151,7 @@ body {
 
 #sidebar:not(.shrink) .sidebar-logo,
 #sidebar:not(.shrink) a.sidebar-link span {
-    /* animation: fadeIn .3s; */
+    /* animation: fadeIn .1s; */
     animation-fill-mode: forwards;
 }
 
@@ -159,17 +171,17 @@ body {
 }
 
 a.sidebar-link {
-    padding: .9rem 1rem;
+    padding: .8rem 12px;
     color: #D8D8D8;
     display: block;
-    font-size: 12px;
+    font-size: 15px;
     white-space: nowrap;
     border-left: 3px solid transparent;
 }
 
 
 .sidebar-link i {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-right: .75rem;
 }
 

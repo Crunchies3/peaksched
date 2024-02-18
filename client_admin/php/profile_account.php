@@ -1,6 +1,7 @@
 <?php
 require_once "config.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/admin_account.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/form_validation.php";
 
 $validate = new Validation();
 $admin = unserialize($_SESSION["adminUser"]);
@@ -21,13 +22,13 @@ $currentPassword_err = $newPassword_err = $confirmPassword_err = "";
 
 
 if (isset($_POST['updateInfo'])) {
-    updateDetails($firstName_err, $lastName_err, $email_err, $mobileNumber_err, $firstName, $lastName, $email, $mobileNumber, $admin,$validate);
+    updateDetails($firstName_err, $lastName_err, $email_err, $mobileNumber_err, $firstName, $lastName, $email, $mobileNumber, $admin, $validate);
 } else if (isset($_POST['changePassword'])) {
     changePassword($currentPassword, $newPassword, $confirmPassword, $currentPassword_err, $newPassword_err, $confirmPassword_err, $admin, $password, $validate);
 }
 
 
-function updateDetails(&$firstName_err, &$lastName_err, &$email_err, &$mobileNumber_err, &$firstName, &$lastName, &$email, &$mobileNumber, $admin,$validate)
+function updateDetails(&$firstName_err, &$lastName_err, &$email_err, &$mobileNumber_err, &$firstName, &$lastName, &$email, &$mobileNumber, $admin, $validate)
 {
 
 
@@ -70,7 +71,7 @@ function changePassword(&$currentPassword, &$newPassword, &$confirmPassword, &$c
     }
 
     $currentPassword = trim($_POST["currentPassword"]);
-    $currentPassword_err = $validate->currentPassword($currentPassword,$password);
+    $currentPassword_err = $validate->currentPassword($currentPassword, $password);
 
     $newPassword = trim($_POST["newPassword"]);
     $newPassword_err = $admin->validatePassword($newPassword);
