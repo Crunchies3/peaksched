@@ -2,6 +2,7 @@
 require_once "config.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/employee_account.php";
 
+$validate = new Validation();
 $customer = unserialize($_SESSION["employeeUser"]);
 
 
@@ -24,15 +25,15 @@ $currentPassword_err = $newPassword_err = $confirmPassword_err = "";
 // i pass by reference ang mga variable gamit ang "&" except sa objects
 
 if (isset($_POST['updateInfo'])) {
-    updateDetails($firstName_err, $lastName_err, $email_err, $mobileNumber_err, $firstName, $lastName, $email, $mobileNumber, $customer);
+    updateDetails($firstName_err, $lastName_err, $email_err, $mobileNumber_err, $firstName, $lastName, $email, $mobileNumber, $customer, $validate);
 } else if (isset($_POST['changePassword'])) {
-    changePassword($currentPassword, $newPassword, $confirmPassword, $currentPassword_err, $newPassword_err, $confirmPassword_err, $customer, $password);
+    changePassword($currentPassword, $newPassword, $confirmPassword, $currentPassword_err, $newPassword_err, $confirmPassword_err, $customer, $password, $validate);
 }
 
 
 // Function na modawat sa refences
 
-function updateDetails(&$firstName_err, &$lastName_err, &$email_err, &$mobileNumber_err, &$firstName, &$lastName, &$email, &$mobileNumber, $customer)
+function updateDetails(&$firstName_err, &$lastName_err, &$email_err, &$mobileNumber_err, &$firstName, &$lastName, &$email, &$mobileNumber, $customer, $validate)
 {
     $firstName = $lastName = $mobileNumber = "";
 
@@ -41,16 +42,10 @@ function updateDetails(&$firstName_err, &$lastName_err, &$email_err, &$mobileNum
     }
 
     $firstName = trim($_POST["firstName"]);
-
-    if (empty($firstName)) {
-        $firstName_err = "Please enter your first name.";
-    }
+    $firstName_err = $validate->firstName($firstName);
 
     $lastName = trim($_POST["lastName"]);
-
-    if (empty($lastName)) {
-        $lastName_err = "Please enter your last name.";
-    }
+    $lastName_err = $validate->lastName($lastName);
 
     $newEmail = trim($_POST["email"]);
 
@@ -62,11 +57,7 @@ function updateDetails(&$firstName_err, &$lastName_err, &$email_err, &$mobileNum
     }
 
     $mobileNumber = trim($_POST["mobile"]);
-    if (empty($mobileNumber)) {
-        $mobileNumber_err = "Please enter your mobile number.";
-    } else if (!is_numeric($mobileNumber)) {
-        $mobileNumber_err = "Please enter a valid mobile number.";
-    }
+    $mobileNumber_err = $validate->mobileNumber($mobileNumber);
 
     if (empty($firstName_err) && empty($lastName_err) && empty($emailAddress_err) && empty($mobileNumber_err) && empty($changed_err)) {
         $customer->updateUserDetails($firstName, $lastName, $newEmail, $mobileNumber);
@@ -75,18 +66,14 @@ function updateDetails(&$firstName_err, &$lastName_err, &$email_err, &$mobileNum
 
 // Function na modawat sa refences
 
-function changePassword(&$currentPassword, &$newPassword, &$confirmPassword, &$currentPassword_err, &$newPassword_err, &$confirmPassword_err, $customer, $password)
+function changePassword(&$currentPassword, &$newPassword, &$confirmPassword, &$currentPassword_err, &$newPassword_err, &$confirmPassword_err, $customer, $password, $validate)
 {
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         return;
     }
 
     $currentPassword = trim($_POST["currentPassword"]);
-    if (empty($currentPassword)) {
-        $currentPassword_err = "Please enter a password.";
-    } else if (!password_verify($currentPassword, $password)) {
-        $currentPassword_err = "Incorrect Current Password";
-    }
+    $currentPassword_err = $validate->currentPassword($currentPassword,$password);
 
 
     $newPassword = trim($_POST["newPassword"]);
@@ -96,11 +83,7 @@ function changePassword(&$currentPassword, &$newPassword, &$confirmPassword, &$c
     }
 
     $confirmPassword = trim($_POST["confirmPassword"]);
-    if (empty($confirmPassword)) {
-        $confirmPassword_err = "Please enter a password.";
-    } else if ($confirmPassword != $newPassword) {
-        $confirmPassword_err = "Password does not match.";
-    }
+    $confirmPassword_err = $validate->confirmPassword($confirmPassword, $newPassword);
 
 
     if (empty($password_err) && empty($confirmPassword_err) && empty($newPassword_err)) {

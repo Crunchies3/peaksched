@@ -12,14 +12,14 @@ if (isset($_GET["token"])) {
 }
 
 $adminAccount = new AdminAccount($conn);
-
+$validate = new Validation;
 if ($token != null) {
-    validateToken($adminAccount, $token, $tokenHash, $tokenHash_err, $status, $visibility);
+    validateToken($adminAccount, $token, $tokenHash, $tokenHash_err, $status, $visibility, $validate);
 }
 
 validateInputs($password_err, $confirmPassword_err,$password, $confirmPassword, $hashedPassword, $adminAccount, $token);
 
-function validateToken($adminAccount, &$token, &$tokenHash, &$tokenHash_err, &$status, &$visibility)
+function validateToken($adminAccount, &$token, &$tokenHash, &$tokenHash_err, &$status, &$visibility,)
 {
 
 
@@ -39,7 +39,7 @@ function validateToken($adminAccount, &$token, &$tokenHash, &$tokenHash_err, &$s
     }
 }
 
-function validateInputs(&$password_err, &$confirmPassword_err, &$password, &$confirmPassword, &$hashedPassword, $adminAccount, &$token)
+function validateInputs(&$password_err, &$confirmPassword_err, &$password, &$confirmPassword, &$hashedPassword, $adminAccount, &$token, $validate)
 {
 
 
@@ -58,11 +58,7 @@ function validateInputs(&$password_err, &$confirmPassword_err, &$password, &$con
     }
 
     $confirmPassword = trim($_POST["confirmPassword"]);
-    if (empty($confirmPassword)) {
-        $confirmPassword_err = "Please enter a password.";
-    } else if ($confirmPassword != $password) {
-        $confirmPassword_err = "Password does not match.";
-    }
+    $confirmPassword_err = $validate->confirmPassword($confirmPassword,$password);
 
 
     if (empty($password_err) && empty($confirmPassword_err)) {

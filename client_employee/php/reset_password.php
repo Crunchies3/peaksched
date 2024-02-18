@@ -12,16 +12,17 @@ if (isset($_GET["token"])) {
 }
 
 $employeeAccount = new EmployeeAccount($conn, "worker");
+$validate = new Validation;
 
 if ($token != null) {
-    validateToken();
+    validateToken($employeeAccount, $token, $tokenHash, $tokenHash_err, $status, $visibility, $validate);
 }
 
-validateInputs();
+validateInputs($password_err, $confirmPassword_err,$password, $confirmPassword, $hashedPassword, $employeeAccount, $token);
 
-function validateToken()
+function validateToken($employeeAccount, &$token, &$tokenHash, &$tokenHash_err, &$status, &$visibility)
 {
-    global $employeeAccount, $token, $tokenHash, $tokenHash_err, $status, $visibility;
+
 
     $tokenHash = $employeeAccount->getHashedToken($token);
     if (!$employeeAccount->doesTokenExist($tokenHash)) {
@@ -39,10 +40,8 @@ function validateToken()
     }
 }
 
-function validateInputs()
+function validateInputs(&$password_err, &$confirmPassword_err, &$password, &$confirmPassword, &$hashedPassword, $employeeAccount, &$token, $validate)
 {
-    global $password_err, $confirmPassword_err;
-    global $password, $confirmPassword, $hashedPassword, $employeeAccount, $token;
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         return;
@@ -59,11 +58,7 @@ function validateInputs()
     }
 
     $confirmPassword = trim($_POST["confirmPassword"]);
-    if (empty($confirmPassword)) {
-        $confirmPassword_err = "Please enter a password.";
-    } else if ($confirmPassword != $password) {
-        $confirmPassword_err = "Password does not match.";
-    }
+    $confirmPassword_err = $validate->confirmPassword($confirmPassword,$password);
 
 
     if (empty($password_err) && empty($confirmPassword_err)) {

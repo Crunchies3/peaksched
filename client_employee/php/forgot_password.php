@@ -10,11 +10,11 @@ $visibility = "hidden";
 //gibutngan lang nako ug "worker" na parameter cy para madawat pero wala sya nako gipuslan sa forgot pass/reset pass kay sa email man japon dependent
 $employeeAccount = new EmployeeAccount($conn,"worker");
 
-validateInputs();
+validateInputs( $emailAddress, $employeeAccount, $emailAddress_err, $visibility);
 
-function validateInputs()
+function validateInputs( &$emailAddress, &$employeeAccount, &$emailAddress_err, &$visibility)
 {
-    global $emailAddress, $employeeAccount, $emailAddress_err, $visibility;
+    
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         return;

@@ -1,31 +1,28 @@
 <?php
 require_once "config.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/admin_account.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/form_validation.php";
 
-//variables that holds the error
+$emailAddress = $password = "";
 $emailAddress_err = $password_err = $login_err = "";
 
 $adminAccount = new AdminAccount($conn);
+$validate = new Validation();
 
-validateInputs($emailAddress, $password, $emailAddress_err, $password_err, $login_err, $adminAccount);
+validateInputs($emailAddress, $password, $emailAddress_err, $password_err, $login_err, $adminAccount,$validate);
 
-function validateInputs(&$emailAddress, &$password, &$emailAddress_err, &$password_err, &$login_err, $adminAccount)
+function validateInputs(&$emailAddress, &$password, &$emailAddress_err, &$password_err, &$login_err, $adminAccount,$validate)
 {
-    $emailAddress = $password = "";
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         return;
     }
 
     $emailAddress = trim($_POST["email"]);
-    if (empty($emailAddress)) {
-        $emailAddress_err = "Please enter your email address.";
-    }
+    $emailAddress_err = $validate->emailEmpty($emailAddress);
 
     $password = trim($_POST["password"]);
-    if (empty($password)) {
-        $password_err = "Please enter your password.";
-    }
+    $password_err = $validate->passwordEmpty($password);
 
     if (empty($emailAddress_err) && empty($password_err)) {
         $login_err = $adminAccount->login($emailAddress, $password);

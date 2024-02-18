@@ -2,20 +2,18 @@
 require_once 'config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/admin_account.php";
 
-//variables that will hold the data
-$firstName = $lastName = $emailAddress = $mobileNumber = $password = $confirmPassword =  $adminId = $hashedPassword = "";
-// variables that will hold error messages
-$firstName_err = $lastName_err = $emailAddress_err = $mobileNumber_err = $password_err = $confirmPassword_err = "";
-
+$firstName= $lastName= $emailAddress=$mobileNumber= $password= $confirmPassword= $adminId= $hashedPassword = "";
+$firstName_err= $lastName_err= $emailAddress_err= $mobileNumber_err= $password_err=$confirmPassword_err= "";
 
 $adminAccount = new AdminAccount($conn);
+$validate= new Validation;
 
-validateInputs($firstName_err, $lastName_err, $emailAddress_err, $mobileNumber_err, $password_err, $confirmPassword_err, $adminAccount,
-$firstName, $lastName, $emailAddress, $mobileNumber, $password, $confirmPassword, $adminId, $hashedPassword);
 
-function validateInputs(&$firstName_err, &$lastName_err, &$emailAddress_err, &$mobileNumber_err, &$password_err, &$confirmPassword_err, $adminAccount,
-&$firstName, &$lastName, &$emailAddress, &$mobileNumber, &$password, &$confirmPassword, &$adminId, &$hashedPassword)
+validateInputs($adminAccount, $validate ,$firstName, $lastName, $emailAddress,$mobileNumber, $password, $confirmPassword, $adminId,$hashedPassword,
+$firstName_err, $lastName_err, $emailAddress_err,$mobileNumber_err, $password_err,$confirmPassword_err);
 
+function validateInputs($adminAccount, $validate, &$firstName, &$lastName, &$emailAddress,&$mobileNumber, &$password, &$confirmPassword, &$adminId,&$hashedPassword,
+&$firstName_err, &$lastName_err, &$emailAddress_err,&$mobileNumber_err, &$password_err,&$confirmPassword_err)
 {
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
@@ -28,18 +26,12 @@ function validateInputs(&$firstName_err, &$lastName_err, &$emailAddress_err, &$m
         $adminId = rand(100000, 200000);
     }
 
-    // validate firstname
-    $firstName = trim($_POST["firstName"]);
 
-    if (empty($firstName)) {
-        $firstName_err = "Please enter your first name.";
-    }
+    $firstName = trim($_POST["firstName"]);
+    $firstName_err = $validate->firstName($firstName);
 
     $lastName = trim($_POST["lastName"]);
-
-    if (empty($lastName)) {
-        $lastName_err = "Please enter your last name.";
-    }
+    $lastName_err = $validate->lastName($lastName);
 
     $emailAddress = trim($_POST["email"]);
     $emailAddress_err = $adminAccount->validateEmail($emailAddress);
@@ -49,12 +41,7 @@ function validateInputs(&$firstName_err, &$lastName_err, &$emailAddress_err, &$m
 
 
     $mobileNumber = trim($_POST["mobile"]);
-
-    if (empty($mobileNumber)) {
-        $mobileNumber_err = "Please enter your mobile number.";
-    } else if (!is_numeric($mobileNumber)) {
-        $mobileNumber_err = "Please enter a valid mobile number.";
-    }
+    $mobileNumber_err = $validate->mobileNumber($mobileNumber);
 
     $password = trim($_POST["password"]);
     $password_err = $adminAccount->validatePassword($password);
@@ -64,12 +51,7 @@ function validateInputs(&$firstName_err, &$lastName_err, &$emailAddress_err, &$m
 
 
     $confirmPassword = trim($_POST["confirmPassword"]);
-
-    if (empty($confirmPassword)) {
-        $confirmPassword_err = "Please enter a password.";
-    } else if ($confirmPassword != $password) {
-        $confirmPassword_err = "Password does not match.";
-    }
+    $confirmPassword_err = $validate->confirmPassword($confirmPassword, $password);
 
     if (empty($firstName_err) && empty($lastName_err) && empty($emailAddress_err) && empty($mobileNumber_err) && empty($password_err) && empty($confirmPassword_err)) {
         $adminAccount->register($adminId, $firstName, $lastName, $emailAddress, $mobileNumber, $hashedPassword);
