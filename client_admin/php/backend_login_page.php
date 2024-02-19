@@ -8,6 +8,7 @@ $emailAddress_err = $password_err = $login_err = "";
 
 $adminAccount = new AdminAccount($conn);
 $validate = new Validation();
+$validate->setUserType($adminAccount);
 
 validateInputs($emailAddress, $password, $emailAddress_err, $password_err, $login_err, $adminAccount,$validate);
 
@@ -19,7 +20,7 @@ function validateInputs(&$emailAddress, &$password, &$emailAddress_err, &$passwo
     }
 
     $emailAddress = trim($_POST["email"]);
-    $emailAddress_err = $validate->emailEmpty($emailAddress);
+    $emailAddress_err = $validate->emailEmptyDoesNotExist($emailAddress);
 
     $password = trim($_POST["password"]);
     $password_err = $validate->passwordEmpty($password);
