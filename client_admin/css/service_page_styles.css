@@ -1,0 +1,28 @@
+/* *mano mano i custommize ang data table */
+
+.dt-search {
+    margin-bottom: 20px;
+}
+
+
+
+
+/* * end */
+
+
+#serviceArea {
+    padding-top: 27.2px;
+}
+
+#servicesTableArea {
+    background-color: white;
+    border: 1px #BBBBBB;
+    border-style: solid;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 30px;
+}
+
+td {
+    margin-bottom: 40px;
+}
