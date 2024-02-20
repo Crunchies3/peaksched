@@ -20,7 +20,10 @@ $('#myTable').DataTable({
                 className: 'sort-btn rounded mx-2 bi-sort-down-alt',
             }, {
                 text: '<i class="bi bi-plus plus-icon"></i> add service',
-                className: 'add-service-btn rounded'
+                className: 'add-service-btn rounded',
+                action: function (e, dt, node, config, cb) {
+                    location.href = 'service_adding_page.php'
+                }
             }]
         },
     },
