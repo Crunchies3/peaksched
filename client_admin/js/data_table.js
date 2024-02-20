@@ -1,17 +1,17 @@
 $.fn.dataTable.Buttons.defaults.dom.button.className = 'btn';
 
 var table;
+var serviceId;
 
 $(document).ready(function () {
     table = $('#myTable').DataTable();
     table.on('click', '#actionClick', function (e) {
-        let data = table.row(e.target.closest('tr')).data();
-        alert(data[1]);
+        serviceId = table.row(e.target.closest('tr')).data();
+        document.getElementById('serviceId').value = serviceId[0];
     });
 });
 
 $('#myTable').DataTable({
-    stateSave: true,
     layout: {
         topStart: 'search',
         topEnd: {
@@ -21,25 +21,27 @@ $('#myTable').DataTable({
             }, {
                 text: '<i class="bi bi-plus plus-icon"></i> add service',
                 className: 'add-service-btn rounded',
-                action: function (e, dt, node, config, cb) {
+                action: function () {
                     location.href = 'service_adding_page.php'
                 }
             }]
         },
     },
-    buttons: true,
     scrollY: 450,
-    responsive: true,
     language: {
         emptyTable: 'No data available in table'
     },
-    columnDefs: [
+    'columnDefs': [
+        {
+            targets: 0,
+            'visible': false
+        },
         {
             data: null,
-            defaultContent: '<button id="actionClick">Click!</button>',
+            defaultContent: '<form action="./php/service_adding.php" id="editService" method="get"> <input id="serviceId" hidden type="text" name="serviceId" value=""> </form><button form="editService" class="btn btn-primary mx-1" id="actionClick">edit</button> <button class="btn btn-danger mx-1" id="test">remove</button>',
             targets: -1
-        }
-    ]
+        },
+    ],
 });
 
 // var data = $('#myTable').DataTable().rows().data();
@@ -55,17 +57,17 @@ $('.sort-btn').on('click', function () {
 
     if (toggle == 0) {
         table.order([
-            [0, 'asc']
+            [1, 'asc']
         ]).draw();
         toggle = 1;
     } else if (toggle == 1) {
         table.order([
-            [0, 'desc']
+            [1, 'desc']
         ]).draw();
         toggle = 2;
     } else {
         table.order([
-            [0, '']
+            [1, '']
         ]).draw();
         toggle = 0;
     }

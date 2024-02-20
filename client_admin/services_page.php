@@ -94,41 +94,44 @@ require_once "php/profile_account.php";
                     <div>
                         <h5>All services</h5>
                     </div>
-                    <table id="myTable" class="table table-hover table-borderless">
+                    <table id="myTable" class="table table-hover">
                         <!-- //!TODO: para mailisan ang color sa header -->
                         <thead id="tableHead">
-                            <th style="color: white;">Description</th>
+                            <th style="color: white;">Id</th>
+                            <th style="color: white;">Title</th>
                             <th style="color: white;">Duration</th>
                             <th style="color: white;">Price</th>
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
                             <tr>
+                                <td>844154</td>
                                 <td><i class="bi bi-circle-fill mx-2" style="color: rgb(252, 76, 76);"></i> Regular Cleaning</td>
                                 <td>105 minutes</td>
                                 <td>$100.00</td>
                                 <td></td>
                             </tr>
                             <tr>
+                                <td>387691</td>
                                 <td><i class="bi bi-circle-fill mx-2" style="color: rgb(245, 127, 49);"></i> Detailed Cleaning</td>
                                 <td>180 minutes</td>
                                 <td>$69.00</td>
                                 <td></td>
                             </tr>
                             <tr>
+                                <td>259150</td>
                                 <td><i class="bi bi-circle-fill mx-2" style="color:rgb(255, 180, 31);"></i> Move-out/in Cleaning</td>
                                 <td>180 minutes</td>
                                 <td>$200.00</td>
                                 <td></td>
                             </tr>
                             <tr>
+                                <td>540978</td>
                                 <td><i class="bi bi-circle-fill mx-2" style="color: rgb(39, 145, 43);"></i> Air Bnb Cleaning</td>
                                 <td>105 minutes</td>
                                 <td>$300.00</td>
                                 <td></td>
                             </tr>
-
-
                         </tbody>
                     </table>
                 </div>
@@ -140,3 +143,5 @@ require_once "php/profile_account.php";
 </body>
 
 </html>
+
+<form action="./php/service_adding.php" method="get"><button class="btn btn-primary mx-1" id="actionClick">edit</button></form>

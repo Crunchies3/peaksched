@@ -4,7 +4,9 @@
     margin-bottom: 20px;
 }
 
-
+.dt-scroll-body {
+    background-color: #F7F8FC;
+}
 
 
 /* * end */
@@ -28,6 +30,14 @@
     font-weight: bold;
 }
 
+
+#serviceArea .input-field,
+#dt-search-0 {
+    background-color: #F7F8FC;
+    color: #222222;
+    border: 1px #BBBBBB;
+    border-style: solid;
+}
 
 
 #tableHead .dt-orderable-asc {
@@ -82,4 +92,26 @@
     padding-top: 20px;
     padding-bottom: 20px;
     padding-right: 20px;
+}
+
+.form-outline i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+#addServiceArea {
+    background-color: white;
+    border: 1px #BBBBBB;
+    border-style: solid;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 30px;
+}
+
+label {
+    font-weight: 600;
+    color: #7d7d7d;
+    font-size: 12px;
 }

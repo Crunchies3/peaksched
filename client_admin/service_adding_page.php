@@ -94,42 +94,48 @@ require_once "php/profile_account.php";
                 </div>
 
 
-                <div class="container-fluid" id="servicesTableArea">
+                <div class="container-fluid" id="addServiceArea">
                     <div class="container">
                         <div>
                             <h5>Create new services</h5>
                         </div>
                         <form id="updateAccountDetails" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                             <div class="col-md-6 mb-4">
-                                <label class="form-label mb-1">Service Title</label>
-                                <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password">
+                                <label class="form-label mb-1">SERVICE TITLE</label>
+                                <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your service title" aria-label="Current Password">
                                 <div class="invalid-feedback">
                                     <?php echo $firstName_err; ?>
                                 </div>
                             </div>
-                            <div class="col-1 mb-4">
-                                <label class="form-label mb-1">Color tag</label>
+                            <div class="col-6 mb-4">
+                                <label class="form-label mb-1">COLOR TAG</label>
                                 <div class="picker rounded" style="height: 39px; width: 44px;"></div>
                             </div>
                             <div class="col-xl-12 mb-4">
-                                <label class="form-label mb-1">Description</label>
-                                <textarea name="lastName" type="text" rows="3" class="form-control input-field"></textarea>
+                                <label class="form-label mb-1">DESCRIPTION</label>
+                                <textarea name="lastName" type="text" rows="3" class="form-control input-field" placeholder="Enter service description"></textarea>
                             </div>
                             <div class="mb-4 col-lg-6 mb-4">
-                                <label class="form-label mb-1">Duration</label>
-                                <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your email address">
+                                <label class="form-label mb-1">DURATION</label>
+                                <div class="input-group">
+                                    <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter service duration">
+                                    <span class="input-group-text">minutes</span>
+                                </div>
                                 <div class="invalid-feedback">
                                     <?php echo $email_err; ?>
                                 </div>
                             </div>
                             <div class="mb-4 col-lg-6 mb-4">
-                                <label class="form-label mb-1">Price</label>
-                                <input name="mobile" type="email" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your mobile number" value="">
+                                <label class="form-label mb-1">PRICE</label>
+                                <div class="input-group ">
+                                    <span class="input-group-text">$</span>
+                                    <input name="mobile" type="email" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter service price" value="">
+                                    <span class="input-group-text">.00</span>
+                                </div>
                                 <div class="invalid-feedback">
                                     <?php echo $mobileNumber_err; ?>
                                 </div>
                             </div>
-
                         </form>
                     </div>
                 </div>
