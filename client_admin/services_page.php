@@ -87,134 +87,55 @@ require_once "php/profile_account.php";
         </aside>
         <section class="main" id="main">
             <div class="container-fluid" id="serviceArea">
-                <div class="mb-4">
+                <div class="mb-5">
                     <h1>Services</h1>
                 </div>
                 <div class="container-fluid" id="servicesTableArea">
+                    <div>
+                        <h5>All services</h5>
+                    </div>
                     <table id="myTable" class="table table-hover table-borderless">
                         <!-- //!TODO: para mailisan ang color sa header -->
-                        <thead style="background-color: black !important;">
+                        <thead id="tableHead">
                             <th style="color: white;">Description</th>
+                            <th style="color: white;">Duration</th>
+                            <th style="color: white;">Price</th>
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Regular Cleaning</td>
-                                <td>...</td>
+                                <td><i class="bi bi-circle-fill mx-2" style="color: rgb(252, 76, 76);"></i> Regular Cleaning</td>
+                                <td>105 minutes</td>
+                                <td>$100.00</td>
+                                <td></td>
                             </tr>
                             <tr>
-                                <td>Detailed Cleaning</td>
-                                <td>...</td>
+                                <td><i class="bi bi-circle-fill mx-2" style="color: rgb(245, 127, 49);"></i> Detailed Cleaning</td>
+                                <td>180 minutes</td>
+                                <td>$69.00</td>
+                                <td></td>
                             </tr>
                             <tr>
-                                <td>Move-out Cleaning</td>
-                                <td>...</td>
+                                <td><i class="bi bi-circle-fill mx-2" style="color:rgb(255, 180, 31);"></i> Move-out/in Cleaning</td>
+                                <td>180 minutes</td>
+                                <td>$200.00</td>
+                                <td></td>
                             </tr>
                             <tr>
-                                <td>Air Bnb Cleaning</td>
-                                <td>...</td>
+                                <td><i class="bi bi-circle-fill mx-2" style="color: rgb(39, 145, 43);"></i> Air Bnb Cleaning</td>
+                                <td>105 minutes</td>
+                                <td>$300.00</td>
+                                <td></td>
                             </tr>
-                            <tr>
-                                <td>Carpet Cleaning</td>
-                                <td>...</td>
-                            </tr>
-                            <tr>
-                                <td>Regular Cleaning</td>
-                                <td>...</td>
-                            </tr>
-                            <tr>
-                                <td>Detailed Cleaning</td>
-                                <td>...</td>
-                            </tr>
-                            <tr>
-                                <td>Move-out Cleaning</td>
-                                <td>...</td>
-                            </tr>
-                            <tr>
-                                <td>Air Bnb Cleaning</td>
-                                <td>...</td>
-                            </tr>
-                            <tr>
-                                <td>Carpet Cleaning</td>
-                                <td>...</td>
-                            </tr>
-                            <tr>
-                                <td>Regular Cleaning</td>
-                                <td>...</td>
-                            </tr>
-                            <tr>
-                                <td>Detailed Cleaning</td>
-                                <td>...</td>
-                            </tr>
-                            <tr>
-                                <td>Move-out Cleaning</td>
-                                <td>...</td>
-                            </tr>
-                            <tr>
-                                <td>Air Bnb Cleaning</td>
-                                <td>...</td>
-                            </tr>
-                            <tr>
-                                <td>Carpet Cleaning</td>
-                                <td>...</td>
-                            </tr>
-                            <tr>
-                                <td>Regular Cleaning</td>
-                                <td>...</td>
-                            </tr>
-                            <tr>
-                                <td>Detailed Cleaning</td>
-                                <td>...</td>
-                            </tr>
-                            <tr>
-                                <td>Move-out Cleaning</td>
-                                <td>...</td>
-                            </tr>
-                            <tr>
-                                <td>Air Bnb Cleaning</td>
-                                <td>...</td>
-                            </tr>
-                            <tr>
-                                <td>Carpet Cleaning</td>
-                                <td>...</td>
-                            </tr>
+
+
                         </tbody>
                     </table>
                 </div>
             </div>
         </section>
 
-        <script>
-            $(document).ready(function() {
-                $('#myTable').DataTable();
-            });
-
-            $('#myTable').DataTable({
-                stateSave: true,
-                layout: {
-                    topStart: 'search',
-                    topEnd: 'buttons'
-                },
-                buttons: true,
-                scrollY: 450,
-                responsive: true,
-                language: {
-                    emptyTable: 'No data available in table'
-                },
-                buttons: [{
-                    text: '<i class="bi bi-plus"></i> add service',
-                    action: function(e, dt, node, config) {
-                        let counter = 1;
-                        dt.button().add(1, {
-                            text: 'Button ' + counter++,
-                            action: function() {
-                                this.remove();
-                            }
-                        });
-                    }
-                }]
-            });
-        </script>
+        <script src="./js/data_table.js"></script>
         <script src="./js/script.js"></script>
 </body>
 
