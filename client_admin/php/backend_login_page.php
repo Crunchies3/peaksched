@@ -10,9 +10,9 @@ $adminAccount = new AdminAccount($conn);
 $validate = new Validation();
 $validate->setUserType($adminAccount);
 
-validateInputs($emailAddress, $password, $emailAddress_err, $password_err, $login_err, $adminAccount,$validate);
+validateInputs($emailAddress, $password, $emailAddress_err, $password_err, $login_err, $adminAccount, $validate);
 
-function validateInputs(&$emailAddress, &$password, &$emailAddress_err, &$password_err, &$login_err, $adminAccount,$validate)
+function validateInputs(&$emailAddress, &$password, &$emailAddress_err, &$password_err, &$login_err, $adminAccount, $validate)
 {
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {

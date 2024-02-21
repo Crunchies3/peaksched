@@ -82,7 +82,7 @@ require_once "php/profile_account.php";
         </aside>
         <section class="main" id="main">
             <div class="container-fluid" id="settingsArea">
-                <div class="mb-4">
+                <div class="mb-5">
                     <h1>Settings</h1>
                 </div>
                 <div class="container-fluid" id="accountSettingArea">
