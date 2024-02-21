@@ -111,9 +111,9 @@ require_once "php/service_page.php";
                                 <tr>
                                     <td><?php echo $rows['service_id']; ?></td>
                                     <td><i class="bi bi-circle-fill mx-2" style="color: <?php echo $rows['color'] ?>;"></i> <?php echo $rows['title']; ?></td>
-                                    <td><?php echo $rows['duration']; ?></td>
-                                    <td><?php echo $rows['price']; ?></td>
-                                    <td>""</td>
+                                    <td><?php echo $rows['duration'] . ' minutes'; ?></td>
+                                    <td><?php echo '$' . $rows['price'] . '.00'; ?></td>
+                                    <td></td>
                                 </tr>
                             <?php
                             }
@@ -129,5 +129,3 @@ require_once "php/service_page.php";
 </body>
 
 </html>
-
-<form action="./php/service_adding.php" method="get"><button class="btn btn-primary mx-1" id="actionClick">edit</button></form>
