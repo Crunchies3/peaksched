@@ -55,8 +55,14 @@ require_once "php/profile_account.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="employee_page.php" class="sidebar-link">
+                        <i class="bi bi-person"></i>
+                        <span>Employee</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="./services_page.php" class="sidebar-link">
-                        <i class="bi bi-file-post"></i>
+                        <i class="bi bi-file-post-fill"></i>
                         <span>Services</span>
                     </a>
                 </li>
