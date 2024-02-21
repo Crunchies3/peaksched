@@ -6,7 +6,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
-require_once "php/profile_account.php";
+require_once "php/service_page.php";
 
 ?>
 
@@ -104,34 +104,20 @@ require_once "php/profile_account.php";
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>844154</td>
-                                <td><i class="bi bi-circle-fill mx-2" style="color: rgb(252, 76, 76);"></i> Regular Cleaning</td>
-                                <td>105 minutes</td>
-                                <td>$100.00</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>387691</td>
-                                <td><i class="bi bi-circle-fill mx-2" style="color: rgb(245, 127, 49);"></i> Detailed Cleaning</td>
-                                <td>180 minutes</td>
-                                <td>$69.00</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>259150</td>
-                                <td><i class="bi bi-circle-fill mx-2" style="color:rgb(255, 180, 31);"></i> Move-out/in Cleaning</td>
-                                <td>180 minutes</td>
-                                <td>$200.00</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>540978</td>
-                                <td><i class="bi bi-circle-fill mx-2" style="color: rgb(39, 145, 43);"></i> Air Bnb Cleaning</td>
-                                <td>105 minutes</td>
-                                <td>$300.00</td>
-                                <td></td>
-                            </tr>
+                            <?php
+                            // LOOP TILL END OF DATA
+                            while ($rows = $result->fetch_assoc()) {
+                            ?>
+                                <tr>
+                                    <td><?php echo $rows['service_id']; ?></td>
+                                    <td><i class="bi bi-circle-fill mx-2" style="color: <?php echo $rows['color'] ?>;"></i> <?php echo $rows['title']; ?></td>
+                                    <td><?php echo $rows['duration'] . ' minutes'; ?></td>
+                                    <td><?php echo '$' . $rows['price'] . '.00'; ?></td>
+                                    <td></td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -143,5 +129,3 @@ require_once "php/profile_account.php";
 </body>
 
 </html>
-
-<form action="./php/service_adding.php" method="get"><button class="btn btn-primary mx-1" id="actionClick">edit</button></form>

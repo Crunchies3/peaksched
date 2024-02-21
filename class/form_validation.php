@@ -1,14 +1,16 @@
 <?php
 
-  class Validation
- {
+class Validation
+{
     protected $userType;
-    
-    public function getUserType(){
+
+    public function getUserType()
+    {
         return $this->userType;
     }
 
-    public function setUserType($userType){
+    public function setUserType($userType)
+    {
         $this->userType = $userType;
     }
 
@@ -38,7 +40,7 @@
             return "Please enter a valid email address";
         } else if (!$this->userType->isEmailUnique($email)) {
             return "Email already exist";
-        }else {
+        } else {
             $this->userType->setEmail($email);
             return "";
         }
@@ -48,7 +50,7 @@
     {
         if (empty($firstname)) {
             return "Please enter your first name.";
-        }else{
+        } else {
             return "";
         }
     }
@@ -57,7 +59,7 @@
     {
         if (empty($lastname)) {
             return "Please enter your last name.";
-        }else{
+        } else {
             return "";
         }
     }
@@ -65,9 +67,9 @@
     {
         if (empty($email)) {
             return "Please enter your email address.";
-        }else if (!$this->userType->doesEmailExist($email)) {
+        } else if (!$this->userType->doesEmailExist($email)) {
             return "Email address does not exist";
-        }else{
+        } else {
             return "";
         }
     }
@@ -75,7 +77,7 @@
     {
         if (empty($password)) {
             return "Please enter your password.";
-        }else{
+        } else {
             return "";
         }
     }
@@ -86,7 +88,7 @@
             return "Please enter your mobile number.";
         } else if (!is_numeric($mobile)) {
             return "Please enter a valid mobile number.";
-        }else{
+        } else {
             return "";
         }
     }
@@ -97,7 +99,7 @@
             return "Please enter a password.";
         } else if ($confirmPassword != $password) {
             return "Password does not match.";
-        }else{
+        } else {
             return "";
         }
     }
@@ -109,26 +111,48 @@
             return "Please enter a password.";
         } else if (!password_verify($currentPassword, $password)) {
             return "Incorrect Current Password";
-        }else{
+        } else {
             return "";
         }
     }
 
     //reset_password exclusive error handler
-    public function tokenHash($tokenHash, &$status){
+    public function tokenHash($tokenHash, &$status)
+    {
         if (!$this->userType->doesTokenExist($tokenHash)) {
             $status = "disabled";
             return "Invalid reset link";
-        }else if (strtotime($this->userType->getTokenExpiry()) <= time()) { 
+        } else if (strtotime($this->userType->getTokenExpiry()) <= time()) {
             $status = "disabled";
             return "Expired reset link";
-        }else{
+        } else {
             return "";
         }
     }
 
+    public function serviceTitle($title)
+    {
+        if (empty($title)) {
+            return "Please enter a service title.";
+        } else {
+            return "";
+        }
+    }
 
- }
-
-
-
+    public function serviceDuration($duration)
+    {
+        if (empty($duration)) {
+            return "Please enter service duration.";
+        } else {
+            return "";
+        }
+    }
+    public function servicePrice($price)
+    {
+        if (empty($price)) {
+            return "Please enter service price.";
+        } else {
+            return "";
+        }
+    }
+}

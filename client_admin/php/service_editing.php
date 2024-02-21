@@ -7,9 +7,18 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/form_validation.php";
 $admin = unserialize($_SESSION["adminUser"]);
 $admin->setConn($conn);
 
+
 $validate = new Validation();
 
-$serviceTitle = $serviceTitle_err =  $duration = $duration_err = $price = $price_err = $description = $color = "";
+$serviceTitle = $serviceTitle_err =  $duration = $duration_err = $price = $price_err = $description = $color = $service_id = "";
+
+
+// kuhaon niya ang service id na naa sa link
+// Sundoga tong naa sa reset_password.php
+if (isset($_GET["serviceId"])) {
+    $service_id = $_GET["serviceId"];
+}
+
 
 
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
