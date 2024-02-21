@@ -9,9 +9,9 @@ $emailAddress_err = $password_err = $login_err = "";
 $adminAccount = new AdminAccount($conn);
 $validate = new Validation();
 
-validateInputs($emailAddress, $password, $emailAddress_err, $password_err, $login_err, $adminAccount,$validate);
+validateInputs($emailAddress, $password, $emailAddress_err, $password_err, $login_err, $adminAccount, $validate);
 
-function validateInputs(&$emailAddress, &$password, &$emailAddress_err, &$password_err, &$login_err, $adminAccount,$validate)
+function validateInputs(&$emailAddress, &$password, &$emailAddress_err, &$password_err, &$login_err, $adminAccount, $validate)
 {
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {

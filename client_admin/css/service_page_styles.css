@@ -115,3 +115,31 @@ label {
     color: #7d7d7d;
     font-size: 12px;
 }
+
+.add-service-button {
+    border: 1px #124F6F;
+    border-style: solid;
+    background-color: #124F6F;
+    color: #ececec;
+}
+
+.cancel-button {
+    background-color: #ffffff;
+    color: #124F6F;
+    border: 1px #124F6F;
+    border-style: solid;
+}
+
+.cancel-button:hover {
+    background-color: #ffffff;
+    color: #124F6F;
+    border: 1px #124F6F;
+    border-style: solid;
+}
+
+.add-service-button:hover {
+    background-color: #ffffff;
+    color: #124F6F;
+    border: 1px #124F6F;
+    border-style: solid;
+}

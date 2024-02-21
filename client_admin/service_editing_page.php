@@ -6,7 +6,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
-require_once "php/service_adding.php";
+require_once "php/profile_account.php";
 
 ?>
 
@@ -92,15 +92,17 @@ require_once "php/service_adding.php";
                 <div class="mb-5">
                     <h1>Services</h1>
                 </div>
+
+
                 <div class="container-fluid" id="addServiceArea">
                     <div class="container">
                         <div>
-                            <h5>Create new services</h5>
+                            <h5>Edit service</h5>
                         </div>
-                        <form id="addServiceForm" class="row mb-5" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
+                        <form id="updateAccountDetails" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                             <div class="col-md-6 mb-4">
                                 <label class="form-label mb-1">SERVICE TITLE</label>
-                                <input name="serviceTitle" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your service title" aria-label="Current Password">
+                                <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your service title" aria-label="Current Password">
                                 <div class="invalid-feedback">
                                     <?php echo $firstName_err; ?>
                                 </div>
@@ -111,12 +113,12 @@ require_once "php/service_adding.php";
                             </div>
                             <div class="col-xl-12 mb-4">
                                 <label class="form-label mb-1">DESCRIPTION</label>
-                                <textarea name="description" type="text" rows="3" class="form-control input-field" placeholder="Enter service description"></textarea>
+                                <textarea name="lastName" type="text" rows="3" class="form-control input-field" placeholder="Enter service description"></textarea>
                             </div>
                             <div class="mb-4 col-lg-6 mb-4">
                                 <label class="form-label mb-1">DURATION</label>
                                 <div class="input-group">
-                                    <input name="duration" type="email" class="form-control fs-6 input-field <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter service duration">
+                                    <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter service duration">
                                     <span class="input-group-text">minutes</span>
                                 </div>
                                 <div class="invalid-feedback">
@@ -135,14 +137,6 @@ require_once "php/service_adding.php";
                                 </div>
                             </div>
                         </form>
-                        <div class="row">
-                            <div class="mb-3 col-xxl-2">
-                                <button data-bs-toggle="modal" data-bs-target="#addServiceModal" type="submit" class="btn btn-lg fs-6 w-100 add-service-button">Add Service</button>
-                            </div>
-                            <div class="mb-0 col-xxl-2">
-                                <a href="./service_adding_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 cancel-button">cancel</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -155,21 +149,3 @@ require_once "php/service_adding.php";
 </body>
 
 </html>
-
-<div class="modal fade" id="addServiceModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="addServiceModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
-        <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
-            <div class="modal-header">
-                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm add service?</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Service will be added.
-            </div>
-            <div class="modal-footer">
-                <button name="changePassword" form="addServiceForm" class="btn add-service-button">Confirm</button>
-                <button type="button" class="btn cancel-button" data-bs-dismiss="modal">Cancel</button>
-            </div>
-        </div>
-    </div>
-</div>
