@@ -38,4 +38,5 @@ $price_err = $validate->servicePrice($price);
 
 if (empty($serviceTitle_err) && empty($duration_err) && empty($price_err)) {
     $admin->addService($service_id, $serviceTitle, $color,  $description, $duration, $price);
+    header("location: ./services_page.php");
 }

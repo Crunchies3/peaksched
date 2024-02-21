@@ -10,6 +10,7 @@ abstract class UserAccount
     protected $mobileNumber;
     protected $hashedPassword;
     protected $tokenExpiry;
+    protected $serviceList;
 
 
     abstract public function login($email, $password);
@@ -24,6 +25,20 @@ abstract class UserAccount
     abstract public function updateUserDetails($newFirstName, $newLastName, $newEmailAddress, $newMobileNumber);
     abstract public function changeUserPassword($newHashedPassword);
 
+    public function fetchServiceList()
+    {
+        try {
+            $stmt = $this->conn->prepare("SELECT * FROM tbl_service");
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            $this->serviceList = $result;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+
 
 
 
@@ -31,6 +46,11 @@ abstract class UserAccount
     public function getEmail()
     {
         return $this->email;
+    }
+
+    public function getServiceList()
+    {
+        return $this->serviceList;
     }
 
     public function getId()
@@ -68,12 +88,15 @@ abstract class UserAccount
         return $this->mobileNumber;
     }
 
+
+
     // *Setter
 
     public function setConn($conn)
     {
         $this->conn = $conn;
     }
+
 
     public function setId($id)
     {
