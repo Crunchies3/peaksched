@@ -6,7 +6,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/form_validation.php";
 $validate = new Validation();
 $admin = unserialize($_SESSION["adminUser"]);
 
-
+$validate->setUserType($admin);
 $admin->setConn($conn);
 
 $firstName = $admin->getFirstName();
@@ -46,7 +46,7 @@ function updateDetails(&$firstName_err, &$lastName_err, &$email_err, &$mobileNum
 
     $newEmail = trim($_POST["email"]);
     if (!$newEmail == $email) {
-        $email_err = $admin->validateEmail($newEmail);
+        $email_err = $validate->validateEmail($newEmail);
     }
     if (empty($email_err)) {
         $newEmail = $admin->getEmail();
@@ -74,7 +74,8 @@ function changePassword(&$currentPassword, &$newPassword, &$confirmPassword, &$c
     $currentPassword_err = $validate->currentPassword($currentPassword, $password);
 
     $newPassword = trim($_POST["newPassword"]);
-    $newPassword_err = $admin->validatePassword($newPassword);
+    $newPassword_err = $validate->validatePassword($newPassword);
+    
     if (empty($password_err)) {
         $newHashedPassword = $admin->getHashedPassword();
     }

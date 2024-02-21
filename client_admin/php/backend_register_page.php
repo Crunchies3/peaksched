@@ -1,12 +1,14 @@
 <?php
 require_once 'config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/admin_account.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/form_validation.php";
 
 $firstName= $lastName= $emailAddress=$mobileNumber= $password= $confirmPassword= $adminId= $hashedPassword = "";
 $firstName_err= $lastName_err= $emailAddress_err= $mobileNumber_err= $password_err=$confirmPassword_err= "";
 
 $adminAccount = new AdminAccount($conn);
 $validate= new Validation;
+$validate->setUserType($adminAccount);
 
 
 validateInputs($adminAccount, $validate ,$firstName, $lastName, $emailAddress,$mobileNumber, $password, $confirmPassword, $adminId,$hashedPassword,
@@ -34,7 +36,8 @@ function validateInputs($adminAccount, $validate, &$firstName, &$lastName, &$ema
     $lastName_err = $validate->lastName($lastName);
 
     $emailAddress = trim($_POST["email"]);
-    $emailAddress_err = $adminAccount->validateEmail($emailAddress);
+    $emailAddress_err = $validate->validateEmail($emailAddress);
+
     if (empty($emailAddress_err)) {
         $emailAddress = $adminAccount->getEmail();
     }
@@ -44,7 +47,8 @@ function validateInputs($adminAccount, $validate, &$firstName, &$lastName, &$ema
     $mobileNumber_err = $validate->mobileNumber($mobileNumber);
 
     $password = trim($_POST["password"]);
-    $password_err = $adminAccount->validatePassword($password);
+    $password_err = $validate->validatePassword($password);
+
     if (empty($password_err)) {
         $hashedPassword = $adminAccount->getHashedPassword();
     }
