@@ -100,9 +100,9 @@ require_once "php/service_adding.php";
                         <form id="addServiceForm" class="row mb-5" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                             <div class="col-md-6 mb-4">
                                 <label class="form-label mb-1">SERVICE TITLE</label>
-                                <input name="serviceTitle" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your service title" aria-label="Current Password">
-                                <div class="invalid-feedback">
-                                    <?php echo $firstName_err; ?>
+                                <input name="serviceTitle" type="text" class="form-control input-field <?php echo (!empty($serviceTitle_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your service title" aria-label="Current Password" value="<?php echo $serviceTitle ?>">
+                                <div class=" invalid-feedback">
+                                    <?php echo $serviceTitle_err; ?>
                                 </div>
                             </div>
                             <div class="col-6 mb-4">
@@ -115,23 +115,23 @@ require_once "php/service_adding.php";
                             </div>
                             <div class="mb-4 col-lg-6 mb-4">
                                 <label class="form-label mb-1">DURATION</label>
-                                <div class="input-group">
-                                    <input name="duration" type="email" class="form-control fs-6 input-field <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter service duration">
+                                <div class="input-group <?php echo (!empty($duration_err)) ? 'is-invalid' : ''; ?>">
+                                    <input name="duration" type="text" class="form-control fs-6 input-field " placeholder="Enter service duration" value="<?php echo $duration ?>">
                                     <span class="input-group-text">minutes</span>
                                 </div>
                                 <div class="invalid-feedback">
-                                    <?php echo $email_err; ?>
+                                    <?php echo $duration_err; ?>
                                 </div>
                             </div>
                             <div class="mb-4 col-lg-6 mb-4">
                                 <label class="form-label mb-1">PRICE</label>
-                                <div class="input-group ">
+                                <div class="input-group <?php echo (!empty($price_err)) ? 'is-invalid' : ''; ?>">
                                     <span class="input-group-text">$</span>
-                                    <input name="mobile" type="email" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter service price" value="">
+                                    <input name="price" type="text" class="form-control fs-6 input-field" placeholder="Enter service price" value="<?php echo $price ?>">
                                     <span class="input-group-text">.00</span>
                                 </div>
                                 <div class="invalid-feedback">
-                                    <?php echo $mobileNumber_err; ?>
+                                    <?php echo $price_err; ?>
                                 </div>
                             </div>
                         </form>

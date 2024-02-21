@@ -2,11 +2,14 @@
 
 require_once 'config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/admin_account.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/form_validation.php";
 
 $admin = unserialize($_SESSION["adminUser"]);
 $admin->setConn($conn);
 
+$validate = new Validation();
 
+$serviceTitle = $serviceTitle_err =  $duration = $duration_err = $price = $price_err = $description = $color = "";
 
 
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
@@ -15,37 +18,24 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 
 $service_id = rand(100000, 200000);
 
-while (!$adminAccount->isIdUnique($service_id)) {
+while (!$admin->isServiceIdUnique($service_id)) {
     $service_id = rand(100000, 200000);
 }
 
+$serviceTitle = trim($_POST["serviceTitle"]);
+$serviceTitle_err = $validate->serviceTitle($serviceTitle);
 
-// $firstName = trim($_POST["firstName"]);
-// $firstName_err = $validate->firstName($firstName);
-
-// $lastName = trim($_POST["lastName"]);
-// $lastName_err = $validate->lastName($lastName);
-
-// $emailAddress = trim($_POST["email"]);
-// $emailAddress_err = $adminAccount->validateEmail($emailAddress);
-// if (empty($emailAddress_err)) {
-//     $emailAddress = $adminAccount->getEmail();
-// }
+$description =  trim($_POST["description"]);
+$color = "#124F6F";
 
 
-// $mobileNumber = trim($_POST["mobile"]);
-// $mobileNumber_err = $validate->mobileNumber($mobileNumber);
+$duration = trim($_POST["duration"]);
+$duration_err = $validate->serviceDuration($duration);
 
-// $password = trim($_POST["password"]);
-// $password_err = $adminAccount->validatePassword($password);
-// if (empty($password_err)) {
-//     $hashedPassword = $adminAccount->getHashedPassword();
-// }
+$price = trim($_POST["price"]);
+$price_err = $validate->servicePrice($price);
 
 
-// $confirmPassword = trim($_POST["confirmPassword"]);
-// $confirmPassword_err = $validate->confirmPassword($confirmPassword, $password);
-
-// if (empty($firstName_err) && empty($lastName_err) && empty($emailAddress_err) && empty($mobileNumber_err) && empty($password_err) && empty($confirmPassword_err)) {
-//     $adminAccount->register($adminId, $firstName, $lastName, $emailAddress, $mobileNumber, $hashedPassword);
-// }
+if (empty($serviceTitle_err) && empty($duration_err) && empty($price_err)) {
+    $admin->addService($service_id, $serviceTitle, $color,  $description, $duration, $price);
+}

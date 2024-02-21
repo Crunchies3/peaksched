@@ -57,6 +57,24 @@ class AdminAccount extends UserAccount
         }
     }
 
+    public function isServiceIdUnique($id)
+    {
+        try {
+            $stmt = $this->conn->prepare("SELECT * FROM tbl_service WHERE service_id = ?");
+            $stmt->bind_param("s", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                $stmt->close();
+                return false;
+            }
+            $stmt->close();
+            return true;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
     public function isIdUnique($id)
     {
         try {
@@ -242,6 +260,18 @@ class AdminAccount extends UserAccount
 
             $_SESSION["adminUser"] = serialize($this);
             header("location: ./setting_account_page.php");
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function addService($serviceId, $serviceTitle, $color, $description, $duration, $price)
+    {
+        try {
+            $stmt = $this->conn->prepare("INSERT INTO tbl_service (service_id, title, color, description, duration, price) VALUES (?,?,?,?,?,?)");
+            $stmt->bind_param("ssssss", $serviceId, $serviceTitle, $color, $description, $duration, $price);
+            $stmt->execute();
+            $this->conn->close();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
