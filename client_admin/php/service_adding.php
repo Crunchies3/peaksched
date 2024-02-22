@@ -3,9 +3,13 @@
 require_once 'config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/admin_account.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/form_validation.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/services.php";
 
 $admin = unserialize($_SESSION["adminUser"]);
 $admin->setConn($conn);
+
+$services = new Services();
+$services->setConn($admin->getConn());
 
 $validate = new Validation();
 
@@ -37,6 +41,6 @@ $price_err = $validate->servicePrice($price);
 
 
 if (empty($serviceTitle_err) && empty($duration_err) && empty($price_err)) {
-    $admin->addService($service_id, $serviceTitle, $color,  $description, $duration, $price);
+    $services->addService($service_id, $serviceTitle, $color,  $description, $duration, $price);
     header("location: ./services_page.php");
 }

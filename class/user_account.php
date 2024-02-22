@@ -31,8 +31,7 @@ abstract class UserAccount
             $stmt = $this->conn->prepare("SELECT * FROM tbl_service");
             $stmt->execute();
             $result = $stmt->get_result();
-
-            $this->serviceList = $result;
+            $this->serviceList = $result;   
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
@@ -43,6 +42,9 @@ abstract class UserAccount
 
 
     // *Getter
+    public function getConn(){
+        return $this->conn;
+    }
     public function getEmail()
     {
         return $this->email;
