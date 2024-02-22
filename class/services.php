@@ -11,6 +11,17 @@ class Services{
     private $price;
     private $serviceList;
 
+    public function fetchServiceList()
+    {
+        try {
+            $stmt = $this->conn->prepare("SELECT * FROM tbl_service");
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $this->serviceList = $result;   
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
     
     public function addService($serviceId, $serviceTitle, $color, $description, $duration, $price)
     {

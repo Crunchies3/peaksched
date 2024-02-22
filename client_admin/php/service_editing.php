@@ -21,13 +21,12 @@ $serviceTitle = $serviceTitle_err =  $duration = $duration_err = $price = $price
 // Sundoga tong naa sa reset_password.php
 
 if (isset($_GET["serviceId"])) {
-    //ako lang gisession kay dli magpersist ang value sa getter after post request method sa ubos
-    $_SESSION["serviceId"] = $_GET["serviceId"];
+    $service_id = $_GET["serviceId"];
 }
 
 
 //displayables
-$services->displayCurrentService($_SESSION["serviceId"]);
+$services->displayCurrentService($service_id);
 
 $serviceTitle = $services->getTitle();
 $duration = $services->getDuration();
@@ -43,6 +42,9 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     return;
 }
 
+$service_id = $_POST["serviceId"];
+
+echo $service_id;
 
 $serviceTitle = trim($_POST["serviceTitle"]);
 $serviceTitle_err = $validate->serviceTitle($serviceTitle);
@@ -60,6 +62,6 @@ $price_err = $validate->servicePrice($price);
 
 
 if (empty($serviceTitle_err) && empty($duration_err) && empty($price_err)) {
-    $services->updateServiceDetails( $serviceTitle, $color,  $description, $duration, $price , $_SESSION["serviceId"],);
+    $services->updateServiceDetails( $serviceTitle, $color,  $description, $duration, $price , $service_id);
     header("location: ./services_page.php");
 }

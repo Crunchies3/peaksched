@@ -2,8 +2,9 @@
 
 require_once 'config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/admin_account.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/services.php";
 
-$admin = unserialize($_SESSION["adminUser"]);
-$admin->setConn($conn);
-$admin->fetchServiceList();
-$result = $admin->getServiceList();
+$service = new Services();
+$service->setConn($conn);
+$service->fetchServiceList();
+$result = $service->getServiceList();

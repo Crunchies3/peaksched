@@ -98,6 +98,7 @@ require_once "php/service_editing.php";
                             <h5>Edit Service</h5>
                         </div>
                         <form id="addServiceForm" class="row mb-5" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
+                        <input type="hidden" name="serviceId" value="<?= htmlspecialchars($service_id) ?>">
                             <div class="col-md-6 mb-4">
                                 <label class="form-label mb-1">SERVICE TITLE</label>
                                 <input name="serviceTitle" type="text" class="form-control input-field <?php echo (!empty($serviceTitle_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your service title" aria-label="Current Password" value="<?php echo $serviceTitle ?>">
