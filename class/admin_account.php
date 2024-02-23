@@ -265,15 +265,4 @@ class AdminAccount extends UserAccount
         }
     }
 
-    public function addService($serviceId, $serviceTitle, $color, $description, $duration, $price)
-    {
-        try {
-            $stmt = $this->conn->prepare("INSERT INTO tbl_service (service_id, title, color, description, duration, price) VALUES (?,?,?,?,?,?)");
-            $stmt->bind_param("ssssss", $serviceId, $serviceTitle, $color, $description, $duration, $price);
-            $stmt->execute();
-            $this->conn->close();
-        } catch (Exception $e) {
-            echo 'Caught exception: ',  $e->getMessage(), "\n";
-        }
-    }
 }
