@@ -1,7 +1,8 @@
 <?php
 
 
-class Services{
+class Services
+{
     private $conn;
     private $serviceID;
     private $title;
@@ -11,18 +12,20 @@ class Services{
     private $price;
     private $serviceList;
 
+    // TODO: Tangalon ang service list. para i return nalang sa fetch service list
+
     public function fetchServiceList()
     {
         try {
             $stmt = $this->conn->prepare("SELECT * FROM tbl_service");
             $stmt->execute();
             $result = $stmt->get_result();
-            $this->serviceList = $result;   
+            $this->serviceList = $result;
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-    
+
     public function addService($serviceId, $serviceTitle, $color, $description, $duration, $price)
     {
         try {
@@ -35,7 +38,7 @@ class Services{
         }
     }
 
-    public function updateServiceDetails($serviceTitle, $color, $description, $duration, $price , $service_id,)
+    public function updateServiceDetails($serviceTitle, $color, $description, $duration, $price, $service_id,)
     {
         try {
             $stmt = $this->conn->prepare("UPDATE tbl_service SET title = ? , color = ? ,description = ? ,duration = ? ,price = ? WHERE service_id = ?");
@@ -48,26 +51,25 @@ class Services{
             $this->setDescription($description);
             $this->setDuration($duration);
             $this->setPrice($price);
-
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
 
-    public function displayCurrentService($serviceID){
+    public function displayCurrentService($serviceID)
+    {
         try {
             $stmt = $this->conn->prepare("SELECT * FROM tbl_service WHERE service_id = ?");
             $stmt->bind_param("s", $serviceID);
             $stmt->execute();
             $result = $stmt->get_result();
-            if($result->num_rows >0){
-                while($row = $result->fetch_assoc()){
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
                     $this->setTitle($row["title"]);
                     $this->setColor($row["color"]);
                     $this->setDescription($row["description"]);
                     $this->setDuration($row["duration"]);
                     $this->setPrice($row["price"]);
-
                 }
             }
         } catch (Exception $e) {
@@ -137,7 +139,3 @@ class Services{
         $this->price = $price;
     }
 }
-
-
-
-
