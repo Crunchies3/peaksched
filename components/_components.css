@@ -25,3 +25,11 @@
     border: 1px #124F6F;
     border-style: solid;
 }
+
+.my-input-field {
+    color: #373737;
+}
+
+.my-modal {
+    border-radius: 15px;
+}

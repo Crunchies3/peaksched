@@ -6,6 +6,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
+require_once "php/dashboard.php";
 
 ?>
 
@@ -27,6 +28,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <link rel="stylesheet" href="./css/dashboard_styles.css" />
     <link rel="stylesheet" href="../components/_components.css">
     <script src="https://momentjs.com/downloads/moment.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 
 </head>
 
@@ -93,6 +95,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             </a> -->
         </div>
         <script src="./js/script.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 </body>
 
 </html>
@@ -102,40 +105,45 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 <!-- Modal -->
 <div class="modal" id="appointment" data-bs-backdrop="true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" style="width: 450px;">
-        <div class="modal-content shadow p-2 mb-5 bg-white rounded border">
+        <div class="modal-content shadow p-2 mb-5 bg-white border my-modal">
             <div class="modal-header my-header">
                 <h5 class="modal-title" style="font-size: 16px;" id="exampleModalLabel">Appointment</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="">
+                <form id="createAppointment" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
                     <div class="mb-3">
                         <i class="bi bi-circle-fill mx-2" style="color: grey;"></i>
-                        <input id="eventTitle" type="text" class="form-control input-field selecServiceInput" placeholder="Select a service" value="">
+                        <input name="title" id="eventTitle" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Select a service" value="">
+                    </div>
+                    <div class="mb-3">
+                        <i class="bi bi-calendar mx-2"></i>
+                        <input name="date" id="selectedDate" type="date" class="form-control input-field selecServiceInput my-input-field" placeholder="Select a service">
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-clock mx-2"></i>
-                        <input id="selectedDate" type="date" class="form-control input-field selecServiceInput" placeholder="Select a service" style="width: 197px;">
-                        <input id="selectedTime" type="time" class="form-control input-field selecServiceInput" placeholder="Select a service" style="width: 150px;">
+                        <input name="start" id="selectedTime" type="text" class="form-control input-field selecServiceInput my-input-field timepicker" placeholder="" style="width: 163px;" value="12:00 AM">
+                        <i class="bi bi-dash-lg"></i>
+                        <input name="end" id="selectedTime" type="text" class="form-control input-field selecServiceInput my-input-field timepicker" placeholder="" style="width: 163px;" value="12:15 AM">
+                        <script src="./js/time_picker.js"></script>
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-person mx-2"></i>
-                        <input type="text" class="form-control input-field selecServiceInput" placeholder="Add customer">
+                        <input name="customer" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Add customer">
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-clock mx-2" style="color: transparent;"></i>
-                        <textarea name="description" type="text" rows="3" class="form-control input-field selecServiceInput" placeholder="notes to supervisor and customer"></textarea>
+                        <textarea name="description" type="text" rows="3" class="form-control input-field selecServiceInput my-input-field" placeholder="notes to supervisor"></textarea>
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-person mx-2"></i>
-                        <input type="text" class="form-control input-field selecServiceInput" placeholder="Assign supervisor">
+                        <input name="supervisor" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Assign supervisor">
                     </div>
                 </form>
             </div>
             <div class="modal-footer my-footer">
-                <button type="button" class="btn my-button-yes">create</button>
+                <button class="btn my-button-yes" form="createAppointment">create</button>
                 <button type="button" class="btn my-button-no" data-bs-dismiss="modal">cancel</button>
-
             </div>
         </div>
     </div>
