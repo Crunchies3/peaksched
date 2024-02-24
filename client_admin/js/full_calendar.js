@@ -8,8 +8,10 @@ document.addEventListener('DOMContentLoaded', function () {
         fixedWeekCount: false,
         height: "100%",
         selectable: true,
-        dateClick: function () {
-            $("#exampleModal").modal("show");
+        dateClick: function (info) {
+            var currDate = info.dateStr;
+            $("#appointment").modal("show");
+            document.getElementById("selectedDate").value = currDate;
         },
         windowResizeDelay: 0,
         headerToolbar: {
@@ -21,8 +23,14 @@ document.addEventListener('DOMContentLoaded', function () {
         events: './php/fetchAppointments.php',
 
         eventClick: function (info) {
-            info.el.style.borderColor = 'black';
-            $("#exampleModal").modal("show");
+            $("#appointment").modal("show");
+            var eventDate = moment(info.event.start).format("YYYY-MM-DD");
+            document.getElementById("eventTitle").value = info.event.title;
+            document.getElementById("selectedDate").value = eventDate;
+            document.getElementById("selectedTime").value = eventTime;
+            // alert('Event: ' + info.event.title);
+            // alert('id: ' + info.event.id);
+            // alert('desc: ' + info.event.extendedProps.description);
         },
 
         eventTimeFormat: { // like '14:30:00'

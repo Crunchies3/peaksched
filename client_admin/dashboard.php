@@ -25,6 +25,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
     <script src="./js/full_calendar.js"></script>
     <link rel="stylesheet" href="./css/dashboard_styles.css" />
+    <link rel="stylesheet" href="../components/_components.css">
+    <script src="https://momentjs.com/downloads/moment.js"></script>
 
 </head>
 
@@ -98,19 +100,42 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 
 <!-- Modal -->
-<div class="modal" id="exampleModal" data-bs-backdrop="true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="width: 400px;">
-        <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
-            <div class="modal-header">
+<div class="modal" id="appointment" data-bs-backdrop="true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="width: 450px;">
+        <div class="modal-content shadow p-2 mb-5 bg-white rounded border">
+            <div class="modal-header my-header">
                 <h5 class="modal-title" style="font-size: 16px;" id="exampleModalLabel">Appointment</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+                <form action="">
+                    <div class="mb-3">
+                        <i class="bi bi-circle-fill mx-2" style="color: grey;"></i>
+                        <input id="eventTitle" type="text" class="form-control input-field selecServiceInput" placeholder="Select a service" value="">
+                    </div>
+                    <div class="mb-3">
+                        <i class="bi bi-clock mx-2"></i>
+                        <input id="selectedDate" type="date" class="form-control input-field selecServiceInput" placeholder="Select a service" style="width: 197px;">
+                        <input id="selectedTime" type="time" class="form-control input-field selecServiceInput" placeholder="Select a service" style="width: 150px;">
+                    </div>
+                    <div class="mb-3">
+                        <i class="bi bi-person mx-2"></i>
+                        <input type="text" class="form-control input-field selecServiceInput" placeholder="Add customer">
+                    </div>
+                    <div class="mb-3">
+                        <i class="bi bi-clock mx-2" style="color: transparent;"></i>
+                        <textarea name="description" type="text" rows="3" class="form-control input-field selecServiceInput" placeholder="notes to supervisor and customer"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <i class="bi bi-person mx-2"></i>
+                        <input type="text" class="form-control input-field selecServiceInput" placeholder="Assign supervisor">
+                    </div>
+                </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+            <div class="modal-footer my-footer">
+                <button type="button" class="btn my-button-yes">create</button>
+                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">cancel</button>
+
             </div>
         </div>
     </div>

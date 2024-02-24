@@ -31,6 +31,7 @@ require_once "php/service_page.php";
 
     <link rel="stylesheet" href="./css/dashboard_styles.css" />
     <link rel="stylesheet" href="./css/service_page_styles.css" />
+    <link rel="stylesheet" href="../components/_components.css">
 
 
 </head>
@@ -64,7 +65,7 @@ require_once "php/service_page.php";
                         <i class="bi bi-person"></i>
                         <span>Employee</span>
                     </a>
-                </li>   
+                </li>
                 <li class="sidebar-item">
                     <a href="./services_page.php" class="sidebar-link selected">
                         <i class="bi bi-file-post"></i>
