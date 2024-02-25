@@ -198,7 +198,7 @@ require_once "php/dashboard.php";
                     <div class="mb-3">
                         <i class="bi bi-circle-fill mx-2" style="color: grey;"></i>
                         <!-- <input required name="title" id="service" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Select a service" value=""> -->
-                        <select id="serviceList2">
+                        <select required id="serviceList2">
                             <option>Cyril</option>
                             <option>Kenneth</option>
                             <option>Jonald</option>
@@ -227,7 +227,7 @@ require_once "php/dashboard.php";
                     <div class="mb-3">
                         <i class="bi bi-person mx-2"></i>
                         <!-- <input required id="supervisor" name="supervisor" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Assign supervisor"> -->
-                        <select id="supervisorList2">
+                        <select required id="supervisorList2">
                             <option>Cyril</option>
                             <option>Kenneth</option>
                             <option>Jonald</option>
