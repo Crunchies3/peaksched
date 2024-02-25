@@ -17,9 +17,14 @@
 
 /* Para ma change ang mga color sa button sa calendar */
 .fc .fc-button-primary {
-    background-color: black;
-    border-color: black;
+    background-color: #124F6F;
+    border-color: #124F6F;
     color: white;
+}
+
+.fc .fc-button-primary:disabled {
+    background-color: #124F6F !important;
+    border-color: #124F6F !important;
 }
 
 .fc .fc-button {
