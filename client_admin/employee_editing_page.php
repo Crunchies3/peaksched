@@ -32,7 +32,7 @@ require_once "php/service_editing.php";
 
     <link rel="stylesheet" href="./css/dashboard_styles.css" />
     <link rel="stylesheet" href="./css/service_page_styles.css" />
-    <link rel="stylesheet" href="./css/colorPick.css" />
+    <link rel="stylesheet" href="./css/setting_page_styles.css" />
 
 
 </head>
@@ -62,7 +62,13 @@ require_once "php/service_editing.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="./services_page.php" class="sidebar-link selected">
+                    <a href="./employee_page.php" class="sidebar-link selected">
+                        <i class="bi bi-person-fill"></i>
+                        <span>Employee</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="./services_page.php" class="sidebar-link">
                         <i class="bi bi-file-post-fill"></i>
                         <span>Services</span>
                     </a>
@@ -75,7 +81,7 @@ require_once "php/service_editing.php";
                 </li>
                 <li class="sidebar-footer">
                     <a href="./setting_account_page.php" class="sidebar-link">
-                        <i class="bi bi-gear-fill"></i>
+                        <i class="bi bi-gear"></i>
                         <span>Settings</span>
                     </a>
                 </li>
@@ -90,68 +96,62 @@ require_once "php/service_editing.php";
         <section class="main" id="main">
             <div class="container-fluid" id="serviceArea">
                 <div class="mb-5">
-                    <h1>Services</h1>
+                    <h1>Employee</h1>
                 </div>
                 <div class="container-fluid" id="addServiceArea">
-                    <div class="container">
-                        <div>
-                            <h5>Edit Service</h5>
+                    <div>
+                        <h5>Edit Employee</h5>
+                    </div>
+                    <form id="updateAccountDetails" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label mb-1">FIRST NAME</label>
+                            <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $firstName ?>">
+                            <div class="invalid-feedback">
+                                <?php echo $firstName_err; ?>
+                            </div>
                         </div>
-                        <form id="addServiceForm" class="row mb-5" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
-                            <div class="col-md-6 mb-4">
-                                <label class="form-label mb-1">SERVICE TITLE</label>
-                                <input name="serviceTitle" type="text" class="form-control input-field <?php echo (!empty($serviceTitle_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your service title" aria-label="Current Password" value="<?php echo $serviceTitle ?>">
-                                <div class=" invalid-feedback">
-                                    <?php echo $serviceTitle_err; ?>
-                                </div>
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label mb-1">LAST NAME</label>
+                            <input name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your last name" aria-label="Last name" value="<?php echo $lastName ?>">
+                            <div class="invalid-feedback">
+                                <?php echo $lastName_err; ?>
                             </div>
-                            <div class="col-6 mb-4">
-                                <label class="form-label mb-1">COLOR TAG</label>
-                                <div class="picker rounded" style="height: 39px; width: 44px;"></div>
+                        </div>
+                        <div class="mb-4 col-lg-6 mb-4">
+                            <label class="form-label mb-1">EMAIL ADDRESS</label>
+                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your email address" value="<?php echo $email ?>">
+                            <div class="invalid-feedback">
+                                <?php echo $email_err; ?>
                             </div>
-                            <div class="col-xl-12 mb-4">
-                                <label class="form-label mb-1">DESCRIPTION</label>
-                                <textarea name="description" type="text" rows="3" class="form-control input-field" placeholder="Enter service description"></textarea>
+                        </div>
+                        <div class="mb-4 col-lg-6 mb-4">
+                            <label class="form-label mb-1">PHONE NUMBER</label>
+                            <input name="mobile" type="email" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your mobile number" value="<?php echo $mobileNumber ?>">
+                            <div class="invalid-feedback">
+                                <?php echo $mobileNumber_err; ?>
                             </div>
-                            <div class="mb-4 col-lg-6 mb-4">
-                                <label class="form-label mb-1">DURATION</label>
-                                <div class="input-group <?php echo (!empty($duration_err)) ? 'is-invalid' : ''; ?>">
-                                    <input name="duration" type="text" class="form-control fs-6 input-field " placeholder="Enter service duration" value="<?php echo $duration ?>">
-                                    <span class="input-group-text">minutes</span>
-                                </div>
-                                <div class="invalid-feedback">
-                                    <?php echo $duration_err; ?>
-                                </div>
+                        </div>
+                        <div class="mb-4 col-lg-6 mb-4">
+                            <label class="form-label mb-1">POSITION</label>
+                            <input name="mobile" type="email" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your mobile number" value="<?php echo $mobileNumber ?>">
+                            <div class="invalid-feedback">
+                                <?php echo $mobileNumber_err; ?>
                             </div>
-                            <div class="mb-4 col-lg-6 mb-4">
-                                <label class="form-label mb-1">PRICE</label>
-                                <div class="input-group <?php echo (!empty($price_err)) ? 'is-invalid' : ''; ?>">
-                                    <span class="input-group-text">$</span>
-                                    <input name="price" type="text" class="form-control fs-6 input-field" placeholder="Enter service price" value="<?php echo $price ?>">
-                                    <span class="input-group-text">.00</span>
-                                </div>
-                                <div class="invalid-feedback">
-                                    <?php echo $price_err; ?>
-                                </div>
-                            </div>
-                        </form>
-                        <div class="row">
-                            <div class="mb-3 col-xxl-2">
-                                <button data-bs-toggle="modal" data-bs-target="#addServiceModal" type="submit" class="btn btn-lg fs-6 w-100 add-service-button">Save Changes</button>
-                            </div>
-                            <div class="mb-0 col-xxl-2">
-                                <a href="./employee_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 cancel-button">cancel</a>
-                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="mb-3 col-xxl-2">
+                            <button data-bs-toggle="modal" data-bs-target="#updateInfoModal" class="btn btn-lg fs-6 w-100 save-changes-button">Save Changes</button>
+                        </div>
+                        <div class="mb-0 col-xxl-2">
+                            <a href="./employee_editing_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 discard-changes-button">Discard Changes</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <script>
-            $(".picker").colorPick();
-        </script>
         <script src="./js/script.js"></script>
-        <script src="./js/colorPick.js"></script>
+
 </body>
 
 </html>
@@ -160,11 +160,11 @@ require_once "php/service_editing.php";
     <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
-                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm add service?</h1>
+                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm Changes?</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Service will be added.
+                Changes Will be Saved.
             </div>
             <div class="modal-footer">
                 <button name="changePassword" form="addServiceForm" class="btn add-service-button">Confirm</button>
