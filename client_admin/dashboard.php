@@ -122,55 +122,58 @@ require_once "php/dashboard.php";
                             Please enter choose a service.
                         </div>
                         <select required id="serviceList">
-                            <option>Alfa Romeo</option>
-                            <option>Audi</option>
-                            <option>BMW</option>
-                            <option>Citroen</option>
-                            <option>Fiat</option>
-                            <option>Ford</option>
-                            <option>Jaguar</option>
-                            <option>Jeep</option>
-                            <option>Lancia</option>
-                            <option>Land Rover</option>
-                            <option>Mercedes</option>
-                            <option>Mini</option>
-                            <option>Nissan</option>
-                            <option>Opel</option>
-                            <option>Peugeot</option>
-                            <option>Porsche</option>
-                            <option>Renault</option>
-                            <option>Smart</option>
-                            <option>Volkswagen</option>
-                            <option>Volvo</option>
+                            <?php
+                            // LOOP TILL END OF DATA
+
+                            for ($i = 0; $i < count($serviceList); $i++) {
+                            ?>
+                                <option><?php echo  $serviceList[$i]['title']; ?></option>
+                            <?php
+                            }
+                            ?>
                         </select>
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-calendar mx-2"></i>
-                        <input required name="date" id="selectedDate" type="date" class="form-control input-field selecServiceInput my-input-field" placeholder="Select a service">
+                        <input required name="date" id="selectedDate" type="date" class="form-control input-field selecServiceInput ">
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-clock mx-2"></i>
-                        <input name="start" id="start" type="text" class="form-control input-field selecServiceInput my-input-field timepicker" placeholder="" style="width: 163px;" value="12:00 AM">
+                        <input name="start" id="start" type="text" class="form-control input-field selecServiceInput  timepicker" placeholder="" style="width: 163px;" value="12:00 AM">
                         <i class="bi bi-dash-lg"></i>
-                        <input required name="end" id="end" type="text" class="form-control input-field selecServiceInput my-input-field timepicker" placeholder="" style="width: 163px;" value="12:15 AM">
+                        <input required name="end" id="end" type="text" class="form-control input-field selecServiceInput  timepicker" placeholder="" style="width: 163px;" value="12:15 AM">
                         <script src="./js/time_picker.js"></script>
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-person mx-2"></i>
-                        <input required id="customer" name="customer" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Add customer">
+                        <!-- <input required id="customer" name="customer" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Add customer"> -->
+                        <select required id="customerList">
+                            <?php
+                            // LOOP TILL END OF DATA
+                            for ($i = 0; $i < count($customerList); $i++) {
+                            ?>
+                                <option><?php echo  $customerList[$i]['firstname'] . ' ' .  $customerList[$i]['lastname']; ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-clock mx-2" style="color: transparent;"></i>
-                        <textarea name="description" type="text" rows="3" class="form-control input-field selecServiceInput my-input-field" placeholder="notes to supervisor"></textarea>
+                        <textarea name="description" type="text" rows="3" class="form-control input-field selecServiceInput " placeholder="notes to supervisor"></textarea>
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-person mx-2"></i>
                         <!-- <input id="supervisor" name="supervisor" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Assign supervisor"> -->
                         <select required id="supervisorList">
-                            <option>Cyril</option>
-                            <option>Kenneth</option>
-                            <option>Jonald</option>
-                            <option>Dennis</option>
+                            <?php
+                            // LOOP TILL END OF DATA
+                            for ($i = 0; $i < count($employeeList); $i++) {
+                            ?>
+                                <option><?php echo  $employeeList[$i]['firstname'] . ' ' .  $employeeList[$i]['lastname']; ?></option>
+                            <?php
+                            }
+                            ?>
                         </select>
                     </div>
                 </form>
@@ -199,39 +202,57 @@ require_once "php/dashboard.php";
                         <i class="bi bi-circle-fill mx-2" style="color: grey;"></i>
                         <!-- <input required name="title" id="service" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Select a service" value=""> -->
                         <select required id="serviceList2">
-                            <option>Cyril</option>
-                            <option>Kenneth</option>
-                            <option>Jonald</option>
-                            <option>Dennis</option>
+                            <?php
+                            // LOOP TILL END OF DATA
+                            for ($i = 0; $i < count($serviceList); $i++) {
+                            ?>
+                                <option><?php echo  $serviceList[$i]['title']; ?></option>
+                            <?php
+                            }
+                            ?>
                         </select>
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-calendar mx-2"></i>
-                        <input required name="date" id="selectedDateApp" type="date" class="form-control input-field selecServiceInput my-input-field" placeholder="Select a service">
+                        <input required name="date" id="selectedDateApp" type="date" class="form-control input-field selecServiceInput " placeholder="Select a service">
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-clock mx-2"></i>
-                        <input required name="start" id="startApp" type="text" class="form-control input-field selecServiceInput my-input-field timepicker" placeholder="" style="width: 163px;" value="12:00 AM">
+                        <input required name="start" id="startApp" type="text" class="form-control input-field selecServiceInput  timepicker" placeholder="" style="width: 163px;" value="12:00 AM">
                         <i class="bi bi-dash-lg"></i>
-                        <input required name="end" id="endApp" type="text" class="form-control input-field selecServiceInput my-input-field timepicker" placeholder="" style="width: 163px;" value="12:15 AM">
+                        <input required name="end" id="endApp" type="text" class="form-control input-field selecServiceInput timepicker" placeholder="" style="width: 163px;" value="12:15 AM">
                         <script src="./js/time_picker.js"></script>
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-person mx-2"></i>
-                        <input required id="customer" name="customer" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Add customer">
+                        <!-- <input required id="customer" name="customer" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Add customer"> -->
+                        <select required id="customerList2">
+                            <?php
+                            // LOOP TILL END OF DATA
+                            for ($i = 0; $i < count($customerList); $i++) {
+                            ?>
+                                <option><?php echo  $customerList[$i]['firstname'] . ' ' .  $customerList[$i]['lastname']; ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-clock mx-2" style="color: transparent;"></i>
-                        <textarea name="description" type="text" rows="3" class="form-control input-field selecServiceInput my-input-field" placeholder="notes to supervisor"></textarea>
+                        <textarea name="description" type="text" rows="3" class="form-control input-field selecServiceInput " placeholder="notes to supervisor"></textarea>
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-person mx-2"></i>
                         <!-- <input required id="supervisor" name="supervisor" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Assign supervisor"> -->
                         <select required id="supervisorList2">
-                            <option>Cyril</option>
-                            <option>Kenneth</option>
-                            <option>Jonald</option>
-                            <option>Dennis</option>
+                            <?php
+                            // LOOP TILL END OF DATA
+                            for ($i = 0; $i < count($employeeList); $i++) {
+                            ?>
+                                <option><?php echo  $employeeList[$i]['firstname'] . ' ' .  $employeeList[$i]['lastname']; ?></option>
+                            <?php
+                            }
+                            ?>
                         </select>
                     </div>
                     <script src="./js/client_validation.js"></script>

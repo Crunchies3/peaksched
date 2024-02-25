@@ -69,6 +69,29 @@ class Appointment
         }
     }
 
+    public function addAppointmnet($appointmentId, $serviceId, $customerId, $employeeId, $dateTimeStart, $dateTimeEnd, $note)
+    {
+        try {
+            $stmt = $this->conn->prepare("INSERT INTO tbl_appointment (id, note, start, end) VALUES (?,?,?,?)");
+            $stmt->bind_param("ssss", $appointmentId, $note, $dateTimeStart, $dateTimeEnd);
+            $stmt->execute();
+            $stmt->close();
+
+            $stmt = $this->conn->prepare("INSERT INTO tbl_app_cust_sup (appointment_id, customer_id, employee_id) VALUES (?,?,?)");
+            $stmt->bind_param("sss", $appointmentId, $customerId, $employeeId);
+            $stmt->execute();
+            $stmt->close();
+
+            $stmt = $this->conn->prepare("INSERT INTO tbl_appointment_service (appointment_id, service_id) VALUES (?,?)");
+            $stmt->bind_param("ss", $appointmentId, $serviceId);
+            $stmt->execute();
+            $stmt->close();
+            $this->conn->close();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
 
     // ? getter and setters
 

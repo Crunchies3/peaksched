@@ -26,6 +26,25 @@ class Services
         }
     }
 
+    public function fetchServiceArr()
+    {
+        try {
+            $stmt = $this->conn->prepare("SELECT * FROM tbl_service");
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            $service_list = array();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    array_push($service_list, $row);
+                }
+            }
+            return $service_list;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
     public function addService($serviceId, $serviceTitle, $color, $description, $duration, $price)
     {
         try {
@@ -72,6 +91,28 @@ class Services
                     $this->setPrice($row["price"]);
                 }
             }
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function getIdFromName($name)
+    {
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT service_id
+                FROM tbl_service 
+                WHERE title = ?;"
+            );
+            $stmt->bind_param("s", $name);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $id = $row["service_id"];
+                }
+            }
+            return $id;
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }

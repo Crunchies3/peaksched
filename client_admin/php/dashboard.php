@@ -1,43 +1,58 @@
 <?php
-
 require_once 'config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/appointments.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/form_validation.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/services.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/customers.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/employees.php";
 
 $appointment = new Appointment();
 $appointment->setConn($conn);
+
 $validate = new Validation();
 
+$service = new Services();
+$service->setConn($conn);
 
-$appointmentId = $serviceTitle = $date = $start = $end = $customer = $notes = $supervisor = "";
+$customerObj = new Customers();
+$customerObj->setConn($conn);
+
+$employee = new Employees();
+$employee->setConn($conn);
+
+$serviceList = $service->fetchServiceArr();
+$customerList = $customerObj->fetchCustomerArr();
+$employeeList = $employee->fetchEmployeeArr();
+
+// echo $serviceList[0]['title'];
+
+$appointmentId = $serviceTitle = $date = $start = $end = $customer = $notes = $supervisor = $customerId = $supervisorId = $service_id = "";
 
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
     return;
 }
 
 $appointmentId = rand(100000, 200000);
-
-while (!$appointment->isAppointmentIdUnique($service_id)) {
+while (!$appointment->isAppointmentIdUnique($appointmentId)) {
     $appointmentId = rand(100000, 200000);
 }
 
-$serviceTitle =  trim($_POST["title"]);
+$serviceTitle =  trim($_POST["selectedService"]);
+$service_id = $service->getIdFromName($serviceTitle);
+
 $date =  trim($_POST["date"]);
 $start =  trim($_POST["start"]);
 $end =  trim($_POST["end"]);
-$customer =  trim($_POST["customer"]);
+
+$customer =  trim($_POST["selectedCustomer"]);
+$customerId = $customerObj->getIdFromName($customer);
+
 $notes =  trim($_POST["description"]);
-$supervisor =  trim($_POST["supervisor"]);
+
+$supervisor =  trim($_POST["selectedSupervisor"]);
+$supervisorId = $employee->getIdFromName($supervisor);
+
 $dateTimeStart = $date . " " . date("H:i", strtotime($start));
 $dateTimeEnd = $date . " " . date("H:i", strtotime($start));
-$color = 'yellow';
 
-
-try {
-    $stmt = $conn->prepare("INSERT INTO tbl_appointment (id, title, start, end, color) VALUES (?,?,?,?,?)");
-    $stmt->bind_param("sssss", $appointmentId, $serviceTitle, $dateTimeStart, $dateTimeEnd, $color);
-    $stmt->execute();
-    $conn->close();
-} catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
-}
+$appointment->addAppointmnet($appointmentId, $service_id, $customerId, $supervisorId, $dateTimeStart, $dateTimeEnd, $notes);
