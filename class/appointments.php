@@ -14,7 +14,28 @@ class Appointment
     public function fetchAppointmentList()
     {
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM tbl_appointment");
+            $stmt = $this->conn->prepare(
+                "SELECT a.id AS 'id',
+                        CONCAT(b.firstname,' ', b.lastname) AS 'title',
+                        a.note,
+                        a.start,
+                        a.end,
+                        CONCAT(c.firstname,' ', c.lastname) AS 'supervisor',
+                        d.title as 'service',
+                        d.color,
+                        d.duration
+                FROM    tbl_appointment a,
+                        tbl_customer b,
+                        tbl_employee c,
+                        tbl_service d,
+                        tbl_app_cust_sup e,
+                        tbl_appointment_service f
+                WHERE   a.id = e.appointment_id && 
+                        e.customer_id = b.customerid &&
+                        e.employee_id = c.employeeid &&
+                        a.id = f.appointment_id &&
+                        f.service_id = d.service_id;"
+            );
             $stmt->execute();
             $result = $stmt->get_result();
 
@@ -25,6 +46,24 @@ class Appointment
                 }
             }
             echo json_encode($appointmentList);
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function isAppointmentIdUnique($id)
+    {
+        try {
+            $stmt = $this->conn->prepare("SELECT * FROM tbl_appointment WHERE id = ?");
+            $stmt->bind_param("s", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                $stmt->close();
+                return false;
+            }
+            $stmt->close();
+            return true;
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }

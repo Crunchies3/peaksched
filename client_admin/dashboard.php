@@ -103,6 +103,57 @@ require_once "php/dashboard.php";
 
 
 <!-- Modal -->
+<div class="modal" id="editAppointment" data-bs-backdrop="true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="width: 450px;">
+        <div class="modal-content shadow p-2 mb-5 bg-white border my-modal">
+            <div class="modal-header my-header">
+                <h5 class="modal-title" style="font-size: 16px;" id="exampleModalLabel">Appointment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="needs-validation" id="createAppointment" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
+                    <div class="mb-3">
+                        <i class="bi bi-circle-fill mx-2" style="color: grey;"></i>
+                        <input name="title" id="service" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Select a service" value="">
+                        <div class="invalid-feedback">
+                            Please enter choose a service.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <i class="bi bi-calendar mx-2"></i>
+                        <input name="date" id="selectedDate" type="date" class="form-control input-field selecServiceInput my-input-field" placeholder="Select a service">
+                    </div>
+                    <div class="mb-3">
+                        <i class="bi bi-clock mx-2"></i>
+                        <input name="start" id="start" type="text" class="form-control input-field selecServiceInput my-input-field timepicker" placeholder="" style="width: 163px;" value="12:00 AM">
+                        <i class="bi bi-dash-lg"></i>
+                        <input name="end" id="end" type="text" class="form-control input-field selecServiceInput my-input-field timepicker" placeholder="" style="width: 163px;" value="12:15 AM">
+                        <script src="./js/time_picker.js"></script>
+                    </div>
+                    <div class="mb-3">
+                        <i class="bi bi-person mx-2"></i>
+                        <input id="customer" name="customer" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Add customer">
+                    </div>
+                    <div class="mb-3">
+                        <i class="bi bi-clock mx-2" style="color: transparent;"></i>
+                        <textarea name="description" type="text" rows="3" class="form-control input-field selecServiceInput my-input-field" placeholder="notes to supervisor"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <i class="bi bi-person mx-2"></i>
+                        <input id="supervisor" name="supervisor" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Assign supervisor">
+                    </div>
+                </form>
+                <script src="./js/client_validation.js"></script>
+            </div>
+            <div class="modal-footer my-footer">
+                <button class="btn my-button-yes" form="createAppointment">create</button>
+                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
 <div class="modal" id="appointment" data-bs-backdrop="true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" style="width: 450px;">
         <div class="modal-content shadow p-2 mb-5 bg-white border my-modal">
@@ -111,25 +162,25 @@ require_once "php/dashboard.php";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="createAppointment" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
+                <form class="needs-validation" id="addAppointment" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
                     <div class="mb-3">
                         <i class="bi bi-circle-fill mx-2" style="color: grey;"></i>
-                        <input name="title" id="eventTitle" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Select a service" value="">
+                        <input required name="title" id="service" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Select a service" value="">
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-calendar mx-2"></i>
-                        <input name="date" id="selectedDate" type="date" class="form-control input-field selecServiceInput my-input-field" placeholder="Select a service">
+                        <input required name="date" id="selectedDateApp" type="date" class="form-control input-field selecServiceInput my-input-field" placeholder="Select a service">
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-clock mx-2"></i>
-                        <input name="start" id="selectedTime" type="text" class="form-control input-field selecServiceInput my-input-field timepicker" placeholder="" style="width: 163px;" value="12:00 AM">
+                        <input required name="start" id="startApp" type="text" class="form-control input-field selecServiceInput my-input-field timepicker" placeholder="" style="width: 163px;" value="12:00 AM">
                         <i class="bi bi-dash-lg"></i>
-                        <input name="end" id="selectedTime" type="text" class="form-control input-field selecServiceInput my-input-field timepicker" placeholder="" style="width: 163px;" value="12:15 AM">
+                        <input required name="end" id="endApp" type="text" class="form-control input-field selecServiceInput my-input-field timepicker" placeholder="" style="width: 163px;" value="12:15 AM">
                         <script src="./js/time_picker.js"></script>
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-person mx-2"></i>
-                        <input name="customer" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Add customer">
+                        <input required id="customer" name="customer" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Add customer">
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-clock mx-2" style="color: transparent;"></i>
@@ -137,12 +188,13 @@ require_once "php/dashboard.php";
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-person mx-2"></i>
-                        <input name="supervisor" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Assign supervisor">
+                        <input required id="supervisor" name="supervisor" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Assign supervisor">
                     </div>
+                    <script src="./js/client_validation.js"></script>
                 </form>
             </div>
             <div class="modal-footer my-footer">
-                <button class="btn my-button-yes" form="createAppointment">create</button>
+                <button class="btn my-button-yes" type="submit" form="addAppointment">create</button>
                 <button type="button" class="btn my-button-no" data-bs-dismiss="modal">cancel</button>
             </div>
         </div>

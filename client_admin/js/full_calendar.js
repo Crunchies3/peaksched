@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', function () {
         dateClick: function (info) {
             var currDate = info.dateStr;
             $("#appointment").modal("show");
-            document.getElementById("selectedDate").value = currDate;
+            document.getElementById("addAppointment").reset();
+            document.getElementById("selectedDateApp").value = currDate;
         },
         windowResizeDelay: 0,
         headerToolbar: {
@@ -21,13 +22,15 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         dayMaxEvents: true,
         events: './php/fetchAppointments.php',
-
         eventClick: function (info) {
-            $("#appointment").modal("show");
+            $("#editAppointment").modal("show");
             var eventDate = moment(info.event.start).format("YYYY-MM-DD");
-            document.getElementById("eventTitle").value = info.event.title;
+            document.getElementById("customer").value = info.event.title;
             document.getElementById("selectedDate").value = eventDate;
-            document.getElementById("selectedTime").value = eventTime;
+            document.getElementById("service").value = info.event.extendedProps.service;
+            document.getElementById("supervisor").value = info.event.extendedProps.supervisor;
+
+
             // alert('Event: ' + info.event.title);
             // alert('id: ' + info.event.id);
             // alert('desc: ' + info.event.extendedProps.description);

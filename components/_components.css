@@ -27,9 +27,26 @@
 }
 
 .my-input-field {
-    color: #373737;
+    color: #000000;
+    background-color: #F7F8FC;
+    border: 1px #BBBBBB;
+    border-style: solid;
+}
+
+.my-input-field::placeholder {
+    color: #9d9d9d;
 }
 
 .my-modal {
     border-radius: 15px;
+}
+
+.form-control.is-valid:focus,
+.was-validated :valid.form-control {
+    background-image: inherit !important;
+    box-shadow: inherit !important;
+    background-color: #F7F8FC;
+    color: #222222;
+    border: 1px #BBBBBB;
+    border-style: solid;
 }
