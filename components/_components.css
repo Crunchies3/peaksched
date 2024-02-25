@@ -1,0 +1,52 @@
+.my-button-yes {
+    border: 1px #186cb0;
+    border-style: solid;
+    background-color: #186cb0;
+    color: #ececec;
+}
+
+.my-button-yes:hover {
+    background-color: #04314a;
+    color: #ffffff;
+    border: 1px #124F6F;
+    border-style: solid;
+}
+
+.my-button-no {
+    background-color: #ffffff;
+    color: #124F6F;
+    border: 1px #124F6F;
+    border-style: solid;
+}
+
+.my-button-no:hover {
+    background-color: #f5f8ff;
+    color: #124F6F;
+    border: 1px #124F6F;
+    border-style: solid;
+}
+
+.my-input-field {
+    color: #000000;
+    background-color: #F7F8FC;
+    border: 1px #BBBBBB;
+    border-style: solid;
+}
+
+.my-input-field::placeholder {
+    color: #9d9d9d;
+}
+
+.my-modal {
+    border-radius: 15px;
+}
+
+.form-control.is-valid:focus,
+.was-validated :valid.form-control {
+    background-image: inherit !important;
+    box-shadow: inherit !important;
+    background-color: #F7F8FC;
+    color: #222222;
+    border: 1px #BBBBBB;
+    border-style: solid;
+}

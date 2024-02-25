@@ -208,3 +208,19 @@ a.sidebar-link:hover {
 .sidebar-item {
     position: relative;
 }
+
+.selecServiceInput {
+    display: inline;
+    width: 88%;
+    line-height: 1.2;
+
+}
+
+
+.my-header {
+    border-bottom: none;
+}
+
+.my-footer {
+    border-top: none;
+}

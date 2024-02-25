@@ -98,49 +98,6 @@ label {
     margin-left: 10px;
 }
 
-.save-changes-button {
-    border: 1px #124F6F;
-    border-style: solid;
-    background-color: #124F6F;
-    color: #ececec;
-}
-
-.change-password-button {
-    border: 1px #124F6F;
-    border-style: solid;
-    background-color: #124F6F;
-    color: #ececec;
-}
-
-.discard-changes-button {
-    background-color: #ffffff;
-    color: #124F6F;
-    border: 1px #124F6F;
-    border-style: solid;
-}
-
-.discard-changes-button:hover {
-    background-color: #ffffff;
-    color: #124F6F;
-    border: 1px #124F6F;
-    border-style: solid;
-}
-
-.save-changes-button:hover {
-    background-color: #ffffff;
-    color: #124F6F;
-    border: 1px #124F6F;
-    border-style: solid;
-}
-
-
-.change-password-button:hover {
-    background-color: #ffffff;
-    color: #124F6F;
-    border: 1px #124F6F;
-    border-style: solid;
-}
-
 .password-reminder {
     text-align: left;
     padding: 0 10px;

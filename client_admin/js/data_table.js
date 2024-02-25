@@ -38,7 +38,7 @@ $('#myTable').DataTable({
         },
         {
             data: null,
-            defaultContent: '<form action="./service_editing_page.php" id="editService" method="get"><input id="serviceId" hidden type="text" name="serviceId" value=""> </form><button form="editService" class="btn btn-primary mx-1" id="actionClick">edit</button>',
+            defaultContent: '<form action="./service_editing_page.php" id="editService" method="get"><input id="serviceId" hidden type="text" name="serviceId" value=""> </form><button form="editService" class="btn my-button-yes mx-1" id="actionClick">edit</button>',
             targets: -1
         },
         {
