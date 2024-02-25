@@ -38,14 +38,13 @@ $('#myTable').DataTable({
         },
         {
             data: null,
-            defaultContent: '<form action="./employee_editing_page.php" id="editService" method="get"><input id="serviceId" hidden type="text" name="serviceId" value=""> </form><button form="editService" class="btn btn-primary mx-1" id="actionClick">edit</button>',
+            defaultContent: '<div class="btn-group" role="group"><form action="./employee_editing_page.php" id="editService" method="get"><input id="serviceId" hidden type="text" name="serviceId" value=""></form><button form="editService" class="btn btn-primary mx-1 edit-btn" id="actionClick">edit</button><button class="btn btn-danger mx-1 delete-btn">delete</button></div>',
             targets: -1
         },
-        {
-
-        }
     ],
 });
+
+
 
 // var data = $('#myTable').DataTable().rows().data();
 

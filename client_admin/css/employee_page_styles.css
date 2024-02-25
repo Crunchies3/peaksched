@@ -143,3 +143,11 @@ label {
     border: 1px #124F6F;
     border-style: solid;
 }
+
+.edit-btn,
+.delete-btn {
+    padding: 5px 10px; 
+    font-size: 14px; 
+    border-radius: 0px; 
+}
+

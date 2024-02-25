@@ -62,8 +62,14 @@ require_once "php/service_adding.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="employee_page.php" class="sidebar-link">
+                        <i class="bi bi-person"></i>
+                        <span>Employee</span>
+                    </a>
+                </li>  
+                <li class="sidebar-item">
                     <a href="./services_page.php" class="sidebar-link selected">
-                        <i class="bi bi-file-post-fill"></i>
+                        <i class="bi bi-file-post"></i>
                         <span>Services</span>
                     </a>
                 </li>
@@ -75,7 +81,7 @@ require_once "php/service_adding.php";
                 </li>
                 <li class="sidebar-footer">
                     <a href="./setting_account_page.php" class="sidebar-link">
-                        <i class="bi bi-gear-fill"></i>
+                        <i class="bi bi-gear"></i>
                         <span>Settings</span>
                     </a>
                 </li>

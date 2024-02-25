@@ -5,7 +5,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
 }
-require_once "php/employee_page.php";
+// require_once "php/employee_page.php";
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +44,7 @@ require_once "php/employee_page.php";
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="dashboard.php" class="sidebar-link selected">
+                    <a href="dashboard.php" class="sidebar-link">
                         <i class="bi bi-house"></i>
                         <span>Home</span>
                     </a>
@@ -56,7 +56,7 @@ require_once "php/employee_page.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="employee_page.php" class="sidebar-link">
+                    <a href="employee_page.php" class="sidebar-link selected">
                         <i class="bi bi-person-fill"></i>
                         <span>Employee</span>
                     </a>
