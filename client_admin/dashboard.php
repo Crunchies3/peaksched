@@ -29,6 +29,7 @@ require_once "php/dashboard.php";
     <link rel="stylesheet" href="../components/_components.css">
     <script src="https://momentjs.com/downloads/moment.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+    <link href="../select_box/dist/jquery-editable-select.min.css" rel="stylesheet">
 
 </head>
 
@@ -96,6 +97,8 @@ require_once "php/dashboard.php";
         </div>
         <script src="./js/script.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+        <script src="../select_box/dist/jquery-editable-select.js"></script>
+        <script src="../select_box/src/jquery-editable-select.js"></script>
 </body>
 
 </html>
@@ -114,10 +117,32 @@ require_once "php/dashboard.php";
                 <form class="needs-validation" id="createAppointment" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
                     <div class="mb-3">
                         <i class="bi bi-circle-fill mx-2" style="color: grey;"></i>
-                        <input name="title" id="service" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Select a service" value="">
+                        <!-- <input name="title" id="service" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Select a service" value=""> -->
                         <div class="invalid-feedback">
                             Please enter choose a service.
                         </div>
+                        <select id="serviceList">
+                            <option>Alfa Romeo</option>
+                            <option>Audi</option>
+                            <option>BMW</option>
+                            <option>Citroen</option>
+                            <option>Fiat</option>
+                            <option>Ford</option>
+                            <option>Jaguar</option>
+                            <option>Jeep</option>
+                            <option>Lancia</option>
+                            <option>Land Rover</option>
+                            <option>Mercedes</option>
+                            <option>Mini</option>
+                            <option>Nissan</option>
+                            <option>Opel</option>
+                            <option>Peugeot</option>
+                            <option>Porsche</option>
+                            <option>Renault</option>
+                            <option>Smart</option>
+                            <option>Volkswagen</option>
+                            <option>Volvo</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-calendar mx-2"></i>
@@ -144,6 +169,7 @@ require_once "php/dashboard.php";
                     </div>
                 </form>
                 <script src="./js/client_validation.js"></script>
+                <script src="./js/select_box.js"></script>
             </div>
             <div class="modal-footer my-footer">
                 <button class="btn my-button-yes" form="createAppointment">create</button>
@@ -153,7 +179,7 @@ require_once "php/dashboard.php";
     </div>
 </div>
 
-<!-- Modal -->
+<!-- kung mag add na Modal -->
 <div class="modal" id="appointment" data-bs-backdrop="true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" style="width: 450px;">
         <div class="modal-content shadow p-2 mb-5 bg-white border my-modal">
@@ -165,7 +191,29 @@ require_once "php/dashboard.php";
                 <form class="needs-validation" id="addAppointment" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
                     <div class="mb-3">
                         <i class="bi bi-circle-fill mx-2" style="color: grey;"></i>
-                        <input required name="title" id="service" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Select a service" value="">
+                        <!-- <input required name="title" id="service" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Select a service" value=""> -->
+                        <select id="serviceList2">
+                            <option>Alfa Romeo</option>
+                            <option>Audi</option>
+                            <option>BMW</option>
+                            <option>Citroen</option>
+                            <option>Fiat</option>
+                            <option>Ford</option>
+                            <option>Jaguar</option>
+                            <option>Jeep</option>
+                            <option>Lancia</option>
+                            <option>Land Rover</option>
+                            <option>Mercedes</option>
+                            <option>Mini</option>
+                            <option>Nissan</option>
+                            <option>Opel</option>
+                            <option>Peugeot</option>
+                            <option>Porsche</option>
+                            <option>Renault</option>
+                            <option>Smart</option>
+                            <option>Volkswagen</option>
+                            <option>Volvo</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-calendar mx-2"></i>
@@ -191,6 +239,7 @@ require_once "php/dashboard.php";
                         <input required id="supervisor" name="supervisor" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Assign supervisor">
                     </div>
                     <script src="./js/client_validation.js"></script>
+                    <script src="./js/select_box.js"></script>
                 </form>
             </div>
             <div class="modal-footer my-footer">

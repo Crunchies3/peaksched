@@ -27,10 +27,8 @@ document.addEventListener('DOMContentLoaded', function () {
             var eventDate = moment(info.event.start).format("YYYY-MM-DD");
             document.getElementById("customer").value = info.event.title;
             document.getElementById("selectedDate").value = eventDate;
-            document.getElementById("service").value = info.event.extendedProps.service;
+            document.getElementById("serviceList").value = info.event.extendedProps.service;
             document.getElementById("supervisor").value = info.event.extendedProps.supervisor;
-
-
             // alert('Event: ' + info.event.title);
             // alert('id: ' + info.event.id);
             // alert('desc: ' + info.event.extendedProps.description);
