@@ -90,10 +90,8 @@ require_once "php/dashboard.php";
             </div>
         </aside>
         <div class="main" id="main">
+
             <div id="calendar"></div>
-            <!-- <a class="btn btn-danger" href="./php_backend/logout.php">
-                Logout
-            </a> -->
         </div>
         <script src="./js/script.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
