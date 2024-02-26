@@ -22,6 +22,12 @@
     color: white;
 }
 
+.fc-event-title,
+.fc-event-time {
+    font-size: 12px;
+    font-weight: 100 !important;
+}
+
 .fc .fc-button-primary:disabled {
     background-color: #124F6F !important;
     border-color: #124F6F !important;
@@ -32,7 +38,7 @@
 }
 
 .fc-day-today {
-    background: rgb(232, 228, 228) !important;
+    background: #e2f5ff !important;
 }
 
 .fc .fc-toolbar-title {
@@ -50,6 +56,10 @@
 
 .fc .fc-toolbar.fc-header-toolbar {
     margin-bottom: .5em;
+}
+
+.fc .fc-daygrid-event {
+    margin-top: 2px !important;
 }
 
 /* --------------------------------------------- */
@@ -137,6 +147,11 @@ body {
 }
 
 
+#calendar {
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+}
 
 #toggle-btn {
     background-color: transparent;

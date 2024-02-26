@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById("selectedDate").value = eventDate;
             document.getElementById("serviceList").value = info.event.extendedProps.service;
             document.getElementById("supervisorList").value = info.event.extendedProps.supervisor;
+            document.getElementById("appointmentId").value = info.event.id;
             // alert('Event: ' + info.event.title);
             // alert('id: ' + info.event.id);
             // alert('desc: ' + info.event.extendedProps.description);

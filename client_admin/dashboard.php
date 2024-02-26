@@ -90,10 +90,8 @@ require_once "php/dashboard.php";
             </div>
         </aside>
         <div class="main" id="main">
+
             <div id="calendar"></div>
-            <!-- <a class="btn btn-danger" href="./php_backend/logout.php">
-                Logout
-            </a> -->
         </div>
         <script src="./js/script.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
@@ -114,7 +112,8 @@ require_once "php/dashboard.php";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="needs-validation" id="createAppointment" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
+                <form class="needs-validation" id="editApp" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
+                    <input type="hidden" name="appointmentId" id="appointmentId" value="">
                     <div class="mb-3">
                         <i class="bi bi-circle-fill mx-2" style="color: grey;"></i>
                         <!-- <input name="title" id="service" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Select a service" value=""> -->
@@ -124,7 +123,6 @@ require_once "php/dashboard.php";
                         <select required id="serviceList">
                             <?php
                             // LOOP TILL END OF DATA
-
                             for ($i = 0; $i < count($serviceList); $i++) {
                             ?>
                                 <option><?php echo  $serviceList[$i]['title']; ?></option>
@@ -180,9 +178,12 @@ require_once "php/dashboard.php";
                 <script src="./js/client_validation.js"></script>
                 <script src="./js/select_box.js"></script>
             </div>
-            <div class="modal-footer my-footer">
-                <button class="btn my-button-yes" type="submit" form="createAppointment">create</button>
-                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">cancel</button>
+            <div class="modal-footer my-footer justify-content-between">
+                <button name="deleteAppointment" class="btn my-button-danger" type="submit" form="editApp">Delete</button>
+                <div>
+                    <button name="editAppointment" class="btn my-button-yes" type="submit" form="editApp">Edit</button>
+                    <button type="button" class="btn my-button-no" data-bs-dismiss="modal">cancel</button>
+                </div>
             </div>
         </div>
     </div>
@@ -260,7 +261,7 @@ require_once "php/dashboard.php";
                 </form>
             </div>
             <div class="modal-footer my-footer">
-                <button class="btn my-button-yes" type="submit" form="addAppointment">create</button>
+                <button name="addApp" class="btn my-button-yes" type="submit" form="addAppointment">create</button>
                 <button type="button" class="btn my-button-no" data-bs-dismiss="modal">cancel</button>
             </div>
         </div>
