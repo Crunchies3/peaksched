@@ -5,7 +5,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
 }
-// require_once "php/employee_page.php";
+require_once "php/employee_page.php";
 ?>
 
 <!DOCTYPE html>
@@ -107,38 +107,21 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td></td>
-                            <td>Jonald Paner</td>
-                            <td>Employee</td>
-                            <td>Jonaldpaner@gmail.com</td>
-                            <td>9773181839</td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td></td>
-                            <td>Cyril Alvez</td>
-                            <td>Supervisor</td>
-                            <td>cyrilalvez@gmail.com</td>
-                            <td>9773181839</td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td></td>
-                            <td>Kenneth Manon-og</td>
-                            <td>Employee</td>
-                            <td>kennethmanon_og@gmail.com</td>
-                            <td>9773181839</td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td></td>
-                            <td>Dennis Nazareno</td>
-                            <td>Employee</td>
-                            <td>dennisnazareno@gmail.com</td>
-                            <td>9773181839</td>
-                            <td></td>
-                          </tr>
+                        <?php
+                            // LOOP TILL END OF DATA
+                            while ($rows = $result->fetch_assoc()) {
+                            ?>
+                                <tr>
+                                    <td><?php echo $rows['employeeid']; ?></td>
+                                    <td><?php echo $rows['firstname']; ?> <?php echo $rows['lastname']; ?></td>
+                                    <td><?php echo $rows['type']; ?></td>
+                                    <td><?php echo $rows['email']; ?></td>
+                                    <td><?php echo $rows['mobilenumber']; ?></td>
+                                    <td></td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>

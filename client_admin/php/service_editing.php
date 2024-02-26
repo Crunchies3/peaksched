@@ -44,7 +44,6 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 
 $service_id = $_POST["serviceId"];
 
-echo $service_id;
 
 $serviceTitle = trim($_POST["serviceTitle"]);
 $serviceTitle_err = $validate->serviceTitle($serviceTitle);
