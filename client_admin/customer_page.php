@@ -28,7 +28,7 @@ require_once "php/employee_page.php";
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="./css/dashboard_styles.css" />
-    <link rel="stylesheet" href="./css/employee_page_styles.css" />
+    <link rel="stylesheet" href="./css/customer_page_styles.css" />
     <link rel="stylesheet" href="../components/_components.css">
 </head>
 
@@ -57,14 +57,14 @@ require_once "php/employee_page.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="employee_page.php" class="sidebar-link selected">
-                        <i class="bi bi-person-fill"></i>
+                    <a href="employee_page.php" class="sidebar-link">
+                        <i class="bi bi-person"></i>
                         <span>Employee</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="customer_page.php" class="sidebar-link">
-                        <i class="bi bi-emoji-smile"></i>
+                    <a href="customer_page.php" class="sidebar-link selected">
+                        <i class="bi bi-emoji-smile-fill"></i>
                         <span>Customer</span>
                     </a>
                 </li>
@@ -97,11 +97,11 @@ require_once "php/employee_page.php";
         <section class="main" id="main">
             <div class="container-fluid" id="serviceArea">
                 <div class="mb-5">
-                    <h1>Employee</h1>
+                    <h1>Customer</h1>
                 </div>
                 <div class="container-fluid" id="servicesTableArea">
                     <div>
-                        <h5>All employee</h5>
+                        <h5>All customer</h5>
                     </div>
                     <table id="myTable" class="table table-hover">
                         <!-- //!TODO: para mailisan ang color sa header -->
@@ -134,7 +134,7 @@ require_once "php/employee_page.php";
                 </div>
             </div>
         </section>
-        <script src = "./js/data_table_employee.js"></script>                  
+        <script src = "./js/data_table_customer.js"></script>                  
         <script src="./js/script.js"></script>
 </body>
 
