@@ -4,6 +4,7 @@
 class Employees
 {
     private $conn;
+    private $id;
     private $firstname;
     private $lastname;
     private $position; //type ni cy karon ra nako narealize
@@ -50,7 +51,8 @@ class Employees
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-    public function fetchEmployeesList(){
+    public function fetchEmployeesList()
+    {
         try {
             $stmt = $this->conn->prepare("SELECT*FROM tbl_employee");
             $stmt->execute();
@@ -58,7 +60,7 @@ class Employees
             $this->employeeList = $result;
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
-      }
+        }
     }
 
     public function addEmployee($firstName, $lastName, $email, $mobileNumber, $position, $employeeid, $tempPassword)
@@ -105,6 +107,30 @@ class Employees
             $this->setEmail($email);
             $this->setMobilenumber($mobileNumber);
             $this->setPosition($position);
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function getTypeById($id)
+    {
+
+        $type = "";
+        try {
+            $stmt = $this->conn->prepare("SELECT type FROM tbl_employee WHERE employeeid = ?");
+            $stmt->bind_param("s", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $type = $row["type"];
+                }
+            }
+
+            return $type;
+
+            $this->conn->close();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
@@ -179,6 +205,18 @@ class Employees
     public function setMobilenumber($mobileNumber)
     {
         $this->mobilenumber = $mobileNumber;
+
+        return $this;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
 
         return $this;
     }

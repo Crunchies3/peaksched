@@ -5,9 +5,18 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/employee_account.php"
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/form_validation.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/employees.php";
 
+
+if (isset($_GET["employeeId"])) {
+    $idEmployee = $_GET["employeeId"];
+    $employee = new Employees();
+    $employee->setConn($conn);
+    if ($employee->getTypeById($idEmployee) == "supervisor") {
+        header("location: employee_supervisor_page.php?employeeId=$idEmployee");
+        exit;
+    }
+}
+
 $employeeAcc = new EmployeeAccount($conn, "worker");
-
-
 $employee = new Employees();
 $employee->setConn($employeeAcc->getConn());
 
@@ -23,6 +32,8 @@ if (isset($_GET["employeeId"])) {
     $employeeId = $_GET["employeeId"];
 }
 
+
+
 //displayables
 $employee->displayCurrentEmployee($employeeId);
 
@@ -34,32 +45,53 @@ $position = $employee->getPosition();
 
 
 
+if (isset($_POST['updateInfo'])) { //! para mag update sa details like name
+
+    if ($_SERVER["REQUEST_METHOD"] != "POST") {
+        return;
+    };
+
+    $employeeId = $_POST["employeeId"];
 
 
-if ($_SERVER["REQUEST_METHOD"] != "POST") {
-    return;
-};
+    $firstName = trim($_POST["firstName"]);
+    $firstName_err = $validate->firstName($firstName);
 
-$employeeId = $_POST["employeeId"];
+    $lastName = trim($_POST["lastName"]);
+    $lastName_err = $validate->firstName($lastName);
 
+    $email = trim($_POST["email"]);
+    $email_err = $validate->emailEmptyDoesNotExist($email);
 
-$firstName = trim($_POST["firstName"]);
-$firstName_err = $validate->firstName($firstName);
+    $mobileNumber = trim($_POST["mobile"]);
+    $mobileNumber_err = $validate->mobileNumber($mobileNumber);
 
-$lastName = trim($_POST["lastName"]);
-$lastName_err = $validate->firstName($lastName);
-
-$email = trim($_POST["email"]);
-$email_err = $validate->emailEmptyDoesNotExist($email);
-
-$mobileNumber = trim($_POST["mobile"]);
-$mobileNumber_err = $validate->mobileNumber($mobileNumber);
-
-$position = trim($_POST["position"]);
+    $position = trim($_POST["position"]);
 
 
 
-if (empty($firstname_err) && empty($lastName_err) && empty($email_err) && empty($mobileNumber_err)) {
-    $employee->updateEmployeeDetails( $firstName, $lastName,  $email, $mobileNumber, $position , $employeeId);
-    header("location: ./employee_page.php");
+    if (empty($firstname_err) && empty($lastName_err) && empty($email_err) && empty($mobileNumber_err)) {
+        $employee->updateEmployeeDetails($firstName, $lastName,  $email, $mobileNumber, $position, $employeeId);
+        header("location: ./employee_editing_page.php?employeeId=$employeeId");
+    }
+} else if (isset($_POST['changePassword'])) {  //! para mag change pass
+
+
+
+
+    if (empty($firstname_err) && empty($lastName_err) && empty($email_err) && empty($mobileNumber_err)) {
+        $employee->updateEmployeeDetails($firstName, $lastName,  $email, $mobileNumber, $position, $employeeId);
+        header("location: ./employee_editing_page.php?employeeId=$employeeId");
+    }
+} else if (isset($_POST['deleteAccount'])) { //! para mag delete ug account
+
+
+
+
+
+
+    if (empty($firstname_err) && empty($lastName_err) && empty($email_err) && empty($mobileNumber_err)) {
+        $employee->updateEmployeeDetails($firstName, $lastName,  $email, $mobileNumber, $position, $employeeId);
+        header("location: ./employee_page.php");
+    }
 }

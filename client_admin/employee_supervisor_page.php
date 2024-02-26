@@ -5,16 +5,16 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
 }
-require_once "php/employee_page.php";
-require_once "php/employee_editing.php";
-require_once "php/profile_account.php";
+require_once "php/asigned_worker_super.php"; // para sa table ni supervisor na makita ang mga naka assign na workers
+require_once "php/employee_supervisor_editing.php";
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<meta charset="UTF-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Employee</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
@@ -93,7 +93,7 @@ require_once "php/profile_account.php";
         </aside>
         <section class="main" id="main">
 
-        <div class="container-fluid" id="serviceArea">
+            <div class="container-fluid" id="serviceArea">
                 <div class="mb-5">
                     <h1>Employee</h1>
                 </div>
@@ -102,7 +102,7 @@ require_once "php/profile_account.php";
                         <h5>Edit Employee</h5>
                     </div>
                     <form id="editEmployeeForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
-                    <input type="hidden" name="employeeId" value="<?= htmlspecialchars($employeeId) ?>">
+                        <input type="hidden" name="employeeId" value="<?= htmlspecialchars($employeeId) ?>">
                         <div class="col-md-6 mb-4">
                             <label class="form-label mb-1">FIRST NAME</label>
                             <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $firstName ?>">
@@ -172,7 +172,7 @@ require_once "php/profile_account.php";
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
-                        <?php
+                            <?php
                             // LOOP TILL END OF DATA
                             while ($rows = $result->fetch_assoc()) {
                             ?>
@@ -197,10 +197,10 @@ require_once "php/profile_account.php";
                     <div>
                         <h5>Account</h5>
                     </div>
-                    <form id="editEmployeeForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
-                    <input type="hidden" name="employeeId" value="<?= htmlspecialchars($employeeId) ?>">
+                    <form id="editPasswordForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
+                        <input type="hidden" name="employeeId" value="<?= htmlspecialchars($employeeId) ?>">
 
-                    <div class="col-lg-6 mb-4">
+                        <div class="col-lg-6 mb-4">
                             <label class="form-label mb-1">NEW PASSWORD</label>
                             <input name="newPassword" type="password" class="form-control input-field <?php echo (!empty($newPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your new password" aria-label="Last name" value="<?php echo $newPassword; ?>">
                             <div class="invalid-feedback">
@@ -223,13 +223,13 @@ require_once "php/profile_account.php";
                             <button data-bs-toggle="modal" data-bs-target="#updatePasswordModal" class="btn btn-lg fs-6 w-100 my-button-yes">Save Changes</button>
                         </div>
                         <div class="mb-0 col-xxl-2">
-                        <button data-bs-toggle="modal" data-bs-target="#deleteEmployeeAccountModal" class="btn btn-lg fs-6 w-100 my-button-danger">Delete</button>
+                            <button data-bs-toggle="modal" data-bs-target="#deleteEmployeeAccountModal" class="btn btn-lg fs-6 w-100 my-button-danger">Delete</button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <script src = "./js/data_table_supervisor_view.js"></script>                  
+        <script src="./js/data_table_supervisor_view.js"></script>
         <script src="./js/script.js"></script>
 </body>
 
@@ -249,7 +249,7 @@ require_once "php/profile_account.php";
                 Your account details will be updated.
             </div>
             <div class="modal-footer">
-                <button name="updateInfo" form="updateAccountDetails" class="btn my-button-yes">Confirm</button>
+                <button name="updateInfo" form="editEmployeeForm" class="btn my-button-yes">Confirm</button>
                 <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
@@ -272,7 +272,7 @@ require_once "php/profile_account.php";
                 Your account will be deleted.
             </div>
             <div class="modal-footer">
-                <button name="delete" form="securityForm" class="btn my-button-danger">Confirm</button>
+                <button name="deleteAccount" form="editPasswordForm" class="btn my-button-danger">Confirm</button>
                 <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
@@ -294,7 +294,7 @@ require_once "php/profile_account.php";
                 Your password will be updated.
             </div>
             <div class="modal-footer">
-                <button name="changePassword" form="securityForm" class="btn my-button-yes">Confirm</button>
+                <button name="changePassword" form="editPasswordForm" class="btn my-button-yes">Confirm</button>
                 <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
