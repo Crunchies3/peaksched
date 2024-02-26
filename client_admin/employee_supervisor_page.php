@@ -133,16 +133,16 @@ require_once "php/employee_supervisor_editing.php";
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">POSITION</label>
-                            <input name="position" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $mobileNumber ?>">
+                            <input name="position" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $position ?>">
                             <div class="invalid-feedback">
                                 <?php echo $position_err; ?>
                             </div>
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">ASSIGNED TO</label>
-                            <input name="position" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $mobileNumber ?>">
+                            <input name="assignedto" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $assignedto ?>">
                             <div class="invalid-feedback">
-                                <?php echo $position_err; ?>
+                                <?php echo $assignedTo_err; ?>
                             </div>
                         </div>
                     </form>
