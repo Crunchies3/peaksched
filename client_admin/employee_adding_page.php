@@ -32,8 +32,7 @@ require_once "php/employee_adding.php";
 
     <link rel="stylesheet" href="./css/dashboard_styles.css" />
     <link rel="stylesheet" href="./css/service_page_styles.css" />
-    <link rel="stylesheet" href="./css/setting_page_styles.css" />
-
+    <link rel="stylesheet" href="../components/_components.css">
 
 </head>
 
@@ -81,7 +80,7 @@ require_once "php/employee_adding.php";
                 </li>
                 <li class="sidebar-footer">
                     <a href="./setting_account_page.php" class="sidebar-link">
-                        <i class="bi bi-gear-fill"></i>
+                        <i class="bi bi-gear"></i>
                         <span>Settings</span>
                     </a>
                 </li>
@@ -141,10 +140,10 @@ require_once "php/employee_adding.php";
                     </form>
                     <div class="row">
                         <div class="mb-3 col-xxl-2">
-                            <button data-bs-toggle="modal" data-bs-target="#addEmployeeModal" type="submit" class="btn btn-lg fs-6 w-100 save-changes-button">Save</button>
+                            <button data-bs-toggle="modal" data-bs-target="#addEmployeeModal" type="submit" class="btn btn-lg fs-6 w-100 my-button-yes">Save</button>
                         </div>
                         <div class="mb-0 col-xxl-2">
-                            <a href="./employee_adding_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 discard-changes-button">Cancel</a>
+                            <a href="./employee_adding_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Cancel</a>
                         </div>
                     </div>
                 </div>

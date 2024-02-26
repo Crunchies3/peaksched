@@ -29,6 +29,7 @@ require_once "php/employee_page.php";
 
     <link rel="stylesheet" href="./css/dashboard_styles.css" />
     <link rel="stylesheet" href="./css/employee_page_styles.css" />
+    <link rel="stylesheet" href="../components/_components.css">
 </head>
 
 <body>

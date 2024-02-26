@@ -50,3 +50,7 @@
     border: 1px #BBBBBB;
     border-style: solid;
 }
+.my-button-danger{
+    color:white;
+    background-color: rgb(191 11 11);
+}

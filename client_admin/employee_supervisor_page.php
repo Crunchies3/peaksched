@@ -5,7 +5,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
 }
-
+require_once "php/employee_page.php";
 require_once "php/employee_editing.php";
 require_once "php/profile_account.php";
 ?>
@@ -14,9 +14,9 @@ require_once "php/profile_account.php";
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
+<meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Settings</title>
+    <title>Employee</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -28,12 +28,11 @@ require_once "php/profile_account.php";
     <!-- end -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script src="./js/colorPick.js"></script>
 
     <link rel="stylesheet" href="./css/dashboard_styles.css" />
-    <link rel="stylesheet" href="./css/employee_page_styles.css" />
+    <link rel="stylesheet" href="./css/employee_supervisor_view_styles.css">
     <link rel="stylesheet" href="../components/_components.css">
-
+    <link rel="stylesheet" href="./css/setting_page_styles.css">
 </head>
 
 <body>
@@ -61,7 +60,7 @@ require_once "php/profile_account.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="./employee_page.php" class="sidebar-link selected">
+                    <a href="employee_page.php" class="sidebar-link selected">
                         <i class="bi bi-person-fill"></i>
                         <span>Employee</span>
                     </a>
@@ -79,7 +78,7 @@ require_once "php/profile_account.php";
                     </a>
                 </li>
                 <li class="sidebar-footer">
-                    <a href="./setting_account_page.php" class="sidebar-link">
+                    <a href="setting_account_page.php" class="sidebar-link ">
                         <i class="bi bi-gear"></i>
                         <span>Settings</span>
                     </a>
@@ -93,7 +92,8 @@ require_once "php/profile_account.php";
             </div>
         </aside>
         <section class="main" id="main">
-            <div class="container-fluid" id="serviceArea">
+
+        <div class="container-fluid" id="serviceArea">
                 <div class="mb-5">
                     <h1>Employee</h1>
                 </div>
@@ -148,14 +148,50 @@ require_once "php/profile_account.php";
                     </form>
                     <div class="row">
                         <div class="mb-3 col-xxl-2">
-                            <button data-bs-toggle="modal" data-bs-target="#editEmployeeModal" class="btn btn-lg fs-6 w-100 my-button-yes">Save Changes</button>
+                            <button data-bs-toggle="modal" data-bs-target="#updateInfoModal" class="btn btn-lg fs-6 w-100 my-button-yes">Save Changes</button>
                         </div>
                         <div class="mb-0 col-xxl-2">
-                            <a href="./employee_editing_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Discard Changes</a>
+                            <a href="./employee_supervisor_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Discard Changes</a>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="container-fluid" id="serviceArea">
+                <div class="container-fluid" id="tablelistTableArea">
+                    <div>
+                        <h5>Assigned workers</h5>
+                    </div>
+                    <table id="myTable" class="table table-hover">
+                        <!-- //!TODO: para mailisan ang color sa header -->
+                        <thead id="tableHead">
+                            <th style="color: white;">Id</th>
+                            <th style="color: white;">Fullname</th>
+                            <th style="color: white;">Position</th>
+                            <th style="color: white;">Email</th>
+                            <th style="color: white;">Phone</th>
+                            <th style="color: white;">Actions</th>
+                        </thead>
+                        <tbody>
+                        <?php
+                            // LOOP TILL END OF DATA
+                            while ($rows = $result->fetch_assoc()) {
+                            ?>
+                                <tr>
+                                    <td><?php echo $rows['employeeid']; ?></td>
+                                    <td><?php echo $rows['firstname']; ?> <?php echo $rows['lastname']; ?></td>
+                                    <td><?php echo $rows['type']; ?></td>
+                                    <td><?php echo $rows['email']; ?></td>
+                                    <td><?php echo $rows['mobilenumber']; ?></td>
+                                    <td></td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
             <div class="container-fluid" id="serviceArea">
                 <div class="container-fluid" id="securityArea">
                     <div>
@@ -184,7 +220,7 @@ require_once "php/profile_account.php";
                     </form>
                     <div class="row justify-content-between">
                         <div class="mb-3 col-xxl-2">
-                            <button data-bs-toggle="modal" data-bs-target="#updatePasswordModal" class="btn btn-lg fs-6 w-100 my-button-yes">Save Password</button>
+                            <button data-bs-toggle="modal" data-bs-target="#updatePasswordModal" class="btn btn-lg fs-6 w-100 my-button-yes">Save Changes</button>
                         </div>
                         <div class="mb-0 col-xxl-2">
                         <button data-bs-toggle="modal" data-bs-target="#deleteEmployeeAccountModal" class="btn btn-lg fs-6 w-100 my-button-danger">Delete</button>
@@ -193,29 +229,35 @@ require_once "php/profile_account.php";
                 </div>
             </div>
         </section>
+        <script src = "./js/data_table_supervisor_view.js"></script>                  
         <script src="./js/script.js"></script>
-
 </body>
 
 </html>
 
-<div class="modal fade" id="editEmployeeModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="addServiceModal" aria-hidden="true">
+
+<!-- //? modal paras confirmation sa pag update sa details -->
+
+<div class="modal fade" id="updateInfoModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="updateInfoModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
-                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm Changes?</h1>
+                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm changes?</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Changes Will be Saved.
+                Your account details will be updated.
             </div>
             <div class="modal-footer">
-                <button name="changePassword" form="editEmployeeForm" class="btn add-service-button">Confirm</button>
-                <button type="button" class="btn cancel-button" data-bs-dismiss="modal">Cancel</button>
+                <button name="updateInfo" form="updateAccountDetails" class="btn my-button-yes">Confirm</button>
+                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
 </div>
+
+
+
 
 <!-- //? modal paras confirmation sa pag delete sa user -->
 
@@ -236,6 +278,9 @@ require_once "php/profile_account.php";
         </div>
     </div>
 </div>
+
+
+
 <!-- //? modal paras confirmation sa pag update sa password -->
 
 <div class="modal fade" id="updatePasswordModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="updatePasswordModal" aria-hidden="true">
