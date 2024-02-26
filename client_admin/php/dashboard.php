@@ -87,4 +87,13 @@ if (isset($_POST['editAppointment'])) {
     $dateTimeEnd = $date . " " . date("H:i", strtotime($start));
 
     $appointment->addAppointmnet($appointmentId, $service_id, $customerId, $supervisorId, $dateTimeStart, $dateTimeEnd, $notes);
+} else if (isset($_POST['deleteAppointment'])) {
+
+    if ($_SERVER["REQUEST_METHOD"] != "POST") {
+        return;
+    }
+
+    $appointmentId =  trim($_POST["appointmentId"]);
+
+    $appointment->deleteAppointmnet($appointmentId);
 }

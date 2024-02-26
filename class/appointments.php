@@ -69,6 +69,19 @@ class Appointment
         }
     }
 
+    public function deleteAppointmnet($appointmentId)
+    {
+        try {
+            $stmt = $this->conn->prepare("DELETE FROM tbl_appointment WHERE id = ?");
+            $stmt->bind_param("s", $appointmentId);
+            $stmt->execute();
+            $stmt->close();
+            return true;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
     public function editAppointmnet($appointmentId, $serviceId, $customerId, $employeeId, $dateTimeStart, $dateTimeEnd, $note)
     {
         try {

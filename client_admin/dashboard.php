@@ -178,9 +178,12 @@ require_once "php/dashboard.php";
                 <script src="./js/client_validation.js"></script>
                 <script src="./js/select_box.js"></script>
             </div>
-            <div class="modal-footer my-footer">
-                <button name="editAppointment" class="btn my-button-yes" type="submit" form="editApp">Edit</button>
-                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">cancel</button>
+            <div class="modal-footer my-footer justify-content-between">
+                <button name="deleteAppointment" class="btn my-button-danger" type="submit" form="editApp">Delete</button>
+                <div>
+                    <button name="editAppointment" class="btn my-button-yes" type="submit" form="editApp">Edit</button>
+                    <button type="button" class="btn my-button-no" data-bs-dismiss="modal">cancel</button>
+                </div>
             </div>
         </div>
     </div>
