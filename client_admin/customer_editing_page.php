@@ -107,8 +107,8 @@ require_once "php/profile_account.php";
                     <div>
                         <h5>Edit Customer</h5>
                     </div>
-                    <form id="editEmployeeForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
-                    <input type="hidden" name="employeeId" value="<?= htmlspecialchars($employeeId) ?>">
+                    <form id="editCustomerForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
+                    <input type="hidden" name="customerId" value="<?= htmlspecialchars($customerId) ?>">
                         <div class="col-md-6 mb-4">
                             <label class="form-label mb-1">FIRST NAME</label>
                             <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $firstName ?>">
@@ -139,7 +139,7 @@ require_once "php/profile_account.php";
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">POSITION</label>
-                            <input name="position" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $mobileNumber ?>">
+                            <input name="position" type="text" class="form-control fs-6 input-field <?php echo (!empty($position_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $position ?>">
                             <div class="invalid-feedback">
                                 <?php echo $position_err; ?>
                             </div>
@@ -157,7 +157,7 @@ require_once "php/profile_account.php";
                             <button data-bs-toggle="modal" data-bs-target="#editEmployeeModal" class="btn btn-lg fs-6 w-100 my-button-yes">Save Changes</button>
                         </div>
                         <div class="mb-0 col-xxl-2">
-                            <a href="./employee_editing_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Discard Changes</a>
+                            <a href="./customer_editing_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Discard Changes</a>
                         </div>
                     </div>
                 </div>
@@ -167,8 +167,8 @@ require_once "php/profile_account.php";
                     <div>
                         <h5>Account</h5>
                     </div>
-                    <form id="editEmployeeForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
-                    <input type="hidden" name="employeeId" value="<?= htmlspecialchars($employeeId) ?>">
+                    <form id="editCustomerForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
+                    <input type="hidden" name="customerId" value="<?= htmlspecialchars($customerId) ?>">
 
                     <div class="col-lg-6 mb-4">
                             <label class="form-label mb-1">NEW PASSWORD</label>
@@ -216,7 +216,7 @@ require_once "php/profile_account.php";
                 Changes Will be Saved.
             </div>
             <div class="modal-footer">
-                <button name="changePassword" form="editEmployeeForm" class="btn add-service-button">Confirm</button>
+                <button name="changePassword" form="editCustomerForm" class="btn add-service-button">Confirm</button>
                 <button type="button" class="btn cancel-button" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>

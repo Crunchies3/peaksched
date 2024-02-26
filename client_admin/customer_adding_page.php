@@ -107,7 +107,7 @@ require_once "php/employee_adding.php";
                     <div>
                         <h5>Add Customer</h5>
                     </div>
-                    <form id="addEmployeeForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
+                    <form id="addCustomerForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <div class="col-md-6 mb-4">
                             <label class="form-label mb-1">FIRST NAME</label>
                             <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $firstName ?>">
@@ -146,10 +146,10 @@ require_once "php/employee_adding.php";
                     </form>
                     <div class="row">
                         <div class="mb-3 col-xxl-2">
-                            <button data-bs-toggle="modal" data-bs-target="#addEmployeeModal" type="submit" class="btn btn-lg fs-6 w-100 my-button-yes">Save</button>
+                            <button data-bs-toggle="modal" data-bs-target="#addCustomerModal" type="submit" class="btn btn-lg fs-6 w-100 my-button-yes">Save</button>
                         </div>
                         <div class="mb-0 col-xxl-2">
-                            <a href="./employee_adding_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Cancel</a>
+                            <a href="./customer_adding_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Cancel</a>
                         </div>
                     </div>
                 </div>
@@ -160,7 +160,7 @@ require_once "php/employee_adding.php";
 
 </html>
 
-<div class="modal fade" id="addEmployeeModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="addEmployeeModal" aria-hidden="true">
+<div class="modal fade" id="addCustomerModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="addCustomerModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
@@ -171,7 +171,7 @@ require_once "php/employee_adding.php";
                 Employee will be added.
             </div>
             <div class="modal-footer">
-                <button name="addEmployee" form="addEmployeeForm" class="btn add-service-button">Confirm</button>
+                <button name="addEmployee" form="addCustomerForm" class="btn add-service-button">Confirm</button>
                 <button type="button" class="btn cancel-button" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
