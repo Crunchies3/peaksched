@@ -7,7 +7,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 }
 
 require_once "php/employee_editing.php";
-require_once "php/profile_account.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -102,7 +102,7 @@ require_once "php/profile_account.php";
                         <h5>Edit Employee</h5>
                     </div>
                     <form id="editEmployeeForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
-                    <input type="hidden" name="employeeId" value="<?= htmlspecialchars($employeeId) ?>">
+                        <input type="hidden" name="employeeId" value="<?= htmlspecialchars($employeeId) ?>">
                         <div class="col-md-6 mb-4">
                             <label class="form-label mb-1">FIRST NAME</label>
                             <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $firstName ?>">
@@ -161,19 +161,19 @@ require_once "php/profile_account.php";
                     <div>
                         <h5>Account</h5>
                     </div>
-                    <form id="editEmployeeForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
-                    <input type="hidden" name="employeeId" value="<?= htmlspecialchars($employeeId) ?>">
+                    <form id="editPasswordForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
+                        <input type="hidden" name="employeeId" value="<?= htmlspecialchars($employeeId) ?>">
 
-                    <div class="col-lg-6 mb-4">
+                        <div class="col-lg-6 mb-4">
                             <label class="form-label mb-1">NEW PASSWORD</label>
-                            <input name="newPassword" type="password" class="form-control input-field <?php echo (!empty($newPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your new password" aria-label="Last name" value="<?php echo $newPassword; ?>">
+                            <input name="newPassword" type="password" class="form-control input-field <?php echo (!empty($newPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your new password" aria-label="Last name" value="">
                             <div class="invalid-feedback">
                                 <?php echo $newPassword_err; ?>
                             </div>
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">CONFIRM NEW PASSWORD</label>
-                            <input name="confirmPassword" type="password" class="form-control fs-6 input-field mb-2 <?php echo (!empty($confirmPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Re-enter your new password" value="<?php echo $confirmPassword; ?>">
+                            <input name="confirmPassword" type="password" class="form-control fs-6 input-field mb-2 <?php echo (!empty($confirmPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Re-enter your new password" value="">
                             <div class="invalid-feedback">
                                 <?php echo $confirmPassword_err; ?>
                             </div>
@@ -187,7 +187,7 @@ require_once "php/profile_account.php";
                             <button data-bs-toggle="modal" data-bs-target="#updatePasswordModal" class="btn btn-lg fs-6 w-100 my-button-yes">Save Password</button>
                         </div>
                         <div class="mb-0 col-xxl-2">
-                        <button data-bs-toggle="modal" data-bs-target="#deleteEmployeeAccountModal" class="btn btn-lg fs-6 w-100 my-button-danger">Delete</button>
+                            <button data-bs-toggle="modal" data-bs-target="#deleteEmployeeAccountModal" class="btn btn-lg fs-6 w-100 my-button-danger">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -210,7 +210,7 @@ require_once "php/profile_account.php";
                 Changes Will be Saved.
             </div>
             <div class="modal-footer">
-                <button name="changePassword" form="editEmployeeForm" class="btn add-service-button">Confirm</button>
+                <button name="updateInfo" form="editEmployeeForm" class="btn add-service-button">Confirm</button>
                 <button type="button" class="btn cancel-button" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
@@ -230,7 +230,7 @@ require_once "php/profile_account.php";
                 Your account will be deleted.
             </div>
             <div class="modal-footer">
-                <button name="delete" form="securityForm" class="btn my-button-danger">Confirm</button>
+                <button name="deleteAccount" form="editPasswordForm" class="btn my-button-danger">Confirm</button>
                 <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
@@ -249,7 +249,7 @@ require_once "php/profile_account.php";
                 Your password will be updated.
             </div>
             <div class="modal-footer">
-                <button name="changePassword" form="securityForm" class="btn my-button-yes">Confirm</button>
+                <button name="changePassword" form="editPasswordForm" class="btn my-button-yes">Confirm</button>
                 <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
