@@ -90,11 +90,11 @@ class EmployeeAccount extends UserAccount
         $this->type = $type;
     }
 
-    public function isIdUnique($customerId)
+    public function isIdUnique($employeeId)
     {
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM tbl_employee WHERE customerid = ?");
-            $stmt->bind_param("s", $customerId);
+            $stmt = $this->conn->prepare("SELECT * FROM tbl_employee WHERE employeeid = ?");
+            $stmt->bind_param("s", $employeeId);
 
             $stmt->execute();
             $result = $stmt->get_result();

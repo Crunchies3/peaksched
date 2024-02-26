@@ -6,7 +6,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
-require_once "php/service_editing.php";
+require_once "php/employee_editing.php";
 
 ?>
 
@@ -102,7 +102,8 @@ require_once "php/service_editing.php";
                     <div>
                         <h5>Edit Employee</h5>
                     </div>
-                    <form id="updateAccountDetails" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
+                    <form id="editEmployeeForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
+                    <input type="hidden" name="employeeId" value="<?= htmlspecialchars($employeeId) ?>">
                         <div class="col-md-6 mb-4">
                             <label class="form-label mb-1">FIRST NAME</label>
                             <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $firstName ?>">
@@ -126,22 +127,22 @@ require_once "php/service_editing.php";
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">PHONE NUMBER</label>
-                            <input name="mobile" type="email" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your mobile number" value="<?php echo $mobileNumber ?>">
+                            <input name="mobile" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your mobile number" value="<?php echo $mobileNumber ?>">
                             <div class="invalid-feedback">
                                 <?php echo $mobileNumber_err; ?>
                             </div>
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">POSITION</label>
-                            <input name="mobile" type="email" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your mobile number" value="<?php echo $mobileNumber ?>">
+                            <input name="position" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $mobileNumber ?>">
                             <div class="invalid-feedback">
-                                <?php echo $mobileNumber_err; ?>
+                                <?php echo $position_err; ?>
                             </div>
                         </div>
                     </form>
                     <div class="row">
                         <div class="mb-3 col-xxl-2">
-                            <button data-bs-toggle="modal" data-bs-target="#updateInfoModal" class="btn btn-lg fs-6 w-100 save-changes-button">Save Changes</button>
+                            <button data-bs-toggle="modal" data-bs-target="#editEmployeeModal" class="btn btn-lg fs-6 w-100 save-changes-button">Save Changes</button>
                         </div>
                         <div class="mb-0 col-xxl-2">
                             <a href="./employee_editing_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 discard-changes-button">Discard Changes</a>
@@ -156,7 +157,7 @@ require_once "php/service_editing.php";
 
 </html>
 
-<div class="modal fade" id="addServiceModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="addServiceModal" aria-hidden="true">
+<div class="modal fade" id="editEmployeeModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="addServiceModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
@@ -167,7 +168,7 @@ require_once "php/service_editing.php";
                 Changes Will be Saved.
             </div>
             <div class="modal-footer">
-                <button name="changePassword" form="addServiceForm" class="btn add-service-button">Confirm</button>
+                <button name="changePassword" form="editEmployeeForm" class="btn add-service-button">Confirm</button>
                 <button type="button" class="btn cancel-button" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
