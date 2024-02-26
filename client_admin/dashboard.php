@@ -112,7 +112,7 @@ require_once "php/dashboard.php";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="needs-validation" id="createAppointment" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
+                <form class="needs-validation" id="editApp" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
                     <input type="hidden" name="appointmentId" id="appointmentId" value="">
                     <div class="mb-3">
                         <i class="bi bi-circle-fill mx-2" style="color: grey;"></i>
@@ -179,7 +179,7 @@ require_once "php/dashboard.php";
                 <script src="./js/select_box.js"></script>
             </div>
             <div class="modal-footer my-footer">
-                <button class="btn my-button-yes" type="submit" form="createAppointment">create</button>
+                <button name="editAppointment" class="btn my-button-yes" type="submit" form="editApp">Edit</button>
                 <button type="button" class="btn my-button-no" data-bs-dismiss="modal">cancel</button>
             </div>
         </div>
@@ -258,7 +258,7 @@ require_once "php/dashboard.php";
                 </form>
             </div>
             <div class="modal-footer my-footer">
-                <button class="btn my-button-yes" type="submit" form="addAppointment">create</button>
+                <button name="addApp" class="btn my-button-yes" type="submit" form="addAppointment">create</button>
                 <button type="button" class="btn my-button-no" data-bs-dismiss="modal">cancel</button>
             </div>
         </div>

@@ -69,6 +69,37 @@ class Appointment
         }
     }
 
+    public function editAppointmnet($appointmentId, $serviceId, $customerId, $employeeId, $dateTimeStart, $dateTimeEnd, $note)
+    {
+        try {
+            $stmt = $this->conn->prepare(
+                "UPDATE tbl_appointment a,
+                        tbl_customer b,
+                        tbl_employee c,
+                        tbl_service d,
+                        tbl_app_cust_sup e,
+                        tbl_appointment_service f
+                SET     a.note = ?,
+                        a.start = ?,
+                        a.end = ?,
+                        e.customer_id = ?,
+                        e.employee_id = ?,
+                        f.service_id = ?
+                WHERE   a.id = e.appointment_id && 
+                        e.customer_id = b.customerid &&
+                        e.employee_id = c.employeeid &&
+                        a.id = f.appointment_id &&
+                        f.service_id = d.service_id && 
+                        a.id = ?;"
+            );
+            $stmt->bind_param("sssssss", $note, $dateTimeStart, $dateTimeEnd, $customerId, $employeeId, $serviceId, $appointmentId);
+            $stmt->execute();
+            $this->conn->close();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
     public function addAppointmnet($appointmentId, $serviceId, $customerId, $employeeId, $dateTimeStart, $dateTimeEnd, $note)
     {
         try {
