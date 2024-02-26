@@ -133,16 +133,16 @@ require_once "php/employee_editing.php";
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">POSITION</label>
-                            <input name="position" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $mobileNumber ?>">
+                            <input name="position" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $position ?>">
                             <div class="invalid-feedback">
                                 <?php echo $position_err; ?>
                             </div>
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">ASSIGNED TO</label>
-                            <input name="position" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $mobileNumber ?>">
+                            <input name="assignedto" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $assignedto ?>">
                             <div class="invalid-feedback">
-                                <?php echo $position_err; ?>
+                                <?php echo $assignedTo_err; ?>
                             </div>
                         </div>
                     </form>
@@ -166,14 +166,14 @@ require_once "php/employee_editing.php";
 
                         <div class="col-lg-6 mb-4">
                             <label class="form-label mb-1">NEW PASSWORD</label>
-                            <input name="newPassword" type="password" class="form-control input-field <?php echo (!empty($newPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your new password" aria-label="Last name" value="">
+                            <input name="newPassword" type="password" class="form-control input-field <?php echo (!empty($newPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your new password" aria-label="Last name" value="<?php echo $newPassword ?>">
                             <div class="invalid-feedback">
                                 <?php echo $newPassword_err; ?>
                             </div>
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">CONFIRM NEW PASSWORD</label>
-                            <input name="confirmPassword" type="password" class="form-control fs-6 input-field mb-2 <?php echo (!empty($confirmPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Re-enter your new password" value="">
+                            <input name="confirmPassword" type="password" class="form-control fs-6 input-field mb-2 <?php echo (!empty($confirmPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Re-enter your new password" value="<?php echo $confirmPassword ?>">
                             <div class="invalid-feedback">
                                 <?php echo $confirmPassword_err; ?>
                             </div>

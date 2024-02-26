@@ -11,6 +11,7 @@ class Employees
     private $email;
     private $mobilenumber;
     private $employeeList;
+    private $supervisorWorkers;
     public function fetchEmployeeArr()
     {
         try {
@@ -135,6 +136,60 @@ class Employees
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
+    public function getWorkerAssignedTo($worker_id){
+        try {
+            $stmt = $this->conn->prepare("SELECT CONCAT(a.firstname, ' ', a.lastname) AS 'fullname' FROM tbl_employee a, tbl_supervisor_worker b WHERE a.type = 'supervisor' && b.worker_id = ?");
+            $stmt->bind_param("s",$worker_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $fullname ="";
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $fullname = $row['fullname'];
+                }
+            }
+           return $fullname;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+
+    }
+    public function changeEmployeePassword($newHashedPassword)
+    {
+        $employeeId = $this->getId();
+        try {
+            $stmt = $this->conn->prepare("UPDATE tbl_employee SET password = ? WHERE employeeid = ?");
+            $stmt->bind_param("ss", $newHashedPassword, $employeeId);
+            $stmt->execute();
+            $this->conn->close();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function deleteEmployee($employeeId){
+        try {
+            $stmt = $this->conn->prepare("DELETE FROM tbl_employee WHERE employeeid = ?");
+            $stmt->bind_param("s",$employeeId);
+            $stmt->execute();
+            $this->conn->close();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function fetchSupervisorWorkers($supervisorID){
+        try {
+         $stmt = $this->conn->prepare("SELECT * FROM tbl_supervisor_worker WHERE supervisor_id = ?");
+         $stmt->bind_param("s",$supervisorID);
+         $stmt->execute();
+         $result = $stmt->get_result();
+         $this->supervisorWorkers = $result;
+         
+        } catch (Exception $e) {
+         echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+     }
 
     /**
      * Get the value of conn
@@ -146,6 +201,10 @@ class Employees
     public function getEmployeeList()
     {
         return $this->employeeList;
+    }
+    public function getSupervisorWorkers()
+    {
+        return $this->supervisorWorkers;
     }
     public function getFirstname()
     {
