@@ -113,6 +113,7 @@ require_once "php/dashboard.php";
             </div>
             <div class="modal-body">
                 <form class="needs-validation" id="createAppointment" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
+                    <input type="hidden" name="appointmentId" id="appointmentId" value="">
                     <div class="mb-3">
                         <i class="bi bi-circle-fill mx-2" style="color: grey;"></i>
                         <!-- <input name="title" id="service" type="text" class="form-control input-field selecServiceInput my-input-field" placeholder="Select a service" value=""> -->
@@ -122,7 +123,6 @@ require_once "php/dashboard.php";
                         <select required id="serviceList">
                             <?php
                             // LOOP TILL END OF DATA
-
                             for ($i = 0; $i < count($serviceList); $i++) {
                             ?>
                                 <option><?php echo  $serviceList[$i]['title']; ?></option>
