@@ -174,11 +174,11 @@ require_once "php/employee_supervisor_editing.php";
                         <tbody>
                             <?php
                             // LOOP TILL END OF DATA
-                            while ($rows = $result->fetch_assoc()) {
+                            while ($rows = $supervisorWorkers->fetch_assoc()) {
                             ?>
                                 <tr>
                                     <td><?php echo $rows['employeeid']; ?></td>
-                                    <td><?php echo $rows['firstname']; ?> <?php echo $rows['lastname']; ?></td>
+                                    <td><?php echo $rows['fullname']; ?></td>
                                     <td><?php echo $rows['type']; ?></td>
                                     <td><?php echo $rows['email']; ?></td>
                                     <td><?php echo $rows['mobilenumber']; ?></td>

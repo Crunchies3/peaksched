@@ -180,12 +180,13 @@ class Employees
 
     public function fetchSupervisorWorkers($supervisorID){
         try {
-         $stmt = $this->conn->prepare("SELECT * FROM tbl_supervisor_worker WHERE supervisor_id = ?");
+         $stmt = $this->conn->prepare("SELECT a.employeeid, CONCAT(a.firstname,' ',a.lastname) as 'fullname', a.type, a.email, a.mobilenumber FROM tbl_employee a, tbl_supervisor_worker b WHERE b.worker_id = a.employeeid && b.supervisor_id = ?
+         ");
          $stmt->bind_param("s",$supervisorID);
          $stmt->execute();
          $result = $stmt->get_result();
          $this->supervisorWorkers = $result;
-         
+
         } catch (Exception $e) {
          echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
