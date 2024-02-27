@@ -1,19 +1,22 @@
 <?php
 require_once "config.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/customer_account.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/form_validation.php";
 
 $firstName = $lastName = $emailAddress = $mobileNumber = $password = $confirmPassword = $checkbox =  $customerId = $hashedPassword = "";
 // variables that will hold error messages
 $firstName_err = $lastName_err = $emailAddress_err = $mobileNumber_err = $password_err = $confirmPassword_err = $checkBox_err = "";
 
 $customerAccount = new CustomerAccount($conn);
+$validate = new Validation;
+$validate->setUserType($customerAccount);
 
 
 validateInputs();
 
 function validateInputs()
 {
-    global $firstName_err, $lastName_err, $emailAddress_err, $mobileNumber_err, $password_err, $confirmPassword_err, $checkBox_err;
+    global $firstName_err, $lastName_err, $emailAddress_err, $mobileNumber_err, $password_err, $confirmPassword_err, $checkBox_err, $validate;
     global $firstName, $lastName, $emailAddress, $mobileNumber, $password, $confirmPassword, $checkbox, $customerId, $hashedPassword, $customerAccount;
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
@@ -40,7 +43,7 @@ function validateInputs()
     }
 
     $emailAddress = trim($_POST["email"]);
-    $emailAddress_err = $customerAccount->validateEmail($emailAddress);
+    $emailAddress_err = $validate->validateEmail($emailAddress);
     if (empty($emailAddress_err)) {
         $emailAddress = $customerAccount->getEmail();
     }
@@ -53,7 +56,7 @@ function validateInputs()
     }
 
     $password = trim($_POST["password"]);
-    $password_err = $customerAccount->validatePassword($password);
+    $password_err = $validate->validatePassword($password);
     if (empty($password_err)) {
         $hashedPassword = $customerAccount->getHashedPassword();
     }
@@ -76,4 +79,3 @@ function validateInputs()
         $customerAccount->register($customerId, $firstName, $lastName, $emailAddress, $mobileNumber, $hashedPassword);
     }
 }
-

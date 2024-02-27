@@ -1,6 +1,7 @@
 <?php
 require_once "config.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/employee_account.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/form_validation.php";
 
 $validate = new Validation();
 $customer = unserialize($_SESSION["employeeUser"]);
@@ -73,7 +74,7 @@ function changePassword(&$currentPassword, &$newPassword, &$confirmPassword, &$c
     }
 
     $currentPassword = trim($_POST["currentPassword"]);
-    $currentPassword_err = $validate->currentPassword($currentPassword,$password);
+    $currentPassword_err = $validate->currentPassword($currentPassword, $password);
 
 
     $newPassword = trim($_POST["newPassword"]);
