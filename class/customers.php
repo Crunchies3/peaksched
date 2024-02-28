@@ -4,6 +4,7 @@
 class Customers
 {
     private $conn;
+    private $customerList;
 
     public function fetchCustomerArr()
     {
@@ -45,6 +46,17 @@ class Customers
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
+    public function fetchCustomerList()
+    {
+        try {
+            $stmt = $this->conn->prepare("SELECT*FROM tbl_customer");
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $this->customerList = $result;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
 
     /**
      * Get the value of conn
@@ -52,6 +64,10 @@ class Customers
     public function getConn()
     {
         return $this->conn;
+    }
+    public function getCustomerList()
+    {
+        return $this->customerList;
     }
 
     /**
