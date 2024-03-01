@@ -117,6 +117,16 @@ class Services
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
+    public function deleteService($service_id){
+        try {
+            $stmt = $this->conn->prepare("DELETE FROM tbl_service WHERE service_id = ?");
+            $stmt->bind_param("s",$service_id);
+            $stmt->execute();
+            $this->conn->close();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
     //getters
     public function getConn()
     {

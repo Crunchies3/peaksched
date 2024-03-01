@@ -144,11 +144,14 @@ require_once "php/service_editing.php";
                         </form>
                         <div class="row">
                             <div class="mb-3 col-xxl-2">
-                                <button data-bs-toggle="modal" data-bs-target="#addServiceModal" type="submit" class="btn btn-lg fs-6 w-100 add-service-button">Save Changes</button>
+                                <button name = "editService"data-bs-toggle="modal" data-bs-target="#addServiceModal" type="submit" class="btn btn-lg fs-6 w-100 add-service-button">Save Changes</button>
                             </div>
                             <div class="mb-0 col-xxl-2">
                                 <a href="./services_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 cancel-button">cancel</a>
                             </div>
+                            <div class="mb-0 col-xxl-2">
+                            <button data-bs-toggle="modal" data-bs-target="#deleteEmployeeAccountModal" class="btn btn-lg fs-6 w-100 my-button-danger">Delete</button>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -176,6 +179,23 @@ require_once "php/service_editing.php";
             <div class="modal-footer">
                 <button name="changePassword" form="addServiceForm" class="btn add-service-button">Confirm</button>
                 <button type="button" class="btn cancel-button" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="deleteEmployeeAccountModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="deleteEmployeeAccountModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
+        <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
+            <div class="modal-header">
+                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm delete account?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Your account will be deleted.
+            </div>
+            <div class="modal-footer">
+                <button name="deleteAccount" form="addServiceForm" class="btn my-button-danger">Confirm</button>
+                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>

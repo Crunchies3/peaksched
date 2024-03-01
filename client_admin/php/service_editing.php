@@ -38,6 +38,7 @@ $color = $services->getDescription();
 
 
 
+if (isset($_POST['editService'])){
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
     return;
 }
@@ -62,5 +63,13 @@ $price_err = $validate->servicePrice($price);
 
 if (empty($serviceTitle_err) && empty($duration_err) && empty($price_err)) {
     $services->updateServiceDetails( $serviceTitle, $color,  $description, $duration, $price , $service_id);
+    header("location: ./services_page.php");
+}
+}else if (isset($_POST['deleteAccount'])){
+    if ($_SERVER["REQUEST_METHOD"] != "POST") {
+        return;
+    }
+    $service_id = $_POST["serviceId"];
+    $services->deleteService($service_id);
     header("location: ./services_page.php");
 }
