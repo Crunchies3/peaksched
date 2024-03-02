@@ -147,3 +147,30 @@ label {
     color: rgb(178, 178, 178);
     font-size: 15px;
 }
+
+#tableHead .dt-orderable-asc {
+    border-bottom: #e1e1e1;
+    border-style: solid;
+}
+
+#tableHead .dt-column-order {
+    color: #124F6F;
+}
+
+#tableHead .dt-column-title {
+    color: #7d7d7d;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+#myTable td {
+    padding-left: 20px;
+    padding-right: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+}
+
+.right-aligned-cell {
+    text-align: left !important;
+}
