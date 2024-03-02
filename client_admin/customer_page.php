@@ -5,7 +5,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
 }
-require_once "php/employee_page.php";
+require_once "php/customer_page.php";
 ?>
 
 <!DOCTYPE html>
@@ -108,7 +108,6 @@ require_once "php/employee_page.php";
                         <thead id="tableHead">
                             <th style="color: white;">Id</th>
                             <th style="color: white;">Fullname</th>
-                            <th style="color: white;">Position</th>
                             <th style="color: white;">Email</th>
                             <th style="color: white;">Phone</th>
                             <th style="color: white;">Actions</th>
@@ -119,9 +118,8 @@ require_once "php/employee_page.php";
                             while ($rows = $result->fetch_assoc()) {
                             ?>
                                 <tr>
-                                    <td><?php echo $rows['employeeid']; ?></td>
+                                    <td><?php echo $rows['customerid']; ?></td>
                                     <td><?php echo $rows['firstname']; ?> <?php echo $rows['lastname']; ?></td>
-                                    <td><?php echo $rows['type']; ?></td>
                                     <td><?php echo $rows['email']; ?></td>
                                     <td><?php echo $rows['mobilenumber']; ?></td>
                                     <td></td>

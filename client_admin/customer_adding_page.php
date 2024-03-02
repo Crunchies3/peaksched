@@ -6,7 +6,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
-require_once "php/employee_adding.php";
+require_once "php/customer_adding.php";
 
 ?>
 
@@ -134,13 +134,6 @@ require_once "php/employee_adding.php";
                             <input name="mobile" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your mobile number" value="<?php echo $mobileNumber ?>">
                             <div class="invalid-feedback">
                                 <?php echo $mobileNumber_err; ?>
-                            </div>
-                        </div>
-                        <div class="mb-4 col-lg-6 mb-4">
-                            <label class="form-label mb-1">POSITION</label>
-                            <input name="position" type="text" class="form-control fs-6 input-field <?php echo (!empty($position_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $position ?>">
-                            <div class="invalid-feedback">
-                                <?php echo $position_err; ?>
                             </div>
                         </div>
                     </form>
