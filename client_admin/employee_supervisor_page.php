@@ -93,7 +93,7 @@ require_once "php/employee_supervisor_editing.php";
         </aside>
         <section class="main" id="main">
 
-            <div class="container-fluid" id="serviceArea">
+            <div class="container-fluid" id="employeeArea">
                 <div class="mb-5">
                     <h1>Employee</h1>
                 </div>
@@ -156,7 +156,7 @@ require_once "php/employee_supervisor_editing.php";
                     </div>
                 </div>
             </div>
-            <div class="container-fluid" id="serviceArea">
+            <div class="container-fluid" id="employeeArea">
                 <div class="container-fluid" id="tablelistTableArea">
                     <div>
                         <h5>Assigned workers</h5>
@@ -192,7 +192,7 @@ require_once "php/employee_supervisor_editing.php";
                 </div>
             </div>
 
-            <div class="container-fluid" id="serviceArea">
+            <div class="container-fluid" id="employeeArea">
                 <div class="container-fluid" id="securityArea">
                     <div>
                         <h5>Account</h5>
@@ -272,12 +272,33 @@ require_once "php/employee_supervisor_editing.php";
                 Your account will be deleted.
             </div>
             <div class="modal-footer">
-                <button name="deleteAccount" form="editPasswordForm" class="btn my-button-danger">Confirm</button>
+                <button name="deleteAccount" form="RemoveWorkerForm" class="btn my-button-danger">Confirm</button>
                 <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
 </div>
+
+<!-- //? modal paras confirmation sa pag delete sa worker -->
+
+<div class="modal fade" id="RemoveWorker" data-bs-backdrop="static" tabindex="-1" aria-labelledby="RemoveWorker" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
+        <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
+            <div class="modal-header">
+                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm remove worker?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               Assigned worker will be removed.
+            </div>
+            <div class="modal-footer">
+                <button name="deleteAccount" form="RemoveWorkerForm" class="btn my-button-danger">Confirm</button>
+                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 

@@ -86,6 +86,7 @@ if (isset($_POST['updateInfo'])) { //! para mag update sa details like name
     $employeeId = $_POST["employeeId"];
     $newPassword = trim($_POST["newPassword"]);
     $newPassword_err = $validate->validatePassword($newPassword);
+    $newHashedPassword = $employeeAcc->getHashedPassword();
 
     $confirmPassword = trim($_POST["confirmPassword"]);
     $confirmPassword_err = $validate->confirmPassword($confirmPassword, $newPassword);

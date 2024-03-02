@@ -6,8 +6,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
-require_once "php/employee_editing.php";
-require_once "php/profile_account.php";
+require_once "php/customer_editing.php";
 ?>
 
 <!DOCTYPE html>
@@ -137,20 +136,6 @@ require_once "php/profile_account.php";
                                 <?php echo $mobileNumber_err; ?>
                             </div>
                         </div>
-                        <div class="mb-4 col-lg-6 mb-4">
-                            <label class="form-label mb-1">POSITION</label>
-                            <input name="position" type="text" class="form-control fs-6 input-field <?php echo (!empty($position_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $position ?>">
-                            <div class="invalid-feedback">
-                                <?php echo $position_err; ?>
-                            </div>
-                        </div>
-                        <div class="mb-4 col-lg-6 mb-4">
-                            <label class="form-label mb-1">ASSIGNED TO</label>
-                            <input name="position" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $mobileNumber ?>">
-                            <div class="invalid-feedback">
-                                <?php echo $position_err; ?>
-                            </div>
-                        </div>
                     </form>
                     <div class="row">
                         <div class="mb-3 col-xxl-2">
@@ -167,7 +152,7 @@ require_once "php/profile_account.php";
                     <div>
                         <h5>Change Password</h5>
                     </div>
-                    <form id="editCustomerForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
+                    <form id="editCustomerPasswordForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                     <input type="hidden" name="customerId" value="<?= htmlspecialchars($customerId) ?>">
 
                     <div class="col-lg-6 mb-4">
@@ -216,7 +201,7 @@ require_once "php/profile_account.php";
                 Changes Will be Saved.
             </div>
             <div class="modal-footer">
-                <button name="changePassword" form="editCustomerForm" class="btn add-service-button">Confirm</button>
+                <button name="updateInfo" form="editCustomerForm" class="btn add-service-button">Confirm</button>
                 <button type="button" class="btn cancel-button" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
@@ -236,7 +221,7 @@ require_once "php/profile_account.php";
                 Your account will be deleted.
             </div>
             <div class="modal-footer">
-                <button name="delete" form="securityForm" class="btn my-button-danger">Confirm</button>
+                <button name="deleteAccount" form="editCustomerPasswordForm" class="btn my-button-danger">Confirm</button>
                 <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
@@ -255,7 +240,7 @@ require_once "php/profile_account.php";
                 Your password will be updated.
             </div>
             <div class="modal-footer">
-                <button name="changePassword" form="securityForm" class="btn my-button-yes">Confirm</button>
+                <button name="changePassword" form="editCustomerPasswordForm" class="btn my-button-yes">Confirm</button>
                 <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
