@@ -19,9 +19,7 @@ $('#myTable').DataTable({
                 text: ' sort',
                 className: 'sort-btn rounded mx-2 bi-sort-down-alt',
             }, {
-
                 text: '<i class="bi bi-plus plus-icon"></i> assign workers',
-
                 className: 'add-service-btn rounded',
                 action: function () {
                     location.href = 'worker_assigning_page.php'
@@ -40,9 +38,7 @@ $('#myTable').DataTable({
         },
         {
             data: null,
-
             defaultContent: '<form id="RemoveWorkerForm"><input id="supervisorId" hidden type="text" value=""></form><button data-bs-target="#RemoveWorker"  data-bs-toggle = "modal" class="btn my-button-yes mx-1" id="actionClick">Remove</button>',
-
             targets: -1
         },
     ],
