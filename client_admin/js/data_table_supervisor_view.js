@@ -1,13 +1,13 @@
 $.fn.dataTable.Buttons.defaults.dom.button.className = 'btn';
 
 var table;
-var serviceId;
+var supervisorId;
 
 $(document).ready(function () {
     table = $('#myTable').DataTable();
     table.on('click', '#actionClick', function (e) {
-        serviceId = table.row(e.target.closest('tr')).data();
-        document.getElementById('serviceId').value = serviceId[0];
+        supervisorId = table.row(e.target.closest('tr')).data();
+        document.getElementById('supervisorId').value = supervisorId[0];
     });
 });
 
@@ -19,7 +19,7 @@ $('#myTable').DataTable({
                 text: ' sort',
                 className: 'sort-btn rounded mx-2 bi-sort-down-alt',
             }, {
-                text: '<i class="bi bi-plus plus-icon"></i> add workers',
+                text: '<i class="bi bi-plus plus-icon"></i> add employee',
                 className: 'add-service-btn rounded',
                 action: function () {
                     location.href = 'employee_adding_page.php'
@@ -38,7 +38,7 @@ $('#myTable').DataTable({
         },
         {
             data: null,
-            defaultContent: '<form action="./employee_editing_page.php" id="editService" method="get"><input id="serviceId" hidden type="text" name="serviceId" value=""></form><button form="editService" class="btn my-button-yes mx-1 " id="actionClick">View</button>',
+            defaultContent: '<form action="./employee_editing_page.php" id="editService" method="get"><input id="supervisorId" hidden type="text" name="supervisorId" value=""></form><button form="editService" class="btn my-button-yes mx-1 " id="actionClick">View</button>',
             targets: -1
         },
     ],
