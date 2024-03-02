@@ -50,7 +50,40 @@
     border: 1px #BBBBBB;
     border-style: solid;
 }
-.my-button-danger{
-    color:white;
+
+.my-button-danger {
+    color: white;
     background-color: rgb(191 11 11);
+}
+
+.my-button-selected {
+    background-color: #124F6F;
+    color: white;
+    border: 1px #124F6F;
+    border-style: solid;
+}
+
+.my-button-selected:hover {
+    background-color: #04314a;
+    color: #ffffff;
+    border: 1px #124F6F;
+    border-style: solid;
+}
+
+.my-button-unselected {
+    background-color: #ffffff;
+    color: rgb(144, 144, 144);
+    border: 1px rgb(144, 144, 144);
+    border-style: solid;
+}
+
+.my-button-unselected:hover {
+    background-color: #f1f1f1;
+    color: rgb(144, 144, 144);
+    border: 1px rgb(144, 144, 144);
+    border-style: solid;
+}
+
+.my-form-required {
+    color: red;
 }
