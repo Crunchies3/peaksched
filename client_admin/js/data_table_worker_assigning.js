@@ -1,29 +1,24 @@
 $.fn.dataTable.Buttons.defaults.dom.button.className = 'btn';
 
 var table;
-var supervisorId;
+var workerId;
 
 $(document).ready(function () {
     table = $('#myTable').DataTable();
     table.on('click', '#actionClick', function (e) {
-        supervisorId = table.row(e.target.closest('tr')).data();
-        document.getElementById('supervisorId').value = supervisorId[0];
+        workerId = table.row(e.target.closest('tr')).data();
+        document.getElementById('workerId').value = workerId[0];
     });
 });
 
 $('#myTable').DataTable({
+    
     layout: {
         topStart: 'search',
         topEnd: {
             buttons: [{
                 text: ' sort',
                 className: 'sort-btn rounded mx-2 bi-sort-down-alt',
-            }, {
-                text: '<i class="bi bi-plus plus-icon"></i> assign workers',
-                className: 'add-service-btn rounded',
-                action: function () {
-                    location.href = 'worker_assigning_page.php'
-                }
             }]
         },
     },
@@ -31,14 +26,14 @@ $('#myTable').DataTable({
     language: {
         emptyTable: 'No data available in table'
     },
-    'columnDefs': [
+    columnDefs: [
         {
             targets: 0,
-            'visible': false
+            visible: false
         },
         {
             data: null,
-            defaultContent: '<form id="RemoveWorkerForm"><input id="supervisorId" hidden type="text" value=""></form><button data-bs-target="#RemoveWorker"  data-bs-toggle = "modal" class="btn my-button-yes mx-1" id="actionClick">Remove</button>',
+            defaultContent: '<form id="addWorkerForm"><input id="workerId" hidden type="text" value=""></form><button data-bs-target="#addWorkerModal"  data-bs-toggle = "modal" class="btn my-button-yes mx-1" id="actionClick">Add</button>',
             targets: -1
         },
     ],
