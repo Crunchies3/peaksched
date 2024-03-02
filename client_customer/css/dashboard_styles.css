@@ -1,5 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 
+*::-webkit-scrollbar {
+    width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+    background: rgb(209, 209, 209);
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #124F6F;
+    border-radius: 20px;
+}
+
 /* Para ma change ang mga color sa button sa calendar */
 .fc .fc-button-primary {
     background-color: black;

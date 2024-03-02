@@ -5,6 +5,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
 }
+
+require_once "./php_backend/appointment.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +28,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <link rel="stylesheet" href="./css/dashboard_styles.css" />
     <link rel="stylesheet" href="./css/appointment-styles.css" />
     <link rel="stylesheet" href="../components/_components.css" />
+    <link href="../select_box/dist/jquery-editable-select.min.css" rel="stylesheet">
 
 </head>
 
@@ -88,19 +92,37 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                         </div>
                         <div class="row">
                             <form class="col-lg-4" id="updateAccountDetails" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
+                                <label class="form-label mb-1">SELECT A SERVICE <span class="my-form-required">*</span></label>
                                 <div class="col-md-12 mb-4">
-                                    <label class="form-label mb-1">SELECT A SERVICE <span class="my-form-required">*</span></label>
-                                    <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Select a service" aria-label="Current Password" value="">
                                     <div class="invalid-feedback">
                                         <?php echo $firstName_err; ?>
                                     </div>
+                                    <select required id="serviceList">
+                                        <?php
+                                        // LOOP TILL END OF DATA
+                                        for ($i = 0; $i < count($serviceList); $i++) {
+                                        ?>
+                                            <option><?php echo  $serviceList[$i]['title']; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
+                                <label class="form-label mb-1">ADDRESS <span class="my-form-required">*</span> </label>
                                 <div class="col-lg-12 mb-4">
-                                    <label class="form-label mb-1">ADDRESS <span class="my-form-required">*</span> </label>
-                                    <input name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="Address" aria-label="Last name" value="">
                                     <div class="invalid-feedback">
-                                        <?php echo $lastName_err; ?>
+                                        <?php echo $firstName_err; ?>
                                     </div>
+                                    <select required id="serviceList2">
+                                        <?php
+                                        // LOOP TILL END OF DATA
+                                        for ($i = 0; $i < count($serviceList); $i++) {
+                                        ?>
+                                            <option><?php echo  $serviceList[$i]['title']; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
                                 <div class="col-lg-12 mb-4">
                                     <label class="form-label mb-1">WHAT TYPE OF UNIT DO YOU HAVE? <span class="my-form-required">*</span></label>
@@ -212,6 +234,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             </div>
         </div>
         <script src="./js/script.js"></script>
+        <script src="../select_box/dist/jquery-editable-select.js"></script>
+        <script src="../select_box/src/jquery-editable-select.js"></script>
+        <script src="./js/select_box.js"></script>
 </body>
 
 </html>

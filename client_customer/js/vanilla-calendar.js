@@ -20,9 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
             },
         },
         actions: {
-            clickDay(event, self) {
-                alert(self.selectedDates);
-            },
         }
     }
 
