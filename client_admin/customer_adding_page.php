@@ -31,7 +31,7 @@ require_once "php/customer_adding.php";
     <script src="./js/colorPick.js"></script>
 
     <link rel="stylesheet" href="./css/dashboard_styles.css" />
-    <link rel="stylesheet" href="./css/service_page_styles.css" />
+    <link rel="stylesheet" href="./css/customer_page_styles.css" />
     <link rel="stylesheet" href="../components/_components.css">
 
 </head>
@@ -61,8 +61,8 @@ require_once "php/customer_adding.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="./employee_page.php" class="sidebar-link selected">
-                        <i class="bi bi-person-fill"></i>
+                    <a href="./employee_page.php" class="sidebar-link">
+                        <i class="bi bi-person"></i>
                         <span>Employee</span>
                     </a>
                 </li>
