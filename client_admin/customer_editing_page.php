@@ -31,7 +31,7 @@ require_once "php/profile_account.php";
     <script src="./js/colorPick.js"></script>
 
     <link rel="stylesheet" href="./css/dashboard_styles.css" />
-    <link rel="stylesheet" href="./css/employee_page_styles.css" />
+    <link rel="stylesheet" href="./css/customer_page_styles.css" />
     <link rel="stylesheet" href="../components/_components.css">
 
 </head>
@@ -61,8 +61,8 @@ require_once "php/profile_account.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="./employee_page.php" class="sidebar-link selected">
-                        <i class="bi bi-person-fill"></i>
+                    <a href="./employee_page.php" class="sidebar-link">
+                        <i class="bi bi-person"></i>
                         <span>Employee</span>
                     </a>
                 </li>
@@ -165,7 +165,7 @@ require_once "php/profile_account.php";
             <div class="container-fluid" id="serviceArea">
                 <div class="container-fluid" id="securityArea">
                     <div>
-                        <h5>Account</h5>
+                        <h5>Change Password</h5>
                     </div>
                     <form id="editCustomerForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                     <input type="hidden" name="customerId" value="<?= htmlspecialchars($customerId) ?>">
