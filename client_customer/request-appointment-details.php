@@ -6,7 +6,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
-require_once "./php_backend/appointment.php";
+require_once "./php_backend/request-appointment-details.php";
 
 ?>
 
@@ -93,14 +93,12 @@ require_once "./php_backend/appointment.php";
                         <h5>Request Appointment</h5>
                     </div>
                     <form id="requestAppointmentDetails" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
+                        <input type="hidden" name="serviceId" value="<?php echo $service_id ?>">
                         <div class="row">
                             <div class="col-xxl-5 p-3">
                                 <div class="col-md-12 mb-4">
                                     <label class="form-label mb-1">SELECTED SERVICE <span class="my-form-required">*</span></label>
-                                    <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="">
-                                    <div class="invalid-feedback">
-                                        <?php echo $firstName_err; ?>
-                                    </div>
+                                    <input disabled name="firstName" type="text" class="form-control input-field" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $serviceName ?>">
                                 </div>
                                 <div class="col-md-12 mb-4">
                                     <label class="form-label mb-1">ADDRESS <span class="my-form-required">*</span></label>
@@ -246,7 +244,7 @@ require_once "./php_backend/appointment.php";
                                 <div class="col-xl-6 p-3">
                                     <label class="form-label mb-3">TIME <span class="my-form-required">*</span></label>
                                     <div class="form-check mb-2">
-                                        <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
+                                        <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off">
                                         <label class="btn btn-outline-secondary w-100" for="option1">8:00 AM</label>
                                     </div>
                                     <div class="form-check mb-2">
@@ -281,13 +279,18 @@ require_once "./php_backend/appointment.php";
                             </div>
                         </div>
                     </form>
-                    <div class="form-check mb-2">
-                        <button class="btn my-button-yes w-100">Request Appointment</button>
+                    <div class="row">
+                        <div class="mb-2 col-md">
+                            <a href="./request-appointment-service.php" class="btn my-button-no w-100">Back</a>
+                        </div>
+                        <div class="mb-2 col-md">
+                            <button class="btn my-button-yes w-100" data-bs-toggle="modal" data-bs-target="#submitRequest">Request Appointment</button>
+                        </div>
                     </div>
+
                 </div>
             </div>
 
-            <script src="./js/data-table-service.js"></script>
             <script src="./js/script.js"></script>
             <script src="../select_box/dist/jquery-editable-select.js"></script>
             <script src="../select_box/src/jquery-editable-select.js"></script>
@@ -299,19 +302,20 @@ require_once "./php_backend/appointment.php";
 
 
 <!-- Modal -->
-<div class="modal" id="exampleModal" data-bs-backdrop="true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="width: 400px;">
+
+<div class="modal fade" id="submitRequest" data-bs-backdrop="static" tabindex="-1" aria-labelledby="updateInfoModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
-                <h5 class="modal-title" style="font-size: 16px;" id="exampleModalLabel">Appointment</h5>
+                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm Request?</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+                Your account details will be updated.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button name="submitRequest" form="requestAppointmentDetails" class="btn my-button-yes">Confirm</button>
+                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
