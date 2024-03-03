@@ -72,7 +72,7 @@ class Appointment
     public function isRequestAppointmentIdUnique($id)
     {
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM tbl_request_appointment WHERE id = ?");
+            $stmt = $this->conn->prepare("SELECT * FROM tbl_request_appointment WHERE request_app_id = ?");
             $stmt->bind_param("s", $id);
             $stmt->execute();
             $result = $stmt->get_result();

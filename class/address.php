@@ -3,18 +3,18 @@ class Address
 {
     private $conn;
 
-    public function fetchAddressArr()
+    public function fetchAddressArr($customerId)
     {
         try {
             $stmt = $this->conn->prepare(
 
                 "SELECT CONCAT(street, '. ', city, ', ', province, '. ', country, ', ', zip_code)  as 'fullAddress'
-                FROM tbl_customer a,
-                    tbl_customer_address b,
-                    tbl_address c
-                WHERE a.customerid = b.customer_id &&
-                    b.address_id = c.address_id;"
+                FROM    tbl_customer_address a,
+                        tbl_customer b
+                WHERE   b.customerid = a.customer_id &&
+                        b.customerid = ?"
             );
+            $stmt->bind_param("s", $customerId);
             $stmt->execute();
             $result = $stmt->get_result();
 

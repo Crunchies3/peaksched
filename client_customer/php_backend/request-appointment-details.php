@@ -6,6 +6,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/services.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/address.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/appointments.php";
 
+$customer = unserialize($_SESSION["customerUser"]);
+$customer->setConn($conn);
+
 $address = new Address();
 $address->setConn($conn);
 
@@ -17,7 +20,7 @@ $address_Err = $typeOfUnit_err = $numOfBath_err = $numOfBeds_err = $selectedDate
 
 
 
-$address_list = $address->fetchAddressArr();
+$address_list = $address->fetchAddressArr($customer->getId());
 
 if (isset($_GET["serviceId"])) {
     $service_id = $_GET["serviceId"];
@@ -79,6 +82,6 @@ if (isset($_POST['submitRequest'])) {
     $selectedTime_err = $validate->radioButton($selectedTime);
 
     if (empty($address_Err) && empty($typeOfUnit_err) && empty($numOfBath_err) && empty($numOfBeds_err) && empty($selectedDate_err) && empty($selectedTime_err)) {
-        $appointment->addRequestAppointment($service_id, $serviceName, $typeOfUnit, $numOfBeds, $numOfBath, $selectedAddress, $selectedDate, $selectedTime, $note, $requestAppointmentId);
+        // $appointment->addRequestAppointment($service_id, $serviceName, $typeOfUnit, $numOfBeds, $numOfBath, $selectedAddress, $selectedDate, $selectedTime, $note, $requestAppointmentId);
     }
 }
