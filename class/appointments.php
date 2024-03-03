@@ -69,6 +69,24 @@ class Appointment
         }
     }
 
+    public function isRequestAppointmentIdUnique($id)
+    {
+        try {
+            $stmt = $this->conn->prepare("SELECT * FROM tbl_request_appointment WHERE id = ?");
+            $stmt->bind_param("s", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                $stmt->close();
+                return false;
+            }
+            $stmt->close();
+            return true;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
     public function deleteAppointmnet($appointmentId)
     {
         try {
@@ -135,6 +153,31 @@ class Appointment
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
+
+    public function addRequestAppointment($appointmentId, $serviceId, $customerId, $employeeId, $dateTimeStart, $dateTimeEnd, $note)
+    {
+        try {
+            $stmt = $this->conn->prepare("INSERT INTO tbl_appointment (id, note, start, end) VALUES (?,?,?,?)");
+            $stmt->bind_param("ssss", $appointmentId, $note, $dateTimeStart, $dateTimeEnd);
+            $stmt->execute();
+            $stmt->close();
+
+            $stmt = $this->conn->prepare("INSERT INTO tbl_app_cust_sup (appointment_id, customer_id, employee_id) VALUES (?,?,?)");
+            $stmt->bind_param("sss", $appointmentId, $customerId, $employeeId);
+            $stmt->execute();
+            $stmt->close();
+
+            $stmt = $this->conn->prepare("INSERT INTO tbl_appointment_service (appointment_id, service_id) VALUES (?,?)");
+            $stmt->bind_param("ss", $appointmentId, $serviceId);
+            $stmt->execute();
+            $stmt->close();
+            $this->conn->close();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+
 
 
     // ? getter and setters

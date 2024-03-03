@@ -174,3 +174,12 @@ label {
 .right-aligned-cell {
     text-align: left !important;
 }
+
+.remove-gutter .row {
+    --bs-gutter-x: 0 !important;
+}
+
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}

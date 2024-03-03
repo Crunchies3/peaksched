@@ -94,18 +94,18 @@ require_once "./php_backend/request-appointment-details.php";
                     </div>
                     <form id="requestAppointmentDetails" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <input type="hidden" name="serviceId" value="<?php echo $service_id ?>">
-                        <div class="row">
+                        <div class="row remove-gutter" id="requestAppoint">
                             <div class="col-xxl-5 p-3">
                                 <div class="col-md-12 mb-4">
                                     <label class="form-label mb-1">SELECTED SERVICE <span class="my-form-required">*</span></label>
                                     <input disabled name="firstName" type="text" class="form-control input-field" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $serviceName ?>">
                                 </div>
                                 <div class="col-md-12 mb-4">
-                                    <label class="form-label mb-1">ADDRESS <span class="my-form-required">*</span></label>
+                                    <label class="form-label mb-1 <?php echo (!empty($address_Err)) ? 'is-invalid' : ''; ?>">ADDRESS <span class="my-form-required">*</span></label>
                                     <div class="invalid-feedback">
-                                        <?php echo $firstName_err; ?>
+                                        <?php echo $address_Err; ?>
                                     </div>
-                                    <select required id="addressList">
+                                    <select required id="addressList" class="mt-2">
                                         <?php
                                         // LOOP TILL END OF DATA
                                         for ($i = 0; $i < count($address_list); $i++) {
@@ -119,10 +119,7 @@ require_once "./php_backend/request-appointment-details.php";
                                 <div class="container mx-3">
                                     <div class="row">
                                         <div class="col-md-6 mb-4">
-                                            <label class="form-label mb-1">WHAT TYPE OF UNIT DO YOU HAVE? <span class="my-form-required">*</span></label>
-                                            <div class="invalid-feedback">
-                                                <?php echo $lastName_err; ?>
-                                            </div>
+                                            <label class="form-label mb-1 <?php echo (!empty($typeOfUnit_err)) ? 'is-invalid' : ''; ?>">WHAT TYPE OF UNIT DO YOU HAVE? <span class="my-form-required">*</span></label>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors1" value="one" <?php if (isset($_POST['numberOfFloors']) && $_POST['numberOfFloors'] == 'one') echo 'checked'; ?>>
                                                 <label class="form-check-label" for="numberOfFloors1">
@@ -147,12 +144,12 @@ require_once "./php_backend/request-appointment-details.php";
                                                     Other
                                                 </label>
                                             </div>
+                                            <div class="invalid-feedback">
+                                                <?php echo $typeOfUnit_err; ?>
+                                            </div>
                                         </div>
                                         <div class="col-md-6 mb-4">
-                                            <label class="form-label mb-1">HOW MANY BATHROOMS? <span class="my-form-required">*</span></label>
-                                            <div class="invalid-feedback">
-                                                <?php echo $lastName_err; ?>
-                                            </div>
+                                            <label class="form-label mb-1 <?php echo (!empty($numOfBath_err)) ? 'is-invalid' : ''; ?>">HOW MANY BATHROOMS? <span class="my-form-required">*</span></label>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="numberOfBathrooms" id="numberOfBathrooms1" value="one" <?php if (isset($_POST['numberOfBathrooms']) && $_POST['numberOfBathrooms'] == 'one') echo 'checked'; ?>>
                                                 <label class="form-check-label" for="numberOfBathrooms1">
@@ -177,14 +174,14 @@ require_once "./php_backend/request-appointment-details.php";
                                                     Other
                                                 </label>
                                             </div>
+                                            <div class="invalid-feedback">
+                                                <?php echo $numOfBath_err; ?>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6 mb-4">
-                                            <label class="form-label mb-1">HOW MANY BEDS? <span class="my-form-required">*</span></label>
-                                            <div class="invalid-feedback">
-                                                <?php echo $lastName_err; ?>
-                                            </div>
+                                            <label class="form-label mb-1 <?php echo (!empty($numOfBeds_err)) ? 'is-invalid' : ''; ?>">HOW MANY BEDS? <span class="my-form-required">*</span></label>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="numberOfBeds" id="numberOfBeds1" value="one" <?php if (isset($_POST['numberOfBeds']) && $_POST['numberOfBeds'] == 'one') echo 'checked'; ?>>
                                                 <label class="form-check-label" for="numberOfBeds1">
@@ -209,22 +206,32 @@ require_once "./php_backend/request-appointment-details.php";
                                                     Other
                                                 </label>
                                             </div>
+                                            <div class="invalid-feedback">
+                                                <?php echo $numOfBeds_err; ?>
+                                            </div>
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
-                            <div class="container row col-xxl-7">
-
-                                <div class="container col-md-6 p-3">
-                                    <label class="form-label mb-1">DATE <span class="my-form-required">*</span></label>
-                                    <div id="calendar" class="w-100"></div>
+                            <div class="row col-xxl-7 dateTimeArea">
+                                <div class="container col-lg-6 p-3">
+                                    <label class="form-label mb-1 <?php echo (!empty($selectedDate_err)) ? 'is-invalid' : ''; ?>">DATE <span class="my-form-required">*</span></label>
+                                    <div class="invalid-feedback">
+                                        <?php echo $selectedDate_err; ?>
+                                    </div>
+                                    <div id="calendar" class="w-100 mb-2"></div>
                                     <script src="./js/vanilla-calendar.js"></script>
                                     <input hidden id="selectedDate" class="form-control input-field" name="selectedDate" value="">
+                                    <label class="form-label mb-2">ANY SPECIAL INSTRUCTION OR COMMENTS</label>
+                                    <textarea name="note" type="text" rows="3" class="form-control input-field w-100 selecServiceInput " placeholder=""></textarea>
                                 </div>
-                                <div class="col-xl-6 p-3">
-                                    <label class="form-label mb-3">TIME <span class="my-form-required">*</span></label>
-                                    <div class="form-check mb-2">
+                                <div class="col-lg-6 p-3">
+                                    <label class="form-label mb-1 <?php echo (!empty($selectedTime_err)) ? 'is-invalid' : ''; ?>">TIME <span class="my-form-required">*</span></label>
+                                    <div class="invalid-feedback">
+                                        <?php echo $selectedTime_err; ?>
+                                    </div>
+                                    <div class="form-check mb-2 mt-4">
                                         <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" value="8:00 AM" <?php if (isset($_POST['options']) && $_POST['options'] == '8:00 AM') echo 'checked'; ?>>
                                         <label class="btn btn-outline-secondary w-100" for="option1">8:00 AM</label>
                                     </div>
@@ -256,6 +263,7 @@ require_once "./php_backend/request-appointment-details.php";
                                         <input type="radio" class="btn-check" name="options" id="option8" autocomplete="off" value="3:00 PM" <?php if (isset($_POST['options']) && $_POST['options'] == '3:00 PM') echo 'checked'; ?>>
                                         <label class="btn btn-outline-secondary w-100" for="option8">3:00 PM</label>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
