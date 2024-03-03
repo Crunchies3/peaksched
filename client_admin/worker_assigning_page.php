@@ -5,7 +5,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
 }
-require_once "php/employee_page.php";
+require_once "php/worker_assigning_page.php";
 ?>
 
 <!DOCTYPE html>

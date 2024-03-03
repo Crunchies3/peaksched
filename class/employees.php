@@ -12,6 +12,8 @@ class Employees
     private $mobilenumber;
     private $employeeList;
     private $supervisorWorkers;
+    private $availableWorkers;
+
     public function fetchEmployeeArr()
     {
         try {
@@ -191,6 +193,16 @@ class Employees
          echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
      }
+     public function fetchAvailableWorkers(){
+        try {
+            $stmt = $this->conn->prepare("SELECT * FROM tbl_employee a, tbl_supervisor_worker b WHERE a.type = 'worker' && b.worker_id != a.employeeid");
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $this->availableWorkers = $result;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+     }
 
     /**
      * Get the value of conn
@@ -206,6 +218,10 @@ class Employees
     public function getSupervisorWorkers()
     {
         return $this->supervisorWorkers;
+    }
+    public function getAvailableWorkers()
+    {
+        return $this->availableWorkers;
     }
     public function getFirstname()
     {
