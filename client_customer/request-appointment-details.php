@@ -89,21 +89,21 @@ require_once "./php_backend/appointment.php";
                     <a href="#" class="btn my-button-unselected mx-2 mt-2">Manage Appointments</a>
                 </div>
                 <div class="container-fluid" id="accountSettingArea">
-                    <div class="mb-5">
+                    <div class="mb-3">
                         <h5>Request Appointment</h5>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-5">
-                            <form id="updateAccountDetails" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
+                    <form id="requestAppointmentDetails" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
+                        <div class="row">
+                            <div class="col-xxl-5 p-3">
                                 <div class="col-md-12 mb-4">
-                                    <label class="form-label mb-1">SELECTED SERVICE</label>
+                                    <label class="form-label mb-1">SELECTED SERVICE <span class="my-form-required">*</span></label>
                                     <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="">
                                     <div class="invalid-feedback">
                                         <?php echo $firstName_err; ?>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-4">
-                                    <label class="form-label mb-1">ADDRESS</label>
+                                    <label class="form-label mb-1">ADDRESS <span class="my-form-required">*</span></label>
                                     <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="">
                                     <div class="invalid-feedback">
                                         <?php echo $firstName_err; ?>
@@ -236,84 +236,53 @@ require_once "./php_backend/appointment.php";
                                     </div>
 
                                 </div>
-                            </form>
-                        </div>
-
-                        <div class="container col-lg-4">
-                            <div class=" d-flex justify-content-center">
-                                <div id="calendar" class="col-lg-4"></div>
                             </div>
-
-
-                            <script src="./js/vanilla-calendar.js"></script>
+                            <div class="container row col-xxl-7">
+                                <div class="container col-md-6 p-3">
+                                    <label class="form-label mb-1">DATE <span class="my-form-required">*</span></label>
+                                    <div id="calendar" class="w-100"></div>
+                                    <script src="./js/vanilla-calendar.js"></script>
+                                </div>
+                                <div class="col-xl-6 p-3">
+                                    <label class="form-label mb-3">TIME <span class="my-form-required">*</span></label>
+                                    <div class="form-check mb-2">
+                                        <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
+                                        <label class="btn btn-outline-secondary w-100" for="option1">8:00 AM</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+                                        <label class="btn btn-outline-secondary w-100" for="option2">9:00 AM</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off">
+                                        <label class="btn btn-outline-secondary w-100" for="option3">10:00 AM</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input type="radio" class="btn-check" name="options" id="option4" autocomplete="off">
+                                        <label class="btn btn-outline-secondary w-100" for="option4">11:00 AM</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input type="radio" class="btn-check" name="options" id="option5" autocomplete="off">
+                                        <label class="btn btn-outline-secondary w-100" for="option5">12:00 PM</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input type="radio" class="btn-check" name="options" id="option6" autocomplete="off">
+                                        <label class="btn btn-outline-secondary w-100" for="option6">1:00 PM</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input type="radio" class="btn-check" name="options" id="option7" autocomplete="off">
+                                        <label class="btn btn-outline-secondary w-100" for="option7">2:00 PM</label>
+                                    </div>
+                                    <div class="form-check mb-5">
+                                        <input type="radio" class="btn-check" name="options" id="option8" autocomplete="off">
+                                        <label class="btn btn-outline-secondary w-100" for="option8">3:00 PM</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-lg-3">
-                            <label class="form-label mb-3">TIME</label>
-                            <form id="updateAccountDetails" class="" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors1" value="one">
-                                    <label class="form-check-label" for="numberOfFloors1">
-                                        8:00 AM
-                                    </label>
-                                </div>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors2" value="two">
-                                    <label class="form-check-label" for="numberOfFloors2">
-                                        9:00 AM
-                                    </label>
-                                </div>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors3" value="three">
-                                    <label class="form-check-label" for="numberOfFloors3">
-                                        10:00 AM
-                                    </label>
-                                </div>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors4" value="other">
-                                    <label class="form-check-label" for="numberOfFloors4">
-                                        11:00 AM
-                                    </label>
-                                </div>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors1" value="one">
-                                    <label class="form-check-label" for="numberOfFloors1">
-                                        12:00 PM
-                                    </label>
-                                </div>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors2" value="two">
-                                    <label class="form-check-label" for="numberOfFloors2">
-                                        1:00 PM
-                                    </label>
-                                </div>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors3" value="three">
-                                    <label class="form-check-label" for="numberOfFloors3">
-                                        2:00 PM
-                                    </label>
-                                </div>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors4" value="other">
-                                    <label class="form-check-label" for="numberOfFloors4">
-                                        3:00 PM
-                                    </label>
-                                </div>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors1" value="one">
-                                    <label class="form-check-label" for="numberOfFloors1">
-                                        4:00 PM
-                                    </label>
-                                </div>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors2" value="two">
-                                    <label class="form-check-label" for="numberOfFloors2">
-                                        5:00 PM
-                                    </label>
-                                </div>
-                            </form>
-
-                        </div>
-
+                    </form>
+                    <div class="form-check mb-2">
+                        <button class="btn my-button-yes w-100">Request Appointment</button>
                     </div>
                 </div>
             </div>
