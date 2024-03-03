@@ -1,3 +1,14 @@
+$('#addressList').editableSelect({
+    effects: 'fade',
+});
+
+var element = document.getElementById("addressList");
+element.classList.add("form-control");
+element.classList.add("input-field");
+element.classList.add("selecServiceInput");
+element.placeholder = "Select an address";
+element.name = "selectedAddress";
+
 $('#serviceList').editableSelect({
     effects: 'fade',
 });
@@ -8,6 +19,7 @@ element.classList.add("input-field");
 element.classList.add("selecServiceInput");
 element.placeholder = "Select a service";
 element.name = "selectedService";
+
 
 $('#serviceList2').editableSelect({
     effects: 'fade',
@@ -67,3 +79,5 @@ element.classList.add("input-field");
 element.classList.add("selecServiceInput");
 element.placeholder = "Add a customer";
 element.name = "selectedCustomer";
+
+

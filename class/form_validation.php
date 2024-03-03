@@ -155,4 +155,22 @@ class Validation
             return "";
         }
     }
+
+    public function selectedAddress($address)
+    {
+        if (empty($address)) {
+            return "Please select an address.";
+        } else {
+            return "";
+        }
+    }
+
+    public function radioButton($count)
+    {
+        if (empty($count)) {
+            return "This field is required";
+        } else {
+            return "";
+        }
+    }
 }

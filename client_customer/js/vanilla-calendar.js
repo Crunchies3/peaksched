@@ -20,6 +20,10 @@ document.addEventListener('DOMContentLoaded', function () {
             },
         },
         actions: {
+            clickDay(event, self) {
+                var element = document.getElementById("selectedDate");
+                element.setAttribute('value', self.selectedDates);
+            },
         }
     }
 

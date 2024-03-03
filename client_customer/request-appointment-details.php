@@ -6,7 +6,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
-require_once "./php_backend/appointment.php";
+require_once "./php_backend/request-appointment-details.php";
 
 ?>
 
@@ -89,236 +89,197 @@ require_once "./php_backend/appointment.php";
                     <a href="#" class="btn my-button-unselected mx-2 mt-2">Manage Appointments</a>
                 </div>
                 <div class="container-fluid" id="accountSettingArea">
-                    <div class="mb-5">
+                    <div class="mb-3">
                         <h5>Request Appointment</h5>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-5">
-                            <form id="updateAccountDetails" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
+                    <form id="requestAppointmentDetails" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
+                        <input type="hidden" name="serviceId" value="<?php echo $service_id ?>">
+                        <div class="row remove-gutter" id="requestAppoint">
+                            <div class="col-xxl-5 p-3">
                                 <div class="col-md-12 mb-4">
-                                    <label class="form-label mb-1">SELECTED SERVICE</label>
-                                    <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="">
-                                    <div class="invalid-feedback">
-                                        <?php echo $firstName_err; ?>
-                                    </div>
+                                    <label class="form-label mb-1">SELECTED SERVICE <span class="my-form-required">*</span></label>
+                                    <input disabled name="firstName" type="text" class="form-control input-field" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $serviceName ?>">
                                 </div>
                                 <div class="col-md-12 mb-4">
-                                    <label class="form-label mb-1">ADDRESS</label>
-                                    <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="">
+                                    <label class="form-label mb-1 <?php echo (!empty($address_Err)) ? 'is-invalid' : ''; ?>">ADDRESS <span class="my-form-required">*</span></label>
                                     <div class="invalid-feedback">
-                                        <?php echo $firstName_err; ?>
+                                        <?php echo $address_Err; ?>
                                     </div>
+                                    <select required id="addressList" class="mt-2">
+                                        <?php
+                                        // LOOP TILL END OF DATA
+                                        for ($i = 0; $i < count($address_list); $i++) {
+                                        ?>
+                                            <option><?php echo  $address_list[$i]['fullAddress']; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
                                 <div class="container mx-3">
                                     <div class="row">
                                         <div class="col-md-6 mb-4">
-                                            <label class="form-label mb-1">WHAT TYPE OF UNIT DO YOU HAVE? <span class="my-form-required">*</span></label>
-                                            <div class="invalid-feedback">
-                                                <?php echo $lastName_err; ?>
-                                            </div>
+                                            <label class="form-label mb-1 <?php echo (!empty($typeOfUnit_err)) ? 'is-invalid' : ''; ?>">WHAT TYPE OF UNIT DO YOU HAVE? <span class="my-form-required">*</span></label>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors1" value="one">
+                                                <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors1" value="one" <?php if (isset($_POST['numberOfFloors']) && $_POST['numberOfFloors'] == 'one') echo 'checked'; ?>>
                                                 <label class="form-check-label" for="numberOfFloors1">
                                                     One floor unit
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors2" value="two">
+                                                <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors2" value="two" <?php if (isset($_POST['numberOfFloors']) && $_POST['numberOfFloors'] == 'two') echo 'checked'; ?>>
                                                 <label class="form-check-label" for="numberOfFloors2">
                                                     Two floors unit
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors3" value="three">
+                                                <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors3" value="three" <?php if (isset($_POST['numberOfFloors']) && $_POST['numberOfFloors'] == 'three') echo 'checked'; ?>>
                                                 <label class="form-check-label" for="numberOfFloors3">
                                                     Three floors unit
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors4" value="other">
+                                                <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors4" value="other" <?php if (isset($_POST['numberOfFloors']) && $_POST['numberOfFloors'] == 'other') echo 'checked'; ?>>
                                                 <label class="form-check-label" for="numberOfFloors4">
                                                     Other
                                                 </label>
                                             </div>
+                                            <div class="invalid-feedback">
+                                                <?php echo $typeOfUnit_err; ?>
+                                            </div>
                                         </div>
                                         <div class="col-md-6 mb-4">
-                                            <label class="form-label mb-1">HOW MANY BATHROOMS? <span class="my-form-required">*</span></label>
-                                            <div class="invalid-feedback">
-                                                <?php echo $lastName_err; ?>
-                                            </div>
+                                            <label class="form-label mb-1 <?php echo (!empty($numOfBath_err)) ? 'is-invalid' : ''; ?>">HOW MANY BATHROOMS? <span class="my-form-required">*</span></label>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="numberOfBathrooms" id="numberOfBathrooms1" value="one">
+                                                <input class="form-check-input" type="radio" name="numberOfBathrooms" id="numberOfBathrooms1" value="one" <?php if (isset($_POST['numberOfBathrooms']) && $_POST['numberOfBathrooms'] == 'one') echo 'checked'; ?>>
                                                 <label class="form-check-label" for="numberOfBathrooms1">
                                                     One bath
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="numberOfBathrooms" id="numberOfBathrooms2" value="two">
+                                                <input class="form-check-input" type="radio" name="numberOfBathrooms" id="numberOfBathrooms2" value="two" <?php if (isset($_POST['numberOfBathrooms']) && $_POST['numberOfBathrooms'] == 'two') echo 'checked'; ?>>
                                                 <label class="form-check-label" for="numberOfBathrooms2">
                                                     Two baths
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="numberOfBathrooms" id="numberOfBathrooms3" value="three">
+                                                <input class="form-check-input" type="radio" name="numberOfBathrooms" id="numberOfBathrooms3" value="three" <?php if (isset($_POST['numberOfBathrooms']) && $_POST['numberOfBathrooms'] == 'three') echo 'checked'; ?>>
                                                 <label class="form-check-label" for="numberOfBathrooms3">
                                                     Three baths
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="numberOfBathrooms" id="numberOfBathrooms4" value="other">
+                                                <input class="form-check-input" type="radio" name="numberOfBathrooms" id="numberOfBathrooms4" value="other" <?php if (isset($_POST['numberOfBathrooms']) && $_POST['numberOfBathrooms'] == 'other') echo 'checked'; ?>>
                                                 <label class="form-check-label" for="numberOfBathrooms4">
                                                     Other
                                                 </label>
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                <?php echo $numOfBath_err; ?>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6 mb-4">
-                                            <label class="form-label mb-1">HOW MANY BEDS? <span class="my-form-required">*</span></label>
-                                            <div class="invalid-feedback">
-                                                <?php echo $lastName_err; ?>
-                                            </div>
+                                            <label class="form-label mb-1 <?php echo (!empty($numOfBeds_err)) ? 'is-invalid' : ''; ?>">HOW MANY BEDS? <span class="my-form-required">*</span></label>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="numberOfBeds" id="numberOfBeds1" value="option1">
+                                                <input class="form-check-input" type="radio" name="numberOfBeds" id="numberOfBeds1" value="one" <?php if (isset($_POST['numberOfBeds']) && $_POST['numberOfBeds'] == 'one') echo 'checked'; ?>>
                                                 <label class="form-check-label" for="numberOfBeds1">
                                                     One bed
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="numberOfBeds" id="numberOfBeds2" value="option2">
+                                                <input class="form-check-input" type="radio" name="numberOfBeds" id="numberOfBeds2" value="two" <?php if (isset($_POST['numberOfBeds']) && $_POST['numberOfBeds'] == 'two') echo 'checked'; ?>>
                                                 <label class="form-check-label" for="numberOfBeds2">
                                                     Two beds
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="numberOfBeds" id="numberOfBeds3" value="option3">
+                                                <input class="form-check-input" type="radio" name="numberOfBeds" id="numberOfBeds3" value="three" <?php if (isset($_POST['numberOfBeds']) && $_POST['numberOfBeds'] == 'three') echo 'checked'; ?>>
                                                 <label class="form-check-label" for="numberOfBeds3">
                                                     Three beds
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="numberOfBeds" id="numberOfBeds4" value="option4">
+                                                <input class="form-check-input" type="radio" name="numberOfBeds" id="numberOfBeds4" value="other" <?php if (isset($_POST['numberOfBeds']) && $_POST['numberOfBeds'] == 'other') echo 'checked'; ?>>
                                                 <label class="form-check-label" for="numberOfBeds4">
                                                     Other
                                                 </label>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6 mb-4">
-                                            <label class="form-label mb-1">HOW MANY BEDS? <span class="my-form-required">*</span></label>
                                             <div class="invalid-feedback">
-                                                <?php echo $lastName_err; ?>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="numberOfBeds" id="numberOfBeds1" value="option1">
-                                                <label class="form-check-label" for="numberOfBeds1">
-                                                    One bed
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="numberOfBeds" id="numberOfBeds2" value="option2">
-                                                <label class="form-check-label" for="numberOfBeds2">
-                                                    Two beds
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="numberOfBeds" id="numberOfBeds3" value="option3">
-                                                <label class="form-check-label" for="numberOfBeds3">
-                                                    Three beds
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="numberOfBeds" id="numberOfBeds4" value="option4">
-                                                <label class="form-check-label" for="numberOfBeds4">
-                                                    Other
-                                                </label>
+                                                <?php echo $numOfBeds_err; ?>
                                             </div>
                                         </div>
                                     </div>
 
                                 </div>
-                            </form>
-                        </div>
-
-                        <div class="container col-lg-4">
-                            <div class=" d-flex justify-content-center">
-                                <div id="calendar" class="col-lg-4"></div>
                             </div>
+                            <div class="row col-xxl-7 dateTimeArea">
+                                <div class="container col-lg-6 p-3">
+                                    <label class="form-label mb-1 <?php echo (!empty($selectedDate_err)) ? 'is-invalid' : ''; ?>">DATE <span class="my-form-required">*</span></label>
+                                    <div class="invalid-feedback">
+                                        <?php echo $selectedDate_err; ?>
+                                    </div>
+                                    <div id="calendar" class="w-100 mb-2"></div>
+                                    <script src="./js/vanilla-calendar.js"></script>
+                                    <input hidden id="selectedDate" class="form-control input-field" name="selectedDate" value="">
+                                    <label class="form-label mb-2">ANY SPECIAL INSTRUCTION OR COMMENTS</label>
+                                    <textarea name="note" type="text" rows="3" class="form-control input-field w-100 selecServiceInput " placeholder=""></textarea>
+                                </div>
+                                <div class="col-lg-6 p-3">
+                                    <label class="form-label mb-1 <?php echo (!empty($selectedTime_err)) ? 'is-invalid' : ''; ?>">TIME <span class="my-form-required">*</span></label>
+                                    <div class="invalid-feedback">
+                                        <?php echo $selectedTime_err; ?>
+                                    </div>
+                                    <div class="form-check mb-2 mt-4">
+                                        <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" value="8:00 AM" <?php if (isset($_POST['options']) && $_POST['options'] == '8:00 AM') echo 'checked'; ?>>
+                                        <label class="btn btn-outline-secondary w-100" for="option1">8:00 AM</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" value="9:00 AM" <?php if (isset($_POST['options']) && $_POST['options'] == '9:00 AM') echo 'checked'; ?>>
+                                        <label class="btn btn-outline-secondary w-100" for="option2">9:00 AM</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off" value="10:00 AM" <?php if (isset($_POST['options']) && $_POST['options'] == '10:00 AM') echo 'checked'; ?>>
+                                        <label class="btn btn-outline-secondary w-100" for="option3">10:00 AM</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input type="radio" class="btn-check" name="options" id="option4" autocomplete="off" value="11:00 AM" <?php if (isset($_POST['options']) && $_POST['options'] == '11:00 AM') echo 'checked'; ?>>
+                                        <label class="btn btn-outline-secondary w-100" for="option4">11:00 AM</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input type="radio" class="btn-check" name="options" id="option5" autocomplete="off" value="12:00 PM" <?php if (isset($_POST['options']) && $_POST['options'] == '12:00 PM') echo 'checked'; ?>>
+                                        <label class="btn btn-outline-secondary w-100" for="option5">12:00 PM</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input type="radio" class="btn-check" name="options" id="option6" autocomplete="off" value="1:00 PM" <?php if (isset($_POST['options']) && $_POST['options'] == '1:00 PM') echo 'checked'; ?>>
+                                        <label class="btn btn-outline-secondary w-100" for="option6">1:00 PM</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input type="radio" class="btn-check" name="options" id="option7" autocomplete="off" value="2:00 PM" <?php if (isset($_POST['options']) && $_POST['options'] == '2:00 PM') echo 'checked'; ?>>
+                                        <label class="btn btn-outline-secondary w-100" for="option7">2:00 PM</label>
+                                    </div>
+                                    <div class="form-check mb-5">
+                                        <input type="radio" class="btn-check" name="options" id="option8" autocomplete="off" value="3:00 PM" <?php if (isset($_POST['options']) && $_POST['options'] == '3:00 PM') echo 'checked'; ?>>
+                                        <label class="btn btn-outline-secondary w-100" for="option8">3:00 PM</label>
+                                    </div>
 
-
-                            <script src="./js/vanilla-calendar.js"></script>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-lg-3">
-                            <label class="form-label mb-3">TIME</label>
-                            <form id="updateAccountDetails" class="" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors1" value="one">
-                                    <label class="form-check-label" for="numberOfFloors1">
-                                        8:00 AM
-                                    </label>
-                                </div>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors2" value="two">
-                                    <label class="form-check-label" for="numberOfFloors2">
-                                        9:00 AM
-                                    </label>
-                                </div>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors3" value="three">
-                                    <label class="form-check-label" for="numberOfFloors3">
-                                        10:00 AM
-                                    </label>
-                                </div>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors4" value="other">
-                                    <label class="form-check-label" for="numberOfFloors4">
-                                        11:00 AM
-                                    </label>
-                                </div>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors1" value="one">
-                                    <label class="form-check-label" for="numberOfFloors1">
-                                        12:00 PM
-                                    </label>
-                                </div>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors2" value="two">
-                                    <label class="form-check-label" for="numberOfFloors2">
-                                        1:00 PM
-                                    </label>
-                                </div>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors3" value="three">
-                                    <label class="form-check-label" for="numberOfFloors3">
-                                        2:00 PM
-                                    </label>
-                                </div>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors4" value="other">
-                                    <label class="form-check-label" for="numberOfFloors4">
-                                        3:00 PM
-                                    </label>
-                                </div>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors1" value="one">
-                                    <label class="form-check-label" for="numberOfFloors1">
-                                        4:00 PM
-                                    </label>
-                                </div>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="numberOfFloors" id="numberOfFloors2" value="two">
-                                    <label class="form-check-label" for="numberOfFloors2">
-                                        5:00 PM
-                                    </label>
-                                </div>
-                            </form>
-
+                    </form>
+                    <div class="row">
+                        <div class="mb-2 col-md">
+                            <a href="./request-appointment-service.php" class="btn my-button-no w-100">Back</a>
                         </div>
-
+                        <div class="mb-2 col-md">
+                            <button class="btn my-button-yes w-100" data-bs-toggle="modal" data-bs-target="#submitRequest">Request Appointment</button>
+                        </div>
                     </div>
+
                 </div>
             </div>
 
-            <script src="./js/data-table-service.js"></script>
             <script src="./js/script.js"></script>
             <script src="../select_box/dist/jquery-editable-select.js"></script>
             <script src="../select_box/src/jquery-editable-select.js"></script>
@@ -330,19 +291,20 @@ require_once "./php_backend/appointment.php";
 
 
 <!-- Modal -->
-<div class="modal" id="exampleModal" data-bs-backdrop="true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="width: 400px;">
+
+<div class="modal fade" id="submitRequest" data-bs-backdrop="static" tabindex="-1" aria-labelledby="updateInfoModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
-                <h5 class="modal-title" style="font-size: 16px;" id="exampleModalLabel">Appointment</h5>
+                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm Request?</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+                Your account details will be updated.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button name="submitRequest" form="requestAppointmentDetails" class="btn my-button-yes">Confirm</button>
+                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
