@@ -14,27 +14,31 @@ class Appointment
     public function fetchAppointmentList()
     {
         try {
+            // dili magpakita sa calendar kung wala pay address ang customer
             $stmt = $this->conn->prepare(
-                "SELECT a.id AS 'id',
+                "SELECT a.appointment_id AS 'id',
                         CONCAT(b.firstname,' ', b.lastname) AS 'title',
-                        a.note,
+                        d.title as 'service',
+                        CONCAT(e.street, '. ', e.city, ', ', e.province, '. ', e.country, ', ', e.zip_code)  as 'fullAddress',
+                        CONCAT(c.firstname,' ', c.lastname) AS 'supervisor',
+                        a.num_floors,
+                        a.num_beds,
+                        a.num_baths,
                         a.start,
                         a.end,
-                        CONCAT(c.firstname,' ', c.lastname) AS 'supervisor',
-                        d.title as 'service',
+                        a.note,
                         d.color,
-                        d.duration
-                FROM    tbl_appointment a,
+                        d.duration,
+                        d.price
+                FROM    tbl_confirmed_appointment a,
                         tbl_customer b,
                         tbl_employee c,
                         tbl_service d,
-                        tbl_app_cust_sup e,
-                        tbl_appointment_service f
-                WHERE   a.id = e.appointment_id && 
-                        e.customer_id = b.customerid &&
-                        e.employee_id = c.employeeid &&
-                        a.id = f.appointment_id &&
-                        f.service_id = d.service_id;"
+                        tbl_customer_address e
+                WHERE   b.customerid = a.customer_id &&
+                        b.customerid = e.customer_id &&
+                        a.service_id = d.service_id &&
+                        a.supervisor_id = c.employeeid;"
             );
             $stmt->execute();
             $result = $stmt->get_result();
@@ -54,7 +58,7 @@ class Appointment
     public function isAppointmentIdUnique($id)
     {
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM tbl_appointment WHERE id = ?");
+            $stmt = $this->conn->prepare("SELECT * FROM tbl_confirmed_appointment WHERE appointment_id = ?");
             $stmt->bind_param("s", $id);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -72,7 +76,7 @@ class Appointment
     public function deleteAppointmnet($appointmentId)
     {
         try {
-            $stmt = $this->conn->prepare("DELETE FROM tbl_appointment WHERE id = ?");
+            $stmt = $this->conn->prepare("DELETE FROM tbl_confirmed_appointment WHERE appointment_id = ?");
             $stmt->bind_param("s", $appointmentId);
             $stmt->execute();
             $stmt->close();
@@ -86,24 +90,14 @@ class Appointment
     {
         try {
             $stmt = $this->conn->prepare(
-                "UPDATE tbl_appointment a,
-                        tbl_customer b,
-                        tbl_employee c,
-                        tbl_service d,
-                        tbl_app_cust_sup e,
-                        tbl_appointment_service f
+                "UPDATE tbl_confirmed_appointment a
                 SET     a.note = ?,
                         a.start = ?,
                         a.end = ?,
-                        e.customer_id = ?,
-                        e.employee_id = ?,
-                        f.service_id = ?
-                WHERE   a.id = e.appointment_id && 
-                        e.customer_id = b.customerid &&
-                        e.employee_id = c.employeeid &&
-                        a.id = f.appointment_id &&
-                        f.service_id = d.service_id && 
-                        a.id = ?;"
+                        a.customer_id = ?,
+                        a.supervisor_id = ?,
+                        a.service_id = ?
+                WHERE   a.appointment_id = ?;"
             );
             $stmt->bind_param("sssssss", $note, $dateTimeStart, $dateTimeEnd, $customerId, $employeeId, $serviceId, $appointmentId);
             $stmt->execute();
@@ -115,19 +109,20 @@ class Appointment
 
     public function addAppointmnet($appointmentId, $serviceId, $customerId, $employeeId, $dateTimeStart, $dateTimeEnd, $note)
     {
+        $tempAddress = "1";
         try {
-            $stmt = $this->conn->prepare("INSERT INTO tbl_appointment (id, note, start, end) VALUES (?,?,?,?)");
-            $stmt->bind_param("ssss", $appointmentId, $note, $dateTimeStart, $dateTimeEnd);
-            $stmt->execute();
-            $stmt->close();
-
-            $stmt = $this->conn->prepare("INSERT INTO tbl_app_cust_sup (appointment_id, customer_id, employee_id) VALUES (?,?,?)");
-            $stmt->bind_param("sss", $appointmentId, $customerId, $employeeId);
-            $stmt->execute();
-            $stmt->close();
-
-            $stmt = $this->conn->prepare("INSERT INTO tbl_appointment_service (appointment_id, service_id) VALUES (?,?)");
-            $stmt->bind_param("ss", $appointmentId, $serviceId);
+            $stmt = $this->conn->prepare(
+                "INSERT INTO tbl_confirmed_appointment (appointment_id, 
+                                                        customer_id, 
+                                                        service_id, 
+                                                        address_id,
+                                                        supervisor_id,
+                                                        start,
+                                                        end,
+                                                        note) 
+                VALUES (?,?,?,?,?,?,?,?);"
+            );
+            $stmt->bind_param("ssssssss", $appointmentId, $customerId, $serviceId, $tempAddress, $employeeId, $dateTimeStart, $dateTimeEnd, $note);
             $stmt->execute();
             $stmt->close();
             $this->conn->close();
