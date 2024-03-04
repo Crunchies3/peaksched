@@ -24,5 +24,7 @@ if (isset($_POST['addWorkerModal'])) {
 
     echo $supervisorId . " " . $workerId;
 
+    $employees->addWorkerToSupervisor($supervisorId,$workerId);
+
 }
 
