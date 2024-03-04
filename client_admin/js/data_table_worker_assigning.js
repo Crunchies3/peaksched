@@ -7,7 +7,9 @@ $(document).ready(function () {
     table = $('#myTable').DataTable();
     table.on('click', '#actionClick', function (e) {
         workerId = table.row(e.target.closest('tr')).data();
+        var supId = document.getElementById('supId').value;
         document.getElementById('workerId').value = workerId[0];
+        document.getElementById('superId').value = supId;
     });
 });
 
@@ -33,8 +35,9 @@ $('#myTable').DataTable({
         },
         {
             data: null,
-            defaultContent: '<form id="addWorkerForm"><input id="workerId" hidden type="text" value=""></form><button data-bs-target="#addWorkerModal"  data-bs-toggle = "modal" class="btn my-button-yes mx-1" id="actionClick">Add</button>',
+            defaultContent: '<form id="addWorkerForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"><input id="workerId" name="workerId" hidden type="text" value=""><input id="superId" hidden name="supervisorId" type="text" value=""></form><button data-bs-target="#addWorkerModal"  data-bs-toggle = "modal" class="btn my-button-yes mx-1" id="actionClick">Add</button>',
             targets: -1
+                                
         },
     ],
 });
