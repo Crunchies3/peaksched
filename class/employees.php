@@ -203,6 +203,16 @@ class Employees
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
      }
+     public function addWorkerToSupervisor($supervisorId, $workerId){
+        try {
+            $stmt = $this->conn->prepare("INSERT INTO tbl_supervisor_worker (supervisor_id, worker_id) VALUES (?,?)");
+            $stmt->bind_param("ss",$supervisorId,$workerId);
+            $stmt->execute();
+            $this->conn->close();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+     }
 
     /**
      * Get the value of conn

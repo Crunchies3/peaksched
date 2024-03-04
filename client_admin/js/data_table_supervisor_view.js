@@ -22,7 +22,8 @@ $('#myTable').DataTable({
                 text: '<i class="bi bi-plus plus-icon"></i> assign workers',
                 className: 'add-service-btn rounded',
                 action: function () {
-                    location.href = 'worker_assigning_page.php'
+                    var supId =  document.getElementById('supId').value;
+                    location.href = 'worker_assigning_page.php?supervisorId=' + '' + supId;
                 }
             }]
         },

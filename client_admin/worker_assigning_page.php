@@ -103,8 +103,9 @@ require_once "php/worker_assigning_page.php";
                     <div>
                         <h5>Assign Workers</h5>
                     </div>
+                    <input type="hidden" id="supId" value="<?php echo $supervisorId ?>">
                     <div class="d-flex justify-content-between mb-3">
-                        <div>Supervisor ID: </div>
+                        <div>Supervisor ID:  <?php echo $supervisorId ?></div> 
                         <div>Supervisor Name: </div>
                     </div>
                     <table id="myTable" class="table table-hover">

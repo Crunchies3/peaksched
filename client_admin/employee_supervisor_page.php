@@ -102,7 +102,7 @@ require_once "php/employee_supervisor_editing.php";
                         <h5>Edit Employee</h5>
                     </div>
                     <form id="editEmployeeForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
-                        <input type="hidden" name="employeeId" value="<?= htmlspecialchars($employeeId) ?>">
+                        <input type="hidden" name="employeeId" value="<?= htmlspecialchars($employeeId) ?>" id="superVisorId">
                         <div class="col-md-6 mb-4">
                             <label class="form-label mb-1">FIRST NAME</label>
                             <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $firstName ?>">
@@ -198,7 +198,7 @@ require_once "php/employee_supervisor_editing.php";
                         <h5>Account</h5>
                     </div>
                     <form id="editPasswordForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
-                        <input type="hidden" name="employeeId" value="<?= htmlspecialchars($employeeId) ?>">
+                        <input type="hidden" name="employeeId" value="<?= htmlspecialchars($employeeId) ?>" id="supId">
 
                         <div class="col-lg-6 mb-4">
                             <label class="form-label mb-1">NEW PASSWORD</label>
