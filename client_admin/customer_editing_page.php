@@ -98,11 +98,11 @@ require_once "php/customer_editing.php";
             </div>
         </aside>
         <section class="main" id="main">
-            <div class="container-fluid" id="serviceArea">
+            <div class="container-fluid" id="customerArea">
                 <div class="mb-5">
                     <h1>Customer</h1>
                 </div>
-                <div class="container-fluid" id="addServiceArea">
+                <div class="container-fluid" id="addCustomerArea">
                     <div>
                         <h5>Edit Customer</h5>
                     </div>
@@ -190,7 +190,7 @@ require_once "php/customer_editing.php";
 
 </html>
 
-<div class="modal fade" id="editEmployeeModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="addServiceModal" aria-hidden="true">
+<div class="modal fade" id="editEmployeeModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editEmployeeModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
@@ -201,8 +201,8 @@ require_once "php/customer_editing.php";
                 Changes Will be Saved.
             </div>
             <div class="modal-footer">
-                <button name="updateInfo" form="editCustomerForm" class="btn add-service-button">Confirm</button>
-                <button type="button" class="btn cancel-button" data-bs-dismiss="modal">Cancel</button>
+                <button name="updateInfo" form="editCustomerForm" class="btn my-button-yes">Confirm</button>
+                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
@@ -215,7 +215,7 @@ require_once "php/customer_editing.php";
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
                 <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm delete account?</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn my-button-no" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 Your account will be deleted.

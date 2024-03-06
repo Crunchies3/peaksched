@@ -1,13 +1,13 @@
 $.fn.dataTable.Buttons.defaults.dom.button.className = 'btn';
 
 var table;
-var customerId;
+var appointmentId;
 
 $(document).ready(function () {
     table = $('#myTable').DataTable();
     table.on('click', '#actionClick', function (e) {
-        customerId = table.row(e.target.closest('tr')).data();
-        document.getElementById('customerId').value = customerId[0];
+        appointmentId = table.row(e.target.closest('tr')).data();
+        document.getElementById('appointmentId').value = appointmentId[0];
     });
 });
 
@@ -18,13 +18,8 @@ $('#myTable').DataTable({
             buttons: [{
                 text: ' sort',
                 className: 'sort-btn rounded mx-2 bi-sort-down-alt',
-            }, {
-                text: '<i class="bi bi-plus plus-icon"></i> add customer',
-                className: 'add-customer-btn rounded',
-                action: function () {
-                    location.href = 'customer_adding_page.php'
-                }
-            }]
+            }, 
+        ]
         },
     },
     scrollY: 450,
@@ -34,11 +29,11 @@ $('#myTable').DataTable({
     'columnDefs': [
         {
             targets: 0,
-            'visible': false
+            className: "right-aligned-cell"
         },
         {
             data: null,
-            defaultContent: '<form action="./customer_editing_page.php" id="editService" method="get"><input id="customerId" hidden type="text" name="customerId" value=""></form><button form="editService" class="btn my-button-yes mx-1" id="actionClick">View</button>',
+            defaultContent: '<form action="assigned-appointment-supervisor-view.php" id="addAppoitment" method="get"><input id="appointmentId" hidden type="text" name="appointmentId" value=""></form><button form="addAppoitment" class="btn my-btn-view mx-1" id="actionClick">View</button>',
             targets: -1
         },
     ],

@@ -97,7 +97,7 @@ require_once "php/employee_supervisor_editing.php";
                 <div class="mb-5">
                     <h1>Employee</h1>
                 </div>
-                <div class="container-fluid" id="addServiceArea">
+                <div class="container-fluid" id="addWorkerArea">
                     <div>
                         <h5>Edit Employee</h5>
                     </div>
