@@ -197,7 +197,12 @@ class Employees
     public function fetchAvailableWorkers()
     {
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM tbl_employee a, tbl_supervisor_worker b WHERE a.type = 'worker' && b.worker_id != a.employeeid");
+            $stmt = $this->conn->prepare(
+                "SELECT *
+                FROM tbl_employee a
+                LEFT JOIN tbl_supervisor_worker b ON a.employeeid = b.worker_id
+                WHERE a.type = 'worker' && !EXISTS(SELECT * FROM tbl_supervisor_worker WHERE worker_id = a.employeeid);"
+            );
             $stmt->execute();
             $result = $stmt->get_result();
             $this->availableWorkers = $result;
@@ -211,7 +216,6 @@ class Employees
             $stmt = $this->conn->prepare("INSERT INTO tbl_supervisor_worker (supervisor_id, worker_id) VALUES (?,?)");
             $stmt->bind_param("ss", $supervisorId, $workerId);
             $stmt->execute();
-            $this->conn->close();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
