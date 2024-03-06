@@ -138,23 +138,23 @@ class Employees
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-    public function getWorkerAssignedTo($worker_id){
+    public function getWorkerAssignedTo($worker_id)
+    {
         try {
             $stmt = $this->conn->prepare("SELECT CONCAT(a.firstname, ' ', a.lastname) AS 'fullname' FROM tbl_employee a, tbl_supervisor_worker b WHERE a.type = 'supervisor' && b.worker_id = ?");
-            $stmt->bind_param("s",$worker_id);
+            $stmt->bind_param("s", $worker_id);
             $stmt->execute();
             $result = $stmt->get_result();
-            $fullname ="";
+            $fullname = "";
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $fullname = $row['fullname'];
                 }
             }
-           return $fullname;
+            return $fullname;
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
-
     }
     public function changeEmployeePassword($newHashedPassword)
     {
@@ -169,10 +169,11 @@ class Employees
         }
     }
 
-    public function deleteEmployee($employeeId){
+    public function deleteEmployee($employeeId)
+    {
         try {
             $stmt = $this->conn->prepare("DELETE FROM tbl_employee WHERE employeeid = ?");
-            $stmt->bind_param("s",$employeeId);
+            $stmt->bind_param("s", $employeeId);
             $stmt->execute();
             $this->conn->close();
         } catch (Exception $e) {
@@ -180,39 +181,45 @@ class Employees
         }
     }
 
-    public function fetchSupervisorWorkers($supervisorID){
+    public function fetchSupervisorWorkers($supervisorID)
+    {
         try {
-         $stmt = $this->conn->prepare("SELECT a.employeeid, CONCAT(a.firstname,' ',a.lastname) as 'fullname', a.type, a.email, a.mobilenumber FROM tbl_employee a, tbl_supervisor_worker b WHERE b.worker_id = a.employeeid && b.supervisor_id = ?
+            $stmt = $this->conn->prepare("SELECT a.employeeid, CONCAT(a.firstname,' ',a.lastname) as 'fullname', a.type, a.email, a.mobilenumber FROM tbl_employee a, tbl_supervisor_worker b WHERE b.worker_id = a.employeeid && b.supervisor_id = ?
          ");
-         $stmt->bind_param("s",$supervisorID);
-         $stmt->execute();
-         $result = $stmt->get_result();
-         $this->supervisorWorkers = $result;
-
+            $stmt->bind_param("s", $supervisorID);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $this->supervisorWorkers = $result;
         } catch (Exception $e) {
-         echo 'Caught exception: ',  $e->getMessage(), "\n";
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
-     }
-     public function fetchAvailableWorkers(){
+    }
+    public function fetchAvailableWorkers()
+    {
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM tbl_employee a, tbl_supervisor_worker b WHERE a.type = 'worker' && b.worker_id != a.employeeid");
+            $stmt = $this->conn->prepare(
+                "SELECT *
+                FROM tbl_employee a
+                LEFT JOIN tbl_supervisor_worker b ON a.employeeid = b.worker_id
+                WHERE a.type = 'worker' && !EXISTS(SELECT * FROM tbl_supervisor_worker WHERE worker_id = a.employeeid);"
+            );
             $stmt->execute();
             $result = $stmt->get_result();
             $this->availableWorkers = $result;
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
-     }
-     public function addWorkerToSupervisor($supervisorId, $workerId){
+    }
+    public function addWorkerToSupervisor($supervisorId, $workerId)
+    {
         try {
             $stmt = $this->conn->prepare("INSERT INTO tbl_supervisor_worker (supervisor_id, worker_id) VALUES (?,?)");
-            $stmt->bind_param("ss",$supervisorId,$workerId);
+            $stmt->bind_param("ss", $supervisorId, $workerId);
             $stmt->execute();
-            $this->conn->close();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
-     }
+    }
 
     /**
      * Get the value of conn

@@ -8,23 +8,17 @@ $employees->setConn($conn);
 $employees->fetchAvailableWorkers();
 $result = $employees->getAvailableWorkers();
 
-
-$supervisorId = $workerId = "";
-
-
 if (isset($_GET["supervisorId"])) {
     $supervisorId = $_GET["supervisorId"];
 }
 
-if (isset($_POST['addWorkerModal'])) { 
+if (isset($_POST['addWorkerModal'])) {
 
     $workerId = $_POST["workerId"];
     $supervisorId = $_POST["supervisorId"];
 
-
-    echo $supervisorId . " " . $workerId;
-
-    $employees->addWorkerToSupervisor($supervisorId,$workerId);
-
+    // para mawala sa table inig add nimo sa worker
+    $employees->addWorkerToSupervisor($supervisorId, $workerId);
+    $employees->fetchAvailableWorkers();
+    $result = $employees->getAvailableWorkers();
 }
-
