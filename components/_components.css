@@ -87,3 +87,10 @@
 .my-form-required {
     color: red;
 }
+
+.my-btn-view{
+    border: -100px #186cb0;
+    border-style: solid;
+    background-color: #186cb0;
+    color: #ececec;
+}

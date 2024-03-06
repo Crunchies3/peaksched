@@ -93,11 +93,11 @@ require_once "php/employee_adding.php";
             </div>
         </aside>
         <section class="main" id="main">
-            <div class="container-fluid" id="serviceArea">
+            <div class="container-fluid" id="employeeArea">
                 <div class="mb-5">
                     <h1>Employee</h1>
                 </div>
-                <div class="container-fluid" id="addServiceArea">
+                <div class="container-fluid" id="addEmployeeArea">
                     <div>
                         <h5>Add Employee</h5>
                     </div>
@@ -165,8 +165,8 @@ require_once "php/employee_adding.php";
                 Employee will be added.
             </div>
             <div class="modal-footer">
-                <button name="addEmployee" form="addEmployeeForm" class="btn add-service-button">Confirm</button>
-                <button type="button" class="btn cancel-button" data-bs-dismiss="modal">Cancel</button>
+                <button name="addEmployee" form="addEmployeeForm" class="btn my-button-yes">Confirm</button>
+                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>

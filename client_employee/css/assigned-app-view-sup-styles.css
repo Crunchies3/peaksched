@@ -12,33 +12,15 @@
 /* * end */
 
 
-#customerArea {
+#appointmentArea {
     padding-top: 0px;
 }
 
 
-#customerTableArea {
+#appointmentTableArea {
     background-color: white;
     border: 1px #BBBBBB;
     border-style: solid;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    padding: 30px;
-}
-
-#tablelistTableArea {
-    background-color: white;
-    border: 1px #BBBBBB;
-    border-style: solid;
-    border-top: none;
-    padding: 30px;
-}
-
-#securityArea {
-    background-color: white;
-    border: 1px #BBBBBB;
-    border-style: solid;
-    border-top: none;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     padding: 30px;
@@ -46,13 +28,15 @@
 
 
 
-#customerArea h5 {
+
+
+#appointmentArea h5 {
     margin-bottom: 40px;
     font-weight: bold;
 }
 
 
-#customerArea .input-field,
+#appointmentArea .input-field,
 #dt-search-0 {
     background-color: #F7F8FC;
     color: #222222;
@@ -76,12 +60,12 @@
     font-size: 15px;
 }
 
-.add-customer-btn {
+.add-appointment-btn {
     background-color: #124F6F;
     color: #f7f8fc;
 }
 
-.add-customer-btn:hover {
+.add-appointment-btn:hover {
     background-color: #38799d;
     color: #f7f8fc;
 }
@@ -122,7 +106,7 @@
     pointer-events: none;
 }
 
-#addCustomerArea {
+#addWorkerArea {
     background-color: white;
     border: 1px #BBBBBB;
     border-style: solid;
@@ -138,3 +122,6 @@ label {
 }
 
 
+.right-aligned-cell {
+    text-align: left !important;
+}

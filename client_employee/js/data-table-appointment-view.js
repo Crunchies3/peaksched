@@ -1,13 +1,13 @@
 $.fn.dataTable.Buttons.defaults.dom.button.className = 'btn';
 
 var table;
-var customerId;
+var supervisorId;
 
 $(document).ready(function () {
     table = $('#myTable').DataTable();
     table.on('click', '#actionClick', function (e) {
-        customerId = table.row(e.target.closest('tr')).data();
-        document.getElementById('customerId').value = customerId[0];
+        supervisorId = table.row(e.target.closest('tr')).data();
+        document.getElementById('supervisorId').value = supervisorId[0];
     });
 });
 
@@ -18,13 +18,15 @@ $('#myTable').DataTable({
             buttons: [{
                 text: ' sort',
                 className: 'sort-btn rounded mx-2 bi-sort-down-alt',
-            }, {
-                text: '<i class="bi bi-plus plus-icon"></i> add customer',
-                className: 'add-customer-btn rounded',
+            }, 
+            {
+                text: '<i class="bi bi-plus plus-icon"></i> assign workers',
+                className: 'add-appointment-btn rounded',
                 action: function () {
-                    location.href = 'customer_adding_page.php'
+                    location.href = 'assigning-appointment-supervisor.php'
                 }
-            }]
+            }],
+        
         },
     },
     scrollY: 450,
@@ -34,11 +36,11 @@ $('#myTable').DataTable({
     'columnDefs': [
         {
             targets: 0,
-            'visible': false
+            className: "right-aligned-cell"
         },
         {
             data: null,
-            defaultContent: '<form action="./customer_editing_page.php" id="editService" method="get"><input id="customerId" hidden type="text" name="customerId" value=""></form><button form="editService" class="btn my-button-yes mx-1" id="actionClick">View</button>',
+            defaultContent: '<form id="RemoveWorkerForm"><input id="supervisorId" hidden type="text" value=""></form><button data-bs-target="#RemoveWorker"  data-bs-toggle = "modal" class="btn my-button-yes mx-1" id="actionClick">Remove</button>',
             targets: -1
         },
     ],

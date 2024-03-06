@@ -12,12 +12,11 @@
 /* * end */
 
 
-#customerArea {
+#assignedAppointmentArea {
     padding-top: 0px;
 }
 
-
-#customerTableArea {
+#assignedAppointmentTableArea {
     background-color: white;
     border: 1px #BBBBBB;
     border-style: solid;
@@ -26,33 +25,13 @@
     padding: 30px;
 }
 
-#tablelistTableArea {
-    background-color: white;
-    border: 1px #BBBBBB;
-    border-style: solid;
-    border-top: none;
-    padding: 30px;
-}
-
-#securityArea {
-    background-color: white;
-    border: 1px #BBBBBB;
-    border-style: solid;
-    border-top: none;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    padding: 30px;
-}
-
-
-
-#customerArea h5 {
-    margin-bottom: 40px;
+#assignedAppointmentArea h5 {
+    margin-bottom: 20px;
     font-weight: bold;
 }
 
 
-#customerArea .input-field,
+#assignedAppointmentArea .input-field,
 #dt-search-0 {
     background-color: #F7F8FC;
     color: #222222;
@@ -74,16 +53,6 @@
     color: #7d7d7d;
     font-weight: 600;
     font-size: 15px;
-}
-
-.add-customer-btn {
-    background-color: #124F6F;
-    color: #f7f8fc;
-}
-
-.add-customer-btn:hover {
-    background-color: #38799d;
-    color: #f7f8fc;
 }
 
 .sort-btn {
@@ -122,7 +91,7 @@
     pointer-events: none;
 }
 
-#addCustomerArea {
+#addServiceArea {
     background-color: white;
     border: 1px #BBBBBB;
     border-style: solid;
@@ -138,3 +107,7 @@ label {
 }
 
 
+
+.right-aligned-cell {
+    text-align: left !important;
+}

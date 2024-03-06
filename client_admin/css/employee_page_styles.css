@@ -12,11 +12,11 @@
 /* * end */
 
 
-#serviceArea {
+#employeeArea {
     padding-top: 0px;
 }
 
-#servicesTableArea {
+#employeeTableArea {
     background-color: white;
     border: 1px #BBBBBB;
     border-style: solid;
@@ -34,13 +34,13 @@
     padding: 30px;
 }
 
-#serviceArea h5 {
+#employeeArea h5 {
     margin-bottom: 40px;
     font-weight: bold;
 }
 
 
-#serviceArea .input-field,
+#employeeArea .input-field,
 #dt-search-0 {
     background-color: #F7F8FC;
     color: #222222;
@@ -64,12 +64,12 @@
     font-size: 15px;
 }
 
-.add-service-btn {
+.add-employee-btn {
     background-color: #124F6F;
     color: #f7f8fc;
 }
 
-.add-service-btn:hover {
+.add-employee-btn:hover {
     background-color: #38799d;
     color: #f7f8fc;
 }
@@ -110,7 +110,7 @@
     pointer-events: none;
 }
 
-#addServiceArea {
+#addEmployeeArea {
     background-color: white;
     border: 1px #BBBBBB;
     border-style: solid;
@@ -125,38 +125,6 @@ label {
     font-size: 12px;
 }
 
-.add-service-button {
-    border: 1px #124F6F;
-    border-style: solid;
-    background-color: #124F6F;
-    color: #ececec;
-}
 
-.cancel-button {
-    background-color: #ffffff;
-    color: #124F6F;
-    border: 1px #124F6F;
-    border-style: solid;
-}
 
-.cancel-button:hover {
-    background-color: #ffffff;
-    color: #124F6F;
-    border: 1px #124F6F;
-    border-style: solid;
-}
-
-.add-service-button:hover {
-    background-color: #ffffff;
-    color: #124F6F;
-    border: 1px #124F6F;
-    border-style: solid;
-}
-
-.edit-btn,
-.delete-btn {
-    padding: 5px 10px; 
-    font-size: 14px; 
-    border-radius: 0px; 
-}
 

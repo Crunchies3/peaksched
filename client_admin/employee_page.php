@@ -95,11 +95,11 @@ require_once "php/employee_page.php";
             </div>
         </aside>
         <section class="main" id="main">
-            <div class="container-fluid" id="serviceArea">
+            <div class="container-fluid" id="employeeArea">
                 <div class="mb-5">
                     <h1>Employee</h1>
                 </div>
-                <div class="container-fluid" id="servicesTableArea">
+                <div class="container-fluid" id="employeeTableArea">
                     <div>
                         <h5>All employee</h5>
                     </div>

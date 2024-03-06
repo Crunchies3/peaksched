@@ -1,29 +1,26 @@
 $.fn.dataTable.Buttons.defaults.dom.button.className = 'btn';
 
 var table;
-var customerId;
+var workerId;
 
 $(document).ready(function () {
     table = $('#myTable').DataTable();
     table.on('click', '#actionClick', function (e) {
-        customerId = table.row(e.target.closest('tr')).data();
-        document.getElementById('customerId').value = customerId[0];
+        workerId = table.row(e.target.closest('tr')).data();
+        var supId = document.getElementById('supId').value;
+        document.getElementById('workerId').value = workerId[0];
+        document.getElementById('superId').value = supId;
     });
 });
 
 $('#myTable').DataTable({
+    
     layout: {
         topStart: 'search',
         topEnd: {
             buttons: [{
                 text: ' sort',
                 className: 'sort-btn rounded mx-2 bi-sort-down-alt',
-            }, {
-                text: '<i class="bi bi-plus plus-icon"></i> add customer',
-                className: 'add-customer-btn rounded',
-                action: function () {
-                    location.href = 'customer_adding_page.php'
-                }
             }]
         },
     },
@@ -31,15 +28,16 @@ $('#myTable').DataTable({
     language: {
         emptyTable: 'No data available in table'
     },
-    'columnDefs': [
+    columnDefs: [
         {
             targets: 0,
-            'visible': false
+            className: "right-aligned-cell"
         },
         {
             data: null,
-            defaultContent: '<form action="./customer_editing_page.php" id="editService" method="get"><input id="customerId" hidden type="text" name="customerId" value=""></form><button form="editService" class="btn my-button-yes mx-1" id="actionClick">View</button>',
+            defaultContent: '<form id="AssignWorkerForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"><input id="workerId" name="workerId" hidden type="text" value=""><input id="superId" hidden name="supervisorId" type="text" value=""></form><button data-bs-target="#AssignWorkerModal"  data-bs-toggle = "modal" class="btn my-button-yes mx-1" id="actionClick">Assign</button>',
             targets: -1
+                                
         },
     ],
 });
