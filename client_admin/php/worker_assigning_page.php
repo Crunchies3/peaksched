@@ -16,7 +16,7 @@ if (isset($_GET["supervisorId"])) {
     $supervisorId = $_GET["supervisorId"];
 }
 
-if (isset($_POST['addWorkerModal'])) { 
+if (isset($_POST['addWorkerModal'])) {
 
     $workerId = $_POST["workerId"];
     $supervisorId = $_POST["supervisorId"];
@@ -24,7 +24,5 @@ if (isset($_POST['addWorkerModal'])) {
 
     echo $supervisorId . " " . $workerId;
 
-    $employees->addWorkerToSupervisor($supervisorId,$workerId);
-
+    $employees->addWorkerToSupervisor($supervisorId, $workerId);
 }
-

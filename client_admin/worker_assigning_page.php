@@ -12,7 +12,7 @@ require_once "php/worker_assigning_page.php";
 <html lang="en">
 
 <head>
-<meta charset="UTF-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Employee</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
@@ -105,7 +105,7 @@ require_once "php/worker_assigning_page.php";
                     </div>
                     <input type="hidden" id="supId" value="<?php echo $supervisorId ?>">
                     <div class="d-flex justify-content-between mb-3">
-                        <div>Supervisor ID:  <?php echo $supervisorId ?></div> 
+                        <div>Supervisor ID: <?php echo $supervisorId ?></div>
                         <div>Supervisor Name: </div>
                     </div>
                     <table id="myTable" class="table table-hover">
@@ -118,7 +118,7 @@ require_once "php/worker_assigning_page.php";
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
-                        <?php
+                            <?php
                             // LOOP TILL END OF DATA
                             while ($rows = $result->fetch_assoc()) {
                             ?>
@@ -137,7 +137,7 @@ require_once "php/worker_assigning_page.php";
                 </div>
             </div>
         </section>
-        <script src = "./js/data_table_worker_assigning.js"></script>                  
+        <script src="./js/data_table_worker_assigning.js"></script>
         <script src="./js/script.js"></script>
 </body>
 
