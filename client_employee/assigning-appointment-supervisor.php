@@ -5,7 +5,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
 }
-
+require_once "php/assigning_app_supervisor.php";
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +45,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="dashboard.php" class="sidebar-link">
+                    <a href="dashboard_supervisor.php" class="sidebar-link">
                         <i class="bi bi-house"></i>
                         <span>Home</span>
                     </a>
@@ -63,7 +63,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </a>
                 </li>
                 <li class="sidebar-footer">
-                    <a href="setting_account_page.php" class="sidebar-link ">
+                    <a href="supervisor_setting_account_page.php" class="sidebar-link ">
                         <i class="bi bi-gear"></i>
                         <span>Settings</span>
                     </a>
@@ -85,46 +85,35 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <div>
                         <h5>Assign Appointment</h5>
                     </div>
-                    <input type="hidden" id="supId" value="<?php echo $supervisorId ?>">
+                    <input type="hidden" id="appointmentId" value="<?php echo $appointmentId ?>">
                     <div class="d-flex justify-content-between mb-3">
-                        <div>Supervisor ID: </div> 
-                        <div>Supervisor Name: </div>
+                        <div>Appointment ID: <?php echo $appointmentId ?></div> 
+                        <div>Appointment Name: </div>
                     </div>
                     <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header -->
                         <thead id="tableHead">
-                            <th style="color: white;">Appointment Id</th>
-                            <th style="color: white;">Customer</th>
-                            <th style="color: white;">Service</th>
-                            <th style="color: white;">Status</th>
-                            <th style="color: white;">Date</th>
+                        <th style="color: white;">Id</th>
+                            <th style="color: white;">Fullname</th>
+                            <th style="color: white;">Email</th>   
+                            <th style="color: white;">Phone</th>
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>123123</td>
-                                <td>Cyril Alvez</td>
-                                <td>Bathroom Cleaning</td>
-                                <td style="color: red";>On-going</td>
-                                <td>2011-06-25</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>525121</td>
-                                <td>Kenneth Manon og</td>
-                                <td>Backyard Cleaning</td>
-                                <td style="color: green";>Completed</td>
-                                <td>2011-05-25</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>5555121</td>
-                                <td>Dennis Nazareno</td>
-                                <td>Room Cleaning</td>
-                                <td style="color: green";>Completed</td>
-                                <td>2011-04-25</td>
-                                <td></td>
-                            </tr>
+                        <?php
+                            // LOOP TILL END OF DATA
+                            while ($rows = $result->fetch_assoc()) {
+                            ?>
+                                <tr>
+                                    <td><?php echo $rows['employeeid']; ?></td>
+                                    <td><?php echo $rows['firstname']; ?> <?php echo $rows['lastname']; ?></td>
+                                    <td><?php echo $rows['email']; ?></td>
+                                    <td><?php echo $rows['mobilenumber']; ?></td>
+                                    <td></td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>

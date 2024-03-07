@@ -6,7 +6,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
-
+require_once "php/assigned_app_supervisor.php";
 ?>
 
 <!DOCTYPE html>
@@ -88,7 +88,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                         <h5>All appointment</h5>
                     </div>
                     <table id="myTable" class="table table-hover table-striped">
-                        <!-- //!TODO: para mailisan ang color sa header -->
+                        <!-- //!TODO: para mailisan ang color sa header ug status-->
                         <thead id="tableHead">
                             <th style="color: white;">Appointment Id</th>
                             <th style="color: white;">Customer</th>
@@ -98,30 +98,21 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>123123</td>
-                                <td>Cyril Alvez</td>
-                                <td>Bathroom Cleaning</td>
-                                <td style="color: red";>On-going</td>
-                                <td>2011-06-25</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>525121</td>
-                                <td>Kenneth Manon og</td>
-                                <td>Backyard Cleaning</td>
-                                <td style="color: green";>Completed</td>
-                                <td>2011-05-25</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>5555121</td>
-                                <td>Dennis Nazareno</td>
-                                <td>Room Cleaning</td>
-                                <td style="color: green";>Completed</td>
-                                <td>2011-04-25</td>
-                                <td></td>
-                            </tr>
+                            <?php
+                            // LOOP TILL END OF DATA
+                            while ($rows = $result->fetch_assoc()) {
+                            ?>
+                                <tr>
+                                    <td><?php echo $rows['appointment_id']; ?></td>
+                                    <td><?php echo $rows['fullname']; ?></td>
+                                    <td><?php echo $rows['title']; ?></td>
+                                    <td><?php echo $rows['status']; ?></td>
+                                    <td><?php echo $rows['start']; ?></td>
+                                    <td></td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>
