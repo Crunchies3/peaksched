@@ -31,7 +31,7 @@ require_once "php/employee_adding.php";
     <script src="./js/colorPick.js"></script>
 
     <link rel="stylesheet" href="./css/dashboard_styles.css" />
-    <link rel="stylesheet" href="./css/service_page_styles.css" />
+    <link rel="stylesheet" href="./css/employee_page_styles.css" />
     <link rel="stylesheet" href="../components/_components.css">
 
 </head>
