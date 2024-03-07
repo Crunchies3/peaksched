@@ -166,6 +166,29 @@ class Appointment
     }
 
 
+    public function fetchAppointmentListByCustomer($customerId)
+    {
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT request_app_id,
+                        (SELECT title FROM tbl_service WHERE service_id = a.service_id) as 'serviceName',
+                        status,
+                        start as 'date',
+                        start as 'start'
+                FROM tbl_request_appointment a
+                WHERE customer_id = ?"
+            );
+            $stmt->bind_param("s", $customerId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            return $result;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+
 
 
     // ? getter and setters

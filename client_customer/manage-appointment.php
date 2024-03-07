@@ -6,6 +6,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
+require_once "./php_backend/appointment.php";
 
 ?>
 
@@ -15,21 +16,17 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Appointment</title>
+    <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-    <!-- DataTables CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <link href="https://cdn.datatables.net/v/bs5/dt-2.0.0/b-3.0.0/b-html5-3.0.0/r-3.0.0/sl-2.0.0/sr-1.4.0/datatables.min.css" rel="stylesheet">
     <script src="https://cdn.datatables.net/v/bs5/dt-2.0.0/b-3.0.0/b-html5-3.0.0/r-3.0.0/sl-2.0.0/sr-1.4.0/datatables.min.js"></script>
-    <!-- end -->
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="./css/dashboard_styles.css" />
-    <link rel="stylesheet" href="./css/assigned-appointment-page.css" />
+    <link rel="stylesheet" href="./css/appointment-styles.css" />
     <link rel="stylesheet" href="../components/_components.css" />
 
 </head>
@@ -47,13 +44,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="dashboard_supervisor.php" class="sidebar-link ">
+                    <a href="" class="sidebar-link ">
                         <i class="bi bi-house"></i>
                         <span>Home</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="assigned-appointment-supervisor.php" class="sidebar-link selected">
+                    <a href="#" class="sidebar-link selected">
                         <i class="bi bi-calendar2-fill"></i>
                         <span>Appointments</span>
                     </a>
@@ -65,7 +62,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </a>
                 </li>
                 <li class="sidebar-footer">
-                    <a href="supervisor_setting_account_page.php" class="sidebar-link ">
+                    <a href="setting_account_page.php" class="sidebar-link ">
                         <i class="bi bi-gear"></i>
                         <span>Settings</span>
                     </a>
@@ -78,58 +75,58 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 </a>
             </div>
         </aside>
-        <section class="main" id="main">
-            <div class="container-fluid" id="appointmentArea">
-                <div class="mb-5">
-                    <h1>Appointment</h1>
+        <div class="main" id="main">
+            <div class="container-fluid" id="settingsArea">
+                <div class="mb-4">
+                    <h1>Appointments</h1>
                 </div>
-                <div class="container-fluid" id="appointmentTableArea">
-                    <div>
-                        <h5>All appointment</h5>
+                <div class="mb-4">
+                    <a href="./request-appointment-service.php" class="btn my-button-unselected mt-2">Request Appointment</a>
+                    <a href="./manage-appointment.php" class="btn my-button-selected mx-2 mt-2">Manage Appointments</a>
+                </div>
+                <div class="container-fluid" id="accountSettingArea">
+                    <div class="mb-5">
+                        <h5>Manage Appointments</h5>
                     </div>
+                    <label class="form-label mb-3">ALL APPOINTMENTS</label>
                     <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header -->
                         <thead id="tableHead">
                             <th style="color: white;">Appointment Id</th>
-                            <th style="color: white;">Customer</th>
                             <th style="color: white;">Service</th>
                             <th style="color: white;">Status</th>
                             <th style="color: white;">Date</th>
+                            <th style="color: white;">Time</th>
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>123123</td>
-                                <td>Cyril Alvez</td>
-                                <td>Bathroom Cleaning</td>
-                                <td style="color: red" ;>On-going</td>
-                                <td>2011-06-25</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>525121</td>
-                                <td>Kenneth Manon og</td>
-                                <td>Backyard Cleaning</td>
-                                <td style="color: green" ;>Completed</td>
-                                <td>2011-05-25</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>5555121</td>
-                                <td>Dennis Nazareno</td>
-                                <td>Room Cleaning</td>
-                                <td style="color: green" ;>Completed</td>
-                                <td>2011-04-25</td>
-                                <td></td>
-                            </tr>
+                            <?php
+                            // LOOP TILL END OF DATA
+                            while ($rows = $resultAppointment->fetch_assoc()) {
+                            ?>
+                                <tr>
+                                    <td><?php echo $rows['request_app_id']; ?></td>
+                                    <td><?php echo $rows['serviceName']; ?></td>
+                                    <?php
+                                    if ($rows['status'] == 'Pending Approval') $color = 'orange';
+                                    else if ($rows['status'] == 'Denied') $color = 'red';
+                                    else if ($rows['status'] == 'Completed' || $rows['status'] == 'Approved') $color = 'green';
+                                    ?>
+                                    <td style="<?php echo "color: $color;" ?>"><?php echo $rows['status']; ?></td>
+                                    <td><?php echo $rows['date']; ?></td>
+                                    <td><?php echo $rows['start']; ?></td>
+                                    <td></td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>
             </div>
-        </section>
-        <script src="./js/data-table-appointments.js"></script>
-        <script src="./js/script.js"></script>
 
+            <script src="./js/data-table-appointments.js"></script>
+            <script src="./js/script.js"></script>
 </body>
 
 </html>

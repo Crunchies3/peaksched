@@ -85,8 +85,8 @@ require_once "./php_backend/request-appointment-details.php";
                     <h1>Appointments</h1>
                 </div>
                 <div class="mb-4">
-                    <a href="#" class="btn my-button-selected mt-2">Request Appointment</a>
-                    <a href="#" class="btn my-button-unselected mx-2 mt-2">Manage Appointments</a>
+                    <a href="./request-appointment-service.php" class="btn my-button-selected mt-2">Request Appointment</a>
+                    <a href="./manage-appointment.php" class="btn my-button-unselected mx-2 mt-2">Manage Appointments</a>
                 </div>
                 <div class="container-fluid" id="accountSettingArea">
                     <div class="mb-3">

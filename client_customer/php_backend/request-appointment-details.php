@@ -85,7 +85,7 @@ if (isset($_POST['submitRequest'])) {
     }
     $selectedTime_err = $validate->radioButton($selectedTime);
 
-    $status = 'PENDING APPROVAL';
+    $status = 'Pending Approval';
 
     $dateTimeStart = $selectedDate . " " . date("H:i", strtotime($selectedTime));
     $dateTimeEnd = $selectedDate . " " . date("H:i", strtotime($selectedTime));
