@@ -102,7 +102,7 @@ require_once "php/employee_supervisor_editing.php";
                         <h5>Edit Employee</h5>
                     </div>
                     <form id="editEmployeeForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
-                        <input type="hidden" name="employeeId" value="<?= htmlspecialchars($employeeId) ?>" id="superVisorId">
+                        <input type="hidden" name="employeeId" value="<?= htmlspecialchars($employeeId) ?>" id="supervisorId">
                         <div class="col-md-6 mb-4">
                             <label class="form-label mb-1">FIRST NAME</label>
                             <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $firstName ?>">
@@ -281,7 +281,7 @@ require_once "php/employee_supervisor_editing.php";
 
 <!-- //? modal paras confirmation sa pag delete sa worker -->
 
-<div class="modal fade" id="RemoveWorker" data-bs-backdrop="static" tabindex="-1" aria-labelledby="RemoveWorker" aria-hidden="true">
+<div class="modal fade" id="deleteWorkerAccountModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="RemoveWorker" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
@@ -292,7 +292,7 @@ require_once "php/employee_supervisor_editing.php";
                Assigned worker will be removed.
             </div>
             <div class="modal-footer">
-                <button name="deleteAccount" form="RemoveWorkerForm" class="btn my-button-danger">Confirm</button>
+                <button name="deleteWorkerAccountModal" form="RemoveWorkerForm" class="btn my-button-danger">Confirm</button>
                 <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>

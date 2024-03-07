@@ -141,7 +141,7 @@ class Employees
     public function getWorkerAssignedTo($worker_id)
     {
         try {
-            $stmt = $this->conn->prepare("SELECT CONCAT(a.firstname, ' ', a.lastname) AS 'fullname' FROM tbl_employee a, tbl_supervisor_worker b WHERE a.type = 'supervisor' && b.worker_id = ?");
+            $stmt = $this->conn->prepare("SELECT CONCAT(a.firstname, ' ', a.lastname) AS 'fullname' FROM tbl_employee a, tbl_supervisor_worker b WHERE a.type = 'supervisor' && b.supervisor_id = a.employeeid && b.worker_id = ?");
             $stmt->bind_param("s", $worker_id);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -176,6 +176,15 @@ class Employees
             $stmt->bind_param("s", $employeeId);
             $stmt->execute();
             $this->conn->close();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+    public function removeAssignedWorker($worker_id, $supervisorId){
+        try {
+            $stmt = $this->conn->prepare("DELETE FROM tbl_supervisor_worker WHERE supervisor_id = ? && worker_id = ?");
+            $stmt->bind_param("ss",$supervisorId,$worker_id);
+            $stmt->execute();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
