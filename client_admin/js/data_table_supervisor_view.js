@@ -1,13 +1,15 @@
 $.fn.dataTable.Buttons.defaults.dom.button.className = 'btn';
 
 var table;
-var supervisorId;
+var workerId;
 
 $(document).ready(function () {
     table = $('#myTable').DataTable();
     table.on('click', '#actionClick', function (e) {
-        supervisorId = table.row(e.target.closest('tr')).data();
-        document.getElementById('supervisorId').value = supervisorId[0];
+        workerId = table.row(e.target.closest('tr')).data();
+        var supId = document.getElementById('supId').value;
+        document.getElementById('workerId').value = workerId[0];
+        document.getElementById('superId').value = supId;
     });
 });
 
@@ -39,7 +41,7 @@ $('#myTable').DataTable({
         },
         {
             data: null,
-            defaultContent: '<form id="RemoveWorkerForm"><input id="supervisorId" hidden type="text" value=""></form><button data-bs-target="#RemoveWorker"  data-bs-toggle = "modal" class="btn my-button-yes mx-1" id="actionClick">Remove</button>',
+            defaultContent: '<form id="RemoveWorkerForm" method="post"><input id="workerId" name="workerId" hidden type="text" value=""><input id="superId" name="supervisorId" hidden type="text" value=""></form><button data-bs-target="#deleteWorkerAccountModal"  data-bs-toggle = "modal" class="btn my-button-yes mx-1" id="actionClick">Remove</button>',
             targets: -1
         },
     ],

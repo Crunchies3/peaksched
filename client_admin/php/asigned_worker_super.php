@@ -9,3 +9,13 @@ $employees->fetchEmployeesList();
 $result = $employees->getEmployeeList();
 
 // usabon para makuha ang ang assigned workers
+//hahayesser
+if(isset($_POST['deleteWorkerAccountModal'])) {
+    $workerId = $_POST["workerId"];
+    $supervisorId = $_POST["supervisorId"];
+
+    $employees->removeAssignedWorker($workerId,$supervisorId);
+    $employees->fetchEmployeesList();
+    $result = $employees->getEmployeeList();
+
+}
