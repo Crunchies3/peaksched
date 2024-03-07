@@ -300,7 +300,7 @@ require_once "./php_backend/request-appointment-details.php";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Your account details will be updated.
+                Your request will be submitted
             </div>
             <div class="modal-footer">
                 <button name="submitRequest" form="requestAppointmentDetails" class="btn my-button-yes">Confirm</button>

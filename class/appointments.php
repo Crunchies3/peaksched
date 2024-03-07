@@ -149,24 +149,17 @@ class Appointment
         }
     }
 
-    public function addRequestAppointment($appointmentId, $serviceId, $customerId, $employeeId, $dateTimeStart, $dateTimeEnd, $note)
+    public function addRequestAppointment($requestAppointmentId, $service_id, $addressId, $customerId, $typeOfUnit, $numOfBeds, $numOfBath, $dateTimeStart, $dateTimeEnd, $note, $status)
     {
         try {
-            $stmt = $this->conn->prepare("INSERT INTO tbl_appointment (id, note, start, end) VALUES (?,?,?,?)");
-            $stmt->bind_param("ssss", $appointmentId, $note, $dateTimeStart, $dateTimeEnd);
-            $stmt->execute();
-            $stmt->close();
+            $stmt = $this->conn->prepare(
+                "INSERT INTO tbl_request_appointment (request_app_id, customer_id, service_id, address_id, num_floors, num_beds, num_bath, start, end, status, note) 
+                VALUES (?,?,?,?,?,?,?,?,?,?,?)"
+            );
 
-            $stmt = $this->conn->prepare("INSERT INTO tbl_app_cust_sup (appointment_id, customer_id, employee_id) VALUES (?,?,?)");
-            $stmt->bind_param("sss", $appointmentId, $customerId, $employeeId);
+            $stmt->bind_param("sssssssssss", $requestAppointmentId, $customerId, $service_id, $addressId, $typeOfUnit, $numOfBeds, $numOfBath, $dateTimeStart, $dateTimeEnd, $status, $note);
             $stmt->execute();
             $stmt->close();
-
-            $stmt = $this->conn->prepare("INSERT INTO tbl_appointment_service (appointment_id, service_id) VALUES (?,?)");
-            $stmt->bind_param("ss", $appointmentId, $serviceId);
-            $stmt->execute();
-            $stmt->close();
-            $this->conn->close();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }

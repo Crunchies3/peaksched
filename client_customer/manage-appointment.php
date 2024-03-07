@@ -6,7 +6,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
-require_once "./php_backend/appointment.php";
 
 ?>
 
@@ -16,17 +15,21 @@ require_once "./php_backend/appointment.php";
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title>Appointment</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <!-- DataTables CDN -->
 
     <link href="https://cdn.datatables.net/v/bs5/dt-2.0.0/b-3.0.0/b-html5-3.0.0/r-3.0.0/sl-2.0.0/sr-1.4.0/datatables.min.css" rel="stylesheet">
     <script src="https://cdn.datatables.net/v/bs5/dt-2.0.0/b-3.0.0/b-html5-3.0.0/r-3.0.0/sl-2.0.0/sr-1.4.0/datatables.min.js"></script>
+    <!-- end -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="./css/dashboard_styles.css" />
-    <link rel="stylesheet" href="./css/appointment-styles.css" />
+    <link rel="stylesheet" href="./css/assigned-appointment-page.css" />
     <link rel="stylesheet" href="../components/_components.css" />
 
 </head>
@@ -44,13 +47,13 @@ require_once "./php_backend/appointment.php";
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="" class="sidebar-link ">
+                    <a href="dashboard_supervisor.php" class="sidebar-link ">
                         <i class="bi bi-house"></i>
                         <span>Home</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link selected">
+                    <a href="assigned-appointment-supervisor.php" class="sidebar-link selected">
                         <i class="bi bi-calendar2-fill"></i>
                         <span>Appointments</span>
                     </a>
@@ -62,7 +65,7 @@ require_once "./php_backend/appointment.php";
                     </a>
                 </li>
                 <li class="sidebar-footer">
-                    <a href="setting_account_page.php" class="sidebar-link ">
+                    <a href="supervisor_setting_account_page.php" class="sidebar-link ">
                         <i class="bi bi-gear"></i>
                         <span>Settings</span>
                     </a>
@@ -75,51 +78,58 @@ require_once "./php_backend/appointment.php";
                 </a>
             </div>
         </aside>
-        <div class="main" id="main">
-            <div class="container-fluid" id="settingsArea">
-                <div class="mb-4">
-                    <h1>Appointments</h1>
+        <section class="main" id="main">
+            <div class="container-fluid" id="appointmentArea">
+                <div class="mb-5">
+                    <h1>Appointment</h1>
                 </div>
-                <div class="mb-4">
-                    <a href="#" class="btn my-button-selected mt-2">Request Appointment</a>
-                    <a href="#" class="btn my-button-unselected mx-2 mt-2">Manage Appointments</a>
-                </div>
-                <div class="container-fluid" id="accountSettingArea">
-                    <div class="mb-5">
-                        <h5>Request Appointment</h5>
+                <div class="container-fluid" id="appointmentTableArea">
+                    <div>
+                        <h5>All appointment</h5>
                     </div>
-                    <label class="form-label mb-3">SELECT A SERVICE</label>
                     <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header -->
                         <thead id="tableHead">
-                            <th style="color: white;">Id</th>
-                            <th style="color: white;">Title</th>
-                            <th style="color: white;">Duration</th>
-                            <th style="color: white;">Price</th>
+                            <th style="color: white;">Appointment Id</th>
+                            <th style="color: white;">Customer</th>
+                            <th style="color: white;">Service</th>
+                            <th style="color: white;">Status</th>
+                            <th style="color: white;">Date</th>
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
-                            <?php
-                            // LOOP TILL END OF DATA
-                            while ($rows = $result->fetch_assoc()) {
-                            ?>
-                                <tr>
-                                    <td><?php echo $rows['service_id']; ?></td>
-                                    <td><i class="bi bi-circle-fill mx-2" style="color: <?php echo $rows['color'] ?>;"></i> <?php echo $rows['title']; ?></td>
-                                    <td><?php echo $rows['duration'] . ' minutes'; ?></td>
-                                    <td><?php echo '$' . $rows['price'] . '.00'; ?></td>
-                                    <td></td>
-                                </tr>
-                            <?php
-                            }
-                            ?>
+                            <tr>
+                                <td>123123</td>
+                                <td>Cyril Alvez</td>
+                                <td>Bathroom Cleaning</td>
+                                <td style="color: red" ;>On-going</td>
+                                <td>2011-06-25</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>525121</td>
+                                <td>Kenneth Manon og</td>
+                                <td>Backyard Cleaning</td>
+                                <td style="color: green" ;>Completed</td>
+                                <td>2011-05-25</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>5555121</td>
+                                <td>Dennis Nazareno</td>
+                                <td>Room Cleaning</td>
+                                <td style="color: green" ;>Completed</td>
+                                <td>2011-04-25</td>
+                                <td></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+        </section>
+        <script src="./js/data-table-appointments.js"></script>
+        <script src="./js/script.js"></script>
 
-            <script src="./js/data-table-service.js"></script>
-            <script src="./js/script.js"></script>
 </body>
 
 </html>

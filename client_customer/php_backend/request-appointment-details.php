@@ -19,8 +19,9 @@ $service_id = $serviceName = $typeOfUnit = $numOfBeds = $numOfBath = $selectedAd
 $address_Err = $typeOfUnit_err = $numOfBath_err = $numOfBeds_err = $selectedDate_err = $selectedTime_err = "";
 
 
+$customerId = $customer->getId();
 
-$address_list = $address->fetchAddressArr($customer->getId());
+$address_list = $address->fetchAddressArr($customerId);
 
 if (isset($_GET["serviceId"])) {
     $service_id = $_GET["serviceId"];
@@ -50,6 +51,9 @@ if (isset($_POST['submitRequest'])) {
 
     $selectedAddress = $_POST['selectedAddress'];
     $address_Err = $validate->selectedAddress($selectedAddress);
+    if (empty($address_Err)) {
+        $addressId = $address->getIdByName($selectedAddress);
+    }
 
 
     if (isset($_POST['numberOfFloors'])) {
@@ -81,7 +85,13 @@ if (isset($_POST['submitRequest'])) {
     }
     $selectedTime_err = $validate->radioButton($selectedTime);
 
+    $status = 'PENDING APPROVAL';
+
+    $dateTimeStart = $selectedDate . " " . date("H:i", strtotime($selectedTime));
+    $dateTimeEnd = $selectedDate . " " . date("H:i", strtotime($selectedTime));
+
     if (empty($address_Err) && empty($typeOfUnit_err) && empty($numOfBath_err) && empty($numOfBeds_err) && empty($selectedDate_err) && empty($selectedTime_err)) {
-        // $appointment->addRequestAppointment($service_id, $serviceName, $typeOfUnit, $numOfBeds, $numOfBath, $selectedAddress, $selectedDate, $selectedTime, $note, $requestAppointmentId);
+        $appointment->addRequestAppointment($requestAppointmentId, $service_id, $addressId, $customerId, $typeOfUnit, $numOfBeds, $numOfBath, $dateTimeStart, $dateTimeEnd, $note, $status);
+        header("location: request-appointment-succes.php");
     }
 }
