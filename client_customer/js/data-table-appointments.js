@@ -1,13 +1,13 @@
 $.fn.dataTable.Buttons.defaults.dom.button.className = 'btn';
 
 var table;
-var serviceId;
+var appointmentId;
 
 $(document).ready(function () {
     table = $('#myTable').DataTable();
     table.on('click', '#actionClick', function (e) {
-        serviceId = table.row(e.target.closest('tr')).data();
-        document.getElementById('serviceId').value = serviceId[0];
+        appointmentId = table.row(e.target.closest('tr')).data();
+        document.getElementById('appointmentId').value = appointmentId[0];
     });
 });
 
@@ -45,7 +45,7 @@ $('#myTable').DataTable({
         },
         {
             data: null,
-            defaultContent: '<form action="./request-appointment-details.php" id="selectedService" method="get"><input id="serviceId" hidden type="text" name="serviceId" value=""> </form><button form="selectedService" class="btn btn-sm my-button-yes mx-1" id="actionClick">select</button>',
+            defaultContent: '<form action="./manage-appointment-details.php" id="selectedAppointment" method="get"><input id="appointmentId" hidden type="text" name="appointmentId" value=""> </form><button form="selectedAppointment" class="btn btn-sm my-button-yes mx-1" id="actionClick">view</button>',
             targets: -1
         },
     ],
