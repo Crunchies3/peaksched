@@ -6,7 +6,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
-
+require_once "php/assigned_app_supervisor_view.php";
 ?>
 
 <!DOCTYPE html>
@@ -89,41 +89,26 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                         <h5>Appointment Details</h5>
                     </div>
                     <form id="editWorkerForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
-                        <input type="hidden" name="employeeId" value="<?= htmlspecialchars($employeeId) ?>" id="superVisorId">
+                        <input type="hidden" name="appointmentId" value="<?= htmlspecialchars($appointmentId) ?>" id="appointmentId">
                         <div class="col-md-6 mb-4">
                             <label class="form-label mb-1">APPOINTMENT ID</label>
-                            <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $firstName ?>">
-                            <div class="invalid-feedback">
-                                <?php echo $firstName_err; ?>
-                            </div>
+                            <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $appointmentId ?>">
                         </div>
                         <div class="col-md-6 mb-4">
                             <label class="form-label mb-1">FULL NAME</label>
-                            <input name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your last name" aria-label="Last name" value="<?php echo $lastName ?>">
-                            <div class="invalid-feedback">
-                                <?php echo $lastName_err; ?>
-                            </div>
+                            <input name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your last name" aria-label="Last name" value="<?php echo $fullname ?>">
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">SERVICE</label>
-                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your email address" value="<?php echo $email ?>">
-                            <div class="invalid-feedback">
-                                <?php echo $email_err; ?>
-                            </div>
+                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your email address" value="<?php echo $title ?>">
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">STATUS</label>
-                            <input name="mobile" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your mobile number" value="<?php echo $mobileNumber ?>">
-                            <div class="invalid-feedback">
-                                <?php echo $mobileNumber_err; ?>
-                            </div>
+                            <input name="mobile" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your mobile number" value="<?php echo $status ?>">
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">DATE</label>
-                            <input name="position" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $position ?>">
-                            <div class="invalid-feedback">
-                                <?php echo $position_err; ?>
-                            </div>
+                            <input name="position" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $date ?>">
                         </div>
                     </form>
                 </div>
@@ -136,38 +121,27 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header -->
                         <thead id="tableHead">
-                            <th style="color: white;">Appointment Id</th>
-                            <th style="color: white;">Customer</th>
-                            <th style="color: white;">Service</th>
-                            <th style="color: white;">Status</th>
-                            <th style="color: white;">Date</th>
+                        <th style="color: white;">Id</th>
+                            <th style="color: white;">Fullname</th>
+                            <th style="color: white;">Email</th>
+                            <th style="color: white;">Phone</th>
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>123123</td>
-                                <td>Cyril Alvez</td>
-                                <td>Bathroom Cleaning</td>
-                                <td style="color: red";>On-going</td>
-                                <td>2011-06-25</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>525121</td>
-                                <td>Kenneth Manon og</td>
-                                <td>Backyard Cleaning</td>
-                                <td style="color: green";>Completed</td>
-                                <td>2011-05-25</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>5555121</td>
-                                <td>Dennis Nazareno</td>
-                                <td>Room Cleaning</td>
-                                <td style="color: green";>Completed</td>
-                                <td>2011-04-25</td>
-                                <td></td>
-                            </tr>
+                        <?php
+                            // LOOP TILL END OF DATA
+                            while ($rows = $result->fetch_assoc()) {
+                            ?>
+                                <tr>
+                                    <td><?php echo $rows['employeeid']; ?></td>
+                                    <td><?php echo $rows['fullname']; ?></td>
+                                    <td><?php echo $rows['email']; ?></td>
+                                    <td><?php echo $rows['mobilenumber']; ?></td>
+                                    <td></td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -237,7 +211,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                Assigned worker will be removed.
             </div>
             <div class="modal-footer">
-                <button name="deleteAccount" form="RemoveWorkerForm" class="btn my-button-danger">Confirm</button>
+                <button name="RemoveWorker" form="RemoveWorkerForm" class="btn my-button-danger">Confirm</button>
                 <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
