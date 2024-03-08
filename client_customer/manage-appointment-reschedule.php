@@ -99,16 +99,10 @@ require_once "./php_backend/appointment.php";
                         <h5>Appointment Details <span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $status ?></span></h5>
                     </div>
                     <div class="row mb-5">
-                        <form id="appointmentId" class="col-md-6 mb-4" action="./manage-appointment-reschedule.php" method="get">
+                        <form id="appointmentId" class="col-md-6 mb-4" action="" method="get">
                             <label class="form-label mb-1">APPOINTMENT ID</label>
-                            <input hidden name="appointmentId" type="text" class="form-control input-field" aria-label="Appointment Id" value="<?php echo $appointmentId ?>">
-                            <input disabled type="text" class="form-control input-field" aria-label="Appointment Id" value="<?php echo $appointmentId ?>">
+                            <input disabled name="appointmentId" type="text" class="form-control input-field" aria-label="Appointment Id" value="<?php echo $appointmentId ?>">
                         </form>
-
-                        <form hidden id="appointmentCancel" class="col-md-6 mb-4" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                            <input name="appointmentId" type="text" class="form-control input-field" aria-label="Appointment Id" value="<?php echo $appointmentId ?>">
-                        </form>
-
                         <div class="col-md-6 mb-4">
                             <label class="form-label mb-1">SELECTED SERVICE</label>
                             <input disabled name="selectedService" type="text" class="form-control input-field" aria-label="Selected Service" value="<?php echo $selectedService ?>">
@@ -128,10 +122,10 @@ require_once "./php_backend/appointment.php";
                     </div>
                     <div class="row ">
                         <div class="mb-3 col-xxl-2">
-                            <button form="appointmentId" class="btn btn-lg fs-6 w-100 my-button-yes">Reschedule Appointment</button>
+                            <button data-bs-toggle="modal" data-bs-target="#updateInfoModal" class="btn btn-lg fs-6 w-100 my-button-yes">Reschedule Appointment</button>
                         </div>
                         <div class="mb-0 col-xxl-2">
-                            <button data-bs-toggle="modal" data-bs-target="#cancelAppointment" class="btn btn-lg fs-6 w-100 my-button-danger">Cancel Appointment</button>
+                            <button data-bs-toggle="modal" data-bs-target="#updateInfoModal" class="btn btn-lg fs-6 w-100 my-button-yes">Reschedule Appointment</button>
                         </div>
                     </div>
                 </div>
@@ -146,19 +140,19 @@ require_once "./php_backend/appointment.php";
 
 
 <!-- Modal -->
-<div class="modal fade" id="cancelAppointment" data-bs-backdrop="static" tabindex="-1" aria-labelledby="cancelAppointment" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
+<div class="modal" id="exampleModal" data-bs-backdrop="true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="width: 400px;">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
-                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Cancel Appointment?</h1>
+                <h5 class="modal-title" style="font-size: 16px;" id="exampleModalLabel">Appointment</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Your appointment will be cancelled.
+                ...
             </div>
             <div class="modal-footer">
-                <button name="cancelApp" form="appointmentCancel" class="btn my-button-danger">Confirm</button>
-                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
