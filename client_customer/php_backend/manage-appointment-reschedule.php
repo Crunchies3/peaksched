@@ -17,3 +17,9 @@ $appointmentId = "";
 if (isset($_GET["appointmentId"])) {
     $appointmentId = $_GET["appointmentId"];
 }
+
+if (isset($_POST['reschedApp'])) {
+    //diria ibutang ang code paras appointment resced
+
+    header("location: manage-resched-success.php");
+}
