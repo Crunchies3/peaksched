@@ -86,7 +86,7 @@ require_once "./php_backend/appointment.php";
                 </div>
                 <div class="container-fluid" id="accountSettingArea">
                     <div class="mb-5">
-                        <h5>Appointment Details</h5>
+                        <h5>Appointment Details <span class="badge rounded-pill my-badge-denied">Denied</span><span class="badge rounded-pill my-badge-approved">Approved</span><span class="badge rounded-pill my-badge-pending">Pending Approval</span></h5>
                     </div>
                     <form id="updateAccountDetails" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <div class="col-md-6 mb-4">

@@ -88,9 +88,27 @@
     color: red;
 }
 
-.my-btn-view{
+.my-btn-view {
     border: -100px #186cb0;
     border-style: solid;
     background-color: #186cb0;
     color: #ececec;
+}
+
+.my-badge-approved {
+    color: #1E7634;
+    background-color: #D6F1D5;
+    font-weight: bold;
+}
+
+.my-badge-pending {
+    color: #756900;
+    background-color: #F4F3CF;
+    font-weight: bold;
+}
+
+.my-badge-denied {
+    color: #c70000;
+    background-color: #FFD3D3;
+    font-weight: bold;
 }

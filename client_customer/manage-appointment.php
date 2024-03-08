@@ -108,11 +108,11 @@ require_once "./php_backend/appointment.php";
                                     <td><?php echo $rows['request_app_id']; ?></td>
                                     <td><?php echo $rows['serviceName']; ?></td>
                                     <?php
-                                    if ($rows['status'] == 'Pending Approval') $color = 'orange';
-                                    else if ($rows['status'] == 'Denied') $color = 'red';
-                                    else if ($rows['status'] == 'Completed' || $rows['status'] == 'Approved') $color = 'green';
+                                    if ($rows['status'] == 'Pending Approval') $badgeType = 'my-badge-pending';
+                                    else if ($rows['status'] == 'Denied') $badgeType = 'my-badge-denied';
+                                    else if ($rows['status'] == 'Completed' || $rows['status'] == 'Approved') $badgeType = 'my-badge-approved';
                                     ?>
-                                    <td style="<?php echo "color: $color;" ?>"><?php echo $rows['status']; ?></td>
+                                    <td><span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $rows['status']; ?></span></td>
                                     <td><?php echo $rows['date']; ?></td>
                                     <td><?php echo $rows['start']; ?></td>
                                     <td></td>
