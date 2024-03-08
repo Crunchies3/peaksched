@@ -26,6 +26,7 @@ require_once "php_backend/settings_account.php";
 
     <link rel="stylesheet" href="./css/dashboard_styles.css" />
     <link rel="stylesheet" href="./css/setting_page_styles.css" />
+    <link rel="stylesheet" href="../components/_components.css" />
 
 
 </head>
@@ -115,10 +116,10 @@ require_once "php_backend/settings_account.php";
                     </form>
                     <div class="row">
                         <div class="mb-3 col-xxl-2">
-                            <button data-bs-toggle="modal" data-bs-target="#updateInfoModal" class="btn btn-lg fs-6 w-100 save-changes-button">Save changes</button>
+                            <button data-bs-toggle="modal" data-bs-target="#updateInfoModal" class="btn btn-lg fs-6 w-100 my-button-yes">Save changes</button>
                         </div>
                         <div class="mb-0 col-xxl-2">
-                            <a href="./setting_account_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 discard-changes-button">Discard changes</a>
+                            <a href="./setting_account_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Discard changes</a>
                         </div>
                     </div>
                 </div>
@@ -154,10 +155,10 @@ require_once "php_backend/settings_account.php";
                     </form>
                     <div class="row">
                         <div class="mb-3 col-xxl-2">
-                            <button data-bs-toggle="modal" data-bs-target="#updatePasswordModal" type="submit" class="btn btn-lg fs-6 w-100 change-password-button">Change password</button>
+                            <button data-bs-toggle="modal" data-bs-target="#updatePasswordModal" type="submit" class="btn btn-lg fs-6 w-100 my-button-yes">Change password</button>
                         </div>
                         <div class="mb-0 col-xxl-2">
-                            <a href="./setting_account_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 discard-changes-button">Discard changes</a>
+                            <a href="./setting_account_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Discard changes</a>
                         </div>
                     </div>
                 </div>
@@ -183,8 +184,8 @@ require_once "php_backend/settings_account.php";
                 Your account details will be updated.
             </div>
             <div class="modal-footer">
-                <button name="updateInfo" form="updateAccountDetails" class="btn save-changes-button">Confirm</button>
-                <button type="button" class="btn discard-changes-button" data-bs-dismiss="modal">Cancel</button>
+                <button name="updateInfo" form="updateAccountDetails" class="btn my-button-yes">Confirm</button>
+                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
@@ -204,8 +205,8 @@ require_once "php_backend/settings_account.php";
                 Your password will be updated.
             </div>
             <div class="modal-footer">
-                <button name="changePassword" form="securityForm" class="btn save-changes-button">Confirm</button>
-                <button type="button" class="btn discard-changes-button" data-bs-dismiss="modal">Cancel</button>
+                <button name="changePassword" form="securityForm" class="btn my-button-yes">Confirm</button>
+                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>

@@ -80,15 +80,15 @@ require_once "./php_backend/request-appointment-details.php";
             </div>
         </aside>
         <div class="main" id="main">
-            <div class="container-fluid" id="settingsArea">
+            <div class="container-fluid" id="mainArea">
                 <div class="mb-4">
                     <h1>Appointments</h1>
                 </div>
                 <div class="mb-4">
-                    <a href="#" class="btn my-button-selected mt-2">Request Appointment</a>
-                    <a href="#" class="btn my-button-unselected mx-2 mt-2">Manage Appointments</a>
+                    <a href="./request-appointment-service.php" class="btn my-button-selected mt-2">Request Appointment</a>
+                    <a href="./manage-appointment.php" class="btn my-button-unselected mx-2 mt-2">Manage Appointments</a>
                 </div>
-                <div class="container-fluid" id="accountSettingArea">
+                <div class="container-fluid" id="subArea-single">
                     <div class="mb-3">
                         <h5>Request Appointment</h5>
                     </div>
@@ -300,7 +300,7 @@ require_once "./php_backend/request-appointment-details.php";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Your account details will be updated.
+                Your request will be submitted
             </div>
             <div class="modal-footer">
                 <button name="submitRequest" form="requestAppointmentDetails" class="btn my-button-yes">Confirm</button>

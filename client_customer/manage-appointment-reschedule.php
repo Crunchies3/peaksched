@@ -80,45 +80,58 @@ require_once "./php_backend/appointment.php";
                 <div class="mb-4">
                     <h1>Appointments</h1>
                 </div>
-                <div class="mb-4">
-                    <a href="./request-appointment-service.php" class="btn my-button-selected mt-2">Request Appointment</a>
-                    <a href="./manage-appointment.php" class="btn my-button-unselected mx-2 mt-2">Manage Appointments</a>
+                <div class="row ">
+                    <div class="mb-3 col-xxl-2">
+                        <a href="./request-appointment-service.php" class="btn my-button-unselected w-100">Request Appointment</a>
+                    </div>
+                    <div class="mb-4 col-xxl-2">
+                        <a href="./manage-appointment.php" class="btn my-button-selected w-100">Manage Appointments</a>
+                    </div>
                 </div>
                 <div class="container-fluid" id="subArea-single">
                     <div class="mb-5">
-                        <h5>Request Appointment</h5>
+                        <?php
+                        if ($status == 'Pending Approval') $badgeType = 'my-badge-pending';
+                        else if ($status == 'Denied') $badgeType = 'my-badge-denied';
+                        else if ($status == 'Completed') $badgeType = 'my-badge-approved';
+                        else if ($status == 'Approved') $badgeType = 'my-badge-approved';
+                        ?>
+                        <h5>Appointment Details <span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $status ?></span></h5>
                     </div>
-                    <label class="form-label mb-3">SELECT A SERVICE</label>
-                    <table id="myTable" class="table table-hover table-striped">
-                        <!-- //!TODO: para mailisan ang color sa header -->
-                        <thead id="tableHead">
-                            <th style="color: white;">Id</th>
-                            <th style="color: white;">Title</th>
-                            <th style="color: white;">Duration</th>
-                            <th style="color: white;">Price</th>
-                            <th style="color: white;">Actions</th>
-                        </thead>
-                        <tbody>
-                            <?php
-                            // LOOP TILL END OF DATA
-                            while ($rows = $result->fetch_assoc()) {
-                            ?>
-                                <tr>
-                                    <td><?php echo $rows['service_id']; ?></td>
-                                    <td><i class="bi bi-circle-fill mx-2" style="color: <?php echo $rows['color'] ?>;"></i> <?php echo $rows['title']; ?></td>
-                                    <td><?php echo $rows['duration'] . ' minutes'; ?></td>
-                                    <td><?php echo '$' . $rows['price'] . '.00'; ?></td>
-                                    <td></td>
-                                </tr>
-                            <?php
-                            }
-                            ?>
-                        </tbody>
-                    </table>
+                    <div class="row mb-5">
+                        <form id="appointmentId" class="col-md-6 mb-4" action="" method="get">
+                            <label class="form-label mb-1">APPOINTMENT ID</label>
+                            <input disabled name="appointmentId" type="text" class="form-control input-field" aria-label="Appointment Id" value="<?php echo $appointmentId ?>">
+                        </form>
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label mb-1">SELECTED SERVICE</label>
+                            <input disabled name="selectedService" type="text" class="form-control input-field" aria-label="Selected Service" value="<?php echo $selectedService ?>">
+                        </div>
+                        <div class="mb-4 col-lg-6 mb-4">
+                            <label class="form-label mb-1">DATE</label>
+                            <input disabled name="text" class="form-control fs-6 input-field" value="<?php echo $email ?>">
+                        </div>
+                        <div class="mb-4 col-lg-6 mb-4">
+                            <label class="form-label mb-1">TIME</label>
+                            <input disabled name="text" type="text" class="form-control fs-6 input-field" value="<?php echo $mobileNumber ?>">
+                        </div>
+                        <div class="mb-4 col-lg-6 mb-4">
+                            <label class="form-label mb-1">ASSIGNED SUPERVISOE</label>
+                            <input disabled name="supervisor" type="text" class="form-control fs-6 input-field" value="<?php echo $mobileNumber ?>">
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="mb-3 col-xxl-2">
+                            <button data-bs-toggle="modal" data-bs-target="#updateInfoModal" class="btn btn-lg fs-6 w-100 my-button-yes">Reschedule Appointment</button>
+                        </div>
+                        <div class="mb-0 col-xxl-2">
+                            <button data-bs-toggle="modal" data-bs-target="#updateInfoModal" class="btn btn-lg fs-6 w-100 my-button-yes">Reschedule Appointment</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <script src="./js/data-table-service.js"></script>
+            <script src="./js/data-table-appointments.js"></script>
             <script src="./js/script.js"></script>
 </body>
 

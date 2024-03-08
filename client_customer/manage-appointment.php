@@ -81,33 +81,40 @@ require_once "./php_backend/appointment.php";
                     <h1>Appointments</h1>
                 </div>
                 <div class="mb-4">
-                    <a href="./request-appointment-service.php" class="btn my-button-selected mt-2">Request Appointment</a>
-                    <a href="./manage-appointment.php" class="btn my-button-unselected mx-2 mt-2">Manage Appointments</a>
+                    <a href="./request-appointment-service.php" class="btn my-button-unselected mt-2">Request Appointment</a>
+                    <a href="./manage-appointment.php" class="btn my-button-selected mx-2 mt-2">Manage Appointments</a>
                 </div>
                 <div class="container-fluid" id="subArea-single">
                     <div class="mb-5">
-                        <h5>Request Appointment</h5>
+                        <h5>Manage Appointments</h5>
                     </div>
-                    <label class="form-label mb-3">SELECT A SERVICE</label>
+                    <label class="form-label mb-3">ALL APPOINTMENTS</label>
                     <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header -->
                         <thead id="tableHead">
-                            <th style="color: white;">Id</th>
-                            <th style="color: white;">Title</th>
-                            <th style="color: white;">Duration</th>
-                            <th style="color: white;">Price</th>
+                            <th style="color: white;">Appointment Id</th>
+                            <th style="color: white;">Service</th>
+                            <th style="color: white;">Status</th>
+                            <th style="color: white;">Date</th>
+                            <th style="color: white;">Time</th>
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
                             <?php
                             // LOOP TILL END OF DATA
-                            while ($rows = $result->fetch_assoc()) {
+                            while ($rows = $resultAppointment->fetch_assoc()) {
                             ?>
                                 <tr>
-                                    <td><?php echo $rows['service_id']; ?></td>
-                                    <td><i class="bi bi-circle-fill mx-2" style="color: <?php echo $rows['color'] ?>;"></i> <?php echo $rows['title']; ?></td>
-                                    <td><?php echo $rows['duration'] . ' minutes'; ?></td>
-                                    <td><?php echo '$' . $rows['price'] . '.00'; ?></td>
+                                    <td><?php echo $rows['request_app_id']; ?></td>
+                                    <td><?php echo $rows['serviceName']; ?></td>
+                                    <?php
+                                    if ($rows['status'] == 'Pending Approval') $badgeType = 'my-badge-pending';
+                                    else if ($rows['status'] == 'Denied') $badgeType = 'my-badge-denied';
+                                    else if ($rows['status'] == 'Completed' || $rows['status'] == 'Approved') $badgeType = 'my-badge-approved';
+                                    ?>
+                                    <td><span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $rows['status']; ?></span></td>
+                                    <td><?php echo $rows['date']; ?></td>
+                                    <td><?php echo $rows['start']; ?></td>
                                     <td></td>
                                 </tr>
                             <?php
@@ -118,7 +125,7 @@ require_once "./php_backend/appointment.php";
                 </div>
             </div>
 
-            <script src="./js/data-table-service.js"></script>
+            <script src="./js/data-table-appointments.js"></script>
             <script src="./js/script.js"></script>
 </body>
 

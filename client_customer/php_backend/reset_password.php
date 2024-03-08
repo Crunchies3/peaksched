@@ -1,6 +1,7 @@
 <?php
 require_once "config.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/customer_account.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/customer_account.php";
 
 
 $password = $confirmPassword = $hashedPassword = $tokenHash = $status = $visibility = $token = "";

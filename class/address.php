@@ -30,6 +30,28 @@ class Address
         }
     }
 
+    public function getIdByName($address)
+    {
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT address_id
+                FROM tbl_customer_address
+                WHERE concat(street, '. ' , city, ', ', province, '. ', country, ', ', zip_code) = ?;"
+            );
+            $stmt->bind_param("s", $address);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $id = $row["address_id"];
+                }
+            }
+            return $id;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
 
     public function getConn()
     {
