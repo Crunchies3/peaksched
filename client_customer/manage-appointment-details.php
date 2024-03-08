@@ -122,7 +122,7 @@ require_once "./php_backend/appointment.php";
                             <input disabled name="text" type="text" class="form-control fs-6 input-field" value="<?php echo $mobileNumber ?>">
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
-                            <label class="form-label mb-1">ASSIGNED SUPERVISOE</label>
+                            <label class="form-label mb-1">ASSIGNED SUPERVISOR</label>
                             <input disabled name="supervisor" type="text" class="form-control fs-6 input-field" value="<?php echo $mobileNumber ?>">
                         </div>
                     </div>
@@ -136,8 +136,6 @@ require_once "./php_backend/appointment.php";
                     </div>
                 </div>
             </div>
-
-            <script src="./js/data-table-appointments.js"></script>
             <script src="./js/script.js"></script>
 </body>
 

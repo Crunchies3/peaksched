@@ -31,5 +31,5 @@ $status = $appointment->getStatus();
 if (isset($_POST['cancelApp'])) {
     //diria ibutang ang code paras appointment cancel
 
-    header("location: manage-appointment-cancel.php");
+    header("location: manage-cancel-success.php");
 }

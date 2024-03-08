@@ -13,72 +13,77 @@ class Employee_Client
     private $appointmentDate;
 
 
-    public function fetchAssignedAppointments($supervisorId){
-       try {
-        $stmt = $this->conn->prepare("SELECT a.appointment_id, CONCAT(b.firstname,' ',b.lastname) AS 'fullname', c.title, a.status, a.start FROM tbl_confirmed_appointment a, tbl_customer b, tbl_service c WHERE a.customer_id = b.customerid && a.service_id = c.service_id && a.supervisor_id = ?");
-        $stmt->bind_param("s",$supervisorId);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $this->assignedAppointmentsList = $result;
-       } catch (Exception $e) {
-        echo 'Caught exception: ',  $e->getMessage(), "\n";
-       }
-    }
-    public function displayCurrentAppointmentAssigned($appointmentId){
+    public function fetchAssignedAppointments($supervisorId)
+    {
         try {
-        $stmt = $this->conn->prepare("SELECT a.appointment_id, CONCAT(b.firstname,' ',b.lastname) AS 'fullname', c.title, a.status, a.start FROM tbl_confirmed_appointment a, tbl_customer b, tbl_service c WHERE a.customer_id = b.customerid && a.service_id = c.service_id && a.appointment_id = ?");
-        $stmt->bind_param("s",$appointmentId);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $this->setAppointmentId($row["appointment_id"]);
-                $this->setFullname($row["fullname"]);
-                $this->setServiceTitle($row["title"]);
-                $this->setAppointmentStatus($row["status"]);
-                $this->setAppointmentDate($row["start"]);
+            $stmt = $this->conn->prepare("SELECT a.appointment_id, CONCAT(b.firstname,' ',b.lastname) AS 'fullname', c.title, a.status, a.start, a.end FROM tbl_confirmed_appointment a, tbl_customer b, tbl_service c WHERE a.customer_id = b.customerid && a.service_id = c.service_id && a.supervisor_id = ?");
+            $stmt->bind_param("s", $supervisorId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $this->assignedAppointmentsList = $result;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+    public function displayCurrentAppointmentAssigned($appointmentId)
+    {
+        try {
+            $stmt = $this->conn->prepare("SELECT a.appointment_id, CONCAT(b.firstname,' ',b.lastname) AS 'fullname', c.title, a.status, a.start FROM tbl_confirmed_appointment a, tbl_customer b, tbl_service c WHERE a.customer_id = b.customerid && a.service_id = c.service_id && a.appointment_id = ?");
+            $stmt->bind_param("s", $appointmentId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $this->setAppointmentId($row["appointment_id"]);
+                    $this->setFullname($row["fullname"]);
+                    $this->setServiceTitle($row["title"]);
+                    $this->setAppointmentStatus($row["status"]);
+                    $this->setAppointmentDate($row["start"]);
+                }
             }
-        }
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
 
-    public function fetchAppointmentWorkers($appointmentId){
+    public function fetchAppointmentWorkers($appointmentId)
+    {
         try {
-        $stmt = $this->conn->prepare("SELECT a.employeeid, CONCAT(a.firstname,' ',a.lastname) AS 'fullname', a.email, a.mobilenumber FROM tbl_employee a, tbl_worker_appointment b WHERE b.worker_id = a.employeeid && b.appointment_id = ?");
-        $stmt->bind_param("s",$appointmentId);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $this->assignedWorkersAppointment = $result;
-        } catch (Exception $e) {
-            echo 'Caught exception: ',  $e->getMessage(), "\n";
-        }
-
-    }
-    public function fetchUnassignedAppointmentWorkers(){
-        try {
-        $stmt = $this->conn->prepare("SELECT * FROM tbl_employee a LEFT JOIN tbl_worker_appointment b ON a.employeeid = b.worker_id WHERE a.type = 'worker' && !EXISTS(SELECT * FROM tbl_worker_appointment WHERE worker_id = a.employeeid)");
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $this->unassignedWorkersAppointment = $result;
+            $stmt = $this->conn->prepare("SELECT a.employeeid, CONCAT(a.firstname,' ',a.lastname) AS 'fullname', a.email, a.mobilenumber FROM tbl_employee a, tbl_worker_appointment b WHERE b.worker_id = a.employeeid && b.appointment_id = ?");
+            $stmt->bind_param("s", $appointmentId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $this->assignedWorkersAppointment = $result;
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-    public function addWorkerToAppointment($appointmentId, $workerId){
+    public function fetchUnassignedAppointmentWorkers()
+    {
+        try {
+            $stmt = $this->conn->prepare("SELECT * FROM tbl_employee a LEFT JOIN tbl_worker_appointment b ON a.employeeid = b.worker_id WHERE a.type = 'worker' && !EXISTS(SELECT * FROM tbl_worker_appointment WHERE worker_id = a.employeeid)");
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $this->unassignedWorkersAppointment = $result;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+    public function addWorkerToAppointment($appointmentId, $workerId)
+    {
         try {
             $stmt = $this->conn->prepare("INSERT INTO tbl_worker_appointment (appointment_id, worker_id) VALUES (?,?)");
-            $stmt->bind_param("ss",$appointmentId,$workerId);
+            $stmt->bind_param("ss", $appointmentId, $workerId);
             $stmt->execute();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-    public function removeWorkerInAppointment($appointmentId, $workerId){
+    public function removeWorkerInAppointment($appointmentId, $workerId)
+    {
         try {
             $stmt = $this->conn->prepare("DELETE FROM tbl_worker_appointment WHERE appointment_id = ? && worker_id = ?");
-            $stmt->bind_param("ss",$appointmentId,$workerId);
+            $stmt->bind_param("ss", $appointmentId, $workerId);
             $stmt->execute();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
@@ -86,31 +91,40 @@ class Employee_Client
     }
 
     //getters
-    public function getConn(){
+    public function getConn()
+    {
         return $this->conn;
     }
-    public function getAssignedAppointments(){
+    public function getAssignedAppointments()
+    {
         return $this->assignedAppointmentsList;
     }
-    public function getAssignedWorkers(){
+    public function getAssignedWorkers()
+    {
         return $this->assignedWorkersAppointment;
     }
-    public function getUnassignedWorkers(){
+    public function getUnassignedWorkers()
+    {
         return $this->unassignedWorkersAppointment;
     }
-    public function getAppointmentId(){
+    public function getAppointmentId()
+    {
         return $this->appointmentId;
     }
-    public function getFullname(){
+    public function getFullname()
+    {
         return $this->fullname;
     }
-    public function getServicetitle(){
+    public function getServicetitle()
+    {
         return $this->serviceTitle;
     }
-    public function getAppointmentstatus(){
+    public function getAppointmentstatus()
+    {
         return $this->appointmentStatus;
     }
-    public function getAppointmentdate(){
+    public function getAppointmentdate()
+    {
         return $this->appointmentDate;
     }
 
@@ -151,5 +165,4 @@ class Employee_Client
 
         return $this;
     }
-
 }
