@@ -80,7 +80,7 @@ require_once "./php_backend/request-appointment-details.php";
             </div>
         </aside>
         <div class="main" id="main">
-            <div class="container-fluid" id="settingsArea">
+            <div class="container-fluid" id="mainArea">
                 <div class="mb-4">
                     <h1>Appointments</h1>
                 </div>
@@ -88,7 +88,7 @@ require_once "./php_backend/request-appointment-details.php";
                     <a href="./request-appointment-service.php" class="btn my-button-selected mt-2">Request Appointment</a>
                     <a href="./manage-appointment.php" class="btn my-button-unselected mx-2 mt-2">Manage Appointments</a>
                 </div>
-                <div class="container-fluid" id="accountSettingArea">
+                <div class="container-fluid" id="subArea-single">
                     <div class="mb-3">
                         <h5>Request Appointment</h5>
                     </div>

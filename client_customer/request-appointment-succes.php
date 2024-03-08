@@ -73,11 +73,11 @@ require_once "./php_backend/appointment.php";
             </div>
         </aside>
         <div class="main" id="main">
-            <div class="container-fluid" id="settingsArea">
+            <div class="container-fluid" id="mainArea">
                 <div class="mb-4">
                     <h1>Appointments</h1>
                 </div>
-                <div class="container-fluid" id="accountSettingArea">
+                <div class="container-fluid" id="subArea-single">
                     <div class="mb-5">
                         <h5>Success</h5>
                     </div>

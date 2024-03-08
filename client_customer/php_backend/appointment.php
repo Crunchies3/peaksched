@@ -17,3 +17,12 @@ $appointment = new Appointment();
 $appointment->setConn($conn);
 $customerId = $customer->getId();
 $resultAppointment = $appointment->fetchAppointmentListByCustomer($customerId);
+
+$appointmentId = "";
+
+if (isset($_GET["appointmentId"])) {
+    $appointmentId = $_GET["appointmentId"];
+}
+$appointment->getAppointmentDetails($appointmentId);
+
+$status = $appointment->getStatus();

@@ -76,7 +76,7 @@ require_once "./php_backend/appointment.php";
             </div>
         </aside>
         <div class="main" id="main">
-            <div class="container-fluid" id="settingsArea">
+            <div class="container-fluid" id="mainArea">
                 <div class="mb-4">
                     <h1>Appointments</h1>
                 </div>
@@ -84,9 +84,15 @@ require_once "./php_backend/appointment.php";
                     <a href="./request-appointment-service.php" class="btn my-button-unselected mt-2">Request Appointment</a>
                     <a href="./manage-appointment.php" class="btn my-button-selected mx-2 mt-2">Manage Appointments</a>
                 </div>
-                <div class="container-fluid" id="accountSettingArea">
+                <div class="container-fluid" id="subArea-single">
                     <div class="mb-5">
-                        <h5>Appointment Details <span class="badge rounded-pill my-badge-denied">Denied</span><span class="badge rounded-pill my-badge-approved">Approved</span><span class="badge rounded-pill my-badge-pending">Pending Approval</span></h5>
+                        <?php
+                        if ($status == 'Pending Approval') $badgeType = 'my-badge-pending';
+                        else if ($status == 'Denied') $badgeType = 'my-badge-denied';
+                        else if ($status == 'Completed') $badgeType = 'my-badge-approved';
+                        else if ($status == 'Approved') $badgeType = 'my-badge-approved';
+                        ?>
+                        <h5>Appointment Details <span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $status ?></span></h5>
                     </div>
                     <form id="updateAccountDetails" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <div class="col-md-6 mb-4">

@@ -1,3 +1,37 @@
+.my-modal {
+    border-radius: 15px;
+}
+
+/* form related Styles */
+.my-input-field::placeholder {
+    color: #9d9d9d;
+}
+
+.my-input-field {
+    color: #000000;
+    background-color: #F7F8FC;
+    border: 1px #BBBBBB;
+    border-style: solid;
+}
+
+.form-control.is-valid:focus,
+.was-validated :valid.form-control {
+    background-image: inherit !important;
+    box-shadow: inherit !important;
+    background-color: #F7F8FC;
+    color: #222222;
+    border: 1px #BBBBBB;
+    border-style: solid;
+}
+
+.my-form-required {
+    color: red;
+}
+
+/* end */
+
+/* button related Styles */
+
 .my-button-yes {
     border: 1px #186cb0;
     border-style: solid;
@@ -26,34 +60,16 @@
     border-style: solid;
 }
 
-.my-input-field {
-    color: #000000;
-    background-color: #F7F8FC;
-    border: 1px #BBBBBB;
-    border-style: solid;
-}
-
-.my-input-field::placeholder {
-    color: #9d9d9d;
-}
-
-.my-modal {
-    border-radius: 15px;
-}
-
-.form-control.is-valid:focus,
-.was-validated :valid.form-control {
-    background-image: inherit !important;
-    box-shadow: inherit !important;
-    background-color: #F7F8FC;
-    color: #222222;
-    border: 1px #BBBBBB;
-    border-style: solid;
-}
-
 .my-button-danger {
     color: white;
     background-color: rgb(191 11 11);
+}
+
+.my-button-danger:hover {
+    background-color: rgb(122, 6, 6);
+    color: rgb(255, 255, 255);
+    border: 1px rgb(191 11 11);
+    border-style: solid;
 }
 
 .my-button-selected {
@@ -84,9 +100,10 @@
     border-style: solid;
 }
 
-.my-form-required {
-    color: red;
-}
+/* end */
+
+
+/* badges related Styles */
 
 .my-btn-view {
     border: -100px #186cb0;
@@ -112,3 +129,96 @@
     background-color: #FFD3D3;
     font-weight: bold;
 }
+
+/* end */
+
+/* Areas related Styles */
+
+#mainArea {
+    padding-top: 27.2px;
+}
+
+#mainArea h5 {
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+#mainArea h1 {
+    font-size: 24;
+    font-weight: bold;
+}
+
+#mainArea .input-field {
+    background-color: #F7F8FC;
+    color: #222222;
+    border: 1px #BBBBBB;
+    border-style: solid;
+}
+
+#mainArea .input-field::placeholder {
+    color: #a3a3a3;
+}
+
+#subArea-top {
+    background-color: white;
+    border: 1px #BBBBBB;
+    border-style: solid;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 30px;
+}
+
+#subArea-bottom {
+    background-color: white;
+    border: 1px #BBBBBB;
+    border-style: solid;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top: none;
+    padding: 30px;
+}
+
+#subArea-single {
+    background-color: white;
+    border: 1px #BBBBBB;
+    border-style: solid;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 30px;
+}
+
+/* end */
+
+
+/* Data Table related Styles */
+
+#tableHead .dt-orderable-asc {
+    border-bottom: #e1e1e1;
+    border-style: solid;
+}
+
+#tableHead .dt-column-order {
+    color: #124F6F;
+}
+
+#tableHead .dt-column-title {
+    color: #7d7d7d;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+#myTable td {
+    padding-left: 20px;
+    padding-right: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+}
+
+.right-aligned-cell {
+    text-align: left !important;
+}
+
+/* end */

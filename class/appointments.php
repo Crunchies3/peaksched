@@ -3,11 +3,17 @@
 class Appointment
 {
     private $conn;
-    private $id;
-    private $title;
-    private $description;
+    private $appointmentId;
+    private $customerId;
+    private $serviceId;
+    private $addressId;
+    private $numOfFloors;
+    private $numOfBeds;
+    private $numOfBaths;
     private $start;
     private $end;
+    private $status;
+    private $note;
 
     // private $appointmentList; // * JSON ni siya, dili array.
 
@@ -188,11 +194,41 @@ class Appointment
         }
     }
 
+    public function getAppointmentDetails($id)
+    {
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT *
+                FROM tbl_request_appointment
+                WHERE request_app_id = ?"
+            );
+            $stmt->bind_param("s", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $this->setAppointmentId($row['request_app_id']);
+                    $this->setCustomerId($row['customer_id']);
+                    $this->setServiceId($row['service_id']);
+                    $this->setAddressId($row['address_id']);
+                    $this->setNumOfFloors($row['num_floors']);
+                    $this->setNumOfBeds($row['num_beds']);
+                    $this->setNumOfBaths($row['num_bath']);
+                    $this->setStart($row['start']);
+                    $this->setEnd($row['end']);
+                    $this->setNote($row['note']);
+                    $this->setStatus($row['status']);
+                }
+            }
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
 
-
-
-    // ? getter and setters
-
+    /**
+     * Get the value of conn
+     */
     public function getConn()
     {
         return $this->conn;
@@ -205,38 +241,93 @@ class Appointment
         return $this;
     }
 
-    public function getId()
+    public function getAppointmentId()
     {
-        return $this->id;
+        return $this->appointmentId;
     }
 
-    public function setId($id)
+    public function setAppointmentId($appointmentId)
     {
-        $this->id = $id;
+        $this->appointmentId = $appointmentId;
 
         return $this;
     }
 
-    public function getTitle()
+    public function getCustomerId()
     {
-        return $this->title;
+        return $this->customerId;
     }
 
-    public function setTitle($title)
+
+    public function setCustomerId($customerId)
     {
-        $this->title = $title;
+        $this->customerId = $customerId;
 
         return $this;
     }
 
-    public function getDescription()
+    public function getServiceId()
     {
-        return $this->description;
+        return $this->serviceId;
     }
 
-    public function setDescription($description)
+
+    public function setServiceId($serviceId)
     {
-        $this->description = $description;
+        $this->serviceId = $serviceId;
+
+        return $this;
+    }
+
+
+    public function getAddressId()
+    {
+        return $this->addressId;
+    }
+
+
+    public function setAddressId($addressId)
+    {
+        $this->addressId = $addressId;
+
+        return $this;
+    }
+
+
+    public function getNumOfFloors()
+    {
+        return $this->numOfFloors;
+    }
+
+
+    public function setNumOfFloors($numOfFloors)
+    {
+        $this->numOfFloors = $numOfFloors;
+
+        return $this;
+    }
+
+    public function getNumOfBeds()
+    {
+        return $this->numOfBeds;
+    }
+
+
+    public function setNumOfBeds($numOfBeds)
+    {
+        $this->numOfBeds = $numOfBeds;
+
+        return $this;
+    }
+
+    public function getNumOfBaths()
+    {
+        return $this->numOfBaths;
+    }
+
+    public function setNumOfBaths($numOfBaths)
+    {
+        $this->numOfBaths = $numOfBaths;
 
         return $this;
     }
@@ -261,6 +352,30 @@ class Appointment
     public function setEnd($end)
     {
         $this->end = $end;
+
+        return $this;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    public function setNote($note)
+    {
+        $this->note = $note;
 
         return $this;
     }
