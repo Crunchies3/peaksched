@@ -100,17 +100,17 @@
     border-style: solid;
 }
 
-/* end */
-
-
-/* badges related Styles */
-
 .my-btn-view {
     border: -100px #186cb0;
     border-style: solid;
     background-color: #186cb0;
     color: #ececec;
 }
+
+/* end */
+
+
+/* badges related Styles */
 
 .my-badge-approved {
     color: #1E7634;
@@ -127,6 +127,12 @@
 .my-badge-denied {
     color: #c70000;
     background-color: #FFD3D3;
+    font-weight: bold;
+}
+
+.my-badge-report-needed {
+    color: #0036C1;
+    background-color: #d1defc;
     font-weight: bold;
 }
 

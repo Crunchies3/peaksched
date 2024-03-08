@@ -95,6 +95,7 @@ require_once "php/assigned_app_supervisor.php";
                             <th style="color: white;">Service</th>
                             <th style="color: white;">Status</th>
                             <th style="color: white;">Date</th>
+                            <th style="color: white;">Time</th>
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
@@ -106,8 +107,14 @@ require_once "php/assigned_app_supervisor.php";
                                     <td><?php echo $rows['appointment_id']; ?></td>
                                     <td><?php echo $rows['fullname']; ?></td>
                                     <td><?php echo $rows['title']; ?></td>
-                                    <td><?php echo $rows['status']; ?></td>
+                                    <?php
+                                    if ($rows['status'] == 'Pending') $badgeType = 'my-badge-pending';
+                                    else if ($rows['status'] == 'Report Needed') $badgeType = 'my-badge-report-needed';
+                                    else if ($rows['status'] == 'Completed') $badgeType = 'my-badge-approved';
+                                    ?>
+                                    <td><span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $rows['status']; ?></span></td>
                                     <td><?php echo $rows['start']; ?></td>
+                                    <td><?php echo $rows['end']; ?></td>
                                     <td></td>
                                 </tr>
                             <?php
@@ -118,8 +125,8 @@ require_once "php/assigned_app_supervisor.php";
                 </div>
             </div>
         </section>
-            <script src="./js/data-table-appointments.js"></script>
-            <script src="./js/script.js"></script>
+        <script src="./js/data-table-appointments.js"></script>
+        <script src="./js/script.js"></script>
 
 </body>
 
@@ -145,8 +152,3 @@ require_once "php/assigned_app_supervisor.php";
         </div>
     </div>
 </div>
-
-
-
-
-
