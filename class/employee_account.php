@@ -7,7 +7,8 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 //Load Composer's autoloader
-require '../vendor/autoload.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/vendor/autoload.php";
+
 $mail = new PHPMailer(true);
 
 class EmployeeAccount extends UserAccount
@@ -51,9 +52,9 @@ class EmployeeAccount extends UserAccount
                         $_SESSION["employeeUser"] = serialize($this);
 
                         if ($row["type"] == "supervisor") {
-                            header("location: ./dashboard_supervisor.php");
+                            header("location: ./supervisor");
                         } else {
-                            header("location: ./dashboard_worker.php");
+                            header("location: ./worker");
                         }
                     }
                 }
@@ -182,7 +183,7 @@ class EmployeeAccount extends UserAccount
             $mail->Subject = 'Password Reset';
             $mail->Body    = <<<END
             
-            Click <a href="http://localhost/peaksched/client_employee/reset_password.php?token=$token">here</a>
+            Click <a href="http://localhost/peaksched/employee/reset_password.php?token=$token">here</a>
             to reset your password.
 
             END;
@@ -242,9 +243,9 @@ class EmployeeAccount extends UserAccount
             $_SESSION["employeeUser"] = serialize($this);
 
             if ($this->type == "supervisor") {
-                header("location: ./supervisor_setting_account_page.php");
+                header("location: ./");
             } else {
-                header("location: ./worker_setting_account_page.php");
+                header("location: ./");
             }
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
@@ -267,9 +268,9 @@ class EmployeeAccount extends UserAccount
 
             $_SESSION["employeeUser"] = serialize($this);
             if ($this->type == "supervisor") {
-                header("location: ./supervisor_setting_account_page.php");
+                header("location: ./");
             } else {
-                header("location: ./worker_setting_account_page.php");
+                header("location: ./");
             }
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";

@@ -5,7 +5,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     header("location: dashboard.php");
     exit;
 }
-require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/client_employee/php/forgot_password.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/employee/php/forgot_password.php";
 
 $jsScript = $_SERVER['DOCUMENT_ROOT'] . "/peaksched/js/form_loading_spinner.js";
 

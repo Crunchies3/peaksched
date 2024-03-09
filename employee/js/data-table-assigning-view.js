@@ -14,7 +14,7 @@ $(document).ready(function () {
 });
 
 $('#myTable').DataTable({
-    
+
     layout: {
         topStart: 'search',
         topEnd: {
@@ -35,9 +35,9 @@ $('#myTable').DataTable({
         },
         {
             data: null,
-            defaultContent: '<form id="AssignWorkerForm" action="assigning-appointment-supervisor.php" method="post"><input id="workerId" name="workerId" hidden type="text" value=""><input id="appointId" hidden name="appointmentId" type="text" value=""></form><button data-bs-target="#AssignWorkerModal"  data-bs-toggle = "modal" class="btn my-button-yes mx-1" id="actionClick">Assign</button>',
+            defaultContent: '<form id="AssignWorkerForm" action="assign-workers.php" method="post"><input id="workerId" name="workerId" hidden type="text" value=""><input id="appointId" hidden name="appointmentId" type="text" value=""></form><button data-bs-target="#AssignWorkerModal"  data-bs-toggle = "modal" class="btn my-button-yes mx-1" id="actionClick">Assign</button>',
             targets: -1
-                                
+
         },
     ],
 });

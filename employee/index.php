@@ -4,9 +4,9 @@ session_start();
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
     if ($_SESSION["type"] == "supervisor") {
-        header("location: dashboard_supervisor.php");
+        header("location: ./supervisor");
     } else {
-        header("location: dashboard_worker.php");
+        header("location: ./worker");
     }
 
     exit;
