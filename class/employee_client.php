@@ -25,6 +25,36 @@ class Employee_Client
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
+
+    public function fetchAssignedWorkerAppointments($workerId)
+    {
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT a.appointment_id, 
+                        CONCAT(b.firstname,' ',b.lastname) AS 'fullname', 
+                        c.title, 
+                        a.status, 
+                        a.start, 
+                        a.end 
+                FROM    tbl_confirmed_appointment a,
+                        tbl_customer b,
+                        tbl_service c,
+                        tbl_worker_appointment d
+                WHERE   d.appointment_id = a.appointment_id &&
+                        a.service_id = c.service_id &&
+                        a.customer_id = b.customerid && 
+                        d.worker_id = ?"
+            );
+            $stmt->bind_param("s", $workerId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+
     public function displayCurrentAppointmentAssigned($appointmentId)
     {
         try {
