@@ -57,6 +57,12 @@ require_once "../../php/assigning_app_supervisor.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="../reports/" class="sidebar-link">
+                        <i class="bi bi-file-earmark-binary-fill"></i>
+                        <span>Reports</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
                         <i class="bi bi-bell"></i>
                         <span>Notifications</span>
@@ -77,11 +83,11 @@ require_once "../../php/assigning_app_supervisor.php";
             </div>
         </aside>
         <section class="main" id="main">
-            <div class="container-fluid" id="assignedAppointmentArea">
+            <div class="container-fluid" id="mainArea">
                 <div class="mb-5">
                     <h1>Appointment</h1>
                 </div>
-                <div class="container-fluid" id="assignedAppointmentTableArea">
+                <div class="container-fluid" id="subArea-single">
                     <div>
                         <h5>Assign Appointment</h5>
                     </div>

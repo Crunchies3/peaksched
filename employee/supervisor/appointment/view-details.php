@@ -58,6 +58,12 @@ require_once "../../php/assigned_app_supervisor_view.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="../reports/" class="sidebar-link">
+                        <i class="bi bi-file-earmark-binary-fill"></i>
+                        <span>Reports</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
                         <i class="bi bi-bell"></i>
                         <span>Notifications</span>

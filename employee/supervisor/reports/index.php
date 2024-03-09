@@ -53,13 +53,13 @@ require_once "../../php/assigned_app_supervisor.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="./" class="sidebar-link selected">
+                    <a href="../appointment/" class="sidebar-link">
                         <i class="bi bi-calendar2-fill"></i>
                         <span>Appointments</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="../reports/" class="sidebar-link">
+                    <a href="./" class="sidebar-link selected">
                         <i class="bi bi-file-earmark-binary-fill"></i>
                         <span>Reports</span>
                     </a>
@@ -87,11 +87,11 @@ require_once "../../php/assigned_app_supervisor.php";
         <section class="main" id="main">
             <div class="container-fluid" id="mainArea">
                 <div class="mb-5">
-                    <h1>Appointment</h1>
+                    <h1>Report</h1>
                 </div>
                 <div class="container-fluid" id="subArea-single">
                     <div>
-                        <h5>All appointment</h5>
+                        <h5>All Reports</h5>
                     </div>
                     <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header ug status-->

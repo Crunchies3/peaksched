@@ -36,7 +36,7 @@ require_once "../../php/settings_account.php";
         <aside id="sidebar" class="shadow-lg">
             <div class="d-flex mb-2">
                 <button id="toggle-btn" type="button">
-                    <i class="bi bi-tree-fill"></i>
+                    <i class="bi bi-calendar-week"></i>
                 </button>
                 <div class="sidebar-logo">
                     <a href="../">PeakSched</a>
@@ -53,6 +53,12 @@ require_once "../../php/settings_account.php";
                     <a href="../appointment/" class="sidebar-link">
                         <i class="bi bi-calendar2"></i>
                         <span>Appointments</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="../reports/" class="sidebar-link">
+                        <i class="bi bi-file-earmark-binary-fill"></i>
+                        <span>Reports</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
