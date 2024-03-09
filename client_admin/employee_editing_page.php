@@ -93,11 +93,11 @@ require_once "php/employee_editing.php";
             </div>
         </aside>
         <section class="main" id="main">
-            <div class="container-fluid" id="employeeArea">
+            <div class="container-fluid" id="mainArea">
                 <div class="mb-5">
                     <h1>Employee</h1>
                 </div>
-                <div class="container-fluid" id="addEmployeeArea">
+                <div class="container-fluid" id="subArea-top">
                     <div>
                         <h5>Edit Employee</h5>
                     </div>
@@ -156,8 +156,8 @@ require_once "php/employee_editing.php";
                     </div>
                 </div>
             </div>
-            <div class="container-fluid" id="serviceArea">
-                <div class="container-fluid" id="securityArea">
+            <div class="container-fluid" id="">
+                <div class="container-fluid" id="subArea-bottom">
                     <div>
                         <h5>Account</h5>
                     </div>

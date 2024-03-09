@@ -33,6 +33,7 @@ require_once "php/service_editing.php";
     <link rel="stylesheet" href="./css/dashboard_styles.css" />
     <link rel="stylesheet" href="./css/service_page_styles.css" />
     <link rel="stylesheet" href="./css/colorPick.css" />
+    <link rel="stylesheet" href="../components/_components.css">
 
 
 </head>
@@ -142,14 +143,15 @@ require_once "php/service_editing.php";
                                 </div>
                             </div>
                         </form>
-                        <div class="row">
+                        <div class="row ">
                             <div class="mb-3 col-xxl-2">
                                 <button name = "editService"data-bs-toggle="modal" data-bs-target="#addServiceModal" type="submit" class="btn btn-lg fs-6 w-100 add-service-button">Save Changes</button>
+                                
                             </div>
                             <div class="mb-0 col-xxl-2">
-                                <a href="./services_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 cancel-button">cancel</a>
+                                <a href="./services_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 cancel-button">Cancel</a>
                             </div>
-                            <div class="mb-0 col-xxl-2">
+                            <div class="mb-0 col-xxl-2 ms-auto">
                             <button data-bs-toggle="modal" data-bs-target="#deleteEmployeeAccountModal" class="btn btn-lg fs-6 w-100 my-button-danger">Delete</button>
                         </div>
                         </div>

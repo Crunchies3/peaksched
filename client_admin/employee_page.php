@@ -95,15 +95,15 @@ require_once "php/employee_page.php";
             </div>
         </aside>
         <section class="main" id="main">
-            <div class="container-fluid" id="employeeArea">
+            <div class="container-fluid" id="mainArea">
                 <div class="mb-5">
                     <h1>Employee</h1>
                 </div>
-                <div class="container-fluid" id="employeeTableArea">
+                <div class="container-fluid" id="subArea-single">
                     <div>
                         <h5>All employee</h5>
                     </div>
-                    <table id="myTable" class="table table-hover">
+                    <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header -->
                         <thead id="tableHead">
                             <th style="color: white;">Id</th>

@@ -93,11 +93,11 @@ require_once "php/employee_adding.php";
             </div>
         </aside>
         <section class="main" id="main">
-            <div class="container-fluid" id="employeeArea">
+            <div class="container-fluid" id="mainArea">
                 <div class="mb-5">
                     <h1>Employee</h1>
                 </div>
-                <div class="container-fluid" id="addEmployeeArea">
+                <div class="container-fluid" id="subArea-single">
                     <div>
                         <h5>Add Employee</h5>
                     </div>
