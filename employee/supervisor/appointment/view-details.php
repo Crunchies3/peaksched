@@ -93,29 +93,32 @@ require_once "../../php/assigned_app_supervisor_view.php";
                     <div>
                         <h5>Appointment Details</h5>
                     </div>
-                    <form id="editWorkerForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
+                    <form id="appointmentDetails" class="row mb-3" method="get" action="../reports/create-report.php" novalidate>
                         <input type="hidden" name="appointmentId" value="<?= htmlspecialchars($appointmentId) ?>" id="appointmentId">
                         <div class="col-md-6 mb-4">
                             <label class="form-label mb-1">APPOINTMENT ID</label>
-                            <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $appointmentId ?>">
+                            <input disabled name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $appointmentId ?>">
                         </div>
                         <div class="col-md-6 mb-4">
                             <label class="form-label mb-1">FULL NAME</label>
-                            <input name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your last name" aria-label="Last name" value="<?php echo $fullname ?>">
+                            <input disabled name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your last name" aria-label="Last name" value="<?php echo $fullname ?>">
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">SERVICE</label>
-                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your email address" value="<?php echo $title ?>">
+                            <input disabled name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your email address" value="<?php echo $title ?>">
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">STATUS</label>
-                            <input name="mobile" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your mobile number" value="<?php echo $status ?>">
+                            <input disabled name="mobile" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your mobile number" value="<?php echo $status ?>">
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">DATE</label>
-                            <input name="position" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $date ?>">
+                            <input disabled name="position" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $date ?>">
                         </div>
                     </form>
+                    <div>
+                        <button form="appointmentDetails" <?php echo "" ?> class="btn btn-success">Create Report</button>
+                    </div>
                 </div>
             </div>
             <div class="container-fluid" id="appointmentArea">
@@ -157,67 +160,3 @@ require_once "../../php/assigned_app_supervisor_view.php";
 </body>
 
 </html>
-
-
-<!-- //? modal paras confirmation sa pag update sa details -->
-
-<div class="modal fade" id="updateInfoModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="updateInfoModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
-        <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
-            <div class="modal-header">
-                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm changes?</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Your account details will be updated.
-            </div>
-            <div class="modal-footer">
-                <button name="updateInfo" form="editWorkerForm" class="btn my-button-yes">Confirm</button>
-                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-<!-- //? modal paras confirmation sa pag delete sa user -->
-
-<div class="modal fade" id="deleteEmployeeAccountModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="deleteEmployeeAccountModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
-        <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
-            <div class="modal-header">
-                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm delete account?</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Your account will be deleted.
-            </div>
-            <div class="modal-footer">
-                <button name="deleteAccount" form="RemoveWorkerForm" class="btn my-button-danger">Confirm</button>
-                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- //? modal paras confirmation sa pag delete sa worker -->
-
-<div class="modal fade" id="RemoveWorker" data-bs-backdrop="static" tabindex="-1" aria-labelledby="RemoveWorker" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
-        <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
-            <div class="modal-header">
-                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm remove worker?</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Assigned worker will be removed.
-            </div>
-            <div class="modal-footer">
-                <button name="RemoveWorker" form="RemoveWorkerForm" class="btn my-button-danger">Confirm</button>
-                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
-            </div>
-        </div>
-    </div>
-</div>
