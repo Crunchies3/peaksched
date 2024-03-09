@@ -6,8 +6,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/form_validation.php";
 $validate = new Validation();
 $customer = unserialize($_SESSION["employeeUser"]);
 
-
+$validate->setUserType($customer);
 $customer->setConn($conn);
+
 
 // variables that will hold the data
 
@@ -50,8 +51,8 @@ function updateDetails(&$firstName_err, &$lastName_err, &$email_err, &$mobileNum
 
     $newEmail = trim($_POST["email"]);
 
-    if (!$newEmail == $email) {
-        $email_err = $customer->validateEmail($newEmail);
+    if ($newEmail != $email) {
+        $email_err = $validate->validateEmail($newEmail);
     }
     if (empty($email_err)) {
         $newEmail = $customer->getEmail();
@@ -60,7 +61,7 @@ function updateDetails(&$firstName_err, &$lastName_err, &$email_err, &$mobileNum
     $mobileNumber = trim($_POST["mobile"]);
     $mobileNumber_err = $validate->mobileNumber($mobileNumber);
 
-    if (empty($firstName_err) && empty($lastName_err) && empty($emailAddress_err) && empty($mobileNumber_err) && empty($changed_err)) {
+    if (empty($firstName_err) && empty($lastName_err) && empty($email_err) && empty($mobileNumber_err) && empty($changed_err)) {
         $customer->updateUserDetails($firstName, $lastName, $newEmail, $mobileNumber);
     }
 }
@@ -78,7 +79,7 @@ function changePassword(&$currentPassword, &$newPassword, &$confirmPassword, &$c
 
 
     $newPassword = trim($_POST["newPassword"]);
-    $newPassword_err = $customer->validatePassword($newPassword);
+    $newPassword_err = $validate->validatePassword($newPassword);
     if (empty($newPassword_err)) {
         $newHashedPassword = $customer->getHashedPassword();
     }

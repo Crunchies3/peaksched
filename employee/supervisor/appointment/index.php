@@ -6,7 +6,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
-require_once "php/assigned-app-worker.php";
+require_once "../../php/assigned_app_supervisor.php";
 ?>
 
 <!DOCTYPE html>
@@ -28,9 +28,9 @@ require_once "php/assigned-app-worker.php";
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="./css/dashboard_styles.css" />
-    <!-- <link rel="stylesheet" href="./css/assigned-appointment-page.css" /> -->
-    <link rel="stylesheet" href="../components/_components.css" />
+    <link rel="stylesheet" href="../../css/dashboard_styles.css" />
+    <link rel="stylesheet" href="../../css/assigned-appointment-page.css" />
+    <link rel="stylesheet" href="../../../components/_components.css" />
 
 </head>
 
@@ -47,7 +47,7 @@ require_once "php/assigned-app-worker.php";
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="dashboard_worker.php" class="sidebar-link ">
+                    <a href="dashboard_supervisor.php" class="sidebar-link ">
                         <i class="bi bi-house"></i>
                         <span>Home</span>
                     </a>
@@ -79,11 +79,11 @@ require_once "php/assigned-app-worker.php";
             </div>
         </aside>
         <section class="main" id="main">
-            <div class="container-fluid" id="mainArea">
+            <div class="container-fluid" id="appointmentArea">
                 <div class="mb-5">
                     <h1>Appointment</h1>
                 </div>
-                <div class="container-fluid" id="subArea-single">
+                <div class="container-fluid" id="appointmentTableArea">
                     <div>
                         <h5>All appointment</h5>
                     </div>
@@ -125,8 +125,8 @@ require_once "php/assigned-app-worker.php";
                 </div>
             </div>
         </section>
-        <script src="./js/data-table-app-worker.js"></script>
-        <script src="./js/script.js"></script>
+        <script src="../../js/data-table-appointments.js"></script>
+        <script src="../../js/script.js"></script>
 
 </body>
 
