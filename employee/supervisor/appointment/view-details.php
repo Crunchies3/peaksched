@@ -41,18 +41,18 @@ require_once "../../php/assigned_app_supervisor_view.php";
                     <i class="bi bi-calendar-week"></i>
                 </button>
                 <div class="sidebar-logo">
-                    <a href="#">PeakSched</a>
+                    <a href="../">PeakSched</a>
                 </div>
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="dashboard_supervisor.php" class="sidebar-link">
+                    <a href="../" class="sidebar-link">
                         <i class="bi bi-house"></i>
                         <span>Home</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="assigned-appointment-supervisor.php" class="sidebar-link selected">
+                    <a href="./" class="sidebar-link selected">
                         <i class="bi bi-calendar2-fill"></i>
                         <span>Appointments</span>
                     </a>
@@ -64,14 +64,14 @@ require_once "../../php/assigned_app_supervisor_view.php";
                     </a>
                 </li>
                 <li class="sidebar-footer">
-                    <a href="supervisor_setting_account_page.php" class="sidebar-link ">
+                    <a href="../settings/" class="sidebar-link ">
                         <i class="bi bi-gear"></i>
                         <span>Settings</span>
                     </a>
                 </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="php/logout.php" class="sidebar-link">
+                <a href="../../php/logout.php" class="sidebar-link">
                     <i class="bi bi-box-arrow-left"></i>
                     <span>Logout</span>
                 </a>

@@ -6,7 +6,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
-require_once "php/settings_account.php";
+require_once "../../php/settings_account.php";
 
 ?>
 
@@ -24,8 +24,9 @@ require_once "php/settings_account.php";
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/bootstrap5@6.1.10/index.global.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="./css/dashboard_styles.css" />
-    <link rel="stylesheet" href="./css/setting_page_styles.css" />
+    <link rel="stylesheet" href="../../css/dashboard_styles.css" />
+    <link rel="stylesheet" href="../../css/setting_page_styles.css" />
+    <link rel="stylesheet" href="../../../components/_components.css" />
 
 
 </head>
@@ -38,18 +39,18 @@ require_once "php/settings_account.php";
                     <i class="bi bi-tree-fill"></i>
                 </button>
                 <div class="sidebar-logo">
-                    <a href="#">TwinPeaks</a>
+                    <a href="../">PeakSched</a>
                 </div>
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="dashboard_supervisor.php" class="sidebar-link">
+                    <a href="../" class="sidebar-link">
                         <i class="bi bi-house"></i>
                         <span>Home</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="assigned-appointment-supervisor.php" class="sidebar-link">
+                    <a href="../appointment/" class="sidebar-link">
                         <i class="bi bi-calendar2"></i>
                         <span>Appointments</span>
                     </a>
@@ -61,25 +62,25 @@ require_once "php/settings_account.php";
                     </a>
                 </li>
                 <li class="sidebar-footer">
-                    <a href="./supervisor_setting_account_page.php" class="sidebar-link selected">
+                    <a href="./" class="sidebar-link selected">
                         <i class="bi bi-gear-fill"></i>
                         <span>Settings</span>
                     </a>
                 </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="php/logout.php" class="sidebar-link">
+                <a href="../../php/logout.php" class="sidebar-link">
                     <i class="bi bi-box-arrow-left"></i>
                     <span>Logout</span>
                 </a>
             </div>
         </aside>
         <section class="main" id="main">
-            <div class="container-fluid" id="settingsArea">
+            <div class="container-fluid" id="mainArea">
                 <div class="mb-4">
                     <h1>Settings</h1>
                 </div>
-                <div class="container-fluid" id="accountSettingArea">
+                <div class="container-fluid" id="subArea-top">
                     <div>
                         <h5>Account Settings</h5>
                     </div>
@@ -118,11 +119,11 @@ require_once "php/settings_account.php";
                             <button data-bs-toggle="modal" data-bs-target="#updateInfoModal" class="btn btn-lg fs-6 w-100 save-changes-button">Save changes</button>
                         </div>
                         <div class="mb-0 col-xxl-2">
-                            <a href="./supervisor_setting_account_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 discard-changes-button">Discard changes</a>
+                            <a href="./" name="discardChanges" class="btn btn-lg fs-6 w-100 discard-changes-button">Discard changes</a>
                         </div>
                     </div>
                 </div>
-                <div class="container-fluid" id="securitySettingArea">
+                <div class="container-fluid" id="subArea-bottom">
                     <div>
                         <h5>Security</h5>
                     </div>
@@ -157,7 +158,7 @@ require_once "php/settings_account.php";
                             <button data-bs-toggle="modal" data-bs-target="#updatePasswordModal" type="submit" class="btn btn-lg fs-6 w-100 change-password-button">Change password</button>
                         </div>
                         <div class="mb-0 col-xxl-2">
-                            <a href="./worker_setting_account_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 discard-changes-button">Discard changes</a>
+                            <a href="./" name="discardChanges" class="btn btn-lg fs-6 w-100 discard-changes-button">Discard changes</a>
                         </div>
                     </div>
                 </div>

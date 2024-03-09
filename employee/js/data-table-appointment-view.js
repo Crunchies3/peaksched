@@ -20,16 +20,16 @@ $('#myTable').DataTable({
             buttons: [{
                 text: ' sort',
                 className: 'sort-btn rounded mx-2 bi-sort-down-alt',
-            }, 
+            },
             {
                 text: '<i class="bi bi-plus plus-icon"></i> assign workers',
                 className: 'add-appointment-btn rounded',
                 action: function () {
                     var appointmentId = document.getElementById('appointmentId').value;
-                    location.href = 'assigning-appointment-supervisor.php?appointmentId='+''+appointmentId;
+                    location.href = 'assign-workers.php?appointmentId=' + '' + appointmentId;
                 }
             }],
-        
+
         },
     },
     scrollY: 450,
