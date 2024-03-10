@@ -199,6 +199,18 @@
     padding: 30px;
 }
 
+label {
+    font-weight: 600;
+    color: #7d7d7d;
+    font-size: 12px;
+
+}
+
+.input-field::placeholder {
+    font-size: 16px;
+    color: #cdcdcd;
+}
+
 /* end */
 
 
@@ -222,9 +234,10 @@
 #myTable td {
     padding-left: 20px;
     padding-right: 0;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     padding-right: 20px;
+    vertical-align: middle;
 }
 
 .right-aligned-cell {

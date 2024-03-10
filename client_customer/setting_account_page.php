@@ -76,11 +76,11 @@ require_once "php_backend/settings_account.php";
             </div>
         </aside>
         <section class="main" id="main">
-            <div class="container-fluid" id="settingsArea">
+            <div class="container-fluid" id="mainArea">
                 <div class="mb-5">
                     <h1>Settings</h1>
                 </div>
-                <div class="container-fluid" id="accountSettingArea">
+                <div class="container-fluid" id="subArea-top">
                     <div>
                         <h5>Account Settings</h5>
                     </div>
@@ -123,7 +123,7 @@ require_once "php_backend/settings_account.php";
                         </div>
                     </div>
                 </div>
-                <div class="container-fluid" id="securitySettingArea">
+                <div class="container-fluid" id="subArea-bottom">
                     <div>
                         <h5>Security</h5>
                     </div>
