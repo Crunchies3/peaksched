@@ -14,6 +14,9 @@ class Appointment
     private $end;
     private $status;
     private $note;
+    private $displayTitle;
+    private $displayDate;
+    private $displayAssignedSupervisor;
 
     // private $appointmentList; // * JSON ni siya, dili array.
 
@@ -225,6 +228,92 @@ class Appointment
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
+    public function getDisplayables(){
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT b.title,
+                        a.start
+                 FROM tbl_request_appointment a,
+                      tbl_service b
+                 WHERE a.service_id = b.service_id &&
+                       a.request_app_id = ?
+                ");
+            $stmt->bind_param("s",$this->appointmentId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            if ($result->num_rows > 0) {
+                while ($rows = $result->fetch_assoc()){
+                    $this->setSpecificTitle($rows['title']);
+                    $this->setSpecificDate($rows['start']);
+                }
+            }
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+    public function getAssignedSupervisor(){
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT CONCAT(a.firstname,' ',a.lastname) AS 'fullname'
+                 FROM tbl_employee a,
+                      tbl_confirmed_appointment b,
+                      tbl_request_appointment c
+                 WHERE b.supervisor_id = a.employeeid &&
+                       b.service_id = c.service_id &&
+                       c.status = 'Approved' &&
+                       c.request_app_id = ? &&
+                       b.customer_id = ? 
+                ");
+            $stmt->bind_param("ss", $this->appointmentId, $this->customerId);
+            $stmt->execute();
+            $supervisor = $stmt->get_result();
+            $stmt->close();
+            while ($rows = $supervisor->fetch_assoc()){
+                $this->setSpecificSupervisorAssigned($rows['fullname']);
+            }
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function rescheduleAppointment($dateTimestart, $dateTimeend, $note, $status, $appointmentId){
+        {
+            try {
+                $stmt = $this->conn->prepare(
+                    "UPDATE tbl_request_appointment a
+                    SET     a.start = ?,
+                            a.end = ?,
+                            a.note = ?,
+                            a.status = ?
+                    WHERE   a.request_app_id = ?"
+                );
+                $stmt->bind_param("sssss", $dateTimestart, $dateTimeend, $note, $status, $appointmentId);
+                $stmt->execute();
+            } catch (Exception $e) {
+                echo 'Caught exception: ',  $e->getMessage(), "\n";
+            }
+        }
+    }
+    public function confirmedAppointmentDeletion($customerId,$service_id){
+        try {
+           $stmt = $this->conn->prepare("DELETE FROM tbl_confirmed_appointment WHERE customer_id = ? && service_id = ?");
+           $stmt->bind_param("ss",$customerId,$service_id);
+           $stmt->execute();
+           $this->conn->close();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+    public function cancelAppointment($id){
+        try {
+            $stmt = $this->conn->prepare("DELETE FROM tbl_request_appointment WHERE request_app_id = ?");
+            $stmt->bind_param("s",$id);
+            $stmt->execute();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
 
     /**
      * Get the value of conn
@@ -237,6 +326,36 @@ class Appointment
     public function setConn($conn)
     {
         $this->conn = $conn;
+
+        return $this;
+    }
+    public function getSpecificTitle()
+    {
+        return $this->displayTitle;
+    }
+    public function setSpecificTitle($displayTitle)
+    {
+        $this->displayTitle = $displayTitle;
+
+        return $this;
+    }
+    public function getSpecificDate()
+    {
+        return $this->displayDate;
+    }
+    public function setSpecificDate($displayDate)
+    {
+        $this->displayDate = $displayDate;
+
+        return $this;
+    }
+    public function getSpecificSupervisorAssigned()
+    {
+        return $this->displayAssignedSupervisor;
+    }
+    public function setSpecificSupervisorAssigned($displayAssignedSupervisor)
+    {
+        $this->displayAssignedSupervisor = $displayAssignedSupervisor;
 
         return $this;
     }

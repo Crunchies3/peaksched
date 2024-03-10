@@ -18,18 +18,36 @@ $appointment->setConn($conn);
 $customerId = $customer->getId();
 $resultAppointment = $appointment->fetchAppointmentListByCustomer($customerId);
 
-$appointmentId = "";
+$appointmentId = $selectedService = $date = $assignedSupervisor = "";
 
 if (isset($_GET["appointmentId"])) {
     $appointmentId = $_GET["appointmentId"];
 }
 $appointment->getAppointmentDetails($appointmentId);
 
+$appointment->getDisplayables();
+$appointment->getAssignedSupervisor();
+
+$selectedService = $appointment->getSpecificTitle();
+$assignedSupervisor = $appointment->getSpecificSupervisorAssigned();
+$date = $appointment->getSpecificDate();
+
+$dateOnly = date("Y-m-d", strtotime($date));
+$timeOnly = date('h:i A', strtotime($date));
+
+
 $status = $appointment->getStatus();
 
 
 if (isset($_POST['cancelApp'])) {
     //diria ibutang ang code paras appointment cancel
+    $appointmentId = $_POST["appointmentId"];
+    $appointment->getAppointmentDetails($appointmentId);
+    $service_id = $appointment->getServiceId();
+    $customerId = $customer->getId();
 
-    header("location: manage-cancel-success.php");
+    $appointment->cancelAppointment($appointmentId);
+    $appointment->confirmedAppointmentDeletion($customerId,$service_id);
+
+    header("location: manage-cancel-succes.php");
 }

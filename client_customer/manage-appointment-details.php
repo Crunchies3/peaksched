@@ -115,15 +115,15 @@ require_once "./php_backend/appointment.php";
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">DATE</label>
-                            <input disabled name="text" class="form-control fs-6 input-field" value="<?php echo $email ?>">
+                            <input disabled name="text" class="form-control fs-6 input-field" value="<?php echo $dateOnly ?>">
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">TIME</label>
-                            <input disabled name="text" type="text" class="form-control fs-6 input-field" value="<?php echo $mobileNumber ?>">
+                            <input disabled name="text" type="text" class="form-control fs-6 input-field" value="<?php echo $timeOnly ?>">
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">ASSIGNED SUPERVISOR</label>
-                            <input disabled name="supervisor" type="text" class="form-control fs-6 input-field" value="<?php echo $mobileNumber ?>">
+                            <input disabled name="supervisor" type="text" class="form-control fs-6 input-field" value="<?php echo $assignedSupervisor ?>">
                         </div>
                     </div>
                     <div class="row ">

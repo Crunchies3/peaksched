@@ -4,13 +4,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/employee_client.php";
 
 $employeeClient = new Employee_Client();
 $employeeClient->setConn($conn);
-$employeeClient->fetchUnassignedAppointmentWorkers();
-$result = $employeeClient->getUnassignedWorkers();
 
 $appointmentId = "";
 
 if (isset($_GET["appointmentId"])) {
     $appointmentId = $_GET["appointmentId"];
+
+$employeeClient->fetchUnassignedAppointmentWorkers($appointmentId);
+$result = $employeeClient->getUnassignedWorkers();
 }
 if(isset($_POST['AssignWorkerModal'])){
     $workerId = $_POST["workerId"];
@@ -18,7 +19,7 @@ if(isset($_POST['AssignWorkerModal'])){
 
     //para marefresh ang table
     $employeeClient->addWorkerToAppointment($appointmentId,$workerId);
-    $employeeClient->fetchUnassignedAppointmentWorkers();
+    $employeeClient->fetchUnassignedAppointmentWorkers($appointmentId);
     $result = $employeeClient->getUnassignedWorkers();
 
 }
