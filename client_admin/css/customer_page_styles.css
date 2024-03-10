@@ -137,4 +137,6 @@ label {
     font-size: 12px;
 }
 
-
+.right-aligned-cell {
+    text-align: left !important;
+}

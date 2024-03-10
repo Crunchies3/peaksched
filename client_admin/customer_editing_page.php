@@ -98,11 +98,11 @@ require_once "php/customer_editing.php";
             </div>
         </aside>
         <section class="main" id="main">
-            <div class="container-fluid" id="customerArea">
+            <div class="container-fluid" id="mainArea">
                 <div class="mb-5">
                     <h1>Customer</h1>
                 </div>
-                <div class="container-fluid" id="addCustomerArea">
+                <div class="container-fluid" id="subArea-top">
                     <div>
                         <h5>Edit Customer</h5>
                     </div>
@@ -147,8 +147,67 @@ require_once "php/customer_editing.php";
                     </div>
                 </div>
             </div>
-            <div class="container-fluid" id="serviceArea">
-                <div class="container-fluid" id="securityArea">
+
+            <div class="container-fluid" id="customerArea">
+                <div class="container-fluid" id="tablelistTableArea">
+                    <div>
+                        <h5>Assigned Appointments</h5>
+                    </div>
+                    <table id="myTable" class="table table-hover table-striped">
+                        <!-- //!TODO: para mailisan ang color sa header -->
+                        <thead id="tableHead">
+                            <th style="color: white;">Appointment Id</th>
+                            <th style="color: white;">Customer</th>
+                            <th style="color: white;">Service</th>
+                            <th style="color: white;">Status</th>
+                            <th style="color: white;">Date</th>
+                            <th style="color: white;">Time</th>
+                            <th style="color: white;">Actions</th>
+                        </thead>
+                        <tbody>
+                         <tr>
+                            <td>123123</td>
+                            <td>Jonald Paner</td>
+                            <td>Bathroom cleaning</td>
+                            <td style="color: red">on going</td>
+                            <td>03/09/24</td>
+                            <td>12:00pm</td>
+                            <td></td>
+                         </tr>
+                         <tr>
+                            <td>123123</td>
+                            <td>Jonald Paner</td>
+                            <td>Bathroom cleaning</td>
+                            <td style="color: red">on going</td>
+                            <td>03/09/24</td>
+                            <td>12:00pm</td>
+                            <td></td>
+                         </tr>
+                         <tr>
+                            <td>123123</td>
+                            <td>Jonald Paner</td>
+                            <td>Bathroom cleaning</td>
+                            <td style="color: red">on going</td>
+                            <td>03/09/24</td>
+                            <td>12:00pm</td>
+                            <td></td>
+                         </tr>
+                         <tr>
+                            <td>123123</td>
+                            <td>Jonald Paner</td>
+                            <td>Bathroom cleaning</td>
+                            <td style="color: red">on going</td>
+                            <td>03/09/24</td>
+                            <td>12:00pm</td>
+                            <td></td>
+                         </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="container-fluid" id="customerArea">
+                <div class="container-fluid" id="subArea-bottom">
                     <div>
                         <h5>Change Password</h5>
                     </div>
@@ -185,7 +244,7 @@ require_once "php/customer_editing.php";
             </div>
         </section>
         <script src="./js/script.js"></script>
-
+        <script src ="./js/data-table-customer-editing.js"></script>
 </body>
 
 </html>
@@ -241,6 +300,25 @@ require_once "php/customer_editing.php";
             </div>
             <div class="modal-footer">
                 <button name="changePassword" form="editCustomerPasswordForm" class="btn my-button-yes">Confirm</button>
+                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="removeAppointnmentModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="removeAppointment" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
+        <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
+            <div class="modal-header">
+                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm remove appointment?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               Appointment will be removed.
+            </div>
+            <div class="modal-footer">
+                <button name="removeAppointnmentModal" form="RemoveAppointmentForm" class="btn my-button-danger">Confirm</button>
                 <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>

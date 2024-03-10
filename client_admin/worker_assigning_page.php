@@ -95,11 +95,11 @@ require_once "php/worker_assigning_page.php";
             </div>
         </aside>
         <section class="main" id="main">
-            <div class="container-fluid" id="assignedWorkerArea">
+            <div class="container-fluid" id="mainArea">
                 <div class="mb-5">
                     <h1>Workers</h1>
                 </div>
-                <div class="container-fluid" id="assignedWorkerTableArea">
+                <div class="container-fluid" id="subArea-single">
                     <div>
                         <h5>Assign Workers</h5>
                     </div>
@@ -108,7 +108,7 @@ require_once "php/worker_assigning_page.php";
                         <div>Supervisor ID: <?php echo $supervisorId ?></div>
                         <div>Supervisor Name: </div>
                     </div>
-                    <table id="myTable" class="table table-hover">
+                    <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header -->
                         <thead id="tableHead">
                             <th style="color: white;">Id</th>

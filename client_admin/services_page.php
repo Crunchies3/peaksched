@@ -93,15 +93,15 @@ require_once "php/service_page.php";
             </div>
         </aside>
         <section class="main" id="main">
-            <div class="container-fluid" id="serviceArea">
+            <div class="container-fluid" id="mainArea">
                 <div class="mb-5">
                     <h1>Services</h1>
                 </div>
-                <div class="container-fluid" id="servicesTableArea">
+                <div class="container-fluid" id="subArea-single">
                     <div>
                         <h5>All services</h5>
                     </div>
-                    <table id="myTable" class="table table-hover">
+                    <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header -->
                         <thead id="tableHead">
                             <th style="color: white;">Id</th>
