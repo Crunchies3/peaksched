@@ -110,7 +110,7 @@ require_once "./php_backend/manage-appointment-reschedule.php";
                                 <script src="./js/vanilla-calendar.js"></script>
                                 <input hidden id="selectedDate" class="form-control input-field" name="selectedDate" value="">
                                 <label class="form-label mb-2">ANY SPECIAL INSTRUCTION OR COMMENTS</label>
-                                <textarea name="note" type="text" rows="3" class="form-control input-field w-100 selecServiceInput " placeholder=""></textarea>
+                                <textarea name="note" type="text" rows="3" class="form-control input-field w-100 selecServiceInput " placeholder="<?php echo $note ?>"></textarea>
                             </div>
                         </div>
                         <div class="col-lg-6 p-3">

@@ -79,7 +79,15 @@ class Employee_Client
     public function fetchAppointmentWorkers($appointmentId)
     {
         try {
-            $stmt = $this->conn->prepare("SELECT a.employeeid, CONCAT(a.firstname,' ',a.lastname) AS 'fullname', a.email, a.mobilenumber FROM tbl_employee a, tbl_worker_appointment b WHERE b.worker_id = a.employeeid && b.appointment_id = ?");
+            $stmt = $this->conn->prepare(
+                "SELECT a.employeeid, 
+                        CONCAT(a.firstname,' ',a.lastname) AS 'fullname',
+                        a.email,
+                        a.mobilenumber
+                FROM    tbl_employee a,
+                        tbl_worker_appointment b
+                WHERE   b.worker_id = a.employeeid &&
+                        b.appointment_id = ?");
             $stmt->bind_param("s", $appointmentId);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -88,10 +96,22 @@ class Employee_Client
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-    public function fetchUnassignedAppointmentWorkers()
+    public function fetchUnassignedAppointmentWorkers($appointmentId)
     {
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM tbl_employee a LEFT JOIN tbl_worker_appointment b ON a.employeeid = b.worker_id WHERE a.type = 'worker' && !EXISTS(SELECT * FROM tbl_worker_appointment WHERE worker_id = a.employeeid)");
+            $stmt = $this->conn->prepare(
+                "SELECT DISTINCT a.employeeid,
+                                a.firstname,
+                                a.lastname,
+                                a.email,
+                                a.mobilenumber 
+                            FROM tbl_employee a,
+                                tbl_supervisor_worker b,
+                                tbl_worker_appointment c
+                            WHERE a.type = 'worker' &&
+                                a.employeeid = b.worker_id &&
+                                !EXISTS(SELECT *FROM tbl_worker_appointment WHERE appointment_id = ? && worker_id = b.worker_id)");
+            $stmt->bind_param("s",$appointmentId);
             $stmt->execute();
             $result = $stmt->get_result();
             $this->unassignedWorkersAppointment = $result;
