@@ -35,6 +35,4 @@ $('#myTable').DataTable({
     ],
 });
 
-
-
 // var data = $('#myTable').DataTable().rows().data();

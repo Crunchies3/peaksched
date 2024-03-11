@@ -29,7 +29,7 @@ require_once "../../php/create-report.php";
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="../../css/dashboard_styles.css" />
-    <link rel="stylesheet" href="../../css/assigned-app-view-sup-styles.css">
+    <link rel="stylesheet" href="../../css/create-report-style.css">
     <link rel="stylesheet" href="../../../components/_components.css">
 </head>
 
@@ -118,17 +118,35 @@ require_once "../../php/create-report.php";
                             </div>
                             <div class="mb-4 col-lg-6 row mb-1">
                                 <label class="form-label mb-2">HOURS WORKED <span class="my-form-required">*</span></label>
-                                <div class="col-lg-3 mb-3">
-                                    <input name="hour" type="number" class="form-control fs-6 input-field <?php echo (!empty($hour_err)) ? 'is-invalid' : ''; ?>" placeholder="Hours" value="<?php echo $hour ?>">
+                                <div class="col-lg-3 mb-3 input-group">
+                                    <span class="input-group-text">Hours</span>
+                                    <!-- <input id="hoursWorked" name="hour" type="number" class="form-control fs-6 input-field <?php echo (!empty($hour_err) || !empty($minute_err)) ? 'is-invalid' : ''; ?>" placeholder="" value="<?php echo $hour ?>"> -->
+                                    <select required id="hoursWorked" name="hour" class="form-select form-select-lg">
+                                        <?php
+                                        for ($i = 0; $i < 10; $i++) {
+                                        ?>
+                                            <option value="<?php echo  $i; ?>"><?php echo  $i; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <span class="input-group-text">Minutes</span>
+                                    <!-- <input id="minutesWorked" name="minute" type="number" class="form-control fs-6 input-field <?php echo (!empty($minute_err) || !empty($hour_err)) ? 'is-invalid' : ''; ?>" placeholder="" value="<?php echo $minute ?>"> -->
+                                    <select required id="minutesWorked" name="minute" class="form-select form-select-lg">
+                                        <?php
+                                        for ($i = 0; $i < 60; $i = $i + 5) {
+                                        ?>
+                                            <option value="<?php echo  $i; ?>"><?php echo $i; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
                                     <div class="invalid-feedback">
-                                        <?php echo $hour_err; ?>
+                                        <?php echo 'Please enter hours worked'; ?>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
-                                    <input name="minute" type="number" class="form-control fs-6 input-field <?php echo (!empty($minute_err)) ? 'is-invalid' : ''; ?>" placeholder="Minutes" value="<?php echo $minute ?>">
-                                    <div class="invalid-feedback">
-                                        <?php echo $minute_err; ?>
-                                    </div>
+                                    <button id="applyHoursWorked" type="button" class="btn my-button-yes">Apply to all Worker</button>
                                 </div>
                             </div>
                         </div>
@@ -139,32 +157,47 @@ require_once "../../php/create-report.php";
                         <div>
                             <h5>Assigned workers</h5>
                         </div>
+                        <input hidden class="form-control fs-6 input-field <?php echo (!empty($hourWorked_err)) ? 'is-invalid' : ''; ?>" placeholder="" value="<?php echo $minute ?>">
+                        <div class="invalid-feedback mb-3">
+                            <?php echo $hourWorked_err; ?>
+                        </div>
                         <table id="myTable" class="table table-hover table-striped">
                             <!-- //!TODO: para mailisan ang color sa header -->
                             <thead id="tableHead">
-                                <th style="color: white;">Id</th>
-                                <th style="color: white;">Fullname</th>
-                                <th style="color: white;">Email</th>
-                                <th style="color: white;">Phone</th>
+                                <th style="color: grey; ">Fullname</th>
+                                <th style="color: grey; width:70%">Hours Worked</th>
                             </thead>
                             <tbody>
                                 <?php
+                                $rowCount = 0;
                                 // LOOP TILL END OF DATA
                                 while ($rows = $result->fetch_assoc()) {
                                 ?>
                                     <tr>
-                                        <td><?php echo $rows['employeeid']; ?></td>
+                                        <td hidden> <input name="id<?php echo $rowCount ?>" type="text" class="input-field form-control" value="<?php echo $rows['employeeid']; ?>"> </td>
                                         <td><?php echo $rows['fullname']; ?></td>
-                                        <td><?php echo $rows['email']; ?></td>
-                                        <td><?php echo $rows['mobilenumber']; ?></td>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col-lg-3 mb-2">
+                                                    <input id="hour<?php echo $rowCount ?>" name="hour<?php echo $rowCount ?>" placeholder="Hours" type="number" class="input-field form-control" value="<?php if (isset($workerHour[$rowCount])) echo $workerHour[$rowCount]; ?>">
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <input id="minute<?php echo $rowCount ?>" name="minute<?php echo $rowCount ?>" placeholder="Minutes" type="number" class="input-field form-control" value="<?php if (isset($workerMinute[$rowCount])) echo $workerMinute[$rowCount]; ?>">
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                 <?php
+                                    $rowCount++;
                                 }
                                 ?>
                             </tbody>
                         </table>
+                        <label class="form-label mb-2" style="color: #124F6F;">COMMENTS/NOTES</label>
+                        <textarea name="note" type="text" rows="3" class="form-control input-field w-100 selecServiceInput " placeholder=""></textarea>
+
                         <div>
-                            <button name="submitReport" form="reportDetails" <?php echo "" ?> class="btn btn-success mt-5 w-100">Submit Report</button>
+                            <button type="button" name="submitReport" data-bs-toggle="modal" data-bs-target="#submitReportModal" class="btn my-button-yes mt-5 w-100">Submit Report</button>
                         </div>
                     </div>
                 </div>
@@ -175,3 +208,22 @@ require_once "../../php/create-report.php";
 </body>
 
 </html>
+
+
+<div class="modal fade" id="submitReportModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="submitReportModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
+            <div class="modal-header">
+                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Submit Report?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Your report will be submitted.
+            </div>
+            <div class="modal-footer">
+                <button name="updateInfo" form="reportDetails" class="btn my-button-yes">Confirm</button>
+                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

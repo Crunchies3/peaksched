@@ -1,0 +1,11 @@
+#appointmentArea h5 {
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+
+
+
+.input-field::placeholder {
+    color: rgb(148, 148, 148) !important;
+}

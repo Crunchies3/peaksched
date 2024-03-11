@@ -4,6 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/employee_client.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/employee_account.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/form_validation.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/appointments.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/reports.php";
 
 $employeeAcc = unserialize($_SESSION["employeeUser"]);
 $supervisorId = $employeeAcc->getId();
@@ -11,12 +12,16 @@ $supervisorId = $employeeAcc->getId();
 $employeeClient = new Employee_Client();
 $employeeClient->setConn($conn);
 
+$report = new Report();
+$report->setConn($conn);
+
+
 $validate = new Validation();
 
 $appointment = new Appointment();
 $appointment->setConn($conn);
 
-$appointmentId = $fullname = $title = $status = $date = $hour_err = $minute_err = $hour = $minute = "";
+$appointmentId = $fullname = $title = $status = $date = $hour_err = $minute_err = $hour = $minute = $hourWorked_err = "";
 
 if (isset($_GET["appointmentId"])) {
     $appointmentId = $_GET["appointmentId"];
@@ -38,6 +43,13 @@ $title = $employeeClient->getServicetitle();
 $status = $employeeClient->getAppointmentstatus();
 $date = $employeeClient->getAppointmentdate();
 $time = $employeeClient->getAppointmentdate();
+
+$workerIds = array();
+$workerHour = array();
+$workerMinute = array();
+
+
+
 
 //===============================================================================================
 //for displaying/deleting assigned workers to a specific appointment
@@ -66,4 +78,35 @@ if (isset($_POST['submitReport'])) {
 
     $minute = $_POST["minute"];
     $minute_err = $validate->time($minute);
+
+    for ($i = 0; $i < count($_POST); $i++) {
+        if (isset($_POST['id' . $i])) {
+
+            if (empty($_POST['id' . $i])) {
+                $hourWorked_err = "Please fill all the fields";
+            }
+            array_push($workerIds, $_POST['id' . $i]);
+
+            if (empty($_POST['hour' . $i])) {
+                $hourWorked_err = "Please fill all the fields";
+            }
+            array_push($workerHour, $_POST['hour' . $i]);
+
+            if (empty($_POST['minute' . $i])) {
+                $hourWorked_err = "Please fill all the fields";
+            }
+            array_push($workerMinute, $_POST['minute' . $i]);
+        }
+    }
+
+    $dateNow = date("Y/m/d");
+    date_default_timezone_set("America/Vancouver");
+    $timeNow = date("h:i");
+
+
+
+
+    if (empty($hourWorked_err)) {
+        $report->createReport($workerIds, $workerHour, $workerMinute, $dateNow, $timeNow);
+    }
 }
