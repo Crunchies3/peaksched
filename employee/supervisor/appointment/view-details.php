@@ -116,9 +116,6 @@ require_once "../../php/assigned_app_supervisor_view.php";
                             <input disabled name="position" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $date ?>">
                         </div>
                     </form>
-                    <div>
-                        <button form="appointmentDetails" <?php echo "" ?> class="btn btn-success">Create Report</button>
-                    </div>
                 </div>
             </div>
             <div class="container-fluid" id="appointmentArea">
@@ -152,6 +149,9 @@ require_once "../../php/assigned_app_supervisor_view.php";
                             ?>
                         </tbody>
                     </table>
+                    <div>
+                        <button form="appointmentDetails" <?php echo "" ?> class="btn btn-success mt-5 w-100">Create Report</button>
+                    </div>
                 </div>
             </div>
         </section>

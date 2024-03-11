@@ -91,7 +91,7 @@ require_once "../../php/assigned_app_supervisor.php";
                 </div>
                 <div class="container-fluid" id="subArea-single">
                     <div>
-                        <h5>All appointment</h5>
+                        <h5>All Appointment</h5>
                     </div>
                     <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header ug status-->
@@ -119,8 +119,15 @@ require_once "../../php/assigned_app_supervisor.php";
                                     else if ($rows['status'] == 'Completed') $badgeType = 'my-badge-approved';
                                     ?>
                                     <td><span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $rows['status']; ?></span></td>
-                                    <td><?php echo $rows['start']; ?></td>
-                                    <td><?php echo $rows['end']; ?></td>
+                                    <?php
+                                    $appointment->getConfirmedAppointmentDetails($rows['appointment_id']);
+                                    $appointment->getConfirmedDisplayables();
+                                    $date = $appointment->getSpecificDate();
+                                    $dateOnly = date("Y-m-d", strtotime($date));
+                                    $timeOnly = date('h:i A', strtotime($date));
+                                    ?>
+                                    <td><?php echo $dateOnly; ?></td>
+                                    <td><?php echo $timeOnly; ?></td>
                                     <td></td>
                                 </tr>
                             <?php

@@ -55,6 +55,16 @@ class Validation
         }
     }
 
+    public function time($time)
+    {
+        if (empty($time)) {
+            return "Enter a value";
+        } else {
+            return "";
+        }
+    }
+
+
     public function lastName($lastname)
     {
         if (empty($lastname)) {
