@@ -228,22 +228,57 @@ class Appointment
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-    public function getDisplayables(){
+
+    public function getConfirmedAppointmentDetails($id)
+    {
         try {
             $stmt = $this->conn->prepare(
-                "SELECT b.title,
-                        a.start
-                 FROM tbl_request_appointment a,
-                      tbl_service b
-                 WHERE a.service_id = b.service_id &&
-                       a.request_app_id = ?
-                ");
-            $stmt->bind_param("s",$this->appointmentId);
+                "SELECT *
+                FROM tbl_confirmed_appointment
+                WHERE appointment_id = ?"
+            );
+            $stmt->bind_param("s", $id);
             $stmt->execute();
             $result = $stmt->get_result();
             $stmt->close();
             if ($result->num_rows > 0) {
-                while ($rows = $result->fetch_assoc()){
+                while ($row = $result->fetch_assoc()) {
+                    $this->setAppointmentId($row['appointment_id']);
+                    $this->setCustomerId($row['customer_id']);
+                    $this->setServiceId($row['service_id']);
+                    $this->setAddressId($row['address_id']);
+                    $this->setNumOfFloors($row['num_floors']);
+                    $this->setNumOfBeds($row['num_beds']);
+                    $this->setNumOfBaths($row['num_baths']);
+                    $this->setStart($row['start']);
+                    $this->setEnd($row['end']);
+                    $this->setNote($row['note']);
+                    $this->setStatus($row['status']);
+                }
+            }
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function getConfirmedDisplayables()
+    {
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT b.title,
+                        a.start
+                 FROM tbl_confirmed_appointment a,
+                      tbl_service b
+                 WHERE a.service_id = b.service_id &&
+                       a.appointment_id = ?
+                "
+            );
+            $stmt->bind_param("s", $this->appointmentId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            if ($result->num_rows > 0) {
+                while ($rows = $result->fetch_assoc()) {
                     $this->setSpecificTitle($rows['title']);
                     $this->setSpecificDate($rows['start']);
                 }
@@ -252,7 +287,38 @@ class Appointment
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-    public function getAssignedSupervisor(){
+
+
+    public function getDisplayables()
+    {
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT b.title,
+                        a.start
+                 FROM tbl_request_appointment a,
+                      tbl_service b
+                 WHERE a.service_id = b.service_id &&
+                       a.request_app_id = ?
+                "
+            );
+            $stmt->bind_param("s", $this->appointmentId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            if ($result->num_rows > 0) {
+                while ($rows = $result->fetch_assoc()) {
+                    $this->setSpecificTitle($rows['title']);
+                    $this->setSpecificDate($rows['start']);
+                }
+            }
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+
+    public function getAssignedSupervisor()
+    {
         try {
             $stmt = $this->conn->prepare(
                 "SELECT CONCAT(a.firstname,' ',a.lastname) AS 'fullname'
@@ -264,12 +330,13 @@ class Appointment
                        c.status = 'Approved' &&
                        c.request_app_id = ? &&
                        b.customer_id = ? 
-                ");
+                "
+            );
             $stmt->bind_param("ss", $this->appointmentId, $this->customerId);
             $stmt->execute();
             $supervisor = $stmt->get_result();
             $stmt->close();
-            while ($rows = $supervisor->fetch_assoc()){
+            while ($rows = $supervisor->fetch_assoc()) {
                 $this->setSpecificSupervisorAssigned($rows['fullname']);
             }
         } catch (Exception $e) {
@@ -277,8 +344,8 @@ class Appointment
         }
     }
 
-    public function rescheduleAppointment($dateTimestart, $dateTimeend, $note, $status, $appointmentId){
-        {
+    public function rescheduleAppointment($dateTimestart, $dateTimeend, $note, $status, $appointmentId)
+    { {
             try {
                 $stmt = $this->conn->prepare(
                     "UPDATE tbl_request_appointment a
@@ -295,20 +362,22 @@ class Appointment
             }
         }
     }
-    public function confirmedAppointmentDeletion($customerId,$service_id){
+    public function confirmedAppointmentDeletion($customerId, $service_id)
+    {
         try {
-           $stmt = $this->conn->prepare("DELETE FROM tbl_confirmed_appointment WHERE customer_id = ? && service_id = ?");
-           $stmt->bind_param("ss",$customerId,$service_id);
-           $stmt->execute();
-           $this->conn->close();
+            $stmt = $this->conn->prepare("DELETE FROM tbl_confirmed_appointment WHERE customer_id = ? && service_id = ?");
+            $stmt->bind_param("ss", $customerId, $service_id);
+            $stmt->execute();
+            $this->conn->close();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-    public function cancelAppointment($id){
+    public function cancelAppointment($id)
+    {
         try {
             $stmt = $this->conn->prepare("DELETE FROM tbl_request_appointment WHERE request_app_id = ?");
-            $stmt->bind_param("s",$id);
+            $stmt->bind_param("s", $id);
             $stmt->execute();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";

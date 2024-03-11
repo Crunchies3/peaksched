@@ -32,6 +32,10 @@ $('#myTable').DataTable({
             className: "right-aligned-cell"
         },
         {
+            targets: -3,
+            className: "right-aligned-cell"
+        },
+        {
             data: null,
             defaultContent: '<form action="view-details.php" id="addAppoitment" method="get"><input id="appointmentId" hidden type="text" name="appointmentId" value=""></form><button form="addAppoitment" class="btn my-button-yes mx-1" id="actionClick">View</button>',
             targets: -1
