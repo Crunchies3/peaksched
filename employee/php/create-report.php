@@ -73,6 +73,13 @@ if (isset($_POST['submitReport'])) {
     $timeOnly = date('h:i A', strtotime($date));
 
 
+
+    $reportId = rand(100000, 200000);
+    while (!$report->isReportIdUnique($reportId)) {
+        $reportId = rand(100000, 200000);
+    }
+
+
     $hour = $_POST["hour"];
     $hour_err = $validate->time($hour);
 
@@ -87,12 +94,12 @@ if (isset($_POST['submitReport'])) {
             }
             array_push($workerIds, $_POST['id' . $i]);
 
-            if (empty($_POST['hour' . $i])) {
+            if (empty($_POST['hour' . $i]) && !is_numeric($_POST['hour' . $i])) {
                 $hourWorked_err = "Please fill all the fields";
             }
             array_push($workerHour, $_POST['hour' . $i]);
 
-            if (empty($_POST['minute' . $i])) {
+            if (empty($_POST['minute' . $i]) && !is_numeric($_POST['minute' . $i])) {
                 $hourWorked_err = "Please fill all the fields";
             }
             array_push($workerMinute, $_POST['minute' . $i]);
@@ -103,10 +110,14 @@ if (isset($_POST['submitReport'])) {
     date_default_timezone_set("America/Vancouver");
     $timeNow = date("h:i");
 
+    $notes = $_POST["note"];
 
 
 
     if (empty($hourWorked_err)) {
-        $report->createReport($workerIds, $workerHour, $workerMinute, $dateNow, $timeNow);
+        $report->createReport($reportId, $workerIds, $workerHour, $workerMinute, $dateNow, $timeNow, $appointmentId, $supervisorId, $notes);
+        $appointment->updateConfirmedAppointmentStatus($appointmentId, 'Completed');
+        $conn->close();
+        header('location: report-success.php');
     }
 }

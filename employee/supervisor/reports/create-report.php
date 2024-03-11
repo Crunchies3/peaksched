@@ -221,7 +221,7 @@ require_once "../../php/create-report.php";
                 Your report will be submitted.
             </div>
             <div class="modal-footer">
-                <button name="updateInfo" form="reportDetails" class="btn my-button-yes">Confirm</button>
+                <button name="submitReport" form="reportDetails" class="btn my-button-yes">Confirm</button>
                 <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>

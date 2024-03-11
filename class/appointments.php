@@ -152,7 +152,22 @@ class Appointment
             $stmt->bind_param("ssssssss", $appointmentId, $customerId, $serviceId, $tempAddress, $employeeId, $dateTimeStart, $dateTimeEnd, $note);
             $stmt->execute();
             $stmt->close();
-            $this->conn->close();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function updateConfirmedAppointmentStatus($appointmentid, $status)
+    {
+        try {
+            $stmt = $this->conn->prepare(
+                "UPDATE tbl_confirmed_appointment
+                SET     
+                        status = ?
+                WHERE   appointment_id = ?"
+            );
+            $stmt->bind_param("ss", $status, $appointmentid);
+            $stmt->execute();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
