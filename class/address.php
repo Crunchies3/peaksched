@@ -2,6 +2,13 @@
 class Address
 {
     private $conn;
+    private $address_id;
+    private $customerId;
+    private $street;
+    private $city;
+    private $province;
+    private $zip_code;
+    private $country;
 
     public function fetchAddressArr($customerId)
     {
@@ -25,6 +32,29 @@ class Address
                 }
             }
             return $address_list;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function getAddressById($address_id)
+    {
+        try {
+            $stmt = $this->conn->prepare("SELECT * FROM tbl_customer_address WHERE address_id = ?");
+            $stmt->bind_param("s", $address_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $this->setAddress_id($row['address_id']);
+                    $this->setCustomerId($row['customer_id']);
+                    $this->setStreet($row['street']);
+                    $this->setCity($row['city']);
+                    $this->setProvince($row['province']);
+                    $this->setZip_code($row['zip_code']);
+                    $this->setCountry($row['country']);
+                }
+            }
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
@@ -61,6 +91,110 @@ class Address
     public function setConn($conn)
     {
         $this->conn = $conn;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of address_list
+     */
+    public function getAddress_id()
+    {
+        return $this->address_id;
+    }
+
+    /**
+     * Set the value of address_list
+     *
+     * @return  self
+     */
+    public function setAddress_id($address_id)
+    {
+        $this->address_id = $address_id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of customerId
+     */
+    public function getCustomerId()
+    {
+        return $this->customerId;
+    }
+
+    /**
+     * Set the value of customerId
+     *
+     * @return  self
+     */
+    public function setCustomerId($customerId)
+    {
+        $this->customerId = $customerId;
+
+        return $this;
+    }
+
+
+    public function getStreet()
+    {
+        return $this->street;
+    }
+
+    public function setStreet($street)
+    {
+        $this->street = $street;
+
+        return $this;
+    }
+
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getProvince()
+    {
+        return $this->province;
+    }
+
+
+    public function setProvince($province)
+    {
+        $this->province = $province;
+
+        return $this;
+    }
+
+    public function getZip_code()
+    {
+        return $this->zip_code;
+    }
+
+
+    public function setZip_code($zip_code)
+    {
+        $this->zip_code = $zip_code;
+
+        return $this;
+    }
+
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+
+    public function setCountry($country)
+    {
+        $this->country = $country;
 
         return $this;
     }
