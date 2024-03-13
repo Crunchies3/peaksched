@@ -15,7 +15,7 @@ $('#myTable').DataTable({
     layout: {
         topStart: 'search',
         topEnd: {
-            buttons: [ {
+            buttons: [{
                 text: '<i class="bi bi-plus plus-icon"></i> add address',
                 className: 'add-adress-btn rounded',
                 action: function () {
@@ -29,7 +29,10 @@ $('#myTable').DataTable({
         emptyTable: 'No data available in table'
     },
     'columnDefs': [
-        
+        {
+            targets: 0,
+            'visible': false,
+        },
         {
             data: null,
             defaultContent: '<form action="../address/view-details.php" id="editEmployee" method="get"><input id="addressId" hidden type="text" name="addressId" value=""></form><button form="editEmployee" class="btn my-button-yes mx-1" id="actionClick">View</button>',

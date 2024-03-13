@@ -5,6 +5,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
 }
+
+require_once "../php_backend/address-page.php";
 ?>
 
 <!DOCTYPE html>
@@ -21,12 +23,12 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/bootstrap5@6.1.10/index.global.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-     <!-- DataTables CDN -->
+    <!-- DataTables CDN -->
 
     <link href="https://cdn.datatables.net/v/bs5/dt-2.0.0/b-3.0.0/b-html5-3.0.0/r-3.0.0/sl-2.0.0/sr-1.4.0/datatables.min.css" rel="stylesheet">
     <script src="https://cdn.datatables.net/v/bs5/dt-2.0.0/b-3.0.0/b-html5-3.0.0/r-3.0.0/sl-2.0.0/sr-1.4.0/datatables.min.js"></script>
     <!-- end -->
-   
+
 
     <link rel="stylesheet" href="../css/dashboard_styles.css" />
     <link rel="stylesheet" href="../../components/_components.css">
@@ -96,31 +98,28 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header -->
                         <thead id="tableHead">
+                            <th style="color: white;">id</th>
                             <th style="color: white;">Address</th>
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Sto.tomas Davao Del Norte</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Tagum city Davao Del Norte</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Asuncion Davao Del Norte</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Panabo Davao Del Norte</td>
-                                <td></td>
-                            </tr>
+                            <?php
+                            // LOOP TILL END OF DATA
+                            while ($rows = $result->fetch_assoc()) {
+                            ?>
+                                <tr>
+                                    <td><?php echo $rows['address_id']; ?></td>
+                                    <td><?php echo $rows['fullAddress']; ?></td>
+                                    <td></td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>
             </div>
-            <script src = "../js/data-table-address.js"></script>
+            <script src="../js/data-table-address.js"></script>
             <script src="../js/script.js"></script>
 </body>
 

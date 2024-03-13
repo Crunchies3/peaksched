@@ -37,6 +37,27 @@ class Address
         }
     }
 
+    public function fetchAddressListByCustomer($customerId)
+    {
+        try {
+            $stmt = $this->conn->prepare(
+
+                "SELECT a.address_id,
+                        CONCAT(street, '. ', city, ', ', province, '. ', country, ', ', zip_code)  as 'fullAddress'
+                FROM    tbl_customer_address a,
+                        tbl_customer b
+                WHERE   b.customerid = a.customer_id &&
+                        b.customerid = ?"
+            );
+            $stmt->bind_param("s", $customerId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
     public function getAddressById($address_id)
     {
         try {
