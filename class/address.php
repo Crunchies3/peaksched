@@ -90,7 +90,7 @@ class Address
                                                     country) 
                 VALUES (?,?,?,?,?,?,?)"
             );
-            $stmt->bind_param("sssssss", $customerId, $addressId, $street, $city, $province, $zipCode, $country);
+            $stmt->bind_param("sssssss", $addressId, $customerId, $street, $city, $province, $zipCode, $country);
             $stmt->execute();
             $this->conn->close();
         } catch (Exception $e) {
