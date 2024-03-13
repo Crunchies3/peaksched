@@ -58,6 +58,46 @@ class Address
         }
     }
 
+    public function isIdUnique($address_id)
+    {
+        try {
+            $stmt = $this->conn->prepare("SELECT * FROM tbl_customer_address WHERE address_id = ?");
+            $stmt->bind_param("s", $address_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
+                $stmt->close();
+                return false;
+            }
+            $stmt->close();
+            return true;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function addAddress($customerId, $addressId, $street, $city, $province, $zipCode, $country)
+    {
+        try {
+            $stmt = $this->conn->prepare(
+                "INSERT INTO tbl_customer_address (address_id, 
+                                                    customer_id, 
+                                                    street, 
+                                                    city, 
+                                                    province, 
+                                                    zip_code,
+                                                    country) 
+                VALUES (?,?,?,?,?,?,?)"
+            );
+            $stmt->bind_param("sssssss", $customerId, $addressId, $street, $city, $province, $zipCode, $country);
+            $stmt->execute();
+            $this->conn->close();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
     public function getAddressById($address_id)
     {
         try {

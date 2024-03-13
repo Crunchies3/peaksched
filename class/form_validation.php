@@ -92,6 +92,15 @@ class Validation
         }
     }
 
+    public function address($string)
+    {
+        if (empty($string)) {
+            return "This field is required.";
+        } else {
+            return "";
+        }
+    }
+
     public function mobileNumber($mobile)
     {
         if (empty($mobile)) {
