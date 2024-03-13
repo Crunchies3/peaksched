@@ -54,7 +54,7 @@ require_once "../../php/assigned_app_supervisor.php";
                 </li>
                 <li class="sidebar-item">
                     <a href="../appointment/" class="sidebar-link">
-                        <i class="bi bi-calendar2-fill"></i>
+                        <i class="bi bi-calendar2"></i>
                         <span>Appointments</span>
                     </a>
                 </li>
@@ -65,7 +65,7 @@ require_once "../../php/assigned_app_supervisor.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="../notification/" class="sidebar-link">
                         <i class="bi bi-bell"></i>
                         <span>Notifications</span>
                     </a>

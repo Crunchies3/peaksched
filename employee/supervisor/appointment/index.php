@@ -53,19 +53,19 @@ require_once "../../php/assigned_app_supervisor.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="./" class="sidebar-link selected">
+                    <a href="../appointment/" class="sidebar-link selected">
                         <i class="bi bi-calendar2-fill"></i>
                         <span>Appointments</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a href="../reports/" class="sidebar-link">
-                        <i class="bi bi-file-earmark-binary-fill"></i>
+                        <i class="bi bi-file-earmark-binary"></i>
                         <span>Reports</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="../notification/" class="sidebar-link">
                         <i class="bi bi-bell"></i>
                         <span>Notifications</span>
                     </a>

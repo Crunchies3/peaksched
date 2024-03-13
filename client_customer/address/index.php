@@ -58,7 +58,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="./address" class="sidebar-link selected">
+                    <a href="./index.php" class="sidebar-link selected">
                         <i class="bi bi-geo-alt-fill"></i>
                         <span>Adress</span>
                     </a>
@@ -77,7 +77,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="php_backend/logout.php" class="sidebar-link">
+                <a href="../php_backend/logout.php" class="sidebar-link">
                     <i class="bi bi-box-arrow-left"></i>
                     <span>Logout</span>
                 </a>
