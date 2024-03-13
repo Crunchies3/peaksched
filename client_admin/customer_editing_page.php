@@ -151,7 +151,7 @@ require_once "php/customer_editing.php";
             <div class="container-fluid" id="customerArea">
                 <div class="container-fluid" id="tablelistTableArea">
                     <div>
-                        <h5>Assigned Appointments</h5>
+                        <h5>Appointments</h5>
                     </div>
                     <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header -->
