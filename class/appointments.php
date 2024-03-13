@@ -64,6 +64,35 @@ class Appointment
         }
     }
 
+    public function displayAppointmentRequest()
+    {
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT a.request_app_id,
+                        CONCAT(b.firstname,' ', b.lastname) AS 'customer',
+                        c.title,
+                        CONCAT(d.street, '. ', d.city, ', ', d.province, '. ', d.country, ', ', d.zip_code)  as 'fullAddress',
+                        a.start,
+                        a.status
+                FROM    tbl_request_appointment a,
+                        tbl_customer b,
+                        tbl_service c,
+                        tbl_customer_address d
+                WHERE   a.customer_id = b.customerid AND
+                        a.service_id = c.service_id AND
+                        a.address_id = d.address_id AND
+                        a.customer_id = d.customer_id
+                ORDER BY a.start ASC;"
+            );
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            return $result;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
     public function isAppointmentIdUnique($id)
     {
         try {
