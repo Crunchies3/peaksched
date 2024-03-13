@@ -96,7 +96,7 @@ class Employee_Client
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-    public function fetchUnassignedAppointmentWorkers($appointmentId)
+    public function fetchUnassignedAppointmentWorkers($appointmentId,$supervisorId)
     {
         try {
             $stmt = $this->conn->prepare(
@@ -113,8 +113,17 @@ class Employee_Client
                                 !EXISTS(SELECT *FROM tbl_worker_appointment WHERE appointment_id = ? && worker_id = b.worker_id)");
             $stmt->bind_param("s",$appointmentId);
             $stmt->execute();
-            $result = $stmt->get_result();
-            $this->unassignedWorkersAppointment = $result;
+            $containsResult = $stmt->get_result();
+            if($containsResult->num_rows > 0){
+                $this->unassignedWorkersAppointment = $containsResult;
+            }else{
+                $stmy = $this->conn->prepare("SELECT*FROM tbl_employee a, tbl_supervisor_worker b WHERE a.employeeid = b.worker_id && b.supervisor_id = ?");
+            $stmy->bind_param("s",$supervisorId);
+            $stmy->execute();
+            $emptyResult = $stmy->get_result();
+            $this->unassignedWorkersAppointment = $emptyResult;
+            }
+            
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
