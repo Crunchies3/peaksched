@@ -169,7 +169,7 @@ require_once "php/profile_account.php";
                         <div class="mb-3 col-xxl-2">
                             <button data-bs-toggle="modal" data-bs-target="#updatePasswordModal" type="submit" class="btn btn-lg fs-6 w-100 my-button-yes">Change password</button>
                         </div>
-                        <div class="mb-0 col-xxl-2">
+                        <div class="mb-4 col-xxl-2">
                             <a href="./setting_account_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Discard changes</a>
                         </div>
                     </div>
