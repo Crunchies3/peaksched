@@ -60,6 +60,12 @@ require_once "./php_backend/request-appointment-details.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="./address" class="sidebar-link">
+                        <i class="bi bi-geo-alt"></i>
+                        <span>Adress</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
                         <i class="bi bi-bell"></i>
                         <span>Notifications</span>

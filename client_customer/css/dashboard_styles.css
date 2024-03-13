@@ -206,3 +206,9 @@ a.sidebar-link:hover {
 .sidebar-item {
     position: relative;
 }
+
+
+.add-adress-btn {
+    background-color: #124F6F;
+    color: #f7f8fc;
+}
