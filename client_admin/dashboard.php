@@ -64,6 +64,12 @@ require_once "php/dashboard.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="./payroll/" class="sidebar-link ">
+                        <i class="bi bi-wallet"></i>
+                        <span>Payroll</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="./services_page.php" class="sidebar-link">
                         <i class="bi bi-file-post-fill"></i>
                         <span>Services</span>
