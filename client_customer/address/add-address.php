@@ -82,7 +82,7 @@ require_once "../php_backend/address-adding.php";
         <section class="main" id="main">
             <div class="container-fluid" id="mainArea">
                 <div class="mb-5">
-                    <h1>Address</h1>
+                    <h1>Addresses</h1>
                 </div>
                 <div class="container-fluid" id="subArea-top">
                     <div class="col">

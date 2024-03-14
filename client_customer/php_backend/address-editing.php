@@ -39,34 +39,37 @@ $country = $address->getCountry();
 
 
 
+if (isset($_POST['updateInfo'])) {
 
 
+    if ($_SERVER["REQUEST_METHOD"] != "POST") {
+        return;
+    }
 
+    $addressId = trim($_POST["addressId"]);
 
-if ($_SERVER["REQUEST_METHOD"] != "POST") {
-    return;
+    $street = trim($_POST["street"]);
+    $street_err = $validate->address($street);
+
+    $city = trim($_POST["city"]);
+    $city_err = $validate->address($city);
+
+    $province = trim($_POST["province"]);
+    $province_err = $validate->address($province);
+
+    $zipCode = trim($_POST["zipCode"]);
+    $zipCode_err = $validate->address($zipCode);
+
+    $country = trim($_POST["country"]);
+    $country_err = $validate->address($country);
+
+    if (empty($street_err) && empty($city_err) && empty($province_err) && empty($zipCode_err) && empty($country_err)) {
+        $address->updateAddress($addressId, $street, $city, $province, $zipCode, $country);
+    }
 }
+if (isset($_POST['deleteAddress'])) {
 
-$addressId = trim($_POST["addressId"]);
-
-$street = trim($_POST["street"]);
-$street_err = $validate->address($street);
-
-$city = trim($_POST["city"]);
-$city_err = $validate->address($city);
-
-$province = trim($_POST["province"]);
-$province_err = $validate->address($province);
-
-$zipCode = trim($_POST["zipCode"]);
-$zipCode_err = $validate->address($zipCode);
-
-$country = trim($_POST["country"]);
-$country_err = $validate->address($country);
-
-
-
-
-if (empty($street_err) && empty($city_err) && empty($province_err) && empty($zipCode_err) && empty($country_err)) {
-    $address->updateAddress($addressId, $street, $city, $province, $zipCode, $country);
+    $addressId = trim($_POST["addressId"]);
+    $address->deleteAddress($addressId);
+    header('location: ./');
 }

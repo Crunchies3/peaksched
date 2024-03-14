@@ -89,16 +89,14 @@ require_once "../php_backend/address-editing.php";
         <section class="main" id="main">
             <div class="container-fluid" id="mainArea">
                 <div class="mb-5">
-                    <h1>Address</h1>
+                    <h1>Addresses</h1>
                 </div>
                 <div class="container-fluid" id="subArea-top">
                     <div class="col d-flex justify-content-between">
                         <div class="">
                             <h5><span><a href="./index.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Address Details</h5>
                         </div>
-                        <div class="mb-3">
-                            <button id="showEdit" href="./index.php" class="btn my-button-edit"><i class="bi bi-pencil-square"></i> Edit Address</button>
-                        </div>
+
                     </div>
                     <form id="editAddressForm" class="row mb-5" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <input type="hidden" name="addressId" value="<?= htmlspecialchars($addressId) ?>">
@@ -138,8 +136,10 @@ require_once "../php_backend/address-editing.php";
                             </div>
                         </div>
                     </form>
+                    <div class="mb-0 col-xxl-2">
+                        <button id="showEdit" name="editAddress" type="submit" class="btn btn-lg fs-6 w-100 my-button-yes">Edit Address</button>
+                    </div>
                     <div class="row">
-
                         <div class="mb-3 col-xxl-2">
                             <button style="display: none;" id="editAddress" name="editAddress" data-bs-toggle="modal" data-bs-target="#editAddressModal" type="submit" class="btn btn-lg fs-6 w-100 my-button-yes">Save Changes</button>
                         </div>
@@ -147,7 +147,7 @@ require_once "../php_backend/address-editing.php";
                             <button style="display: none;" id="discardChanges" href="./index.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Cancel</button>
                         </div>
                         <div class="mb-0 col-xxl-2 ms-auto">
-                            <button data-bs-toggle="modal" data-bs-target="#deleteAddressModal" class="btn btn-lg fs-6 w-100 my-button-danger">Delete</button>
+                            <button style="display: none;" data-bs-toggle="modal" id="deleteAddress" data-bs-target="#deleteAddressModal" class="btn btn-lg fs-6 w-100 my-button-danger">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -178,20 +178,20 @@ require_once "../php_backend/address-editing.php";
     </div>
 </div>
 
-<!-- //? modal paras confirmation sa pag delete sa user -->
+<!-- //? modal paras confirmation sa pag delete sa Address -->
 
 <div class="modal fade" id="deleteAddressModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="deleteAddressModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
-                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm delete account?</h1>
+                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm delete address?</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Your account will be deleted.
+                The address will be deleted.
             </div>
             <div class="modal-footer">
-                <button name="deleteAddress" form="editPasswordForm" class="btn my-button-danger">Confirm</button>
+                <button name="deleteAddress" form="editAddressForm" class="btn my-button-danger">Confirm</button>
                 <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>

@@ -92,10 +92,12 @@ $("#showEdit").on("click", function () {
     $("#editAddress").toggle();
     $("#discardChanges").toggle();
     $("#showEdit").toggle();
+    $("#deleteAddress").toggle();
 });
 
 $("#discardChanges").on("click", function () {
     $("#editAddress").toggle();
     $("#discardChanges").toggle();
     $("#showEdit").toggle();
+    $("#deleteAddress").toggle();
 });
