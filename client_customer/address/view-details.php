@@ -6,6 +6,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
+require_once "../php_backend/address-editing.php";
 
 ?>
 
@@ -91,57 +92,59 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <h1>Address</h1>
                 </div>
                 <div class="container-fluid" id="subArea-top">
-                    <div class="col">
-                        <h5><span><a href="./index.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Appointment Details</h5>
+                    <div class="col d-flex justify-content-between">
+                        <div class="">
+                            <h5><span><a href="./index.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Address Details</h5>
+                        </div>
+                        <div class="mb-3">
+                            <button id="showEdit" href="./index.php" class="btn my-button-edit"><i class="bi bi-pencil-square"></i> Edit Address</button>
+                        </div>
                     </div>
-                    <div>
-                        <h5>Edit Adress</h5>
-                    </div>
-                    <form id="editAddressForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
+                    <form id="editAddressForm" class="row mb-5" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <input type="hidden" name="addressId" value="<?= htmlspecialchars($addressId) ?>">
                         <div class="col-md-6 mb-4">
                             <label class="form-label mb-1">STREET</label>
-                            <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $firstName ?>">
+                            <input name="street" type="text" class="form-control input-field <?php echo (!empty($street_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter Street" aria-label="Current Password" value="<?php echo $street ?>">
                             <div class="invalid-feedback">
-                                <?php echo $firstName_err; ?>
+                                <?php echo $street_err; ?>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label class="form-label mb-1">CITY</label>
-                            <input name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your last name" aria-label="Last name" value="<?php echo $lastName ?>">
+                            <label class="form-label mb-1">CITY / TOWN</label>
+                            <input name="city" type="text" class="form-control input-field <?php echo (!empty($city_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter City" aria-label="Last name" value="<?php echo $city ?>">
                             <div class="invalid-feedback">
-                                <?php echo $lastName_err; ?>
+                                <?php echo $city_err; ?>
                             </div>
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">PROVINCE</label>
-                            <input name="mobile" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your mobile number" value="<?php echo $mobileNumber ?>">
+                            <input name="province" type="text" class="form-control fs-6 input-field <?php echo (!empty($province_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter Province" value="<?php echo $province ?>">
                             <div class="invalid-feedback">
-                                <?php echo $mobileNumber_err; ?>
+                                <?php echo $province_err; ?>
                             </div>
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
-                            <label class="form-label mb-1">ZIP_CODE</label>
-                            <input name="position" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $position ?>">
+                            <label class="form-label mb-1">ZIP CODE</label>
+                            <input name="zipCode" type="text" class="form-control fs-6 input-field <?php echo (!empty($zipCode_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter Zipcode" value="<?php echo $zipCode ?>">
                             <div class="invalid-feedback">
-                                <?php echo $position_err; ?>
+                                <?php echo $zipCode_err; ?>
                             </div>
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">COUNTRY</label>
-                            <input name="assignedto" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $assignedto ?>">
+                            <input name="country" type="text" class="form-control fs-6 input-field <?php echo (!empty($country_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter Country" value="<?php echo $country ?>">
                             <div class="invalid-feedback">
-                                <?php echo $assignedTo_err; ?>
+                                <?php echo $country_err; ?>
                             </div>
                         </div>
                     </form>
-                    <div class="row ">
-                        <div class="mb-3 col-xxl-2">
-                            <button name="editAddress" data-bs-toggle="modal" data-bs-target="#editAddressModal" type="submit" class="btn btn-lg fs-6 w-100 my-button-yes">Save Changes</button>
+                    <div class="row">
 
+                        <div class="mb-3 col-xxl-2">
+                            <button style="display: none;" id="editAddress" name="editAddress" data-bs-toggle="modal" data-bs-target="#editAddressModal" type="submit" class="btn btn-lg fs-6 w-100 my-button-yes">Save Changes</button>
                         </div>
-                        <div class="mb-5 col-xxl-2">
-                            <a href="./index.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Cancel</a>
+                        <div class="mb-3 col-xxl-2">
+                            <button style="display: none;" id="discardChanges" href="./index.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Cancel</button>
                         </div>
                         <div class="mb-0 col-xxl-2 ms-auto">
                             <button data-bs-toggle="modal" data-bs-target="#deleteAddressModal" class="btn btn-lg fs-6 w-100 my-button-danger">Delete</button>
@@ -150,7 +153,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 </div>
             </div>
         </section>
-        <script src="./js/script.js"></script>
+        <script src="../js/data-table-address.js"></script>
+        <script src="../js/script.js"></script>
 
 </body>
 

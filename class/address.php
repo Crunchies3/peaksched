@@ -98,6 +98,26 @@ class Address
         }
     }
 
+    public function updateAddress($addressId, $street, $city, $province, $zip_code, $country)
+    {
+        try {
+            $stmt = $this->conn->prepare(
+                "UPDATE tbl_customer_address
+                SET     
+                        street = ?, 
+                        city = ?, 
+                        province = ?, 
+                        zip_code = ?,
+                        country = ?
+                WHERE   address_id = ?"
+            );
+            $stmt->bind_param("ssssss", $street, $city, $province, $zip_code, $country, $addressId);
+            $stmt->execute();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
     public function getAddressById($address_id)
     {
         try {
