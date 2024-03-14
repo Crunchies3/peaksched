@@ -31,6 +31,7 @@ require_once "../php_backend/address-page.php";
 
 
     <link rel="stylesheet" href="../css/dashboard_styles.css" />
+    <link rel="stylesheet" href="../css/address-styles.css" />
     <link rel="stylesheet" href="../../components/_components.css">
 
 </head>
@@ -88,12 +89,12 @@ require_once "../php_backend/address-page.php";
 
         <div class="main" id="main">
             <div class="container-fluid" id="mainArea">
-                <div class="mb-4">
-                    <h1>Appointments</h1>
+                <div class="mb-5">
+                    <h1>Addresses</h1>
                 </div>
                 <div class="container-fluid" id="subArea-single">
                     <div class="mb-5">
-                        <h5> Appointments</h5>
+                        <h5>All Adderesses</h5>
                     </div>
                     <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header -->
@@ -109,7 +110,14 @@ require_once "../php_backend/address-page.php";
                             ?>
                                 <tr>
                                     <td><?php echo $rows['address_id']; ?></td>
-                                    <td><?php echo $rows['fullAddress']; ?></td>
+                                    <td>
+                                        <div class="title-text">
+                                            <?php echo $rows['street']; ?>
+                                        </div>
+                                        <div class="subTitle-text">
+                                            <?php echo $rows['city'] . ' ' . $rows['province'] . ' ' . $rows['country'] . ' ' . $rows['zip_code']; ?>
+                                        </div>
+                                    </td>
                                     <td></td>
                                 </tr>
                             <?php

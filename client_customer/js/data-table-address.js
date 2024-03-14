@@ -35,7 +35,7 @@ $('#myTable').DataTable({
         },
         {
             data: null,
-            defaultContent: '<form action="../address/view-details.php" id="editEmployee" method="get"><input id="addressId" hidden type="text" name="addressId" value=""></form><button form="editEmployee" class="btn my-button-yes mx-1" id="actionClick">View</button>',
+            defaultContent: '<form action="../address/view-details.php" id="editEmployee" method="get"><input id="addressId" hidden type="text" name="addressId" value=""></form><button form="editEmployee" class="btn btn-sm my-button-yes mx-1" id="actionClick">View</button>',
             targets: -1
         },
     ],
@@ -77,4 +77,27 @@ $(function () {
         $(this).toggleClass("bi-sort-down");
         return true;
     });
+});
+
+$(document).ready(function () {
+    $(window).keydown(function (event) {
+        if (event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+        }
+    });
+});
+
+$("#showEdit").on("click", function () {
+    $("#editAddress").toggle();
+    $("#discardChanges").toggle();
+    $("#showEdit").toggle();
+    $("#deleteAddress").toggle();
+});
+
+$("#discardChanges").on("click", function () {
+    $("#editAddress").toggle();
+    $("#discardChanges").toggle();
+    $("#showEdit").toggle();
+    $("#deleteAddress").toggle();
 });

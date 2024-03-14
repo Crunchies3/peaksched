@@ -43,7 +43,11 @@ class Address
             $stmt = $this->conn->prepare(
 
                 "SELECT a.address_id,
-                        CONCAT(street, '. ', city, ', ', province, '. ', country, ', ', zip_code)  as 'fullAddress'
+                        a.street,
+                        a.city,
+                        a.province,
+                        a.country,
+                        a.zip_code
                 FROM    tbl_customer_address a,
                         tbl_customer b
                 WHERE   b.customerid = a.customer_id &&
@@ -90,7 +94,41 @@ class Address
                                                     country) 
                 VALUES (?,?,?,?,?,?,?)"
             );
-            $stmt->bind_param("sssssss", $customerId, $addressId, $street, $city, $province, $zipCode, $country);
+            $stmt->bind_param("sssssss", $addressId, $customerId, $street, $city, $province, $zipCode, $country);
+            $stmt->execute();
+            $this->conn->close();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function updateAddress($addressId, $street, $city, $province, $zip_code, $country)
+    {
+        try {
+            $stmt = $this->conn->prepare(
+                "UPDATE tbl_customer_address
+                SET     
+                        street = ?, 
+                        city = ?, 
+                        province = ?, 
+                        zip_code = ?,
+                        country = ?
+                WHERE   address_id = ?"
+            );
+            $stmt->bind_param("ssssss", $street, $city, $province, $zip_code, $country, $addressId);
+            $stmt->execute();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function deleteAddress($addressId)
+    {
+        try {
+            $stmt = $this->conn->prepare(
+                "DELETE FROM tbl_customer_address WHERE address_id = ?;"
+            );
+            $stmt->bind_param("s", $addressId);
             $stmt->execute();
             $this->conn->close();
         } catch (Exception $e) {
