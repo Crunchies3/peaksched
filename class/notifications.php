@@ -7,17 +7,42 @@ class Notifications{
     private $unread;
     private $notifType;
     private $dateCreated;
-    private $senderUserType; //holder sa class same sa validation
-    private $receiverUserType; //holder sa class same sa validation
+    private $senderName;
+    private $senderUserType; 
+    private $receiverUserType;
+    private $displayNotifs;
 
-    //employee-supervisor-worker notif side (manotify ang worker)
+    //supervisor-worker notif side (manotify ang worker)
     //if mag assign o remove ang supervisor ug appointment sa usa ka worker
     //isulod ang notif message sa database
     //content sa notif kay current appointment kung asa na assign o remove
     //kung na assign included ang time kung kanus.a
     //kung wala kay wala.
 
+    public function insertSuptoWorkerNotif($reciever,$sender,$unread,$created_at,$message){
+        try {
+            $stmt = $this->conn->prepare(
+            "INSERT INTO tbl_notifications (recipient_type, sender_type, unread, created_at, message)
+            VALUES (?,?,?,?,?) ");
+            $stmt->bind_param("sssss", $reciever,$sender,$unread,$created_at,$message);
+            $stmt->execute();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
 
+    public function displayNotification($Id){
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT * FROM tbl_notifications WHERE recipient_type = ?");
+            $stmt->bind_param("s",$Id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $this->displayNotifs = $result;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
 
     //admin-supervisor notif side (manotify ang supervisor)
     //if mag assign o remove ang admin ug appointment sa supervisor
@@ -55,9 +80,46 @@ class Notifications{
     {
         return $this->conn;
     }
+    public function getsenderName()
+    {
+        return $this->senderName;
+    }
+    public function getsenderUserType()
+    {
+        return $this->senderUserType;
+    }
+    public function getreceiverUserType()
+    {
+        return $this->receiverUserType;
+    }
+    public function getDisplayNotifs()
+    {
+        return $this->displayNotifs;
+    }
+
+
+
     public function setConn($conn)
     {
         $this->conn = $conn;
+
+        return $this;
+    }
+    public function setsenderUserType($senderUserType)
+    {
+        $this->senderUserType = $senderUserType;
+
+        return $this;
+    }
+    public function setsenderName($senderName)
+    {
+        $this->senderName = $senderName;
+
+        return $this;
+    }
+    public function setreceiverUserType($receiverUserType)
+    {
+        $this->receiverUserType = $receiverUserType;
 
         return $this;
     }
