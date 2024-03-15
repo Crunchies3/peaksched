@@ -186,6 +186,29 @@ class Appointment
         }
     }
 
+    public function addAppointment($appointmentId, $serviceId, $customerId, $employeeId, $dateTimeStart, $dateTimeEnd, $note)
+    {
+        $tempAddress = "1";
+        try {
+            $stmt = $this->conn->prepare(
+                "INSERT INTO tbl_confirmed_appointment (appointment_id, 
+                                                        customer_id, 
+                                                        service_id, 
+                                                        address_id,
+                                                        supervisor_id,
+                                                        start,
+                                                        end,
+                                                        note) 
+                VALUES (?,?,?,?,?,?,?,?);"
+            );
+            $stmt->bind_param("ssssssss", $appointmentId, $customerId, $serviceId, $tempAddress, $employeeId, $dateTimeStart, $dateTimeEnd, $note);
+            $stmt->execute();
+            $stmt->close();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
     public function updateConfirmedAppointmentStatus($appointmentid, $status)
     {
         try {

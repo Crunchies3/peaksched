@@ -1,15 +1,13 @@
 <?php
 require_once 'config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/appointments.php";
-require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/form_validation.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/services.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/customers.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/address.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/employees.php";
 
 $appointments = new Appointment();
 $appointments->setConn($conn);
-
-$validate = new Validation();
 
 $serviceObj = new Services();
 $serviceObj->setConn($conn);
@@ -20,6 +18,10 @@ $customerObj->setConn($conn);
 $addressObj = new Address();
 $addressObj->setConn($conn);
 
+$employee = new Employees();
+$employee->setConn($conn);
+
+$supervisorList = $employee->fetchEmployeeArr();
 
 $appointmentId = "";
 
@@ -45,3 +47,6 @@ $address = $addressObj->getStreet() . '. ' . $addressObj->getCity() . ', ' . $ad
 $date = $appointments->getStart();
 $dateOnly = date("Y-m-d", strtotime($date));
 $timeOnly = date('h:i A', strtotime($date));
+
+if (isset($_POST['approveApp'])) {
+}

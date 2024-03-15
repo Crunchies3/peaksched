@@ -3,33 +3,42 @@ $('#serviceList').editableSelect({
 });
 
 var element = document.getElementById("serviceList");
-element.classList.add("form-control");
-element.classList.add("input-field");
-element.classList.add("selecServiceInput");
-element.placeholder = "Select a service";
-element.name = "selectedService";
+if (element) {
+    element.classList.add("form-control");
+    element.classList.add("input-field");
+    element.classList.add("selecServiceInput");
+    element.placeholder = "Select a service";
+    element.name = "selectedService";
+}
+
 
 $('#serviceList2').editableSelect({
     effects: 'fade',
 });
 
 var element = document.getElementById("serviceList2");
-element.classList.add("form-control");
-element.classList.add("input-field");
-element.classList.add("selecServiceInput");
-element.placeholder = "Select a service";
-element.name = "selectedService";
+if (element) {
+    element.classList.add("form-control");
+    element.classList.add("input-field");
+    element.classList.add("selecServiceInput");
+    element.placeholder = "Select a service";
+    element.name = "selectedService";
+}
+
 
 $('#supervisorList2').editableSelect({
     effects: 'fade',
 });
 
 var element = document.getElementById("supervisorList2");
-element.classList.add("form-control");
-element.classList.add("input-field");
-element.classList.add("selecServiceInput");
-element.placeholder = "Add a supervisor";
-element.name = "selectedSupervisor";
+if (element) {
+    element.classList.add("form-control");
+    element.classList.add("input-field");
+    element.classList.add("selecServiceInput");
+    element.placeholder = "Add a supervisor";
+    element.name = "selectedSupervisor";
+}
+
 
 
 
@@ -38,11 +47,14 @@ $('#customerList2').editableSelect({
 });
 
 var element = document.getElementById("customerList2");
-element.classList.add("form-control");
-element.classList.add("input-field");
-element.classList.add("selecServiceInput");
-element.placeholder = "Add a customer";
-element.name = "selectedCustomer";
+if (element) {
+    element.classList.add("form-control");
+    element.classList.add("input-field");
+    element.classList.add("selecServiceInput");
+    element.placeholder = "Add a customer";
+    element.name = "selectedCustomer";
+}
+
 
 
 $('#supervisorList').editableSelect({
@@ -50,11 +62,27 @@ $('#supervisorList').editableSelect({
 });
 
 var element = document.getElementById("supervisorList");
-element.classList.add("form-control");
-element.classList.add("input-field");
-element.classList.add("selecServiceInput");
-element.placeholder = "Add a supervisor";
-element.name = "selectedSupervisor";
+if (element) {
+    element.classList.add("form-control");
+    element.classList.add("input-field");
+    element.classList.add("selecServiceInput");
+    element.placeholder = "Add a supervisor";
+    element.name = "selectedSupervisor";
+}
+
+
+
+$('#supervisorList3').editableSelect({
+    effects: 'fade',
+});
+
+var element = document.getElementById("supervisorList3");
+if (element) {
+    element.classList.add("form-control");
+    element.classList.add("input-field");
+    element.placeholder = "Assign a supervisor";
+    element.name = "selectedSupervisor";
+}
 
 
 $('#customerList').editableSelect({
@@ -62,8 +90,10 @@ $('#customerList').editableSelect({
 });
 
 var element = document.getElementById("customerList");
-element.classList.add("form-control");
-element.classList.add("input-field");
-element.classList.add("selecServiceInput");
-element.placeholder = "Add a customer";
-element.name = "selectedCustomer";
+if (element) {
+    element.classList.add("form-control");
+    element.classList.add("input-field");
+    element.classList.add("selecServiceInput");
+    element.placeholder = "Add a customer";
+    element.name = "selectedCustomer";
+}

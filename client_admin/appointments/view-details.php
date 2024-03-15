@@ -25,6 +25,7 @@ require_once "../php/appointment-request-details.php";
 
     <link rel="stylesheet" href="../css/dashboard_styles.css" />
     <link rel="stylesheet" href="../../components/_components.css">
+    <link href="../../select_box/dist/jquery-editable-select.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -113,6 +114,19 @@ require_once "../php/appointment-request-details.php";
                             <label class="form-label mb-1">TIME</label>
                             <input disabled name="position" type="text" class="form-control fs-6 input-field" placeholder="Enter your position" value="<?php echo $timeOnly ?>">
                         </div>
+                        <div class="mb-4 col-lg-6 mb-4">
+                            <label class="form-label mb-1">ASSIGN A SUPERVISOR</label>
+                            <select required id="supervisorList3">
+                                <?php
+                                // LOOP TILL END OF DATA
+                                for ($i = 0; $i < count($supervisorList); $i++) {
+                                ?>
+                                    <option><?php echo  $supervisorList[$i]['firstname'] . ' ' .  $supervisorList[$i]['lastname']; ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
                     </form>
                     <form id="reschedApp" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <input type="hidden" name="appointmentId" value="<?= htmlspecialchars($appointmentId) ?>" id="appointmentId">
@@ -120,7 +134,7 @@ require_once "../php/appointment-request-details.php";
                     <div class="row justify-content-between">
                         <div class="row col-lg-6">
                             <div class="mb-6 col-xxl-4">
-                                <button href="./request-appointment-service.php" class="btn my-button-yes w-100">Approve Request</button>
+                                <button data-bs-toggle="modal" data-bs-target="#approveRequestModal" class="btn btn-lg fs-6 w-100 my-button-yes">Approve Appointment</button>
                             </div>
                             <div class="mb-6 col-xxl-4">
                                 <button href="./manage-appointment.php" class="btn my-button-no w-100">Reschedule</button>
@@ -134,6 +148,28 @@ require_once "../php/appointment-request-details.php";
             </div>
         </section>
         <script src="../js/script.js"></script>
+        <script src="../../select_box/dist/jquery-editable-select.js"></script>
+        <script src="../../select_box/src/jquery-editable-select.js"></script>
+        <script src="../js/select_box.js"></script>
 </body>
 
 </html>
+
+
+<div class="modal fade" id="approveRequestModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="approveRequestModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
+        <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
+            <div class="modal-header">
+                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Approve Appointment?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Appointment will be approved
+            </div>
+            <div class="modal-footer">
+                <button name="approveApp" form="appointmentDetails" class="btn my-button-yes">Confirm</button>
+                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
