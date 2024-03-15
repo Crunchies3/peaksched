@@ -5,14 +5,14 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
 }
-require_once "../php/appointment-request.php";
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
+<meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Employee</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
@@ -28,7 +28,7 @@ require_once "../php/appointment-request.php";
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="../css/dashboard_styles.css" />
-    <!-- <link rel="stylesheet" href="../css/employee_page_styles.css" /> -->
+    <link rel="stylesheet" href="../css/payroll-styles.css" />
     <link rel="stylesheet" href="../../components/_components.css">
 </head>
 
@@ -51,25 +51,25 @@ require_once "../php/appointment-request.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="./" class="sidebar-link selected">
-                        <i class="bi bi-calendar2-fill"></i>
+                    <a href="#" class="sidebar-link">
+                        <i class="bi bi-calendar2"></i>
                         <span>Appointments</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="../employee_page.php" class="sidebar-link ">
-                        <i class="bi bi-person-fill"></i>
+                    <a href="../employee_page.php" class="sidebar-link">
+                        <i class="bi bi-person"></i>
                         <span>Employee</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="../customer_page.php" class="sidebar-link">
-                        <i class="bi bi-emoji-smile"></i>
-                        <span>Customer</span>
+                    <a href="./" class="sidebar-link selected">
+                        <i class="bi bi-wallet-fill"></i>
+                        <span>Payroll</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="./services_page.php" class="sidebar-link">
+                    <a href="../services_page.php" class="sidebar-link">
                         <i class="bi bi-file-post-fill"></i>
                         <span>Services</span>
                     </a>
@@ -81,7 +81,7 @@ require_once "../php/appointment-request.php";
                     </a>
                 </li>
                 <li class="sidebar-footer">
-                    <a href="../setting_account_page.php" class="sidebar-link ">
+                    <a href="setting_account_page.php" class="sidebar-link ">
                         <i class="bi bi-gear"></i>
                         <span>Settings</span>
                     </a>
@@ -97,61 +97,65 @@ require_once "../php/appointment-request.php";
         <section class="main" id="main">
             <div class="container-fluid" id="mainArea">
                 <div class="mb-5">
-                    <h1>Appointments</h1>
+                    <h1>Payroll</h1>
                 </div>
                 <div class="container-fluid" id="subArea-single">
                     <div>
-                        <h5>Appointment Requests</h5>
+                        <h5>All payroll</h5>
                     </div>
                     <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header -->
                         <thead id="tableHead">
-                            <th style="color: white;">Id</th>
-                            <th style="color: white;">Customer Name</th>
-                            <th style="color: white;">Service</th>
-                            <th style="color: white;">Address</th>
-                            <th style="color: white;">Date</th>
-                            <th style="color: white;">Time</th>
-                            <th style="color: white;">Status</th>
+                            <th style="color: white;">Pay Date</th>
+                            <th style="color: white;">Pay Period</th>
+                            <th style="color: white;">Gross</th>
+                            <th style="color: white;">Net</th>
+                            <th style="color: white;">Employees</th>
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
-                            <?php
-                            // LOOP TILL END OF DATA
-                            while ($rows = $result->fetch_assoc()) {
-                            ?>
-                                <tr>
-                                    <td><?php echo $rows['request_app_id']; ?></td>
-                                    <td><?php echo $rows['customer']; ?></td>
-                                    <td><?php echo $rows['title']; ?></td>
-                                    <td><?php echo $rows['fullAddress']; ?></td>
-                                    <?php
-                                    $date =  $rows['start'];
-                                    $dateOnly = date("Y-m-d", strtotime($date));
-                                    $timeOnly = date('h:i A', strtotime($date));
-                                    ?>
-                                    <td><?php echo $dateOnly; ?></td>
-                                    <td><?php echo $timeOnly; ?></td>
-                                    <?php
-                                    if ($rows['status'] == 'Pending Approval') $badgeType = 'my-badge-pending';
-                                    else if ($rows['status'] == 'Report Needed') $badgeType = 'my-badge-report-needed';
-                                    else if ($rows['status'] == 'Completed') $badgeType = 'my-badge-approved';
-                                    else if ($rows['status'] == 'Approved') $badgeType = 'my-badge-approved';
-                                    ?>
-                                    <td><span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $rows['status']; ?></span></td>
-                                    <td></td>
-                                </tr>
-                            <?php
-                            }
-                            ?>
+                            <tr>
+                                <td>2024-03-20</td>
+                                <td>2024-03-20 - 2024-04-05</td>
+                                <td>59,090.69</td>
+                                <td>59,090.69</td>
+                                <td>10</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>2024-03-20</td>
+                                <td>2024-03-20 - 2024-04-05</td>
+                                <td>59,090.69</td>
+                                <td>59,090.69</td>
+                                <td>10</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>2024-03-20</td>
+                                <td>2024-03-20 - 2024-04-05</td>
+                                <td>59,090.69</td>
+                                <td>59,090.69</td>
+                                <td>10</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>2024-03-20</td>
+                                <td>2024-03-20 - 2024-04-05</td>
+                                <td>59,090.69</td>
+                                <td>59,090.69</td>
+                                <td>10</td>
+                                <td></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </section>
+        <script src = "../js/data-table-payroll.js"></script>                  
         <script src="../js/script.js"></script>
-
-        <script src="../js/data-table-app-request.js"></script>
 </body>
 
 </html>
+
+
+
