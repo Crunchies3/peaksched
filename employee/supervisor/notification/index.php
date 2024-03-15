@@ -20,7 +20,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-      <!-- DataTables CDN -->
+    <!-- DataTables CDN -->
 
     <link href="https://cdn.datatables.net/v/bs5/dt-2.0.0/b-3.0.0/b-html5-3.0.0/r-3.0.0/sl-2.0.0/sr-1.4.0/datatables.min.css" rel="stylesheet">
     <script src="https://cdn.datatables.net/v/bs5/dt-2.0.0/b-3.0.0/b-html5-3.0.0/r-3.0.0/sl-2.0.0/sr-1.4.0/datatables.min.js"></script>
@@ -96,29 +96,77 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header -->
                         <thead id="tableHead">
-                            <th style="color: white;">Message</th>
-                            <th style="color: white;">Date Created</th>
-                            <th style="color: white;">Marl all as read</th>
+                            <th style="display: none;">id</th>
+                            <th style="display: none;"></th>
+                            <th style="display: none;"></th>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>your total income</td>
-                                <td>01-20-2024</td>
+                                <td>123</td>
+                                <td>
+                                    <div>
+                                        <div>
+                                            <div class="notification-header">
+                                                <span class="notification-title">Kenneth</span>
+                                                <span class="notification-time bi bi-dot">2 hours ago</span>
+                                            </div>
+                                            <div class="notification-body">
+                                                You have a new message!
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
                                 <td></td>
                             </tr>
                             <tr>
-                                <td>your total income</td>
-                                <td>01-20-2024</td>
+                                <td>123</td>
+                                <td>
+                                    <div>
+                                        <div>
+                                            <div class="notification-header">
+                                                <span class="notification-title">Kenneth</span>
+                                                <span class="notification-time bi bi-dot">2 hours ago</span>
+                                            </div>
+                                            <div class="notification-body">
+                                                You have a new message!
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
                                 <td></td>
                             </tr>
                             <tr>
-                                <td>your total income</td>
-                                <td>01-20-2024</td>
+                                <td>123</td>
+                                <td>
+                                    <div>
+                                        <div>
+                                            <div class="notification-header">
+                                                <span class="notification-title">Kenneth</span>
+                                                <span class="notification-time bi bi-dot">2 hours ago</span>
+                                            </div>
+                                            <div class="notification-body">
+                                                You have a new message!
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
                                 <td></td>
                             </tr>
                             <tr>
-                                <td>your total income</td>
-                                <td>01-20-2024</td>
+                                <td>123</td>
+                                <td>
+                                    <div>
+                                        <div>
+                                            <div class="notification-header">
+                                                <span class="notification-title">Kenneth</span>
+                                                <span class="notification-time bi bi-dot">2 hours ago</span>
+                                            </div>
+                                            <div class="notification-body">
+                                                You have a new message!
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
                                 <td></td>
                             </tr>
                         </tbody>
