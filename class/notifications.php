@@ -2,7 +2,8 @@
 
 class Notifications{
     private $conn;
-    private $recipientid;
+    private $recipientidS;
+    private $recipientidC;
     private $senderid;
     private $unread;
     private $notifType;
@@ -19,7 +20,7 @@ class Notifications{
     //kung na assign included ang time kung kanus.a
     //kung wala kay wala.
 
-    public function insertSuptoWorkerNotif($reciever,$sender,$unread,$created_at,$message){
+    public function insertNotif($reciever,$sender,$unread,$created_at,$message){
         try {
             $stmt = $this->conn->prepare(
             "INSERT INTO tbl_notifications (recipient_type, sender_type, unread, created_at, message)
@@ -96,6 +97,15 @@ class Notifications{
     {
         return $this->displayNotifs;
     }
+    public function getRecipientIdS()
+    {
+        return $this->recipientidS;
+    }
+    public function getRecipientIdC()
+    {
+        return $this->recipientidC;
+    }
+
 
 
 
@@ -105,6 +115,19 @@ class Notifications{
 
         return $this;
     }
+    public function setRecipientIdS($recipientidS)
+    {
+        $this->recipientidS = $recipientidS;
+
+        return $this;
+    }
+    public function setRecipientIdC($recipientidC)
+    {
+        $this->recipientidC = $recipientidC;
+
+        return $this;
+    }
+
     public function setsenderUserType($senderUserType)
     {
         $this->senderUserType = $senderUserType;

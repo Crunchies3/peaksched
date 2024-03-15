@@ -20,6 +20,11 @@ require_once "../../php/notifs.php";
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
+    <!-- DataTables CDN -->
+
+    <link href="https://cdn.datatables.net/v/bs5/dt-2.0.0/b-3.0.0/b-html5-3.0.0/r-3.0.0/sl-2.0.0/sr-1.4.0/datatables.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/v/bs5/dt-2.0.0/b-3.0.0/b-html5-3.0.0/r-3.0.0/sl-2.0.0/sr-1.4.0/datatables.min.js"></script>
+    <!-- end -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
@@ -74,104 +79,52 @@ require_once "../../php/notifs.php";
             </div>
         </aside>
         <section class="main" id="main">
-            <div class="container" id="mainArea">
+            <div class="container-fluid" id="mainArea">
                 <div class="mb-5">
-                    <h1>Notifcations</h1>
+                    <h1>Notifcation</h1>
                 </div>
-                <div class="container" id="subArea-single">
-                    <div class="row ">
-                        <div class="mb-3 col-xxl-2">
-                            <a href="" class="btn my-button-unselected w-100">All Notifcations</a>
-                        </div>
-                        <div class="mb-4 col-xxl-2">
-                            <a href="" class="btn my-button-selected w-100">Unread Notifcations</a>
-                        </div>
+                <div class="container-fluid" id="subArea-single">
+                    <div>
+                        <h5>All Notifcation</h5>
                     </div>
-                 
-                    <div class="notification-list">
-                        <div class="notification-item">
-                            <div class="box-title border-bottom p-3">
-                                <h6 class="m-0">TODAY</h6>
-                            </div>
-                            <div class="notification-content">
-                                <div class="notification-header">
-                                    <span class="notification-title">Kenneth</span>
-                                    <span class="notification-time bi bi-dot">2 hours ago</span>
-                                    <div class="elipsis-menu">
-                                        
-                                    </div>
-                                </div>
-                                <div class="notification-body">
-                                    <p>You have a new message!</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box-title border-bottom p-3">
-                            <h6 class="m-0">EARLIER</h6>
-                        </div>
-                        <div class="notification-item">
-                            <div class="notification-content">
-                                <div class="notification-header">
-                                    <span class="notification-title">Dennis</span>
-                                    <span class="notification-time bi bi-dot">2 hours ago</span>
-                                </div>
-                                <div class="notification-body">
-                                    <p>You have a new message!</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="notification-item">
-                            <div class="notification-content">
-                                <div class="notification-header">
-                                    <span class="notification-title">Cyril</span>
-                                    <span class="notification-time bi bi-dot">2 hours ago</span>
-                                </div>
-                                <div class="notification-body">
-                                    <p>You have a new message!</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="notification-item">
-                            <div class="notification-content">
-                                <div class="notification-header">
-                                    <span class="notification-title">Jonald</span>
-                                    <span class="notification-time bi bi-dot">2 hours ago</span>
-                                </div>
-                                <div class="notification-body">
-                                    <p>You have a new message!</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="notification-item">
-                            <div class="notification-content">
-                                <div class="notification-header">
-                                    <span class="notification-title">Denketh</span>
-                                    <span class="notification-time bi bi-dot">2 hours ago</span>
-                                </div>
-                                <div class="notification-body">
-                                    <p>You have a new message!</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="notification-item">
-                            <div class="notification-content">
-
-                                <div class="notification-header">
-                                    <span class="notification-title">Cy</span>
-                                    <span class="notification-time bi bi-dot">2 hours ago</span>
-                                </div>
-                                <div class="notification-body">
-                                    <p>You have a new message!</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <table id="myTable" class="table table-hover table-striped">
+                        <!-- //!TODO: para mailisan ang color sa header -->
+                        <thead id="tableHead">
+                            <th style="display: none;">id</th>
+                            <th style="display: none;"></th>
+                            <th style="display: none;"></th>
+                        </thead>
+                        <tbody>
+                            <?php
+                            while ($rows = $result->fetch_assoc()) {
+                            ?>
+                                <tr>
+                                    <td>123</td>
+                                    <td>
+                                        <div>
+                                            <div>
+                                                <div class="notification-header">
+                                                    <span class="notification-title"><?php echo $userName ?></span>
+                                                    <span class="notification-time bi bi-dot"><?php echo $rows['created_at']; ?></span>
+                                                </div>
+                                                <div class="notification-body">
+                                                    <?php echo $rows['message']; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-    </div>
-    </section>
-    <script src="../../js/script.js"></script>
-
+        </section>
+        <script src="../../js/script.js"></script>
+        <script src="../../js/data-table-notifcations.js"></script>
 </body>
 
 </html>

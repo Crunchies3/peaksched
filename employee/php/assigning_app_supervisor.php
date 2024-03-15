@@ -41,7 +41,7 @@ if(isset($_POST['AssignWorkerModal'])){
 
     //para marefresh ang table
     $employeeClient->addWorkerToAppointment($appointmentId,$workerId);
-    $notification->insertSuptoWorkerNotif($receiver,$sender,$unread,$date,$message);
+    $notification->insertNotif($receiver,$sender,$unread,$date,$message);
 
     $employeeClient->fetchUnassignedAppointmentWorkers($appointmentId,$supervisorId);
     $result = $employeeClient->getUnassignedWorkers();

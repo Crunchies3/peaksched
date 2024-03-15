@@ -5,6 +5,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/form_validation.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/services.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/customers.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/employees.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/notifMessages.php";
 
 $appointment = new Appointment();
 $appointment->setConn($conn);
@@ -19,6 +20,9 @@ $customerObj->setConn($conn);
 
 $employee = new Employees();
 $employee->setConn($conn);
+
+$notification = new NotifMessages();
+$notification->setConn($conn);
 
 $serviceList = $service->fetchServiceArr();
 $customerList = $customerObj->fetchCustomerArr();
@@ -56,7 +60,14 @@ if (isset($_POST['editAppointment'])) {
     $dateTimeStart = $date . " " . date("H:i", strtotime($start));
     $dateTimeEnd = $date . " " . date("H:i", strtotime($start));
 
+    $messageToCustomer = $notification->adminToCustomerEdit($serviceTitle);
+    $messageToSupervisor = $notification->adminToSupervisorEdit($serviceTitle);
+    $currentDate = date("Y-m-d");
+    $unread = true;
+    
     $appointment->editAppointmnet($appointmentId, $service_id, $customerId, $supervisorId, $dateTimeStart, $dateTimeEnd, $notes);
+    $notification->insertNotif($customerId, '112544', $unread, $currentDate, $messageToCustomer);
+    $notification->insertNotif($supervisorId, '112544', $unread, $currentDate, $messageToSupervisor);
 } else if (isset($_POST['addApp'])) {
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
@@ -86,7 +97,14 @@ if (isset($_POST['editAppointment'])) {
     $dateTimeStart = $date . " " . date("H:i", strtotime($start));
     $dateTimeEnd = $date . " " . date("H:i", strtotime($start));
 
+    $messageToCustomer = $notification->adminToCustomerAppointment($serviceTitle,$date);
+    $messageToSupervisor = $notification->adminToSupervisorAppointment($serviceTitle);
+    $currentDate = date("Y-m-d");
+    $unread = true;
+
     $appointment->addAppointmnet($appointmentId, $service_id, $customerId, $supervisorId, $dateTimeStart, $dateTimeEnd, $notes);
+    $notification->insertNotif($customerId, '112544', $unread, $currentDate, $messageToCustomer);
+    $notification->insertNotif($supervisorId, '112544', $unread, $currentDate, $messageToSupervisor);
 } else if (isset($_POST['deleteAppointment'])) {
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
@@ -95,5 +113,20 @@ if (isset($_POST['editAppointment'])) {
 
     $appointmentId =  trim($_POST["appointmentId"]);
 
+    $serviceTitle =  trim($_POST["selectedService"]);
+    $customer =  trim($_POST["selectedCustomer"]);
+    $customerId = $customerObj->getIdFromName($customer);
+    $supervisor =  trim($_POST["selectedSupervisor"]);
+    $supervisorId = $employee->getIdFromName($supervisor);
+
+
+    $date =  trim($_POST["date"]);
+    $messageToCustomer = $notification->adminToCustomerDelete($serviceTitle,$date);
+    $messageToSupervisor = $notification->adminToSupervisorDelete($serviceTitle,$date);
+    $currentDate = date("Y-m-d");
+    $unread = true;
+
     $appointment->deleteAppointmnet($appointmentId);
+    $notification->insertNotif($customerId, '112544', $unread, $currentDate, $messageToCustomer);
+    $notification->insertNotif($supervisorId, '112544', $unread, $currentDate, $messageToSupervisor);
 }
