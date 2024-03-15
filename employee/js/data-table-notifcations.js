@@ -5,28 +5,18 @@ var notificationId;
 
 $(document).ready(function () {
     table = $('#myTable').DataTable();
-    table.on('click', '.actionClick', function (e) {
-        e.preventDefault();
-        var rowData = table.row($(this).closest('tr')).data();
-        var notificationId = rowData[0]; 
-        
-  
-        var icon = $(this).find('i');
-        if (icon.hasClass('bi bi-square')) {
-            icon.removeClass('bi bi-square').addClass('bi bi-check-square-fill');
-       
-            markNotificationAsRead(notificationId);
-        } else {
-            icon.removeClass('bi bi-check-square-fill').addClass('bi bi-square');
-       
-        }
+    table.on('click', '#actionClick', function (e) {
+        notificationId = table.row(e.target.closest('tr')).data();
+        document.getElementById('notificationId').value = notificationId[0];
+
     });
 });
 
 $('#myTable').DataTable({
     layout: {
-        topStart: 'search',
+        topStart: null,
         topEnd: null,
+        bottomStart: null
     },
     scrollY: 450,
     language: {
@@ -34,12 +24,12 @@ $('#myTable').DataTable({
     },
     'columnDefs': [
         {
-            targets: 1,
-            className: "right-aligned-cell"
+            targets: 0,
+            visible: false
         },
         {
             data: null,
-            defaultContent: '<form id="markAsReadForm" method="post"><input id="notificationId" type="hidden" name="notificationId" value=""></form> <button class="actionClick" style="background: none; border: none;"><i class="bi bi-square"></i></button>',
+            defaultContent: '<form action="view-details.php" id="viewNotification" method="get"><input id="notificationId" hidden type="text" name="notificationId" value=""></form><button form="viewNotification" class="btn btn-sm my-button-yes mx-1" id="actionClick">View</button>',
             targets: -1
         },
     ],
