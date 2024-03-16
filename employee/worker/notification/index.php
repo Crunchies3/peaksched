@@ -5,7 +5,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
 }
-require_once "../../php/assigned-app-worker.php";
+//need nalang ipadisplay mga notifs
+require_once "../../php/notifs.php";
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +29,7 @@ require_once "../../php/assigned-app-worker.php";
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="../../css/dashboard_styles.css" />
-    <!-- <link rel="stylesheet" href="./css/assigned-appointment-page.css" /> -->
+    <link rel="stylesheet" href="../../css/notification-styles.css">
     <link rel="stylesheet" href="../../../components/_components.css" />
 
 </head>
@@ -52,14 +53,14 @@ require_once "../../php/assigned-app-worker.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="./" class="sidebar-link selected">
-                        <i class="bi bi-calendar2-fill"></i>
+                    <a href="../appointment/" class="sidebar-link ">
+                        <i class="bi bi-calendar2"></i>
                         <span>Appointments</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="../notification/" class="sidebar-link">
-                        <i class="bi bi-bell"></i>
+                    <a href="../notification/" class="sidebar-link selected">
+                        <i class="bi bi-bell-fill"></i>
                         <span>Notifications</span>
                     </a>
                 </li>
@@ -80,40 +81,38 @@ require_once "../../php/assigned-app-worker.php";
         <section class="main" id="main">
             <div class="container-fluid" id="mainArea">
                 <div class="mb-5">
-                    <h1>Appointment</h1>
+                    <h1>Notifcation</h1>
                 </div>
                 <div class="container-fluid" id="subArea-single">
                     <div>
-                        <h5>All appointment</h5>
+                        <h5>All Notifcation</h5>
                     </div>
                     <table id="myTable" class="table table-hover table-striped">
-                        <!-- //!TODO: para mailisan ang color sa header ug status-->
+                        <!-- //!TODO: para mailisan ang color sa header -->
                         <thead id="tableHead">
-                            <th style="color: white;">Appointment Id</th>
-                            <th style="color: white;">Customer</th>
-                            <th style="color: white;">Service</th>
-                            <th style="color: white;">Status</th>
-                            <th style="color: white;">Date</th>
-                            <th style="color: white;">Time</th>
-                            <th style="color: white;">Actions</th>
+                            <th style="display: none;">id</th>
+                            <th style="display: none;"></th>
+                            <th style="display: none;"></th>
                         </thead>
                         <tbody>
                             <?php
-                            // LOOP TILL END OF DATA
                             while ($rows = $result->fetch_assoc()) {
                             ?>
                                 <tr>
-                                    <td><?php echo $rows['appointment_id']; ?></td>
-                                    <td><?php echo $rows['fullname']; ?></td>
-                                    <td><?php echo $rows['title']; ?></td>
-                                    <?php
-                                    if ($rows['status'] == 'Pending') $badgeType = 'my-badge-pending';
-                                    else if ($rows['status'] == 'Report Needed') $badgeType = 'my-badge-report-needed';
-                                    else if ($rows['status'] == 'Completed') $badgeType = 'my-badge-approved';
-                                    ?>
-                                    <td><span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $rows['status']; ?></span></td>
-                                    <td><?php echo $rows['start']; ?></td>
-                                    <td><?php echo $rows['end']; ?></td>
+                                    <td>123</td>
+                                    <td>
+                                        <div>
+                                            <div>
+                                                <div class="notification-header">
+                                                    <span class="notification-title"><?php echo $userName ?></span>
+                                                    <span class="notification-time bi bi-dot"><?php echo $rows['created_at']; ?></span>
+                                                </div>
+                                                <div class="notification-body">
+                                                    <?php echo $rows['message']; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td></td>
                                 </tr>
                             <?php
@@ -124,30 +123,8 @@ require_once "../../php/assigned-app-worker.php";
                 </div>
             </div>
         </section>
-        <script src="../../js/data-table-app-worker.js"></script>
         <script src="../../js/script.js"></script>
-
+        <script src="../../js/data-table-notifcations.js"></script>
 </body>
 
 </html>
-
-
-
-<!-- Modal -->
-<div class="modal" id="exampleModal" data-bs-backdrop="true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="width: 400px;">
-        <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
-            <div class="modal-header">
-                <h5 class="modal-title" style="font-size: 16px;" id="exampleModalLabel">Appointment</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>

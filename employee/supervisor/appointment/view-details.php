@@ -160,3 +160,20 @@ require_once "../../php/assigned_app_supervisor_view.php";
 </body>
 
 </html>
+<div class="modal fade" id="RemoveWorker" data-bs-backdrop="static" tabindex="-1" aria-labelledby="RemoveWorker" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
+        <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
+            <div class="modal-header">
+                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm assign worker?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Worker will be remove.
+            </div>
+            <div class="modal-footer">
+                <button name="RemoveWorker" form="RemoveWorkerForm" class="btn my-button-yes">Confirm</button>
+                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
