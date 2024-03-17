@@ -20,7 +20,7 @@ $('#myTable').DataTable({
                 className: 'sort-btn rounded mx-2 bi-sort-down-alt',
             }, {
                 text: '<i class="bi bi-plus plus-icon"></i> add customer',
-                className: 'add-customer-btn rounded',
+                className: 'my-button-yes rounded',
                 action: function () {
                     location.href = 'customer_adding_page.php'
                 }

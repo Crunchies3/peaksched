@@ -12,34 +12,6 @@
 /* * end */
 
 
-#serviceArea {
-    padding-top: 27.2px;
-}
-
-#servicesTableArea {
-    background-color: white;
-    border: 1px #BBBBBB;
-    border-style: solid;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    padding: 30px;
-}
-
-#serviceArea h5 {
-    margin-bottom: 40px;
-    font-weight: bold;
-}
-
-
-#serviceArea .input-field,
-#dt-search-0 {
-    background-color: #F7F8FC;
-    color: #222222;
-    border: 1px #BBBBBB;
-    border-style: solid;
-}
-
-
 #tableHead .dt-orderable-asc {
     border-bottom: #e1e1e1;
     border-style: solid;
@@ -53,16 +25,6 @@
     color: #7d7d7d;
     font-weight: 600;
     font-size: 15px;
-}
-
-.add-service-btn {
-    background-color: #124F6F;
-    color: #f7f8fc;
-}
-
-.add-service-btn:hover {
-    background-color: #38799d;
-    color: #f7f8fc;
 }
 
 .sort-btn {
@@ -101,14 +63,6 @@
     pointer-events: none;
 }
 
-#addServiceArea {
-    background-color: white;
-    border: 1px #BBBBBB;
-    border-style: solid;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    padding: 30px;
-}
 
 label {
     font-weight: 600;
@@ -116,30 +70,3 @@ label {
     font-size: 12px;
 }
 
-.add-service-button {
-    border: 1px #124F6F;
-    border-style: solid;
-    background-color: #124F6F;
-    color: #ececec;
-}
-
-.cancel-button {
-    background-color: #ffffff;
-    color: #124F6F;
-    border: 1px #124F6F;
-    border-style: solid;
-}
-
-.cancel-button:hover {
-    background-color: #ffffff;
-    color: #124F6F;
-    border: 1px #124F6F;
-    border-style: solid;
-}
-
-.add-service-button:hover {
-    background-color: #ffffff;
-    color: #124F6F;
-    border: 1px #124F6F;
-    border-style: solid;
-}

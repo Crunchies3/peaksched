@@ -54,7 +54,7 @@ require_once "php/employee_supervisor_editing.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="./appointments/" class="sidebar-link">
                         <i class="bi bi-calendar2"></i>
                         <span>Appointments</span>
                     </a>
@@ -63,6 +63,12 @@ require_once "php/employee_supervisor_editing.php";
                     <a href="employee_page.php" class="sidebar-link selected">
                         <i class="bi bi-person-fill"></i>
                         <span>Employee</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="./payroll/" class="sidebar-link ">
+                        <i class="bi bi-wallet"></i>
+                        <span>Payroll</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
