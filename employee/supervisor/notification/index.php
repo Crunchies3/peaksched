@@ -59,6 +59,18 @@ require_once "../../php/notifs.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="../payroll/" class="sidebar-link ">
+                        <i class="bi bi-wallet"></i>
+                        <span>Payroll</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="../reports/" class="sidebar-link">
+                        <i class="bi bi-file-earmark-binary"></i>
+                        <span>Reports</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="../notification/" class="sidebar-link selected">
                         <i class="bi bi-bell-fill"></i>
                         <span>Notifications</span>

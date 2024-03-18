@@ -62,6 +62,12 @@ require_once "php/profile_account.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="./customer_page.php" class="sidebar-link">
+                        <i class="bi bi-emoji-smile"></i>
+                        <span>Customer</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="./payroll/" class="sidebar-link ">
                         <i class="bi bi-wallet"></i>
                         <span>Payroll</span>
@@ -74,7 +80,7 @@ require_once "php/profile_account.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="./notifcation/" class="sidebar-link">
                         <i class="bi bi-bell"></i>
                         <span>Notifications</span>
                     </a>

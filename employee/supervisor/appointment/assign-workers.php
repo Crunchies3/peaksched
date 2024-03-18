@@ -57,6 +57,12 @@ require_once "../../php/assigning_app_supervisor.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="../payroll/" class="sidebar-link ">
+                        <i class="bi bi-wallet"></i>
+                        <span>Payroll</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="../reports/" class="sidebar-link">
                         <i class="bi bi-file-earmark-binary-fill"></i>
                         <span>Reports</span>

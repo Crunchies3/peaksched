@@ -84,7 +84,7 @@ require_once "php/customer_editing.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="./notifcation/" class="sidebar-link">
                         <i class="bi bi-bell"></i>
                         <span>Notifications</span>
                     </a>
@@ -263,7 +263,7 @@ require_once "php/customer_editing.php";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Changes Will be Saved.
+            Changes will be saved.
             </div>
             <div class="modal-footer">
                 <button name="updateInfo" form="editCustomerForm" class="btn my-button-yes">Confirm</button>

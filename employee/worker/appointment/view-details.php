@@ -38,7 +38,7 @@ require_once "../../php/assigned_app_supervisor_view.php";
         <aside id="sidebar" class="shadow-lg">
             <div class="d-flex mb-2">
                 <button id="toggle-btn" type="button">
-                    <i class="bi bi-calendar-week"></i>
+                    <i class="bi bi-tree-fill"></i>
                 </button>
                 <div class="sidebar-logo">
                     <a href="../">PeakSched</a>
@@ -55,6 +55,12 @@ require_once "../../php/assigned_app_supervisor_view.php";
                     <a href="./" class="sidebar-link selected">
                         <i class="bi bi-calendar2-fill"></i>
                         <span>Appointments</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="../payroll/" class="sidebar-link">
+                        <i class="bi bi-wallet"></i>
+                        <span>Payroll</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
