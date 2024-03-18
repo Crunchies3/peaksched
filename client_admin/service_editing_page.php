@@ -57,7 +57,7 @@ require_once "php/service_editing.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="./appointments/" class="sidebar-link">
                         <i class="bi bi-calendar2"></i>
                         <span>Appointments</span>
                     </a>
@@ -67,7 +67,13 @@ require_once "php/service_editing.php";
                         <i class="bi bi-person"></i>
                         <span>Employee</span>
                     </a>
-                </li>  
+                </li>
+                <li class="sidebar-item">
+                    <a href="./payroll/" class="sidebar-link ">
+                        <i class="bi bi-wallet"></i>
+                        <span>Payroll</span>
+                    </a>
+                </li>
                 <li class="sidebar-item">
                     <a href="./services_page.php" class="sidebar-link selected">
                         <i class="bi bi-file-post"></i>
@@ -95,17 +101,17 @@ require_once "php/service_editing.php";
             </div>
         </aside>
         <section class="main" id="main">
-            <div class="container-fluid" id="serviceArea">
+            <div class="container-fluid" id="mainArea">
                 <div class="mb-5">
                     <h1>Services</h1>
                 </div>
-                <div class="container-fluid" id="addServiceArea">
+                <div class="container-fluid" id="subArea-single">
                     <div class="container">
                         <div>
                             <h5>Edit Service</h5>
                         </div>
                         <form id="addServiceForm" class="row mb-5" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
-                        <input type="hidden" name="serviceId" value="<?= htmlspecialchars($service_id) ?>">
+                            <input type="hidden" name="serviceId" value="<?= htmlspecialchars($service_id) ?>">
                             <div class="col-md-6 mb-4">
                                 <label class="form-label mb-1">SERVICE TITLE</label>
                                 <input name="serviceTitle" type="text" class="form-control input-field <?php echo (!empty($serviceTitle_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your service title" aria-label="Current Password" value="<?php echo $serviceTitle ?>">
@@ -143,17 +149,19 @@ require_once "php/service_editing.php";
                                 </div>
                             </div>
                         </form>
-                        <div class="row ">
-                            <div class="mb-3 col-xxl-2">
-                                <button name = "editService"data-bs-toggle="modal" data-bs-target="#addServiceModal" type="submit" class="btn btn-lg fs-6 w-100 add-service-button">Save Changes</button>
-                                
+                        
+                        <div class="row justify-content-between ">
+                            <div class="row col-lg-6">
+                                <div class="mb-6 col-xxl-4">
+                                    <button name="editService" data-bs-toggle="modal" data-bs-target="#addServiceModal" type="submit" class="btn w-100 my-button-yes">Save Changes</button>
+                                </div>
+                                <div class="mb-6 col-xxl-4">
+                                    <a href="./services_page.php" name="discardChanges" class="btn w-100 my-button-no">Cancel</a>
+                                </div>
                             </div>
-                            <div class="mb-0 col-xxl-2">
-                                <a href="./services_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 cancel-button">Cancel</a>
+                            <div class="mb-4 col-xxl-2">
+                                <button data-bs-toggle="modal" data-bs-target="#deleteEmployeeAccountModal" class="btn w-100 my-button-danger">Delete</button>
                             </div>
-                            <div class="mb-0 col-xxl-2 ms-auto">
-                            <button data-bs-toggle="modal" data-bs-target="#deleteEmployeeAccountModal" class="btn btn-lg fs-6 w-100 my-button-danger">Delete</button>
-                        </div>
                         </div>
                     </div>
                 </div>
@@ -179,8 +187,8 @@ require_once "php/service_editing.php";
                 Service will be added.
             </div>
             <div class="modal-footer">
-                <button name="changePassword" form="addServiceForm" class="btn add-service-button">Confirm</button>
-                <button type="button" class="btn cancel-button" data-bs-dismiss="modal">Cancel</button>
+                <button name="changePassword" form="addServiceForm" class="btn my-button-yes">Confirm</button>
+                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
