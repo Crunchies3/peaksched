@@ -69,6 +69,12 @@ require_once "php/worker_assigning_page.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="./customer_page.php" class="sidebar-link">
+                        <i class="bi bi-emoji-smile"></i>
+                        <span>Customer</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="./services_page.php" class="sidebar-link">
                         <i class="bi bi-file-post-fill"></i>
                         <span>Services</span>
@@ -81,7 +87,7 @@ require_once "php/worker_assigning_page.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="./notifcation/" class="sidebar-link">
                         <i class="bi bi-bell"></i>
                         <span>Notifications</span>
                     </a>

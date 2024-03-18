@@ -5,7 +5,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
 }
-require_once "../php/appointment-request.php";
+// //need nalang ipadisplay mga notifs
+// require_once "../../php/notifs.php";
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +15,7 @@ require_once "../php/appointment-request.php";
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Employee</title>
+    <title>Appointment</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -28,8 +29,9 @@ require_once "../php/appointment-request.php";
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="../css/dashboard_styles.css" />
-    <!-- <link rel="stylesheet" href="../css/employee_page_styles.css" /> -->
-    <link rel="stylesheet" href="../../components/_components.css">
+    <link rel="stylesheet" href="../css/notifcation-styles.css">
+    <link rel="stylesheet" href="../../components/_components.css" />
+
 </head>
 
 <body>
@@ -40,24 +42,24 @@ require_once "../php/appointment-request.php";
                     <i class="bi bi-calendar-week"></i>
                 </button>
                 <div class="sidebar-logo">
-                    <a href="#">PeakSched</a>
+                    <a href="../">PeakSched</a>
                 </div>
             </div>
             <ul class="sidebar-nav">
-                <li class="sidebar-item">
+            <li class="sidebar-item">
                     <a href="../dashboard.php" class="sidebar-link">
                         <i class="bi bi-house"></i>
                         <span>Home</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="./" class="sidebar-link selected">
-                        <i class="bi bi-calendar2-fill"></i>
+                    <a href="../appointments/" class="sidebar-link">
+                        <i class="bi bi-calendar2"></i>
                         <span>Appointments</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="../employee_page.php" class="sidebar-link ">
+                    <a href="../employee_page.php" class="sidebar-link">
                         <i class="bi bi-person"></i>
                         <span>Employee</span>
                     </a>
@@ -81,8 +83,8 @@ require_once "../php/appointment-request.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="../notifcation/" class="sidebar-link">
-                        <i class="bi bi-bell"></i>
+                    <a href="./" class="sidebar-link selected">
+                        <i class="bi bi-bell-fill"></i>
                         <span>Notifications</span>
                     </a>
                 </li>
@@ -94,7 +96,7 @@ require_once "../php/appointment-request.php";
                 </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="php/logout.php" class="sidebar-link">
+                <a href="../../php/logout.php" class="sidebar-link">
                     <i class="bi bi-box-arrow-left"></i>
                     <span>Logout</span>
                 </a>
@@ -103,48 +105,38 @@ require_once "../php/appointment-request.php";
         <section class="main" id="main">
             <div class="container-fluid" id="mainArea">
                 <div class="mb-5">
-                    <h1>Appointments</h1>
+                    <h1>Notifcation</h1>
                 </div>
                 <div class="container-fluid" id="subArea-single">
                     <div>
-                        <h5>Appointment Requests</h5>
+                        <h5>All Notifcation</h5>
                     </div>
                     <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header -->
                         <thead id="tableHead">
-                            <th style="color: white;">Id</th>
-                            <th style="color: white;">Customer Name</th>
-                            <th style="color: white;">Service</th>
-                            <th style="color: white;">Address</th>
-                            <th style="color: white;">Date</th>
-                            <th style="color: white;">Time</th>
-                            <th style="color: white;">Status</th>
-                            <th style="color: white;">Actions</th>
+                            <th style="display: none;">id</th>
+                            <th style="display: none;"></th>
+                            <th style="display: none;"></th>
                         </thead>
                         <tbody>
                             <?php
-                            // LOOP TILL END OF DATA
                             while ($rows = $result->fetch_assoc()) {
                             ?>
                                 <tr>
-                                    <td><?php echo $rows['request_app_id']; ?></td>
-                                    <td><?php echo $rows['customer']; ?></td>
-                                    <td><?php echo $rows['title']; ?></td>
-                                    <td><?php echo $rows['fullAddress']; ?></td>
-                                    <?php
-                                    $date =  $rows['start'];
-                                    $dateOnly = date("Y-m-d", strtotime($date));
-                                    $timeOnly = date('h:i A', strtotime($date));
-                                    ?>
-                                    <td><?php echo $dateOnly; ?></td>
-                                    <td><?php echo $timeOnly; ?></td>
-                                    <?php
-                                    if ($rows['status'] == 'Pending Approval') $badgeType = 'my-badge-pending';
-                                    else if ($rows['status'] == 'Report Needed') $badgeType = 'my-badge-report-needed';
-                                    else if ($rows['status'] == 'Completed') $badgeType = 'my-badge-approved';
-                                    else if ($rows['status'] == 'Approved') $badgeType = 'my-badge-approved';
-                                    ?>
-                                    <td><span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $rows['status']; ?></span></td>
+                                    <td>123</td>
+                                    <td>
+                                        <div>
+                                            <div>
+                                                <div class="notification-header">
+                                                    <span class="notification-title"><?php echo $userName ?></span>
+                                                    <span class="notification-time bi bi-dot"><?php echo $rows['created_at']; ?></span>
+                                                </div>
+                                                <div class="notification-body">
+                                                    <?php echo $rows['message']; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td></td>
                                 </tr>
                             <?php
@@ -156,8 +148,7 @@ require_once "../php/appointment-request.php";
             </div>
         </section>
         <script src="../js/script.js"></script>
-
-        <script src="../js/data-table-app-request.js"></script>
+        <script src="../js/data-table-notifcation.js"></script>
 </body>
 
 </html>

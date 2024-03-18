@@ -5,14 +5,14 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
 }
-require_once "php/employee_page.php";
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<meta charset="UTF-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Employee</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
@@ -27,9 +27,9 @@ require_once "php/employee_page.php";
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="./css/dashboard_styles.css" />
-    <link rel="stylesheet" href="./css/employee_page_styles.css" />
-    <link rel="stylesheet" href="../components/_components.css">
+    <link rel="stylesheet" href="../../css/dashboard_styles.css" />
+    <link rel="stylesheet" href="../../css/payroll-styles.css" />
+    <link rel="stylesheet" href="../../../components/_components.css">
 </head>
 
 <body>
@@ -37,7 +37,7 @@ require_once "php/employee_page.php";
         <aside id="sidebar" class="shadow-lg">
             <div class="d-flex mb-2">
                 <button id="toggle-btn" type="button">
-                    <i class="bi bi-calendar-week"></i>
+                    <i class="bi bi-tree-fill"></i>
                 </button>
                 <div class="sidebar-logo">
                     <a href="#">PeakSched</a>
@@ -45,49 +45,31 @@ require_once "php/employee_page.php";
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="dashboard.php" class="sidebar-link">
+                    <a href="../" class="sidebar-link ">
                         <i class="bi bi-house"></i>
                         <span>Home</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="./appointments/" class="sidebar-link">
+                    <a href="./" class="sidebar-link">
                         <i class="bi bi-calendar2"></i>
                         <span>Appointments</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="employee_page.php" class="sidebar-link selected">
-                        <i class="bi bi-person-fill"></i>
-                        <span>Employee</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="customer_page.php" class="sidebar-link">
-                        <i class="bi bi-emoji-smile"></i>
-                        <span>Customer</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="./payroll/" class="sidebar-link ">
-                        <i class="bi bi-wallet"></i>
+                    <a href="./" class="sidebar-link selected">
+                        <i class="bi bi-wallet-fill"></i>
                         <span>Payroll</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="./services_page.php" class="sidebar-link">
-                        <i class="bi bi-file-post-fill"></i>
-                        <span>Services</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="./notifcation/" class="sidebar-link">
+                    <a href="../notification/" class="sidebar-link">
                         <i class="bi bi-bell"></i>
                         <span>Notifications</span>
                     </a>
                 </li>
                 <li class="sidebar-footer">
-                    <a href="setting_account_page.php" class="sidebar-link ">
+                    <a href="../settings/" class="sidebar-link ">
                         <i class="bi bi-gear"></i>
                         <span>Settings</span>
                     </a>
@@ -103,48 +85,62 @@ require_once "php/employee_page.php";
         <section class="main" id="main">
             <div class="container-fluid" id="mainArea">
                 <div class="mb-5">
-                    <h1>Employee</h1>
+                    <h1>Payroll</h1>
                 </div>
                 <div class="container-fluid" id="subArea-single">
                     <div>
-                        <h5>All employee</h5>
+                        <h5>All payroll</h5>
                     </div>
                     <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header -->
                         <thead id="tableHead">
-                            <th style="color: white;">Id</th>
-                            <th style="color: white;">Fullname</th>
-                            <th style="color: white;">Position</th>
-                            <th style="color: white;">Email</th>
-                            <th style="color: white;">Phone</th>
+                            <th style="color: white;">Pay Date</th>
+                            <th style="color: white;">Pay Period</th>
+                            <th style="color: white;">Gross</th>
+                            <th style="color: white;">Net</th>
+                            <th style="color: white;">Employees</th>
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
-                        <?php
-                            // LOOP TILL END OF DATA
-                            while ($rows = $result->fetch_assoc()) {
-                            ?>
-                                <tr>
-                                    <td><?php echo $rows['employeeid']; ?></td>
-                                    <td><?php echo $rows['firstname']; ?> <?php echo $rows['lastname']; ?></td>
-                                    <td><?php echo $rows['type']; ?></td>
-                                    <td><?php echo $rows['email']; ?></td>
-                                    <td><?php echo $rows['mobilenumber']; ?></td>
-                                    <td></td>
-                                </tr>
-                            <?php
-                            }
-                            ?>
+                            <tr>
+                                <td>2024-03-20</td>
+                                <td>2024-03-20 - 2024-04-05</td>
+                                <td>59,090.69</td>
+                                <td>59,090.69</td>
+                                <td>10</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>2024-03-20</td>
+                                <td>2024-03-20 - 2024-04-05</td>
+                                <td>59,090.69</td>
+                                <td>59,090.69</td>
+                                <td>10</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>2024-03-20</td>
+                                <td>2024-03-20 - 2024-04-05</td>
+                                <td>59,090.69</td>
+                                <td>59,090.69</td>
+                                <td>10</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>2024-03-20</td>
+                                <td>2024-03-20 - 2024-04-05</td>
+                                <td>59,090.69</td>
+                                <td>59,090.69</td>
+                                <td>10</td>
+                                <td></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </section>
-        <script src = "./js/data_table_employee.js"></script>                  
-        <script src="./js/script.js"></script>
+        <script src="../../js/data-table-worker-payroll.js"></script>
+        <script src="../../js/script.js"></script>
 </body>
 
 </html>
-
-
-

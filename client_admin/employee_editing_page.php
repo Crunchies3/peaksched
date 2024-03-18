@@ -67,6 +67,12 @@ require_once "php/employee_editing.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="./customer_page.php" class="sidebar-link ">
+                        <i class="bi bi-emoji-smile"></i>
+                        <span>Customer</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="./payroll/" class="sidebar-link ">
                         <i class="bi bi-wallet"></i>
                         <span>Payroll</span>
@@ -79,7 +85,7 @@ require_once "php/employee_editing.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="./notifcation/" class="sidebar-link">
                         <i class="bi bi-bell"></i>
                         <span>Notifications</span>
                     </a>
@@ -150,7 +156,7 @@ require_once "php/employee_editing.php";
                             <div class="invalid-feedback">
                                 <?php echo $assignedTo_err; ?>
                             </div>
-                        </div>
+                        </div>  
                     </form>
                     <div class="row">
                         <div class="mb-3 col-xxl-2">
@@ -162,10 +168,10 @@ require_once "php/employee_editing.php";
                     </div>
                 </div>
             </div>
-            <div class="container-fluid" id="">
+            <div class="container-fluid" id="main">
                 <div class="container-fluid" id="subArea-bottom">
                     <div>
-                        <h5>Account</h5>
+                        <h5 style="font-weight: bold;">Change Password</h5>
                     </div>
                     <form id="editPasswordForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <input type="hidden" name="employeeId" value="<?= htmlspecialchars($employeeId) ?>">
@@ -213,7 +219,7 @@ require_once "php/employee_editing.php";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Changes Will be Saved.
+                Changes will be saved.
             </div>
             <div class="modal-footer">
                 <button name="updateInfo" form="editEmployeeForm" class="btn my-button-yes">Confirm</button>

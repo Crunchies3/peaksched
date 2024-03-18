@@ -12,7 +12,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 <html lang="en">
 
 <head>
-<meta charset="UTF-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Employee</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
@@ -63,8 +63,14 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="./" class="sidebar-link selected">
-                        <i class="bi bi-wallet-fill"></i>
+                    <a href="../customer_page.php" class="sidebar-link">
+                        <i class="bi bi-emoji-smile"></i>
+                        <span>Customer</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="./" class="sidebar-link">
+                        <i class="bi bi-wallet"></i>
                         <span>Payroll</span>
                     </a>
                 </li>
@@ -75,13 +81,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="bi bi-bell"></i>
+                    <a href="./" class="sidebar-link-selected">
+                        <i class="bi bi-bell-fill"></i>
                         <span>Notifications</span>
                     </a>
                 </li>
                 <li class="sidebar-footer">
-                    <a href="setting_account_page.php" class="sidebar-link ">
+                    <a href="../setting_account_page.php" class="sidebar-link ">
                         <i class="bi bi-gear"></i>
                         <span>Settings</span>
                     </a>
@@ -151,11 +157,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 </div>
             </div>
         </section>
-        <script src = "../js/data-table-employee-payroll.js"></script>                  
+        <script src="../js/data-table-employee-payroll.js"></script>
         <script src="../js/script.js"></script>
 </body>
 
 </html>
-
-
-

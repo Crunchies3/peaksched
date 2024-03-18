@@ -50,6 +50,12 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="./payroll/" class="sidebar-link ">
+                        <i class="bi bi-wallet"></i>
+                        <span>Payroll</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="./reports/" class="sidebar-link">
                         <i class="bi bi-file-earmark-binary"></i>
                         <span>Reports</span>
