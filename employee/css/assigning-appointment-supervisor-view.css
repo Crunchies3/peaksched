@@ -12,34 +12,6 @@
 /* * end */
 
 
-#assignedAppointmentArea {
-    padding-top: 0px;
-}
-
-#assignedAppointmentTableArea {
-    background-color: white;
-    border: 1px #BBBBBB;
-    border-style: solid;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    padding: 30px;
-}
-
-#assignedAppointmentArea h5 {
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-
-#assignedAppointmentArea .input-field,
-#dt-search-0 {
-    background-color: #F7F8FC;
-    color: #222222;
-    border: 1px #BBBBBB;
-    border-style: solid;
-}
-
-
 #tableHead .dt-orderable-asc {
     border-bottom: #e1e1e1;
     border-style: solid;
@@ -89,15 +61,6 @@
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
-}
-
-#addServiceArea {
-    background-color: white;
-    border: 1px #BBBBBB;
-    border-style: solid;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    padding: 30px;
 }
 
 label {

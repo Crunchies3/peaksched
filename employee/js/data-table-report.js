@@ -1,15 +1,13 @@
 $.fn.dataTable.Buttons.defaults.dom.button.className = 'btn';
 
 var table;
-var workerId;
+var reportId;
 
 $(document).ready(function () {
     table = $('#myTable').DataTable();
     table.on('click', '#actionClick', function (e) {
-        workerId = table.row(e.target.closest('tr')).data();
-        var appointmentId = document.getElementById('appointmentId').value;
-        document.getElementById('workerId').value = workerId[0];
-        document.getElementById('appointId').value = appointmentId;
+        reportId = table.row(e.target.closest('tr')).data();
+        document.getElementById('reportId').value = reportId[0];
     });
 });
 
@@ -21,15 +19,7 @@ $('#myTable').DataTable({
                 text: ' sort',
                 className: 'sort-btn rounded mx-2 bi-sort-down-alt',
             },
-            {
-                text: '<i class="bi bi-plus plus-icon"></i> assign workers',
-                className: 'my-button-yes rounded',
-                action: function () {
-                    var appointmentId = document.getElementById('appointmentId').value;
-                    location.href = 'assign-workers.php?appointmentId=' + '' + appointmentId;
-                }
-            }],
-
+            ]
         },
     },
     scrollY: 450,
@@ -42,8 +32,12 @@ $('#myTable').DataTable({
             className: "right-aligned-cell"
         },
         {
+            targets: -3,
+            className: "right-aligned-cell"
+        },
+        {
             data: null,
-            defaultContent: '<form id="RemoveWorkerForm" method="post"><input id="workerId" name="workerId" hidden type="text" value=""><input id="appointId" name="appointmentId" hidden type="text" value=""></form><button data-bs-target="#RemoveWorker"  data-bs-toggle = "modal" class="btn my-button-yes mx-1" id="actionClick">Remove</button>',
+            defaultContent: '<form action="view-details.php" id="addAppoitment" method="get"><input id="reportId" hidden type="text" name="reportId" value=""></form><button form="addAppoitment" class="btn my-button-yes mx-1" id="actionClick">View</button>',
             targets: -1
         },
     ],

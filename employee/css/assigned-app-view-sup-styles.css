@@ -17,19 +17,6 @@
 }
 
 
-#appointmentTableArea {
-    background-color: white;
-    border: 1px #BBBBBB;
-    border-style: solid;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    padding: 30px;
-}
-
-
-
-
-
 #appointmentArea h5 {
     margin-bottom: 40px;
     font-weight: bold;
@@ -58,16 +45,6 @@
     color: #7d7d7d;
     font-weight: 600;
     font-size: 15px;
-}
-
-.add-appointment-btn {
-    background-color: #124F6F;
-    color: #f7f8fc;
-}
-
-.add-appointment-btn:hover {
-    background-color: #38799d;
-    color: #f7f8fc;
 }
 
 .sort-btn {
@@ -104,15 +81,6 @@
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
-}
-
-#addWorkerArea {
-    background-color: white;
-    border: 1px #BBBBBB;
-    border-style: solid;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    padding: 30px;
 }
 
 label {
