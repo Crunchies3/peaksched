@@ -211,7 +211,18 @@ label {
     font-size: 12px;
 
 }
+.my-label{
+font-weight: 600;
+font-size: 16px;
+color: #7d7d7d;
 
+}
+.my-subTitle{
+    margin-top: -20px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 18px;
+}
 .input-field::placeholder {
     font-size: 16px;
     color: #cdcdcd;
