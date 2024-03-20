@@ -52,6 +52,11 @@ $('#myTable').DataTable({
             targets: 5,
             className: "right-aligned-cell"
         },
+        {
+            data: null,
+            defaultContent: '<form action="../payroll/view-payslip-detail.php" id="viewPayroll" method="get"><input id="payrollId" hidden type="text" name="payrollId" value=""></form><button form="viewPayroll" class="btn my-button-yes mx-1" id="actionClick">View</button>',
+            targets: -1
+        },
     ],
 });
 

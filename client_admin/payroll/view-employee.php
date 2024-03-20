@@ -69,8 +69,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="./" class="sidebar-link">
-                        <i class="bi bi-wallet"></i>
+                    <a href="./" class="sidebar-link selected">
+                        <i class="bi bi-wallet-fill"></i>
                         <span>Payroll</span>
                     </a>
                 </li>
@@ -81,8 +81,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="./" class="sidebar-link-selected">
-                        <i class="bi bi-bell-fill"></i>
+                    <a href="../notifcation/" class="sidebar-link">
+                        <i class="bi bi-bell"></i>
                         <span>Notifications</span>
                     </a>
                 </li>
@@ -118,6 +118,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             <th style="color: white;">Gross Pay</th>
                             <th style="color: white;">Deductions</th>
                             <th style="color: white;">Total</th>
+                            <th style="color: whitee">Actions</th>
                         </thead>
                         <tbody>
                             <tr>
@@ -127,6 +128,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                 <td>5,000</td>
                                 <td>500</td>
                                 <td>4,5000</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Kenneth Manon og</td>
@@ -135,6 +137,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                 <td>5,000</td>
                                 <td>500</td>
                                 <td>4,5000</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Dennnis Nazareno</td>
@@ -143,6 +146,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                 <td>5,000</td>
                                 <td>500</td>
                                 <td>4,5000</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Cyril Alves</td>
@@ -151,6 +155,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                 <td>5,000</td>
                                 <td>500</td>
                                 <td>4,5000</td>
+                                <td></td>
                             </tr>
                         </tbody>
                     </table>

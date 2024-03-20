@@ -49,13 +49,25 @@
     font-weight: bold;
 }
 
-#myTable td {
-    padding-left: 20px;
-    padding-right: 0;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-right: 20px;
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
 }
+
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    background-color: #666565;
+}
+
+td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
 
 .form-outline i {
     position: absolute;
@@ -75,3 +87,37 @@ label {
     text-align: left !important;
 }
 
+hr.solid {
+    border-top: 3px solid black;
+}
+
+
+
+#middle-area {
+    padding-top: 0px;
+}
+
+
+
+
+#middle-area h5 {
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+
+#middle-area .input-field,
+#dt-search-0 {
+    background-color: #F7F8FC;
+    color: #222222;
+    border: 1px #BBBBBB;
+    border-style: solid;
+}
+
+#tablelistTableArea {
+    background-color: white;
+    border: 1px #BBBBBB;
+    border-style: solid;
+    border-top: none;
+    padding: 30px;
+}
