@@ -23,7 +23,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="../css/dashboard_styles.css" />
-    <link rel="stylesheet" href="../css/payroll-styles.css" />
+    <link rel="stylesheet" href="../css/view-payslip-styles.css" />
     <link rel="stylesheet" href="../../components/_components.css">
 </head>
 
@@ -148,7 +148,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                         04-03-24
                                     </div>
                                 </div>
-                                <div class="mb-1 row">
+                                <div class="mb-3 row">
                                     <div class="my-label col-4">
                                         Rate:
                                     </div>
@@ -156,19 +156,24 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                         25%
                                     </div>
                                 </div>
+                                <div class="mb-1 row">
+                                    <div class="my-label-2 col-4">
+                                        Netpay:
+                                    </div>
+                                    <div class="my-label-2 col">
+                                        $10,000
+                                    </div>
+                                </div>
+                                <div class="mb-1 row">
+                                    <div class="my-label-2 col-4">
+                                        Total hours:
+                                    </div>
+                                    <div class="my-label-2 col">
+                                        40hours
+                                    </div>
+                                </div>
+                            </div>
 
-                            </div>
-                            <div class="col-md-6">
-                                <div class="my-label">
-                                    Net Pay
-                                </div>
-                                <div class="my-label">
-                                    $10,000
-                                </div>
-                                <div class="my-label">
-                                    Total hours: 40 hours
-                                </div>
-                            </div>
                         </div>
                     </div>
 
