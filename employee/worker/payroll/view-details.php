@@ -51,7 +51,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="./" class="sidebar-link">
+                    <a href="../appointment/" class="sidebar-link">
                         <i class="bi bi-calendar2"></i>
                         <span>Appointments</span>
                     </a>
@@ -76,7 +76,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="php/logout.php" class="sidebar-link">
+                <a href="../../php/logout.php" class="sidebar-link">
                     <i class="bi bi-box-arrow-left"></i>
                     <span>Logout</span>
                 </a>
@@ -139,7 +139,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 </div>
             </div>
         </section>
-        <script src="../../js/data-table-worker-payroll.js"></script>
+        <script src="../../js/data-table-view-payroll.js"></script>
         <script src="../../js/script.js"></script>
 </body>
 

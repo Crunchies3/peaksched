@@ -35,18 +35,18 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <i class="bi bi-tree-fill"></i>
                 </button>
                 <div class="sidebar-logo">
-                    <a href="#">TwinPeaks</a>
+                    <a href="../">TwinPeaks</a>
                 </div>
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="" class="sidebar-link ">
+                    <a href="../" class="sidebar-link ">
                         <i class="bi bi-house"></i>
                         <span>Home</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link selected">
+                    <a href="../appointment/" class="sidebar-link selected">
                         <i class="bi bi-calendar2-fill"></i>
                         <span>Appointments</span>
                     </a>
@@ -58,20 +58,20 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="../notification/" class="sidebar-link">
                         <i class="bi bi-bell"></i>
                         <span>Notifications</span>
                     </a>
                 </li>
                 <li class="sidebar-footer">
-                    <a href="setting_account_page.php" class="sidebar-link ">
+                    <a href="../settings/" class="sidebar-link ">
                         <i class="bi bi-gear"></i>
                         <span>Settings</span>
                     </a>
                 </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="php_backend/logout.php" class="sidebar-link">
+                <a href="../../php/logout.php" class="sidebar-link">
                     <i class="bi bi-box-arrow-left"></i>
                     <span>Logout</span>
                 </a>

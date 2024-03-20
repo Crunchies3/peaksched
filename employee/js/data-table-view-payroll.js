@@ -1,15 +1,13 @@
 $.fn.dataTable.Buttons.defaults.dom.button.className = 'btn';
 
 var table;
-var workerId;
+var payrollId;
 
 $(document).ready(function () {
     table = $('#myTable').DataTable();
     table.on('click', '#actionClick', function (e) {
-        workerId = table.row(e.target.closest('tr')).data();
-        var appointmentId = document.getElementById('appointmentId').value;
-        document.getElementById('workerId').value = workerId[0];
-        document.getElementById('appointId').value = appointmentId;
+        payrollId = table.row(e.target.closest('tr')).data();
+        document.getElementById('payrollId').value = payrollId[0];
     });
 });
 
@@ -19,17 +17,14 @@ $('#myTable').DataTable({
         topEnd: {
             buttons: [{
                 text: ' sort',
-                className: 'sort-btn rounded mx-2 bi-sort-down-alt',
-            },
-            {
-                text: '<i class="bi bi-plus plus-icon"></i> assign workers',
+                className: 'sort-btn rounded mx-2 bi-sort-down-alt my-button-no',
+            }, {
+                text: '<i class="bi bi-plus plus-icon"></i> approve payroll',
                 className: 'my-button-yes rounded',
                 action: function () {
-                    var appointmentId = document.getElementById('appointmentId').value;
-                    location.href = 'assign-workers.php?appointmentId=' + '' + appointmentId;
+                    location.href = '';
                 }
-            }],
-
+            }]
         },
     },
     scrollY: 450,
@@ -38,13 +33,24 @@ $('#myTable').DataTable({
     },
     'columnDefs': [
         {
-            targets: 0,
+            targets: 1,
             className: "right-aligned-cell"
         },
         {
-            data: null,
-            defaultContent: '<form id="RemoveWorkerForm" method="post"><input id="workerId" name="workerId" hidden type="text" value=""><input id="appointId" name="appointmentId" hidden type="text" value=""></form><button data-bs-target="#RemoveWorker"  data-bs-toggle = "modal" class="btn my-button-yes mx-1" id="actionClick">Remove</button>',
-            targets: -1
+            targets: 2,
+            className: "right-aligned-cell"
+        },
+        {
+            targets: 3,
+            className: "right-aligned-cell"
+        },
+        {
+            targets: 4,
+            className: "right-aligned-cell"
+        },
+        {
+            targets: 5,
+            className: "right-aligned-cell"
         },
     ],
 });

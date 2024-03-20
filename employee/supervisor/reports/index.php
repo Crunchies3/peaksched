@@ -137,7 +137,7 @@ require_once "../../php/assigned_app_supervisor.php";
                 </div>
             </div>
         </section>
-        <script src="../../js/data-table-appointments.js"></script>
+        <script src="../../js/data-table-report.js"></script>
         <script src="../../js/script.js"></script>
 
 </body>
