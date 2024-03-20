@@ -62,7 +62,7 @@ require_once "./php_backend/request-appointment-details.php";
                 <li class="sidebar-item">
                     <a href="./address" class="sidebar-link">
                         <i class="bi bi-geo-alt"></i>
-                        <span>Adress</span>
+                        <span>Address</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -96,7 +96,7 @@ require_once "./php_backend/request-appointment-details.php";
                 </div>
                 <div class="container-fluid" id="subArea-single">
                     <div class="mb-3">
-                        <h5>Request Appointment</h5>
+                    <h5><span><a href="./request-appointment-service.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Request Appointment </h5>
                     </div>
                     <form id="requestAppointmentDetails" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <input type="hidden" name="serviceId" value="<?php echo $service_id ?>">

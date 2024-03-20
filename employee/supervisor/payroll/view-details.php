@@ -95,7 +95,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 </div>
                 <div class="container-fluid" id="subArea-single">
                     <div>
-                        <h5>Employee payroll</h5>
+                    <h5><span><a href="./index.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Employee Payroll </h5>
                     </div>
                     <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header -->
