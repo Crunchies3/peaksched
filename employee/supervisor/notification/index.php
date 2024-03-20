@@ -5,8 +5,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
 }
-
-
+//need nalang ipadisplay mga notifs
+require_once "../../php/notifs.php";
 ?>
 
 <!DOCTYPE html>
@@ -59,6 +59,12 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="../payroll/" class="sidebar-link ">
+                        <i class="bi bi-wallet"></i>
+                        <span>Payroll</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="../reports/" class="sidebar-link">
                         <i class="bi bi-file-earmark-binary"></i>
                         <span>Reports</span>
@@ -101,74 +107,29 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             <th style="display: none;"></th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>123</td>
-                                <td>
-                                    <div>
+                            <?php
+                            while ($rows = $result->fetch_assoc()) {
+                            ?>
+                                <tr>
+                                    <td>123</td>
+                                    <td>
                                         <div>
-                                            <div class="notification-header">
-                                                <span class="notification-title">Kenneth</span>
-                                                <span class="notification-time bi bi-dot">2 hours ago</span>
-                                            </div>
-                                            <div class="notification-body">
-                                                You have a new message!
+                                            <div>
+                                                <div class="notification-header">
+                                                    <span class="notification-title"><?php echo $userName ?></span>
+                                                    <span class="notification-time bi bi-dot"><?php echo $rows['created_at']; ?></span>
+                                                </div>
+                                                <div class="notification-body">
+                                                    <?php echo $rows['message']; ?>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>123</td>
-                                <td>
-                                    <div>
-                                        <div>
-                                            <div class="notification-header">
-                                                <span class="notification-title">Kenneth</span>
-                                                <span class="notification-time bi bi-dot">2 hours ago</span>
-                                            </div>
-                                            <div class="notification-body">
-                                                You have a new message!
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>123</td>
-                                <td>
-                                    <div>
-                                        <div>
-                                            <div class="notification-header">
-                                                <span class="notification-title">Kenneth</span>
-                                                <span class="notification-time bi bi-dot">2 hours ago</span>
-                                            </div>
-                                            <div class="notification-body">
-                                                You have a new message!
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>123</td>
-                                <td>
-                                    <div>
-                                        <div>
-                                            <div class="notification-header">
-                                                <span class="notification-title">Kenneth</span>
-                                                <span class="notification-time bi bi-dot">2 hours ago</span>
-                                            </div>
-                                            <div class="notification-body">
-                                                You have a new message!
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td></td>
-                            </tr>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>

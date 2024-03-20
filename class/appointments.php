@@ -135,7 +135,7 @@ class Appointment
             $stmt = $this->conn->prepare("DELETE FROM tbl_confirmed_appointment WHERE appointment_id = ?");
             $stmt->bind_param("s", $appointmentId);
             $stmt->execute();
-            $stmt->close();
+           
             return true;
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
@@ -157,7 +157,7 @@ class Appointment
             );
             $stmt->bind_param("sssssss", $note, $dateTimeStart, $dateTimeEnd, $customerId, $employeeId, $serviceId, $appointmentId);
             $stmt->execute();
-            $this->conn->close();
+           
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
@@ -180,7 +180,7 @@ class Appointment
             );
             $stmt->bind_param("ssssssss", $appointmentId, $customerId, $serviceId, $tempAddress, $employeeId, $dateTimeStart, $dateTimeEnd, $note);
             $stmt->execute();
-            $stmt->close();
+
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }

@@ -59,6 +59,12 @@ require_once "../../php/assigned_app_supervisor.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="../payroll/" class="sidebar-link ">
+                        <i class="bi bi-wallet"></i>
+                        <span>Payroll</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="./" class="sidebar-link selected">
                         <i class="bi bi-file-earmark-binary-fill"></i>
                         <span>Reports</span>
@@ -131,7 +137,7 @@ require_once "../../php/assigned_app_supervisor.php";
                 </div>
             </div>
         </section>
-        <script src="../../js/data-table-appointments.js"></script>
+        <script src="../../js/data-table-report.js"></script>
         <script src="../../js/script.js"></script>
 
 </body>

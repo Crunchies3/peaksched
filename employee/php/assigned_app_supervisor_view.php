@@ -2,6 +2,10 @@
 require_once 'config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/employee_client.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/employee_account.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/notifMessages.php";
+
+$notification = new NotifMessages();
+$notification->setConn($conn);
 
 $employeeAcc = unserialize($_SESSION["employeeUser"]);
 $supervisorId = $employeeAcc->getId();
@@ -37,7 +41,19 @@ if (isset($_POST['RemoveWorker'])) {
     $workerId = $_POST["workerId"];
     $appointmentId = $_POST["appointmentId"];
 
+
+    $notification->setsenderUserType($supervisorId);
+    $notification->setreceiverUserType($workerId);
+
+    $supervisorId = $employeeAcc->getId();
+    $message = $notification->supToWorkerRemove($title);
+    $receiver = $notification->getreceiverUserType();
+    $unread = true;
+    $date = date("Y-m-d");
+
     $employeeClient->removeWorkerInAppointment($appointmentId, $workerId);
+    $notification->insertNotif($receiver,$unread,$date,$message);
+    
     $employeeClient->fetchAppointmentWorkers($appointmentId);
     $result = $employeeClient->getAssignedWorkers();
 }

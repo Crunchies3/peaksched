@@ -51,7 +51,7 @@ require_once "php/employee_page.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="./appointments/" class="sidebar-link">
                         <i class="bi bi-calendar2"></i>
                         <span>Appointments</span>
                     </a>
@@ -69,13 +69,19 @@ require_once "php/employee_page.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="./payroll/" class="sidebar-link ">
+                        <i class="bi bi-wallet"></i>
+                        <span>Payroll</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="./services_page.php" class="sidebar-link">
                         <i class="bi bi-file-post-fill"></i>
                         <span>Services</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="./notifcation/" class="sidebar-link">
                         <i class="bi bi-bell"></i>
                         <span>Notifications</span>
                     </a>

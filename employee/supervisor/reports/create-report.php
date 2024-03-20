@@ -58,13 +58,19 @@ require_once "../../php/create-report.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="../payroll/" class="sidebar-link ">
+                        <i class="bi bi-wallet"></i>
+                        <span>Payroll</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="../reports/" class="sidebar-link selected">
                         <i class="bi bi-file-earmark-binary-fill"></i>
                         <span>Reports</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="../notification/" class="sidebar-link">
                         <i class="bi bi-bell"></i>
                         <span>Notifications</span>
                     </a>

@@ -22,7 +22,7 @@ $('#myTable').DataTable({
                 className: 'sort-btn rounded mx-2 bi-sort-down-alt',
             }, {
                 text: '<i class="bi bi-plus plus-icon"></i> assign workers',
-                className: 'add-service-btn rounded',
+                className: 'my-button-yes rounded',
                 action: function () {
                     var supId =  document.getElementById('supId').value;
                     location.href = 'worker_assigning_page.php?supervisorId=' + '' + supId;

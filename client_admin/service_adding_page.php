@@ -33,6 +33,7 @@ require_once "php/service_adding.php";
     <link rel="stylesheet" href="./css/dashboard_styles.css" />
     <link rel="stylesheet" href="./css/service_page_styles.css" />
     <link rel="stylesheet" href="./css/colorPick.css" />
+    <link rel="stylesheet" href="../components/_components.css">
 
 
 </head>
@@ -56,7 +57,7 @@ require_once "php/service_adding.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="./appointments/" class="sidebar-link">
                         <i class="bi bi-calendar2"></i>
                         <span>Appointments</span>
                     </a>
@@ -66,6 +67,18 @@ require_once "php/service_adding.php";
                         <i class="bi bi-person"></i>
                         <span>Employee</span>
                     </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="./customer_page.php" class="sidebar-link">
+                        <i class="bi bi-emoji-smile"></i>
+                        <span>Customer</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="./payroll/" class="sidebar-link ">
+                        <i class="bi bi-wallet"></i>
+                        <span>Payroll</span>
+                    </a>
                 </li>  
                 <li class="sidebar-item">
                     <a href="./services_page.php" class="sidebar-link selected">
@@ -74,7 +87,7 @@ require_once "php/service_adding.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="./notifcation/" class="sidebar-link">
                         <i class="bi bi-bell"></i>
                         <span>Notifications</span>
                     </a>
@@ -94,11 +107,11 @@ require_once "php/service_adding.php";
             </div>
         </aside>
         <section class="main" id="main">
-            <div class="container-fluid" id="serviceArea">
+            <div class="container-fluid" id="mainArea">
                 <div class="mb-5">
                     <h1>Services</h1>
                 </div>
-                <div class="container-fluid" id="addServiceArea">
+                <div class="container-fluid" id="subArea-single">
                     <div class="container">
                         <div>
                             <h5>Create new services</h5>
@@ -143,10 +156,10 @@ require_once "php/service_adding.php";
                         </form>
                         <div class="row">
                             <div class="mb-3 col-xxl-2">
-                                <button data-bs-toggle="modal" data-bs-target="#addServiceModal" type="submit" class="btn btn-lg fs-6 w-100 add-service-button">Add Service</button>
+                                <button data-bs-toggle="modal" data-bs-target="#addServiceModal" type="submit" class="btn btn-lg fs-6 w-100 my-button-yes">Add Service</button>
                             </div>
                             <div class="mb-0 col-xxl-2">
-                                <a href="./service_adding_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 cancel-button">cancel</a>
+                                <a href="./service_adding_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">cancel</a>
                             </div>
                         </div>
                     </div>
@@ -173,8 +186,8 @@ require_once "php/service_adding.php";
                 Service will be added.
             </div>
             <div class="modal-footer">
-                <button name="changePassword" form="addServiceForm" class="btn add-service-button">Confirm</button>
-                <button type="button" class="btn cancel-button" data-bs-dismiss="modal">Cancel</button>
+                <button name="changePassword" form="addServiceForm" class="btn my-button-yes">Confirm</button>
+                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>

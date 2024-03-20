@@ -41,11 +41,10 @@ require_once "../php/appointment-request-details.php";
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="../" class="sidebar-link">
+                    <a href="../dashboard.php" class="sidebar-link">
                         <i class="bi bi-house"></i>
                         <span>Home</span>
                     </a>
-                </li>
                 <li class="sidebar-item">
                     <a href="./" class="sidebar-link selected">
                         <i class="bi bi-calendar2-fill"></i>
@@ -53,9 +52,27 @@ require_once "../php/appointment-request-details.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="../reports/" class="sidebar-link">
-                        <i class="bi bi-file-earmark-binary-fill"></i>
-                        <span>Reports</span>
+                    <a href="../employee_page.php" class="sidebar-link ">
+                        <i class="bi bi-person"></i>
+                        <span>Employee</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="../customer_page.php" class="sidebar-link">
+                        <i class="bi bi-emoji-smile"></i>
+                        <span>Customer</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="../payroll/" class="sidebar-link ">
+                        <i class="bi bi-wallet"></i>
+                        <span>Payroll</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="../services_page.php" class="sidebar-link">
+                        <i class="bi bi-file-post-fill"></i>
+                        <span>Services</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -65,14 +82,14 @@ require_once "../php/appointment-request-details.php";
                     </a>
                 </li>
                 <li class="sidebar-footer">
-                    <a href="../settings/" class="sidebar-link ">
+                    <a href="../setting_account_page.php" class="sidebar-link ">
                         <i class="bi bi-gear"></i>
                         <span>Settings</span>
                     </a>
                 </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="../../php/logout.php" class="sidebar-link">
+                <a href="php/logout.php" class="sidebar-link">
                     <i class="bi bi-box-arrow-left"></i>
                     <span>Logout</span>
                 </a>
@@ -167,7 +184,6 @@ require_once "../php/appointment-request-details.php";
 
 </html>
 
-
 <div class="modal fade" id="approveRequestModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="approveRequestModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
@@ -185,3 +201,4 @@ require_once "../php/appointment-request-details.php";
         </div>
     </div>
 </div>
+

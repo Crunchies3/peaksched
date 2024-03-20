@@ -51,7 +51,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="../appointments/" class="sidebar-link">
                         <i class="bi bi-calendar2"></i>
                         <span>Appointments</span>
                     </a>
@@ -60,6 +60,12 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <a href="../employee_page.php" class="sidebar-link">
                         <i class="bi bi-person"></i>
                         <span>Employee</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="../customer_page.php" class="sidebar-link">
+                        <i class="bi bi-emoji-smile"></i>
+                        <span>Customer</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -75,13 +81,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="../notifcation/" class="sidebar-link">
                         <i class="bi bi-bell"></i>
                         <span>Notifications</span>
                     </a>
                 </li>
                 <li class="sidebar-footer">
-                    <a href="setting_account_page.php" class="sidebar-link ">
+                    <a href="../setting_account_page.php" class="sidebar-link ">
                         <i class="bi bi-gear"></i>
                         <span>Settings</span>
                     </a>

@@ -23,7 +23,7 @@ $('#myTable').DataTable({
             },
             {
                 text: '<i class="bi bi-plus plus-icon"></i> assign workers',
-                className: 'add-appointment-btn rounded',
+                className: 'my-button-yes rounded',
                 action: function () {
                     var appointmentId = document.getElementById('appointmentId').value;
                     location.href = 'assign-workers.php?appointmentId=' + '' + appointmentId;
