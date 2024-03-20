@@ -97,7 +97,7 @@ require_once "../../php/assigned_app_supervisor_view.php";
                 </div>
                 <div class="container-fluid" id="subArea-top">
                     <div>
-                        <h5>Appointment Details</h5>
+                    <h5><span><a href="./index.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Appointment Details</h5>
                     </div>
                     <form id="appointmentDetails" class="row mb-3" method="get" action="../reports/create-report.php" novalidate>
                         <input type="hidden" name="appointmentId" value="<?= htmlspecialchars($appointmentId) ?>" id="appointmentId">

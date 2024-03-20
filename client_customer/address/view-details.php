@@ -92,12 +92,7 @@ require_once "../php_backend/address-editing.php";
                     <h1>Addresses</h1>
                 </div>
                 <div class="container-fluid" id="subArea-top">
-                    <div class="col d-flex justify-content-between">
-                        <div class="">
-                            <h5><span><a href="./index.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Address Details</h5>
-                        </div>
-
-                    </div>
+                    <h5><span><a href="./index.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Address Details</h5>
                     <form id="editAddressForm" class="row mb-5" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <input type="hidden" name="addressId" value="<?= htmlspecialchars($addressId) ?>">
                         <div class="col-md-6 mb-4">
