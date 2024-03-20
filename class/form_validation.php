@@ -192,4 +192,12 @@ class Validation
             return "";
         }
     }
+    public function supervisorChoose($supervisorName)
+    {
+        if (empty($supervisorName)) {
+            return "Please select a supervisor to assign";
+        } else {
+            return "";
+        }
+    }
 }

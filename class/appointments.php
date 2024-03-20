@@ -81,7 +81,8 @@ class Appointment
                 WHERE   a.customer_id = b.customerid AND
                         a.service_id = c.service_id AND
                         a.address_id = d.address_id AND
-                        a.customer_id = d.customer_id
+                        a.customer_id = d.customer_id AND
+                        a.status = 'Pending Approval'
                 ORDER BY a.start ASC;"
             );
             $stmt->execute();
@@ -444,6 +445,27 @@ class Appointment
     {
         try {
             $stmt = $this->conn->prepare("DELETE FROM tbl_request_appointment WHERE request_app_id = ?");
+            $stmt->bind_param("s", $id);
+            $stmt->execute();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+    public function approveAppointment($appointmentId, $customerId, $service_id, $addressId, $supervisorid, $num_floors, $num_beds, $num_baths,$start,$end,$note,$status){
+        try {
+            $stmt = $this->conn->prepare("INSERT INTO tbl_confirmed_appointment (appointment_id, customer_id, service_id, address_id, supervisor_id, num_floors, num_beds, num_baths,
+            start, end, note, status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+            $stmt->bind_param("ssssssssssss",$appointmentId,$customerId,$service_id,$addressId,$supervisorid,$num_floors,$num_beds,$num_baths,$start,$end,$note,$status);
+            $stmt->execute();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+    public function denyCustRequest($id){
+        try {
+            $stmt = $this->conn->prepare(
+                "UPDATE tbl_request_appointment a SET a.status = 'Denied' WHERE request_app_id = ?"
+            );
             $stmt->bind_param("s", $id);
             $stmt->execute();
         } catch (Exception $e) {
