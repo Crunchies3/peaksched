@@ -115,6 +115,18 @@ require_once "../php/appointment-request-details.php";
                             <input disabled name="position" type="text" class="form-control fs-6 input-field" placeholder="Enter your position" value="<?php echo $timeOnly ?>">
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
+                            <label class="form-label mb-1">NUMBER OF FLOORS</label>
+                            <input disabled name="position" type="text" class="form-control fs-6 input-field" placeholder="Enter your position" value="<?php echo $numOfFloors ?>">
+                        </div>
+                        <div class="mb-4 col-lg-6 mb-4">
+                            <label class="form-label mb-1">NUMBER OF BEDS</label>
+                            <input disabled name="position" type="text" class="form-control fs-6 input-field" placeholder="Enter your position" value="<?php echo $numOfBeds ?>">
+                        </div>
+                        <div class="mb-4 col-lg-6 mb-4">
+                            <label class="form-label mb-1">NUMBER OF BATHS</label>
+                            <input disabled name="position" type="text" class="form-control fs-6 input-field" placeholder="Enter your position" value="<?php echo $numOfBaths ?>">
+                        </div>
+                        <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">ASSIGN A SUPERVISOR</label>
                             <select required id="supervisorList3">
                                 <?php
