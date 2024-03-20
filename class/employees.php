@@ -180,10 +180,11 @@ class Employees
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-    public function removeAssignedWorker($worker_id, $supervisorId){
+    public function removeAssignedWorker($worker_id, $supervisorId)
+    {
         try {
             $stmt = $this->conn->prepare("DELETE FROM tbl_supervisor_worker WHERE supervisor_id = ? && worker_id = ?");
-            $stmt->bind_param("ss",$supervisorId,$worker_id);
+            $stmt->bind_param("ss", $supervisorId, $worker_id);
             $stmt->execute();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
