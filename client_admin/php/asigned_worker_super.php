@@ -9,7 +9,6 @@ $admin = unserialize($_SESSION["adminUser"]);
 
 $notification = new NotifMessages();
 $notification->setConn($conn);
-$notification->setsenderName($admin->getFirstname());
 
 $employees = new Employees();
 $employees->setConn($conn);
@@ -23,7 +22,6 @@ if(isset($_POST['deleteWorkerAccountModal'])) {
     $supervisorId = $_POST["supervisorId"];
 
     $receiver = $supervisorId;
-    $sender = $admin->getId();
     $unread = true;
     $created_at = date("Y-m-d");
     $employees->displayCurrentEmployee($workerId);
@@ -34,8 +32,8 @@ if(isset($_POST['deleteWorkerAccountModal'])) {
 
 
     $employees->removeAssignedWorker($workerId,$supervisorId);
-    $notification->insertNotif($receiver, $sender, $unread, $created_at, $messageToSup);
-    $notification->insertNotif($workerId, $sender, $unread, $created_at, $messageToWorker);
+    $notification->insertNotif($receiver, $unread, $created_at, $messageToSup);
+    $notification->insertNotif($workerId, $unread, $created_at, $messageToWorker);
     $employees->fetchEmployeesList();
     $result = $employees->getEmployeeList();
 

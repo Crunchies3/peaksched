@@ -44,17 +44,15 @@ if (isset($_POST['RemoveWorker'])) {
 
     $notification->setsenderUserType($supervisorId);
     $notification->setreceiverUserType($workerId);
-    $notification->setsenderName($employeeAcc->getFirstname());
 
     $supervisorId = $employeeAcc->getId();
     $message = $notification->supToWorkerRemove($title);
-    $sender =  $notification->getsenderUserType();
     $receiver = $notification->getreceiverUserType();
     $unread = true;
     $date = date("Y-m-d");
 
     $employeeClient->removeWorkerInAppointment($appointmentId, $workerId);
-    $notification->insertSuptoWorkerNotif($receiver,$sender,$unread,$date,$message);
+    $notification->insertNotif($receiver,$unread,$date,$message);
     
     $employeeClient->fetchAppointmentWorkers($appointmentId);
     $result = $employeeClient->getAssignedWorkers();
