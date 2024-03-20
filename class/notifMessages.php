@@ -7,12 +7,12 @@ class NotifMessages extends Notifications{
     //sa employee-supervisor ni nga side assigning_app_supervisor.php ug assigned_app_supervisor_view.php
     public function supToWorkerAssign($appointmentName) : string{
 
-        return $this->getsenderName() . '(supervisor) has assigned you to the appointment ' . $appointmentName;
+        return 'Your supervisor has assigned you to the appointment ' . $appointmentName;
 
     }
     public function supToWorkerRemove($appointmentName) : string{
 
-        return $this->getsenderName() . '(supervisor) has removed you to the appointment ' . $appointmentName;
+        return 'Your supervisor has removed you to the appointment ' . $appointmentName;
 
     }
     //mao ning side sa admin if mag add ug worker under sa specific na supervisor
@@ -20,12 +20,12 @@ class NotifMessages extends Notifications{
     //sa worker_assigning_page.php ug asigned_worker_super.php rani nga side
     public function adminAssignWorkerstoSup($workerName) : string {
 
-        return $this->getsenderName() . ' (admin) has assigned a worker to you ('. $workerName .')' ;
+        return ' Admin has assigned a worker to you ('. $workerName .')' ;
 
     }
     public function adminRemoveWorkerstoSup($workerName) : string {
 
-        return $this->getsenderName() . ' (admin) has removed a worker from you ('. $workerName .')' ;
+        return ' Admin has removed a worker from you ('. $workerName .')' ;
 
     }
     public function adminAddSuptoWorker($supervisorName) : string {

@@ -8,7 +8,6 @@ class Notifications{
     private $unread;
     private $notifType;
     private $dateCreated;
-    private $senderName;
     private $senderUserType; 
     private $receiverUserType;
     private $displayNotifs;
@@ -20,12 +19,12 @@ class Notifications{
     //kung na assign included ang time kung kanus.a
     //kung wala kay wala.
 
-    public function insertNotif($reciever,$sender,$unread,$created_at,$message){
+    public function insertNotif($reciever,$unread,$created_at,$message){
         try {
             $stmt = $this->conn->prepare(
-            "INSERT INTO tbl_notifications (recipient_type, sender_type, unread, created_at, message)
-            VALUES (?,?,?,?,?) ");
-            $stmt->bind_param("sssss", $reciever,$sender,$unread,$created_at,$message);
+            "INSERT INTO tbl_notifications (recipient_type, unread, created_at, message)
+            VALUES (?,?,?,?) ");
+            $stmt->bind_param("ssss", $reciever,$unread,$created_at,$message);
             $stmt->execute();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
@@ -81,10 +80,6 @@ class Notifications{
     {
         return $this->conn;
     }
-    public function getsenderName()
-    {
-        return $this->senderName;
-    }
     public function getsenderUserType()
     {
         return $this->senderUserType;
@@ -131,12 +126,6 @@ class Notifications{
     public function setsenderUserType($senderUserType)
     {
         $this->senderUserType = $senderUserType;
-
-        return $this;
-    }
-    public function setsenderName($senderName)
-    {
-        $this->senderName = $senderName;
 
         return $this;
     }

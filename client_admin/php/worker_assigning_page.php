@@ -9,7 +9,6 @@ $admin = unserialize($_SESSION["adminUser"]);
 
 $notification = new NotifMessages();
 $notification->setConn($conn);
-$notification->setsenderName($admin->getFirstname());
 
 $employees = new Employees();
 $employees->setConn($conn);
@@ -28,7 +27,6 @@ if (isset($_POST['addWorkerModal'])) {
     $supervisorId = $_POST["supervisorId"];
 
     $receiver = $supervisorId;
-    $sender = $admin->getId();
     $unread = true;
     $created_at = date("Y-m-d");
     $employees->displayCurrentEmployee($workerId);
@@ -38,8 +36,8 @@ if (isset($_POST['addWorkerModal'])) {
 
     // para mawala sa table inig add nimo sa worker
     $employees->addWorkerToSupervisor($supervisorId, $workerId);
-    $notification->insertNotif($receiver, $sender, $unread, $created_at, $messageToSup);
-    $notification->insertNotif($workerId, $receiver, $unread, $created_at, $messageToWorker);
+    $notification->insertNotif($receiver, $unread, $created_at, $messageToSup);
+    $notification->insertNotif($workerId, $unread, $created_at, $messageToWorker);
     $employees->fetchAvailableWorkers();
     $result = $employees->getAvailableWorkers();
 }

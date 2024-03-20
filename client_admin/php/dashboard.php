@@ -66,8 +66,8 @@ if (isset($_POST['editAppointment'])) {
     $unread = true;
     
     $appointment->editAppointmnet($appointmentId, $service_id, $customerId, $supervisorId, $dateTimeStart, $dateTimeEnd, $notes);
-    $notification->insertNotif($customerId, '112544', $unread, $currentDate, $messageToCustomer);
-    $notification->insertNotif($supervisorId, '112544', $unread, $currentDate, $messageToSupervisor);
+    $notification->insertNotif($customerId, $unread, $currentDate, $messageToCustomer);
+    $notification->insertNotif($supervisorId, $unread, $currentDate, $messageToSupervisor);
 } else if (isset($_POST['addApp'])) {
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
@@ -103,8 +103,8 @@ if (isset($_POST['editAppointment'])) {
     $unread = true;
 
     $appointment->addAppointmnet($appointmentId, $service_id, $customerId, $supervisorId, $dateTimeStart, $dateTimeEnd, $notes);
-    $notification->insertNotif($customerId, '112544', $unread, $currentDate, $messageToCustomer);
-    $notification->insertNotif($supervisorId, '112544', $unread, $currentDate, $messageToSupervisor);
+    $notification->insertNotif($customerId, $unread, $currentDate, $messageToCustomer);
+    $notification->insertNotif($supervisorId, $unread, $currentDate, $messageToSupervisor);
 } else if (isset($_POST['deleteAppointment'])) {
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
@@ -127,6 +127,6 @@ if (isset($_POST['editAppointment'])) {
     $unread = true;
 
     $appointment->deleteAppointmnet($appointmentId);
-    $notification->insertNotif($customerId, '112544', $unread, $currentDate, $messageToCustomer);
-    $notification->insertNotif($supervisorId, '112544', $unread, $currentDate, $messageToSupervisor);
+    $notification->insertNotif($customerId, $unread, $currentDate, $messageToCustomer);
+    $notification->insertNotif($supervisorId, $unread, $currentDate, $messageToSupervisor);
 }

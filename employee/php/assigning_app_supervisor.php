@@ -28,12 +28,10 @@ if(isset($_POST['AssignWorkerModal'])){
     $employeeClient->displayCurrentAppointmentAssigned($appointmentId);
     $notification->setsenderUserType($supervisorId);
     $notification->setreceiverUserType($workerId);
-    $notification->setsenderName($employeeAcc->getFirstname());
 
     $supervisorId = $employeeAcc->getId();
     $appointmentName = $employeeClient->getServicetitle();
     $message = $notification->supToWorkerAssign($appointmentName);
-    $sender =  $notification->getsenderUserType();
     $receiver = $notification->getreceiverUserType();
     $unread = true;
     $date = date("Y-m-d");
@@ -41,7 +39,7 @@ if(isset($_POST['AssignWorkerModal'])){
 
     //para marefresh ang table
     $employeeClient->addWorkerToAppointment($appointmentId,$workerId);
-    $notification->insertNotif($receiver,$sender,$unread,$date,$message);
+    $notification->insertNotif($receiver,$unread,$date,$message);
 
     $employeeClient->fetchUnassignedAppointmentWorkers($appointmentId,$supervisorId);
     $result = $employeeClient->getUnassignedWorkers();
