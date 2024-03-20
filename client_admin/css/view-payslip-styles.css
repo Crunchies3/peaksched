@@ -12,49 +12,41 @@
 /* * end */
 
 
-#tableHead .dt-orderable-asc {
-    border-bottom: #e1e1e1;
-    border-style: solid;
-}
-
-#tableHead .dt-column-order {
-    color: #124F6F;
-}
-
-#tableHead .dt-column-title {
-    color: #7d7d7d;
-    font-weight: 600;
-    font-size: 15px;
-}
-
-
-.sort-btn {
-    background-color: #ffffff;
-    color: #124F6F;
-    border: 1px #124F6F;
-    border-style: solid;
-}
-
-.sort-btn:hover {
-    border: 1px #38799d;
-    border-style: solid;
-}
-
-.dt-search label {
-    font-size: 14px;
-    color: #454545;
-}
 
 .plus-icon {
     font-weight: bold;
 }
 
-#myTable td {
-    padding-left: 20px;
-    padding-right: 0;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-right: 20px;
+table {
+    font-family: poppins, poppins;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border: none;
+}
+
+tr:nth-child(even) {
+    background-color: white;
+}
+
+tr:last-child {
+    font-weight: bold;
 }
 
 .form-outline i {
@@ -64,6 +56,14 @@
     pointer-events: none;
 }
 
+#tablelistTableArea {
+    background-color: white;
+    border: 1px #BBBBBB;
+    border-style: solid;
+    border-top: none;
+    padding: 30px;
+}
+
 
 label {
     font-weight: 600;
@@ -71,14 +71,11 @@ label {
     font-size: 12px;
 }
 
-.right-aligned-cell {
-    text-align: left !important;
-}
+
 
 hr.solid {
     border-top: 3px solid black;
 }
-
 
 
 #middle-area {
