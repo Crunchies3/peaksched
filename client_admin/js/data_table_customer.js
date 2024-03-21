@@ -37,6 +37,10 @@ $('#myTable').DataTable({
             'visible': false
         },
         {
+            targets: -2,
+            className: "right-aligned-cell"
+        },
+        {
             data: null,
             defaultContent: '<form action="./customer_editing_page.php" id="editService" method="get"><input id="customerId" hidden type="text" name="customerId" value=""></form><button form="editService" class="btn my-button-yes mx-1" id="actionClick">View</button>',
             targets: -1
