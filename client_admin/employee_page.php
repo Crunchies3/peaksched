@@ -132,7 +132,7 @@ require_once "php/employee_page.php";
                                     <td><?php echo $rows['type']; ?></td>
                                     <td><?php echo $rows['email']; ?></td>
                                     <td><?php echo $rows['mobilenumber']; ?></td>
-                                    <td><?php echo  '$' . $rows['pay_rate']; ?></td>
+                                    <td><?php echo  '$' . $rows['pay_rate'] . '/hr'; ?></td>
                                     <td><?php echo $rows['status']; ?></td>
                                     <td></td>
                                 </tr>

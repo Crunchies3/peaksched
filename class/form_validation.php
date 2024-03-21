@@ -74,6 +74,14 @@ class Validation
         }
     }
 
+    public function status($status)
+    {
+        if (empty($status)) {
+            return "Please enter the status.";
+        } else {
+            return "";
+        }
+    }
 
 
 
