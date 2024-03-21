@@ -66,11 +66,13 @@ class Employees
         }
     }
 
-    public function addEmployee($firstName, $lastName, $email, $mobileNumber, $position, $employeeid, $tempPassword)
+    public function addEmployee($firstName, $lastName, $email, $mobileNumber, $position, $employeeid, $tempPassword, $payrate)
     {
+
+        $status = 'Active';
         try {
-            $stmt = $this->conn->prepare("INSERT INTO tbl_employee (employeeid, firstname, lastname, email, mobileNumber, password, type) VALUES (?,?,?,?,?,?,?)");
-            $stmt->bind_param("sssssss", $employeeid, $firstName, $lastName, $email, $mobileNumber, $tempPassword, $position);
+            $stmt = $this->conn->prepare("INSERT INTO tbl_employee (employeeid, firstname, lastname, email, mobileNumber, password, type, pay_rate, status) VALUES (?,?,?,?,?,?,?,?,?)");
+            $stmt->bind_param("sssssssss", $employeeid, $firstName, $lastName, $email, $mobileNumber, $tempPassword, $position, $payrate, $status);
             $stmt->execute();
             $this->conn->close();
         } catch (Exception $e) {

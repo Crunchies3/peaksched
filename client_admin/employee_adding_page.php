@@ -111,7 +111,7 @@ require_once "php/employee_adding.php";
                 </div>
                 <div class="container-fluid" id="subArea-single">
                     <div>
-                        <h5>Add Employee</h5>
+                        <h5> <span><a href="./employee_page.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Add Employee</h5>
                     </div>
                     <form id="addEmployeeForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <div class="col-md-6 mb-4">
@@ -147,6 +147,13 @@ require_once "php/employee_adding.php";
                             <input name="position" type="text" class="form-control fs-6 input-field <?php echo (!empty($position_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $position ?>">
                             <div class="invalid-feedback">
                                 <?php echo $position_err; ?>
+                            </div>
+                        </div>
+                        <div class="mb-4 col-lg-6 mb-4">
+                            <label class="form-label mb-1">PAY RATE</label>
+                            <input name="payrate" type="number" class="form-control fs-6 input-field <?php echo (!empty($payrate_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $payrate ?>">
+                            <div class="invalid-feedback">
+                                <?php echo $payrate_err; ?>
                             </div>
                         </div>
                     </form>
