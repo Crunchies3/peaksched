@@ -110,10 +110,10 @@ require_once "php/customer_editing.php";
                 </div>
                 <div class="container-fluid" id="subArea-top">
                     <div>
-                        <h5>Edit Customer</h5>
+                        <h5><span><a href="./customer_page.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Edit Customer</h5>
                     </div>
                     <form id="editCustomerForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
-                    <input type="hidden" name="customerId" value="<?= htmlspecialchars($customerId) ?>">
+                        <input type="hidden" name="customerId" value="<?= htmlspecialchars($customerId) ?>">
                         <div class="col-md-6 mb-4">
                             <label class="form-label mb-1">FIRST NAME</label>
                             <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $firstName ?>">
@@ -155,72 +155,14 @@ require_once "php/customer_editing.php";
             </div>
 
             <div class="container-fluid" id="customerArea">
-                <div class="container-fluid" id="tablelistTableArea">
+                <div class="container-fluid" id="subArea-mid">
                     <div>
-                        <h5>Appointments</h5>
-                    </div>
-                    <table id="myTable" class="table table-hover table-striped">
-                        <!-- //!TODO: para mailisan ang color sa header -->
-                        <thead id="tableHead">
-                            <th style="color: white;">Appointment Id</th>
-                            <th style="color: white;">Customer</th>
-                            <th style="color: white;">Service</th>
-                            <th style="color: white;">Status</th>
-                            <th style="color: white;">Date</th>
-                            <th style="color: white;">Time</th>
-                            <th style="color: white;">Actions</th>
-                        </thead>
-                        <tbody>
-                         <tr>
-                            <td>123123</td>
-                            <td>Jonald Paner</td>
-                            <td>Bathroom cleaning</td>
-                            <td style="color: red">on going</td>
-                            <td>03/09/24</td>
-                            <td>12:00pm</td>
-                            <td></td>
-                         </tr>
-                         <tr>
-                            <td>123123</td>
-                            <td>Jonald Paner</td>
-                            <td>Bathroom cleaning</td>
-                            <td style="color: red">on going</td>
-                            <td>03/09/24</td>
-                            <td>12:00pm</td>
-                            <td></td>
-                         </tr>
-                         <tr>
-                            <td>123123</td>
-                            <td>Jonald Paner</td>
-                            <td>Bathroom cleaning</td>
-                            <td style="color: red">on going</td>
-                            <td>03/09/24</td>
-                            <td>12:00pm</td>
-                            <td></td>
-                         </tr>
-                         <tr>
-                            <td>123123</td>
-                            <td>Jonald Paner</td>
-                            <td>Bathroom cleaning</td>
-                            <td style="color: red">on going</td>
-                            <td>03/09/24</td>
-                            <td>12:00pm</td>
-                            <td></td>
-                         </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="container-fluid" id="customerArea">
-                <div class="container-fluid" id="subArea-bottom">
-                    <div>
-                        <h5>Change Password</h5>
+                        <h5>Address</h5>
                     </div>
                     <form id="editCustomerPasswordForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
-                    <input type="hidden" name="customerId" value="<?= htmlspecialchars($customerId) ?>">
+                        <input type="hidden" name="customerId" value="<?= htmlspecialchars($customerId) ?>">
 
-                    <div class="col-lg-6 mb-4">
+                        <div class="col-lg-6 mb-4">
                             <label class="form-label mb-1">NEW PASSWORD</label>
                             <input name="newPassword" type="password" class="form-control input-field <?php echo (!empty($newPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your new password" aria-label="Last name" value="<?php echo $newPassword; ?>">
                             <div class="invalid-feedback">
@@ -243,14 +185,109 @@ require_once "php/customer_editing.php";
                             <button data-bs-toggle="modal" data-bs-target="#updatePasswordModal" class="btn btn-lg fs-6 w-100 my-button-yes">Save Password</button>
                         </div>
                         <div class="mb-0 col-xxl-2">
-                        <button data-bs-toggle="modal" data-bs-target="#deleteEmployeeAccountModal" class="btn btn-lg fs-6 w-100 my-button-danger">Delete</button>
+                            <button data-bs-toggle="modal" data-bs-target="#deleteEmployeeAccountModal" class="btn btn-lg fs-6 w-100 my-button-danger">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid" id="customerArea">
+                <div class="container-fluid" id="tablelistTableArea">
+                    <div>
+                        <h5>Appointments</h5>
+                    </div>
+                    <table id="myTable" class="table table-hover table-striped">
+                        <!-- //!TODO: para mailisan ang color sa header -->
+                        <thead id="tableHead">
+                            <th style="color: white;">Appointment Id</th>
+                            <th style="color: white;">Customer</th>
+                            <th style="color: white;">Service</th>
+                            <th style="color: white;">Status</th>
+                            <th style="color: white;">Date</th>
+                            <th style="color: white;">Time</th>
+                            <th style="color: white;">Actions</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>123123</td>
+                                <td>Jonald Paner</td>
+                                <td>Bathroom cleaning</td>
+                                <td style="color: red">on going</td>
+                                <td>03/09/24</td>
+                                <td>12:00pm</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>123123</td>
+                                <td>Jonald Paner</td>
+                                <td>Bathroom cleaning</td>
+                                <td style="color: red">on going</td>
+                                <td>03/09/24</td>
+                                <td>12:00pm</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>123123</td>
+                                <td>Jonald Paner</td>
+                                <td>Bathroom cleaning</td>
+                                <td style="color: red">on going</td>
+                                <td>03/09/24</td>
+                                <td>12:00pm</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>123123</td>
+                                <td>Jonald Paner</td>
+                                <td>Bathroom cleaning</td>
+                                <td style="color: red">on going</td>
+                                <td>03/09/24</td>
+                                <td>12:00pm</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="container-fluid" id="customerArea">
+                <div class="container-fluid" id="subArea-bottom">
+                    <div>
+                        <h5>Change Password</h5>
+                    </div>
+                    <form id="editCustomerPasswordForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
+                        <input type="hidden" name="customerId" value="<?= htmlspecialchars($customerId) ?>">
+
+                        <div class="col-lg-6 mb-4">
+                            <label class="form-label mb-1">NEW PASSWORD</label>
+                            <input name="newPassword" type="password" class="form-control input-field <?php echo (!empty($newPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your new password" aria-label="Last name" value="<?php echo $newPassword; ?>">
+                            <div class="invalid-feedback">
+                                <?php echo $newPassword_err; ?>
+                            </div>
+                        </div>
+                        <div class="mb-4 col-lg-6 mb-4">
+                            <label class="form-label mb-1">CONFIRM NEW PASSWORD</label>
+                            <input name="confirmPassword" type="password" class="form-control fs-6 input-field mb-2 <?php echo (!empty($confirmPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Re-enter your new password" value="<?php echo $confirmPassword; ?>">
+                            <div class="invalid-feedback">
+                                <?php echo $confirmPassword_err; ?>
+                            </div>
+                            <div class="password-reminder">
+                                <small>Password must be atleast 8 characters long and include a mix of uppercase letters, lowercase letters, and numbers.</small>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row justify-content-between">
+                        <div class="mb-3 col-xxl-2">
+                            <button data-bs-toggle="modal" data-bs-target="#updatePasswordModal" class="btn btn-lg fs-6 w-100 my-button-yes">Save Password</button>
+                        </div>
+                        <div class="mb-0 col-xxl-2">
+                            <button data-bs-toggle="modal" data-bs-target="#deleteEmployeeAccountModal" class="btn btn-lg fs-6 w-100 my-button-danger">Delete</button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         <script src="./js/script.js"></script>
-        <script src ="./js/data-table-customer-editing.js"></script>
+        <script src="./js/data-table-customer-editing.js"></script>
 </body>
 
 </html>
@@ -263,7 +300,7 @@ require_once "php/customer_editing.php";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            Changes will be saved.
+                Changes will be saved.
             </div>
             <div class="modal-footer">
                 <button name="updateInfo" form="editCustomerForm" class="btn my-button-yes">Confirm</button>
@@ -321,7 +358,7 @@ require_once "php/customer_editing.php";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-               Appointment will be removed.
+                Appointment will be removed.
             </div>
             <div class="modal-footer">
                 <button name="removeAppointnmentModal" form="RemoveAppointmentForm" class="btn my-button-danger">Confirm</button>

@@ -111,7 +111,7 @@ require_once "php/employee_editing.php";
                 </div>
                 <div class="container-fluid" id="subArea-top">
                     <div>
-                        <h5>Edit Employee</h5>
+                        <h5><span><a href="./employee_page.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Edit Employee</h5>
                     </div>
                     <form id="editEmployeeForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <input type="hidden" name="employeeId" value="<?= htmlspecialchars($employeeId) ?>">
@@ -151,19 +151,33 @@ require_once "php/employee_editing.php";
                             </div>
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
+                            <label class="form-label mb-1">PAYRATE</label>
+                            <input name="payrate" type="number" class="form-control fs-6 input-field <?php echo (!empty($payrate_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter employee's payrate" value="<?php echo $payrate ?>">
+                            <div class="invalid-feedback">
+                                <?php echo $payrate_err; ?>
+                            </div>
+                        </div>
+                        <div class="mb-4 col-lg-6 mb-4">
+                            <label class="form-label mb-1">STATUS</label>
+                            <input name="status" type="text" class="form-control fs-6 input-field <?php echo (!empty($status_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter employee's status" value="<?php echo $status ?>">
+                            <div class="invalid-feedback">
+                                <?php echo $status_err; ?>
+                            </div>
+                        </div>
+                        <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">ASSIGNED TO</label>
-                            <input name="assignedto" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $assignedto ?>">
+                            <input name="assignedto" type="text" class="form-control fs-6 input-field <?php echo (!empty($assignedTo_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $assignedto ?>">
                             <div class="invalid-feedback">
                                 <?php echo $assignedTo_err; ?>
                             </div>
-                        </div>  
+                        </div>
                     </form>
                     <div class="row">
                         <div class="mb-3 col-xxl-2">
                             <button data-bs-toggle="modal" data-bs-target="#editEmployeeModal" class="btn btn-lg fs-6 w-100 my-button-yes">Save Changes</button>
                         </div>
                         <div class="mb-0 col-xxl-2">
-                            <a href="./employee_editing_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Discard Changes</a>
+                            <a href="./employee_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Cancel</a>
                         </div>
                     </div>
                 </div>

@@ -13,6 +13,8 @@ class Employees
     private $employeeList;
     private $supervisorWorkers;
     private $availableWorkers;
+    private $payrate;
+    private $status;
 
     public function fetchEmployeeArr()
     {
@@ -66,11 +68,13 @@ class Employees
         }
     }
 
-    public function addEmployee($firstName, $lastName, $email, $mobileNumber, $position, $employeeid, $tempPassword)
+    public function addEmployee($firstName, $lastName, $email, $mobileNumber, $position, $employeeid, $tempPassword, $payrate)
     {
+
+        $status = 'Active';
         try {
-            $stmt = $this->conn->prepare("INSERT INTO tbl_employee (employeeid, firstname, lastname, email, mobileNumber, password, type) VALUES (?,?,?,?,?,?,?)");
-            $stmt->bind_param("sssssss", $employeeid, $firstName, $lastName, $email, $mobileNumber, $tempPassword, $position);
+            $stmt = $this->conn->prepare("INSERT INTO tbl_employee (employeeid, firstname, lastname, email, mobileNumber, password, type, pay_rate, status) VALUES (?,?,?,?,?,?,?,?,?)");
+            $stmt->bind_param("sssssssss", $employeeid, $firstName, $lastName, $email, $mobileNumber, $tempPassword, $position, $payrate, $status);
             $stmt->execute();
             $this->conn->close();
         } catch (Exception $e) {
@@ -91,17 +95,19 @@ class Employees
                     $this->setEmail($row["email"]);
                     $this->setMobilenumber($row["mobilenumber"]);
                     $this->setPosition($row["type"]);
+                    $this->setPayrate($row["pay_rate"]);
+                    $this->setStatus($row["status"]);
                 }
             }
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-    public function updateEmployeeDetails($firstName, $lastName, $email, $mobileNumber, $position, $employeeId,)
+    public function updateEmployeeDetails($firstName, $lastName, $email, $mobileNumber, $position, $employeeId, $payrate, $status)
     {
         try {
-            $stmt = $this->conn->prepare("UPDATE tbl_employee SET firstname = ? , lastname = ? ,email = ? ,mobilenumber = ? ,type = ? WHERE employeeid = ?");
-            $stmt->bind_param("ssssss", $firstName, $lastName, $email, $mobileNumber, $position, $employeeId);
+            $stmt = $this->conn->prepare("UPDATE tbl_employee SET firstname = ? , lastname = ? ,email = ? ,mobilenumber = ? ,type = ?, pay_rate = ?, status = ? WHERE employeeid = ?");
+            $stmt->bind_param("ssssssss", $firstName, $lastName, $email, $mobileNumber, $position, $payrate, $status, $employeeId);
             $stmt->execute();
             $this->conn->close();
 
@@ -320,6 +326,37 @@ class Employees
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of payrate
+     */
+    public function getPayrate()
+    {
+        return $this->payrate;
+    }
+
+
+    public function setPayrate($payrate)
+    {
+        $this->payrate = $payrate;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of status
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
 
         return $this;
     }

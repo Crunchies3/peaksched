@@ -55,6 +55,37 @@ class Validation
         }
     }
 
+    public function payrate($payrate)
+    {
+        if (empty($payrate)) {
+            return "Please enter the payrate.";
+        } else {
+            return "";
+        }
+    }
+
+
+    public function position($position)
+    {
+        if (empty($position)) {
+            return "Please enter the position.";
+        } else {
+            return "";
+        }
+    }
+
+    public function status($status)
+    {
+        if (empty($status)) {
+            return "Please enter the status.";
+        } else {
+            return "";
+        }
+    }
+
+
+
+
     public function time($time)
     {
         if (empty($time)) {

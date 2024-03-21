@@ -113,12 +113,11 @@ require_once "php/worker_assigning_page.php";
                 </div>
                 <div class="container-fluid" id="subArea-single">
                     <div>
-                        <h5>Assign Workers</h5>
+                        <h5><span><a href="./employee_supervisor_page.php?employeeId=<?php echo $supervisorId ?>" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Assign Workers</h5>
                     </div>
                     <input type="hidden" id="supId" value="<?php echo $supervisorId ?>">
                     <div class="d-flex justify-content-between mb-3">
                         <div>Supervisor ID: <?php echo $supervisorId ?></div>
-                        <div>Supervisor Name: </div>
                     </div>
                     <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header -->
@@ -167,8 +166,8 @@ require_once "php/worker_assigning_page.php";
                 Worker will be added.
             </div>
             <div class="modal-footer">
-                <button name="addWorkerModal" form="addWorkerForm" class="btn add-service-button">Confirm</button>
-                <button type="button" class="btn cancel-button" data-bs-dismiss="modal">Cancel</button>
+                <button name="addWorkerModal" form="addWorkerForm" class="btn my-button-yes">Confirm</button>
+                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>

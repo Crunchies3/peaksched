@@ -111,7 +111,7 @@ require_once "php/employee_adding.php";
                 </div>
                 <div class="container-fluid" id="subArea-single">
                     <div>
-                        <h5>Add Employee</h5>
+                        <h5> <span><a href="./employee_page.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Add Employee</h5>
                     </div>
                     <form id="addEmployeeForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <div class="col-md-6 mb-4">
@@ -149,13 +149,20 @@ require_once "php/employee_adding.php";
                                 <?php echo $position_err; ?>
                             </div>
                         </div>
+                        <div class="mb-4 col-lg-6 mb-4">
+                            <label class="form-label mb-1">PAY RATE</label>
+                            <input name="payrate" type="number" class="form-control fs-6 input-field <?php echo (!empty($payrate_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $payrate ?>">
+                            <div class="invalid-feedback">
+                                <?php echo $payrate_err; ?>
+                            </div>
+                        </div>
                     </form>
                     <div class="row">
                         <div class="mb-3 col-xxl-2">
                             <button data-bs-toggle="modal" data-bs-target="#addEmployeeModal" type="submit" class="btn btn-lg fs-6 w-100 my-button-yes">Save</button>
                         </div>
                         <div class="mb-0 col-xxl-2">
-                            <a href="./employee_adding_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Cancel</a>
+                            <a href="./employee_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Cancel</a>
                         </div>
                     </div>
                 </div>

@@ -24,7 +24,7 @@ $('#myTable').DataTable({
                 text: '<i class="bi bi-plus plus-icon"></i> assign workers',
                 className: 'my-button-yes rounded',
                 action: function () {
-                    var supId =  document.getElementById('supId').value;
+                    var supId = document.getElementById('supId').value;
                     location.href = 'worker_assigning_page.php?supervisorId=' + '' + supId;
                 }
             }]
@@ -38,6 +38,10 @@ $('#myTable').DataTable({
         {
             targets: 0,
             'visible': false
+        },
+        {
+            targets: -2,
+            className: "right-aligned-cell"
         },
         {
             data: null,

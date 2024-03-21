@@ -12,7 +12,7 @@ require_once "php/employee_page.php";
 <html lang="en">
 
 <head>
-<meta charset="UTF-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Employee</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
@@ -117,10 +117,12 @@ require_once "php/employee_page.php";
                             <th style="color: white;">Position</th>
                             <th style="color: white;">Email</th>
                             <th style="color: white;">Phone</th>
+                            <th style="color: white;">Payrate</th>
+                            <th style="color: white;">Status</th>
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
-                        <?php
+                            <?php
                             // LOOP TILL END OF DATA
                             while ($rows = $result->fetch_assoc()) {
                             ?>
@@ -130,6 +132,8 @@ require_once "php/employee_page.php";
                                     <td><?php echo $rows['type']; ?></td>
                                     <td><?php echo $rows['email']; ?></td>
                                     <td><?php echo $rows['mobilenumber']; ?></td>
+                                    <td><?php echo  '$' . $rows['pay_rate'] . '/hr'; ?></td>
+                                    <td><?php echo $rows['status']; ?></td>
                                     <td></td>
                                 </tr>
                             <?php
@@ -140,11 +144,8 @@ require_once "php/employee_page.php";
                 </div>
             </div>
         </section>
-        <script src = "./js/data_table_employee.js"></script>                  
+        <script src="./js/data_table_employee.js"></script>
         <script src="./js/script.js"></script>
 </body>
 
 </html>
-
-
-
