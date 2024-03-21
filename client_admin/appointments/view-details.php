@@ -144,7 +144,10 @@ require_once "../php/appointment-request-details.php";
                             <input disabled name="position" type="text" class="form-control fs-6 input-field" placeholder="Enter your position" value="<?php echo $numOfBaths ?>">
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
-                            <label class="form-label mb-1">ASSIGN A SUPERVISOR</label>
+                            <label class="form-label mb-1 <?php echo (!empty($supervisorErr)) ? 'is-invalid' : ''; ?>">ASSIGN A SUPERVISOR <span class="my-form-required">*</span></label>
+                            <div class="invalid-feedback">
+                                        <?php echo $supervisorErr; ?>
+                                    </div>
                             <select required id="supervisorList3">
                                 <?php
                                 // LOOP TILL END OF DATA
@@ -170,7 +173,7 @@ require_once "../php/appointment-request-details.php";
                             </div>
                         </div>
                         <div class="mb-4 col-xxl-2">
-                            <button href="./manage-appointment.php" class="btn my-button-danger w-100">Deny Request</button>
+                            <button  data-bs-toggle="modal" data-bs-target="#denyRequestModal" class="btn my-button-danger w-100">Deny Request</button>
                         </div>
                     </div>
                 </div>
@@ -196,6 +199,24 @@ require_once "../php/appointment-request-details.php";
             </div>
             <div class="modal-footer">
                 <button name="approveApp" form="appointmentDetails" class="btn my-button-yes">Confirm</button>
+                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="denyRequestModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="denyRequestModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
+        <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
+            <div class="modal-header">
+                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Deny Appointment?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Appointment will be denied
+            </div>
+            <div class="modal-footer">
+                <button name="denyRequestModal" form="appointmentDetails" class="btn my-button-danger">Confirm</button>
                 <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>

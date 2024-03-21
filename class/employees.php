@@ -46,10 +46,10 @@ class Employees
             $result = $stmt->get_result();
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    $id = $row["employeeid"];
+                    $this->setId($row["employeeid"]);
                 }
             }
-            return $id;
+            return $this->getId();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
