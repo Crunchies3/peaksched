@@ -49,7 +49,8 @@ if (isset($_POST['RemoveWorker'])) {
     $message = $notification->supToWorkerRemove($title);
     $receiver = $notification->getreceiverUserType();
     $unread = true;
-    $date = date("Y-m-d");
+    date_default_timezone_set("America/Vancouver");
+    $date = date("Y-m-d H:i:s");
 
     $employeeClient->removeWorkerInAppointment($appointmentId, $workerId);
     $notification->insertNotif($receiver,$unread,$date,$message);

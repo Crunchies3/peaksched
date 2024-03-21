@@ -23,7 +23,8 @@ if(isset($_POST['deleteWorkerAccountModal'])) {
 
     $receiver = $supervisorId;
     $unread = true;
-    $created_at = date("Y-m-d");
+    date_default_timezone_set("America/Vancouver");
+    $created_at = date("Y-m-d H:i:s");
     $employees->displayCurrentEmployee($workerId);
     $messageToSup = $notification->adminRemoveWorkerstoSup($employees->getFirstname().' '.$employees->getLastname());
     $employees->displayCurrentEmployee($supervisorId);

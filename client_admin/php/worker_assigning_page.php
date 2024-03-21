@@ -28,7 +28,8 @@ if (isset($_POST['addWorkerModal'])) {
 
     $receiver = $supervisorId;
     $unread = true;
-    $created_at = date("Y-m-d");
+    date_default_timezone_set("America/Vancouver");
+    $created_at = date("Y-m-d H:i:s");
     $employees->displayCurrentEmployee($workerId);
     $messageToSup = $notification->adminAssignWorkerstoSup($employees->getFirstname().' '.$employees->getLastname());
     $employees->displayCurrentEmployee($supervisorId);

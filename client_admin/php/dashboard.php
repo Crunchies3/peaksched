@@ -62,7 +62,8 @@ if (isset($_POST['editAppointment'])) {
 
     $messageToCustomer = $notification->adminToCustomerEdit($serviceTitle);
     $messageToSupervisor = $notification->adminToSupervisorEdit($serviceTitle);
-    $currentDate = date("Y-m-d");
+    date_default_timezone_set("America/Vancouver");
+    $currentDate = date("Y-m-d H:i:s");
     $unread = true;
     
     $appointment->editAppointmnet($appointmentId, $service_id, $customerId, $supervisorId, $dateTimeStart, $dateTimeEnd, $notes);
@@ -99,7 +100,8 @@ if (isset($_POST['editAppointment'])) {
 
     $messageToCustomer = $notification->adminToCustomerAppointment($serviceTitle,$date);
     $messageToSupervisor = $notification->adminToSupervisorAppointment($serviceTitle);
-    $currentDate = date("Y-m-d");
+    date_default_timezone_set("America/Vancouver");
+    $currentDate = date("Y-m-d H:i:s");
     $unread = true;
 
     $appointment->addAppointmnet($appointmentId, $service_id, $customerId, $supervisorId, $dateTimeStart, $dateTimeEnd, $notes);
@@ -123,7 +125,8 @@ if (isset($_POST['editAppointment'])) {
     $date =  trim($_POST["date"]);
     $messageToCustomer = $notification->adminToCustomerDelete($serviceTitle,$date);
     $messageToSupervisor = $notification->adminToSupervisorDelete($serviceTitle,$date);
-    $currentDate = date("Y-m-d");
+    date_default_timezone_set("America/Vancouver");
+    $currentDate = date("Y-m-d H:i:s");
     $unread = true;
 
     $appointment->deleteAppointmnet($appointmentId);
