@@ -34,6 +34,10 @@ $('#myTable').DataTable({
             visible: false
         },
         {
+            targets: -2,
+            className: "right-aligned-cell"
+        },
+        {
             data: null,
             defaultContent: '<form id="addWorkerForm" action="worker_assigning_page.php" method="post"><input id="workerId" name="workerId" hidden type="text" value=""><input id="superId" hidden name="supervisorId" type="text" value=""></form><button data-bs-target="#addWorkerModal"  data-bs-toggle = "modal" class="btn my-button-yes mx-1" id="actionClick">Add</button>',
             targets: -1

@@ -31,9 +31,9 @@ if (isset($_POST['addWorkerModal'])) {
     date_default_timezone_set("America/Vancouver");
     $created_at = date("Y-m-d H:i:s");
     $employees->displayCurrentEmployee($workerId);
-    $messageToSup = $notification->adminAssignWorkerstoSup($employees->getFirstname().' '.$employees->getLastname());
+    $messageToSup = $notification->adminAssignWorkerstoSup($employees->getFirstname() . ' ' . $employees->getLastname());
     $employees->displayCurrentEmployee($supervisorId);
-    $messageToWorker = $notification->adminAddSuptoWorker($employees->getFirstname().' '.$employees->getLastname());
+    $messageToWorker = $notification->adminAddSuptoWorker($employees->getFirstname() . ' ' . $employees->getLastname());
 
     // para mawala sa table inig add nimo sa worker
     $employees->addWorkerToSupervisor($supervisorId, $workerId);

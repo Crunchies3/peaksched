@@ -14,9 +14,9 @@ $employee->setConn($employeeAcc->getConn());
 $validate = new Validation();
 $validate->setUserType($employeeAcc);
 
-$firstName = $firstName_err =  $lastName = $lastName_err = $email = $email_err  = $mobileNumber = $mobileNumber_err = $position = $position_err = $assignedto = "";
+$payrate = $payrate_err = $status = $status_err = $firstName = $firstName_err =  $lastName = $lastName_err = $email = $email_err  = $mobileNumber = $mobileNumber_err = $position = $position_err = $assignedto = "";
 $employeeId = "";
-$password = $newPassword = $confirmPassword ="";
+$password = $newPassword = $confirmPassword = "";
 $newPassword_err = $confirmPassword_err = "";
 // kuhaon niya ang service id na naa sa link
 // Sundoga tong naa sa reset_password.php
@@ -37,6 +37,8 @@ $lastName = $employee->getLastname();
 $email = $employee->getEmail();
 $mobileNumber = $employee->getMobilenumber();
 $position = $employee->getPosition();
+$payrate =  $employee->getPayrate();
+$status =  $employee->getStatus();
 
 $assignedto = $employee->getWorkerAssignedTo($employeeId);
 
@@ -64,11 +66,18 @@ if (isset($_POST['updateInfo'])) { //! para mag update sa details like name
     $mobileNumber_err = $validate->mobileNumber($mobileNumber);
 
     $position = trim($_POST["position"]);
+    $position_err = $validate->position($position);
+
+    $payrate = trim($_POST["payrate"]);
+    $payrate_err = $validate->payrate($payrate);
+
+    $status = trim($_POST["status"]);
+    $status_err = $validate->status($status);
 
 
 
     if (empty($firstname_err) && empty($lastName_err) && empty($email_err) && empty($mobileNumber_err)) {
-        $employee->updateEmployeeDetails($firstName, $lastName,  $email, $mobileNumber, $position, $employeeId);
+        $employee->updateEmployeeDetails($firstName, $lastName,  $email, $mobileNumber, $position, $employeeId, $payrate, $status);
         header("location: ./employee_editing_page.php?employeeId=$employeeId");
     }
 } else if (isset($_POST['changePassword'])) {  //! para mag change pass
@@ -95,6 +104,6 @@ if (isset($_POST['updateInfo'])) { //! para mag update sa details like name
         return;
     }
     $employeeId = $_POST["employeeId"];
-        $employee->deleteEmployee($employeeId);
-        header("location: ./employee_page.php");
+    $employee->deleteEmployee($employeeId);
+    header("location: ./employee_page.php");
 }
