@@ -6,6 +6,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/customers.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/address.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/employees.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/form_validation.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/notifMessages.php";
 
 $appointments = new Appointment();
 $appointments->setConn($conn);
@@ -23,6 +24,9 @@ $employee = new Employees();
 $employee->setConn($conn);
 
 $validation = new Validation();
+
+$notification = new NotifMessages();
+$notification->setConn($conn);
 
 
 $supervisorList = $employee->fetchEmployeeArr();
@@ -85,17 +89,41 @@ if (isset($_POST['approveApp'])) {
     $supervisorId = $employee->getIdFromName($supervisorName);
     $status = 'pending';
 
+    $receiver = $customerId;
+    $unread = true;
+    date_default_timezone_set("America/Vancouver");
+    $created_at = date("Y-m-d H:i:s");
+    $message = $notification->adminToCustApproveAppointment($service);
+
     if(empty($supervisorErr)){
         $appointments->approveAppointment($appointmentId, $customerId, $serviceId, $addressId, $supervisorId, $numOfFloors,
         $numOfBeds, $numOfBaths, $date, $end, $note, $status);
         //deleting the customers appointment in the tbl_request_table
         $appointments->cancelAppointment($appointmentId);
+        $notification->insertNotif($receiver, $unread, $created_at, $message);
         header("location: ./index.php");
     }
 }
 
 if(isset($_POST['denyRequestModal'])) {
     $appointmentId = $_POST["appointmentId"];
+    $appointments->getAppointmentDetails($appointmentId);
+
+    $customerId = $appointments->getCustomerId();
+
+    $serviceId = $appointments->getServiceId();
+    $serviceObj->displayCurrentService($serviceId);
+    $service = $serviceObj->getTitle();
+
+    $receiver = $customerId;
+    $unread = true;
+    date_default_timezone_set("America/Vancouver");
+    $created_at = date("Y-m-d H:i:s");
+    $message = $notification->adminToCustDenyAppointment($service);
+
+    $notification->insertNotif($receiver,$unread,$created_at,$message);
     $appointments->denyCustRequest($appointmentId);
+
+
     header("location: ./index.php");
 }

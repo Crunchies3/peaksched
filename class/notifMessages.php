@@ -57,5 +57,13 @@ class NotifMessages extends Notifications{
     public function adminToSupervisorDelete($appointmentName, $appointmentDate) : string{
         return 'Admin has cancelled your assigned appointment ' . $appointmentName .' in '.$appointmentDate;
     }
+
+    //side sa pag approve/resched or deny sa customers requested appointment
+    public function adminToCustApproveAppointment($appointmentName){
+        return 'Admin has approved your requested appointment : ' .$appointmentName;
+    }
+    public function adminToCustDenyAppointment($appointmentName){
+        return 'Admin has denied your requested appointment : ' .$appointmentName;
+    }
     
 }
