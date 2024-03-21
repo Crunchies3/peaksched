@@ -5,7 +5,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
 }
-
+require_once "../php/payroll_index.php";
 ?>
 
 <!DOCTYPE html>
@@ -112,6 +112,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header -->
                         <thead id="tableHead">
+                            <th style="color: white;">PayrollId</th>
                             <th style="color: white;">Pay Date</th>
                             <th style="color: white;">Pay Period</th>
                             <th style="color: white;">Gross</th>
@@ -120,38 +121,21 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>2024-03-20</td>
-                                <td>2024-03-20 - 2024-04-05</td>
-                                <td>59,090.69</td>
-                                <td>59,090.69</td>
-                                <td>10</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>2024-03-20</td>
-                                <td>2024-03-20 - 2024-04-05</td>
-                                <td>59,090.69</td>
-                                <td>59,090.69</td>
-                                <td>10</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>2024-03-20</td>
-                                <td>2024-03-20 - 2024-04-05</td>
-                                <td>59,090.69</td>
-                                <td>59,090.69</td>
-                                <td>10</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>2024-03-20</td>
-                                <td>2024-03-20 - 2024-04-05</td>
-                                <td>59,090.69</td>
-                                <td>59,090.69</td>
-                                <td>10</td>
-                                <td></td>
-                            </tr>
+                           <?php
+                                while ($rows = $payrollListResult->fetch_assoc()){
+                            ?>
+                                <tr>
+                                    <td><?php echo $rows['payroll_id'];?></td>
+                                    <td><?php echo $rows['pay_date'];?></td>
+                                    <td><?php echo $rows['start_date'] .' - ';?> <?php echo $rows['end_date']; ?></td>
+                                    <td><?php echo '$' .round($rows['TotalGross'],2);?></td>
+                                    <td><?php echo '$' .round($rows['TotalNet'],2);?></td>
+                                    <td><?php echo $rows['EmployeeCount'];?></td>
+                                    <td></td>
+                                </tr>
+                            <?php
+                                }
+                           ?>
                         </tbody>
                     </table>
                 </div>
