@@ -22,7 +22,7 @@ $('#myTable').DataTable({
                 text: '<i class="bi bi-plus plus-icon"></i> run payroll',
                 className: 'my-button-yes rounded',
                 action: function () {
-                    location.href = '';
+                    location.href = '../payroll/run-payroll.php';
                 }
             }]
         },
