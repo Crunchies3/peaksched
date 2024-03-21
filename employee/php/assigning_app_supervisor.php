@@ -34,7 +34,8 @@ if(isset($_POST['AssignWorkerModal'])){
     $message = $notification->supToWorkerAssign($appointmentName);
     $receiver = $notification->getreceiverUserType();
     $unread = true;
-    $date = date("Y-m-d");
+    date_default_timezone_set("America/Vancouver");
+    $date = date("Y-m-d H:i:s");
 
 
     //para marefresh ang table
