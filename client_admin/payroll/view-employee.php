@@ -5,7 +5,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
 }
-
+require_once "../php/payroll_view_employee.php";
 ?>
 
 <!DOCTYPE html>
@@ -112,6 +112,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header -->
                         <thead id="tableHead">
+                            <th style="color: white;">Employee ID</th>
                             <th style="color: white;">Employee Name</th>
                             <th style="color: white;">Pay</th>
                             <th style="color: white;">Hours</th>
@@ -121,42 +122,22 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             <th style="color: whitee">Actions</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Jonald Paner</td>
-                                <td>5,000</td>
-                                <td>3hours</td>
-                                <td>5,000</td>
-                                <td>500</td>
-                                <td>4,5000</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Kenneth Manon og</td>
-                                <td>5,000</td>
-                                <td>3hours</td>
-                                <td>5,000</td>
-                                <td>500</td>
-                                <td>4,5000</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Dennnis Nazareno</td>
-                                <td>5,000</td>
-                                <td>3hours</td>
-                                <td>5,000</td>
-                                <td>500</td>
-                                <td>4,5000</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Cyril Alves</td>
-                                <td>5,000</td>
-                                <td>3hours</td>
-                                <td>5,000</td>
-                                <td>500</td>
-                                <td>4,5000</td>
-                                <td></td>
-                            </tr>
+                        <?php
+                                while ($rows = $payslipList->fetch_assoc()){
+                            ?>
+                                <tr>
+                                    <td><?php echo $rows['employeeid'];?></td>
+                                    <td><?php echo $rows['fullname'];?></td>
+                                    <td><?php echo '$'.$rows['pay_rate']. '/hr';?></td>
+                                    <td><?php echo round($rows['hours_worked'],2).' hours';?></td>
+                                    <td><?php echo '$'.round($rows['gross_pay'],2);?></td>
+                                    <td><?php echo '$'.round($rows['deductions'],2);?></td>
+                                    <td><?php echo '$'.round($rows['net_pay'],2);?></td>
+                                    <td></td>
+                                </tr>
+                            <?php
+                                }
+                           ?>
                         </tbody>
                     </table>
                 </div>

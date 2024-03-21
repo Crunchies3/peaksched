@@ -5,7 +5,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
 }
-
+require_once "../php/payslip_view_detail.php";
 ?>
 
 <!DOCTYPE html>

@@ -6,8 +6,8 @@ var payrollId;
 $(document).ready(function () {
     table = $('#myTable').DataTable();
     table.on('click', '#actionClick', function (e) {
-        payrollId = table.row(e.target.closest('tr')).data();
-        document.getElementById('payrollId').value = payrollId[0];
+        employeeid = table.row(e.target.closest('tr')).data();
+        document.getElementById('employeeid').value = employeeid[0];
     });
 });
 
@@ -33,6 +33,10 @@ $('#myTable').DataTable({
     },
     'columnDefs': [
         {
+            targets: 0,
+            'visible' : false
+        },
+        {
             targets: 1,
             className: "right-aligned-cell"
         },
@@ -54,7 +58,7 @@ $('#myTable').DataTable({
         },
         {
             data: null,
-            defaultContent: '<form action="../payroll/view-payslip-detail.php" id="viewPayroll" method="get"><input id="payrollId" hidden type="text" name="payrollId" value=""></form><button form="viewPayroll" class="btn my-button-yes mx-1" id="actionClick">View</button>',
+            defaultContent: '<form action="../payroll/view-payslip-detail.php" id="viewPayroll" method="get"><input id="employeeid" hidden type="text" name="employeeid" value=""></form><button form="viewPayroll" class="btn my-button-yes mx-1" id="actionClick">View</button>',
             targets: -1
         },
     ],
