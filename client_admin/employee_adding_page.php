@@ -162,7 +162,7 @@ require_once "php/employee_adding.php";
                             <button data-bs-toggle="modal" data-bs-target="#addEmployeeModal" type="submit" class="btn btn-lg fs-6 w-100 my-button-yes">Save</button>
                         </div>
                         <div class="mb-0 col-xxl-2">
-                            <a href="./employee_adding_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Cancel</a>
+                            <a href="./employee_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Cancel</a>
                         </div>
                     </div>
                 </div>

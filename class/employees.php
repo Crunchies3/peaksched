@@ -13,6 +13,8 @@ class Employees
     private $employeeList;
     private $supervisorWorkers;
     private $availableWorkers;
+    private $payrate;
+    private $status;
 
     public function fetchEmployeeArr()
     {
