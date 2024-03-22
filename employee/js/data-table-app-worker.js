@@ -21,7 +21,30 @@ $('#myTable').DataTable({
             },
             ]
         },
+
+        //! start copy
+        top1: {
+            searchPanes: {
+                initCollapsed: true,
+                preSelect: [
+                    {
+                        rows: ['Pending', 'Report Needed'],
+                        column: 3
+                    }
+                ]
+            }
+        }
+        //! end copy
     },
+    //! start copy
+    select: {
+        style: 'os',
+        selector: 'td:first-child'
+    },
+    //order para ma sort by time. first number is ang cell sa date
+    order: [[3, 'asc'], [4, 'asc']],
+    //! end copy
+
     scrollY: 450,
     language: {
         emptyTable: 'No data available in table'
@@ -36,8 +59,49 @@ $('#myTable').DataTable({
             defaultContent: '<form action="view-details.php" id="addAppoitment" method="get"><input id="appointmentId" hidden type="text" name="appointmentId" value=""></form><button form="addAppoitment" class="btn my-btn-view mx-1" id="actionClick">View</button>',
             targets: -1
         },
+        //! start copy
+        {
+            searchPanes: {
+                show: true,
+                orderable: false,
+                options: [
+                    {
+                        label: 'Report Needed',
+                        value: function (rowData, rowIdx) {
+                            return rowData[3] == '<span class="badge rounded-pill my-badge-report-needed">Report Needed</span>';
+                        }
+                    },
+                    {
+                        label: 'Pending',
+                        value: function (rowData, rowIdx) {
+                            return rowData[3] == '<span class="badge rounded-pill my-badge-pending">Pending</span>';
+                        }
+                    },
+                    {
+                        label: 'Completed',
+                        value: function (rowData, rowIdx) {
+                            return rowData[3] == '<span class="badge rounded-pill my-badge-approved">Completed</span>';
+                        }
+                    },
+
+                ],
+                combiner: 'or'
+            },
+            targets: [3]
+        }
+        //! end copy
     ],
 });
+
+//! start copy
+$('#myTable').on('select', function () {
+    $('#myTable').searchPanes('rebuildPane', 0, true);
+});
+
+$('#myTable').on('deselect', function () {
+    $('#myTable').searchPanes('rebuildPane', 0, true);
+});
+//! end copy
 
 
 
