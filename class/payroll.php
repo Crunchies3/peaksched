@@ -25,7 +25,7 @@ class Payroll
                 FROM    tbl_report_employee_hours a,
                         tbl_supervisor_report b
                 WHERE   b.report_id = a.report_id && 
-                		b.report_date BETWEEN ? AND ?;"
+                        b.report_date BETWEEN ? AND ?;"
             );
             $stmt->bind_param("ss", $startDate, $endDate);
             $stmt->execute();
@@ -76,9 +76,9 @@ class Payroll
                         array_push($employeeHoursWorked, $row2);
                     }
                 }
+                $stmt->close();
             }
 
-            $stmt->close();
 
             $employeePayrates = array();
 
@@ -97,16 +97,15 @@ class Payroll
                         array_push($employeePayrates, $row3);
                     }
                 }
+                $stmt->close();
             }
-
-            $stmt->close();
 
             $payslipId = rand(100000, 200000);
 
             // TODO: buhatan para mo compute ani
             $grossPay = "";
             $deductions = "";
-            $netPay = "" ;
+            $netPay = "";
 
             for ($i = 0; $i < count($employeeList); $i++) {
                 $stmt = $this->conn->prepare(
@@ -121,21 +120,20 @@ class Payroll
                 );
 
                 $grossPay = $this->computeGrossPay($employeeHoursWorked[$i]['total_hours'], $employeePayrates[$i]['pay_rate']);
-                $deductions = $this->computeDeduction($federalTax,$grossPay);
-                $netPay = $this->computenetpay($deductions,$grossPay);
+                $deductions = $this->computeDeduction($federalTax, $grossPay);
+                $netPay = $this->computenetpay($deductions, $grossPay);
 
                 $stmt->bind_param("sssssss", $payslipId, $payrollId, $employeeList[$i]['employee_id'], $employeeHoursWorked[$i]['total_hours'], $grossPay, $deductions, $netPay);
                 $stmt->execute();
                 $stmt->close();
             }
-
             return $result;
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
 
-    public function computeGrossPay($employeeHoursWorked, $payrate) : float
+    public function computeGrossPay($employeeHoursWorked, $payrate): float
     {
         $timeParts = explode(':', $employeeHoursWorked);
         $hours = (int)$timeParts[0];
@@ -144,18 +142,19 @@ class Payroll
         return $totalHours * $payrate;
     }
 
-    public function computeDeduction($federalTax, $grossPay) :float
-    {   
+    public function computeDeduction($federalTax, $grossPay): float
+    {
         $taxDecimalValue = $federalTax / 100;
         return $grossPay * $taxDecimalValue;
     }
 
-    public function computeNetPay($deductions, $grossPay) :float
+    public function computeNetPay($deductions, $grossPay): float
     {
         return $grossPay - $deductions;
     }
 
-    public function fetchPayrollList(){
+    public function fetchPayrollList()
+    {
         try {
             $stmt = $this->conn->prepare(
                 "SELECT a.payroll_id,
@@ -169,7 +168,8 @@ class Payroll
                       tbl_payslip b
                  WHERE a.payroll_id = b.payroll_id
                  GROUP BY a.payroll_id, a.pay_date, a.start_date, a.end_date
-                 ");
+                 "
+            );
             $stmt->execute();
             $result = $stmt->get_result();
             return $result;
@@ -178,7 +178,8 @@ class Payroll
         }
     }
 
-    public function fetchEmployeeInsidePayroll($payroll_id){
+    public function fetchEmployeeInsidePayroll($payroll_id)
+    {
         try {
             $stmt = $this->conn->prepare(
                 "SELECT a.employeeid,
@@ -192,8 +193,9 @@ class Payroll
                      tbl_payslip b
                 WHERE a.employeeid = b.employee_id AND
                       b.payroll_id = ?
-                ");
-            $stmt->bind_param("s",$payroll_id);
+                "
+            );
+            $stmt->bind_param("s", $payroll_id);
             $stmt->execute();
             return $stmt->get_result();
         } catch (Exception $e) {
@@ -201,19 +203,21 @@ class Payroll
         }
     }
 
-    public function approvePayroll($payroll_id){
+    public function approvePayroll($payroll_id)
+    {
         try {
             $stmt = $this->conn->prepare(
                 "UPDATE tbl_payroll SET status = 'Approved' WHERE payroll_id = ?"
             );
-            $stmt->bind_param("s",$payroll_id);
+            $stmt->bind_param("s", $payroll_id);
             $stmt->execute();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
 
-    public function employeePayslipDisplayables($employeeid, $payroll_id){
+    public function employeePayslipDisplayables($employeeid, $payroll_id)
+    {
         try {
             $stmt = $this->conn->prepare(
                 "SELECT a.firstname,
@@ -235,9 +239,9 @@ class Payroll
                 WHERE a.employeeid = c.employee_id AND
                       b.payroll_id = c.payroll_id AND
                       c.employee_id = ? AND
-                      c.payroll_id = ?"            
+                      c.payroll_id = ?"
             );
-            $stmt->bind_param("ss",$employeeid,$payroll_id);
+            $stmt->bind_param("ss", $employeeid, $payroll_id);
             $stmt->execute();
             $result = $stmt->get_result();
             if ($result->num_rows > 0) {
@@ -257,7 +261,6 @@ class Payroll
                     $this->grossPay = $row['gross_pay'];
                 }
             }
-
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
@@ -326,5 +329,4 @@ class Payroll
 
         return $this;
     }
-    
 }
