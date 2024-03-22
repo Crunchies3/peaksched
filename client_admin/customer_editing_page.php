@@ -208,42 +208,21 @@ require_once "php/customer_editing.php";
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>123123</td>
-                                <td>Jonald Paner</td>
-                                <td>Bathroom cleaning</td>
-                                <td style="color: red">on going</td>
-                                <td>03/09/24</td>
-                                <td>12:00pm</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>123123</td>
-                                <td>Jonald Paner</td>
-                                <td>Bathroom cleaning</td>
-                                <td style="color: red">on going</td>
-                                <td>03/09/24</td>
-                                <td>12:00pm</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>123123</td>
-                                <td>Jonald Paner</td>
-                                <td>Bathroom cleaning</td>
-                                <td style="color: red">on going</td>
-                                <td>03/09/24</td>
-                                <td>12:00pm</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>123123</td>
-                                <td>Jonald Paner</td>
-                                <td>Bathroom cleaning</td>
-                                <td style="color: red">on going</td>
-                                <td>03/09/24</td>
-                                <td>12:00pm</td>
-                                <td></td>
-                            </tr>
+                            <?php
+                                while ($rows = $customersAppointmentList->fetch_assoc()){
+                            ?>
+                                <tr>
+                                    <td><?php echo $rows['appointment_id'];?></td>
+                                    <td><?php echo $rows['fullname'];?></td>
+                                    <td><?php echo $rows['title'];?></td>
+                                    <td><?php echo $rows['status'];?></td>
+                                    <td><?php echo $rows['date'];?></td>
+                                    <td><?php echo $rows['time'];?></td>
+                                    <td></td>
+                                </tr>
+                            <?php
+                                }
+                           ?>
                         </tbody>
                     </table>
                 </div>
@@ -349,21 +328,3 @@ require_once "php/customer_editing.php";
     </div>
 </div>
 
-
-<div class="modal fade" id="removeAppointnmentModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="removeAppointment" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
-        <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
-            <div class="modal-header">
-                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm remove appointment?</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Appointment will be removed.
-            </div>
-            <div class="modal-footer">
-                <button name="removeAppointnmentModal" form="RemoveAppointmentForm" class="btn my-button-danger">Confirm</button>
-                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
-            </div>
-        </div>
-    </div>
-</div>

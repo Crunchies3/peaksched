@@ -472,6 +472,38 @@ class Appointment
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
+    public function getApprovedAppointmentDetails($appointmentId){
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT CONCAT(b.firstname,' ',b.lastname) AS 'fullname',
+                        c.title,
+                        CONCAT(d.street, '. ', d.city, ', ', d.province, '. ', d.country, ', ', d.zip_code)  as 'fullAddress',
+                        a.status,
+                        DATE(a.start) AS 'date',
+                        DATE_FORMAT(a.start, '%h:%i %p') AS 'time',
+                        a.num_floors,
+                        a.num_beds,
+                        a.num_baths,
+                        CONCAT(e.firstname, ' ', e.lastname) AS 'supFullname'
+                FROM tbl_confirmed_appointment a,
+                     tbl_customer b,
+                     tbl_service c,
+                     tbl_customer_address d,
+                     tbl_employee e
+                WHERE a.customer_id = b.customerid AND
+                      a.service_id = c.service_id AND
+                      a.address_id = d.address_id AND
+                      a.supervisor_id = e.employeeid AND
+                      a.appointment_id = ?"
+            );
+            $stmt->bind_param("s",$appointmentId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
     //mao ni syang mureturn ug filtered na request_appointment specifically sa customer side
     public function requestFilterAppStatus($statusType){
         try {

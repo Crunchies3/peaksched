@@ -33,6 +33,9 @@ $lastName = $customer->getLastname();
 $email = $customer->getEmail();
 $mobileNumber = $customer->getMobilenumber();
 
+$customersAppointmentList = $customer->fetchCustomerAppointment($customerId);
+
+
 
 
 

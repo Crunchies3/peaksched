@@ -7,7 +7,7 @@ $(document).ready(function () {
     table = $('#myTable').DataTable();
     table.on('click', '#actionClick', function (e) {
         appointmentId = table.row(e.target.closest('tr')).data();
-        document.getElementById('appointmentId').value = appointmentId[0];
+        document.getElementById('appId').value = appointmentId[0];
     });
 });
 
@@ -33,7 +33,7 @@ $('#myTable').DataTable({
         
         {
             data: null,
-            defaultContent: '<form id="RemoveAppointmentForm" method="post"><input id="appointmentId" name="appointmentId" hidden type="text" value=""></form><button data-bs-target="#removeAppointnmentModal"  data-bs-toggle = "modal" class="btn my-button-yes mx-1" id="actionClick">Remove</button>',
+            defaultContent: '<form action="./appointments/view-approved-details.php" id="editEmployee" method="get"><input id="appId" hidden type="text" name="appointmentId" value=""></form><button form="editEmployee" class="btn my-button-yes mx-1" id="actionClick">View</button>',
             targets: -1
         },
     ],
