@@ -21,6 +21,8 @@ $('#myTable').DataTable({
                 className: 'col-sm my-button-no rounded mx-2 bi-sort-down-alt',
             }],
         },
+
+        //! start copy
         top1: {
             searchPanes: {
                 initCollapsed: true,
@@ -32,13 +34,17 @@ $('#myTable').DataTable({
                 ]
             }
         }
+        //! end copy
     },
+    //! start copy
     select: {
         style: 'os',
         selector: 'td:first-child'
     },
     //order para ma sort by time. first number is ang cell sa date
     order: [[3, 'asc'], [4, 'asc']],
+    //! end copy
+
     scrollY: 370,
     language: {
         emptyTable: 'No data available in table'
@@ -65,6 +71,7 @@ $('#myTable').DataTable({
             defaultContent: '<form action="./manage-appointment-details.php" id="selectedAppointment" method="get"><input id="appointmentId" hidden type="text" name="appointmentId" value=""> </form><button form="selectedAppointment" class="btn btn-sm my-button-yes mx-1" id="actionClick">view</button>',
             targets: -1
         },
+        //! start copy
         {
             searchPanes: {
                 show: true,
@@ -99,9 +106,11 @@ $('#myTable').DataTable({
             },
             targets: [2]
         }
+        //! end copy
     ],
 });
 
+//! start copy
 $('#myTable').on('select', function () {
     $('#myTable').searchPanes('rebuildPane', 0, true);
 });
@@ -109,6 +118,7 @@ $('#myTable').on('select', function () {
 $('#myTable').on('deselect', function () {
     $('#myTable').searchPanes('rebuildPane', 0, true);
 });
+//! end copy
 
 
 
