@@ -59,11 +59,19 @@ class NotifMessages extends Notifications{
     }
 
     //side sa pag approve/resched or deny sa customers requested appointment
-    public function adminToCustApproveAppointment($appointmentName){
+    public function adminToCustApproveAppointment($appointmentName): string{
         return 'Admin has approved your requested appointment : ' .$appointmentName;
     }
-    public function adminToCustDenyAppointment($appointmentName){
+    public function adminToCustDenyAppointment($appointmentName): string{
         return 'Admin has denied your requested appointment : ' .$appointmentName;
     }
-    
+    public function custToAdminReqAppointment($custName, $appointmentName) : string {
+        return $custName. ' requested an appointment! ('. $appointmentName .')';
+    }
+    public function custToAdminReschedAppointment($custName, $appointmentName) : string {
+        return $custName. ' edited his/her requested appointment ('. $appointmentName .')';
+    }
+    public function custToAdminCancelAppointment($custName, $appointmentName) : string {
+        return $custName. ' cancelled his/her requested appointment ('. $appointmentName .')';
+    }
 }

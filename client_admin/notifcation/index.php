@@ -6,7 +6,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 // //need nalang ipadisplay mga notifs
-// require_once "../../php/notifs.php";
+require_once "../php/notifs.php";
 ?>
 
 <!DOCTYPE html>

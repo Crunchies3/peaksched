@@ -436,7 +436,6 @@ class Appointment
             $stmt = $this->conn->prepare("DELETE FROM tbl_confirmed_appointment WHERE customer_id = ? && service_id = ?");
             $stmt->bind_param("ss", $customerId, $service_id);
             $stmt->execute();
-            $this->conn->close();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
