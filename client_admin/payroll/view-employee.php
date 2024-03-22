@@ -108,6 +108,7 @@ require_once "../php/payroll_view_employee.php";
                 <div class="container-fluid" id="subArea-single">
                     <div>
                         <h5>Employee payroll</h5>
+                        <input type="hidden" name="payrollId" value="<?= htmlspecialchars($payroll_id) ?>" id="payrollid">
                     </div>
                     <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header -->
