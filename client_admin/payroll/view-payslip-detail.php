@@ -103,10 +103,10 @@ require_once "../php/payslip_view_detail.php";
                 <div class="container-fluid" id="subArea-top">
                     <div class="row justify-content-between">
                         <div class="col-xxl-10 mb-3 ">
-                            <h5>Payslip for the week of june</h5>
+                            <h5>Payslip for the week of <?php echo $month ?> </h5>
                         </div>
                         <div class="col xxl-10 mb-3">
-                            <h5>Payslip #: 1123123</h5>
+                            <h5>Payslip #: <?php echo $payslipId ?></h5>
                         </div>
                     </div>
                     <div>
@@ -121,7 +121,7 @@ require_once "../php/payslip_view_detail.php";
                                         Name:
                                     </div>
                                     <div class="my-label col">
-                                        Dennis
+                                    <?php echo $firstname .' '?><?php echo $lastname?>
                                     </div>
                                 </div>
                                 <div class="mb-1 row">
@@ -129,7 +129,7 @@ require_once "../php/payslip_view_detail.php";
                                         Type:
                                     </div>
                                     <div class="my-label col">
-                                        supervisor
+                                    <?php echo $type?>
                                     </div>
                                 </div>
                                 <div class="mb-1 row">
@@ -137,7 +137,7 @@ require_once "../php/payslip_view_detail.php";
                                         Pay Period:
                                     </div>
                                     <div class="my-label col">
-                                        Sept. 24, 2024 to Sept. 3, 2024
+                                        <?php echo $wordedStartDate ?> to <?php echo $wordedendDate ?>
                                     </div>
                                 </div>
                                 <div class="mb-1 row">
@@ -145,7 +145,7 @@ require_once "../php/payslip_view_detail.php";
                                         Pay Date:
                                     </div>
                                     <div class="my-label col">
-                                        04-03-24
+                                        <?php echo $wordedpayDate?>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
@@ -153,7 +153,7 @@ require_once "../php/payslip_view_detail.php";
                                         Rate:
                                     </div>
                                     <div class="my-label col">
-                                        25%
+                                        <?php echo '$'.$payrate. '/hr'?>
                                     </div>
                                 </div>
                                 <div class="mb-1 row">
@@ -161,7 +161,7 @@ require_once "../php/payslip_view_detail.php";
                                         Netpay:
                                     </div>
                                     <div class="my-label-2 col">
-                                        $10,000
+                                    <?php echo '$'.round($netPay,2)?>
                                     </div>
                                 </div>
                                 <div class="mb-1 row">
@@ -169,7 +169,7 @@ require_once "../php/payslip_view_detail.php";
                                         Total hours:
                                     </div>
                                     <div class="my-label-2 col">
-                                        40hours
+                                        <?php echo round($hoursworked,2) . ' hours'?>
                                     </div>
                                 </div>
                             </div>
@@ -191,24 +191,12 @@ require_once "../php/payslip_view_detail.php";
                             </tr>
                             <tr>
                                 <td>Standard pay</td>
-                                <td>3 hours</td>
-                                <td>$20</td>
-                                <td>$60</td>
+                                <td><?php echo round($hoursworked,2) . ' hours'?></td>
+                                <td><?php echo '$'.$payrate. '/hr'?></td>
+                                <td><?php echo '$'.round($grosspay,2)?></td>
                             </tr>
                             <tr>
-                                <td>Standard pay</td>
-                                <td>5 hours</td>
-                                <td>$30</td>
-                                <td>$150</td>
-                            </tr>
-                            <tr>
-                                <td>Standard pay</td>
-                                <td>3 hours</td>
-                                <td>$40</td>
-                                <td>$120</td>
-                            </tr>
-                            <tr>
-                                <td colspan="4">Gross pay: $330</td>
+                                <td colspan="4">Gross pay: <?php echo '$'.round($grosspay,2)?></td>
                             </tr>
                         </table>
                     </div>
@@ -225,19 +213,11 @@ require_once "../php/payslip_view_detail.php";
                                 <th>Current</th>
                             </tr>
                             <tr>
-                                <td>Federal Tax</td>
-                                <td>$200</td>
+                                <td>Federal Tax </td>
+                                <td><?php echo $federaltax. '% = '?> <?php echo '$'.round($deductions,2)?></td>
                             </tr>
                             <tr>
-                                <td>Federal Tax</td>
-                                <td>$200</td>
-                            </tr>
-                            <tr>
-                                <td>Federal Tax</td>
-                                <td>$300</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">Total deduction: $330</td>
+                                <td colspan="2">Total deduction: <?php echo '$'.round($deductions,2)?></td>
                             </tr>
                         </table>
                     </div>

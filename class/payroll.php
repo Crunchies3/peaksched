@@ -3,6 +3,19 @@
 class Payroll
 {
     private $conn;
+    private $firstname;
+    private $lastname;
+    private $type;
+    private $payrate;
+    private $paydate;
+    private $startDate;
+    private $endDate;
+    private $payslipId;
+    private $netPay;
+    private $hoursworked;
+    private $deductions;
+    private $grossPay;
+    private $federalTax;
 
     public function runPayroll($payrollId, $startDate, $endDate, $payDate, $federalTax)
     {
@@ -200,13 +213,111 @@ class Payroll
         }
     }
 
-    public function employeePayslipDisplayables(){
+    public function employeePayslipDisplayables($employeeid, $payroll_id){
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT a.firstname,
+                        a.lastname,
+                        a.type,
+                        a.pay_rate,
+                        b.pay_date,
+                        b.federal_tax,
+                        b.start_date,
+                        b.end_date,
+                        c.payslip_id,
+                        c.net_pay,
+                        (HOUR(c.hours_worked)+ MINUTE(c.hours_worked)/60+SECOND(c.hours_worked)/3600) AS 'hours_worked',
+                        c.deductions,
+                        c.gross_pay
+                FROM tbl_employee a,
+                     tbl_payroll b,
+                     tbl_payslip c
+                WHERE a.employeeid = c.employee_id AND
+                      b.payroll_id = c.payroll_id AND
+                      c.employee_id = ? AND
+                      c.payroll_id = ?"            
+            );
+            $stmt->bind_param("ss",$employeeid,$payroll_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $this->firstname = $row['firstname'];
+                    $this->lastname = $row['lastname'];
+                    $this->type = $row['type'];
+                    $this->payrate = $row['pay_rate'];
+                    $this->paydate = $row['pay_date'];
+                    $this->federalTax = $row['federal_tax'];
+                    $this->startDate = $row['start_date'];
+                    $this->endDate = $row['end_date'];
+                    $this->payslipId = $row['payslip_id'];
+                    $this->netPay = $row['net_pay'];
+                    $this->hoursworked = $row['hours_worked'];
+                    $this->deductions = $row['deductions'];
+                    $this->grossPay = $row['gross_pay'];
+                }
+            }
 
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
     }
 
     public function getConn()
     {
         return $this->conn;
+    }
+    public function getfirstname()
+    {
+        return $this->firstname;
+    }
+    public function getlastname()
+    {
+        return $this->lastname;
+    }
+    public function gettype()
+    {
+        return $this->type;
+    }
+    public function getpayrate()
+    {
+        return $this->payrate;
+    }
+    public function getpaydate()
+    {
+        return $this->paydate;
+    }
+    public function getstartdate()
+    {
+        return $this->startDate;
+    }
+    public function getendate()
+    {
+        return $this->endDate;
+    }
+    public function getpayslipid()
+    {
+        return $this->payslipId;
+    }
+    public function getnetpay()
+    {
+        return $this->netPay;
+    }
+    public function gethoursworked()
+    {
+        return $this->hoursworked;
+    }
+    public function getdeductions()
+    {
+        return $this->deductions;
+    }
+    public function getgrosspay()
+    {
+        return $this->grossPay;
+    }
+    public function getfederalTax()
+    {
+        return $this->federalTax;
     }
 
     public function setConn($conn)
@@ -215,4 +326,5 @@ class Payroll
 
         return $this;
     }
+    
 }
