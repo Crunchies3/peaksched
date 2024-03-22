@@ -135,6 +135,30 @@ class Customers
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
+    public function fetchCustomerAppointment($customerId){
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT a.appointment_id,
+                        CONCAT(b.firstname,' ',b.lastname) AS 'fullname',
+                        c.title,
+                        a.status,
+                        DATE(a.start) AS 'date',
+                        DATE_FORMAT(a.start, '%h:%i %p') AS 'time'
+                FROM tbl_confirmed_appointment a,
+                     tbl_customer b,
+                     tbl_service c
+                WHERE a.customer_id = b.customerid AND
+                      a.service_id = c.service_id AND
+                      a.customer_id = ?"
+            );
+            $stmt->bind_param("s",$customerId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
 
 
     /**

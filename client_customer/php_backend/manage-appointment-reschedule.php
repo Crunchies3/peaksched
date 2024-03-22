@@ -5,14 +5,22 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/services.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/appointments.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/customer_account.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/form_validation.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/notifMessages.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/services.php";
 
 $customer = unserialize($_SESSION["customerUser"]);
 $customer->setConn($conn);
+
+$notification = new NotifMessages();
+$notification->setConn($conn);
 
 $appointment = new Appointment();
 $appointment->setConn($conn);
 
 $validate = new Validation();
+
+$services = new Services();
+$services->setConn($conn);
 
 
 
@@ -52,11 +60,21 @@ if (isset($_POST['reschedApp'])) {
 
     $appointment->getAppointmentDetails($appointmentId);
     $service_id = $appointment->getServiceId();
+    $services->displayCurrentService($service_id);
+    $serviceName = $services->getTitle();
+    
     $customerId = $customer->getId();
+
+    $receiver = '112544';
+    $unread = true;
+    date_default_timezone_set("America/Vancouver");
+    $currentDate = date("Y-m-d H:i:s");
+    $messageToAdmin = $notification->custToAdminReschedAppointment($customer->getFirstname(),$serviceName);
 
     if(empty($selectedDate_err) && empty($selectedTime_err) ){
         $appointment->rescheduleAppointment($dateTimeStart,$dateTimeEnd,$note,$status,$appointmentId);
         $appointment->confirmedAppointmentDeletion($customerId,$service_id);
+        $notification->insertNotif($receiver,$unread, $currentDate, $messageToAdmin);
         header("location: manage-resched-success.php");
     }
 

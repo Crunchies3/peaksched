@@ -5,9 +5,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/form_validation.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/services.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/address.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/appointments.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/notifMessages.php";
 
 $customer = unserialize($_SESSION["customerUser"]);
 $customer->setConn($conn);
+
+$notification = new NotifMessages();
+$notification->setConn($conn);
 
 $address = new Address();
 $address->setConn($conn);
@@ -90,8 +94,16 @@ if (isset($_POST['submitRequest'])) {
     $dateTimeStart = $selectedDate . " " . date("H:i", strtotime($selectedTime));
     $dateTimeEnd = $selectedDate . " " . date("H:i", strtotime($selectedTime));
 
+    $receiver = '112544';
+    $unread = true;
+    date_default_timezone_set("America/Vancouver");
+    $currentDate = date("Y-m-d H:i:s");
+    $messageToAdmin = $notification->custToAdminReqAppointment($customer->getFirstname(),$serviceName);
+
+
     if (empty($address_Err) && empty($typeOfUnit_err) && empty($numOfBath_err) && empty($numOfBeds_err) && empty($selectedDate_err) && empty($selectedTime_err)) {
         $appointment->addRequestAppointment($requestAppointmentId, $service_id, $addressId, $customerId, $typeOfUnit, $numOfBeds, $numOfBath, $dateTimeStart, $dateTimeEnd, $note, $status);
+        $notification->insertNotif($receiver,$unread, $currentDate, $messageToAdmin);
         header("location: request-appointment-succes.php");
     }
 }
