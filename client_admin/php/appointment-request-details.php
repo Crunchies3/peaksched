@@ -98,8 +98,8 @@ if (isset($_POST['approveApp'])) {
     if(empty($supervisorErr)){
         $appointments->approveAppointment($appointmentId, $customerId, $serviceId, $addressId, $supervisorId, $numOfFloors,
         $numOfBeds, $numOfBaths, $date, $end, $note, $status);
-        //deleting the customers appointment in the tbl_request_table
-        $appointments->cancelAppointment($appointmentId);
+        //updating the status to approved in customers request appointment table
+        $appointments->updateApprovedAppointment($appointmentId);
         $notification->insertNotif($receiver, $unread, $created_at, $message);
         header("location: ./index.php");
     }
