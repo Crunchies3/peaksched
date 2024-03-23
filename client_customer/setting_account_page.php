@@ -50,7 +50,7 @@ require_once "php_backend/settings_account.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="request-appointment-service.php" class="sidebar-link">
                         <i class="bi bi-calendar2"></i>
                         <span>Appointments</span>
                     </a>
@@ -58,11 +58,11 @@ require_once "php_backend/settings_account.php";
                 <li class="sidebar-item">
                     <a href="./address" class="sidebar-link">
                         <i class="bi bi-geo-alt"></i>
-                        <span>Adress</span>
+                        <span>Address</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="./notification" class="sidebar-link">
                         <i class="bi bi-bell"></i>
                         <span>Notifications</span>
                     </a>

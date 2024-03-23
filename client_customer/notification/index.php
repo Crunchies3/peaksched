@@ -28,9 +28,9 @@ require_once "../php_backend/notifs.php";
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="../../css/dashboard_styles.css" />
-    <link rel="stylesheet" href="../../css/notification-styles.css">
-    <link rel="stylesheet" href="../../../components/_components.css" />
+    <link rel="stylesheet" href="../css/dashboard_styles.css" />
+    <link rel="stylesheet" href="../css/notification-styles.css">
+    <link rel="stylesheet" href="../../components/_components.css" />
 
 </head>
 
@@ -47,15 +47,21 @@ require_once "../php_backend/notifs.php";
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="../" class="sidebar-link ">
+                    <a href="../dashboard.php" class="sidebar-link ">
                         <i class="bi bi-house"></i>
                         <span>Home</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="../appointment/" class="sidebar-link ">
+                    <a href="../request-appointment-service.php" class="sidebar-link ">
                         <i class="bi bi-calendar2"></i>
                         <span>Appointments</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="../address" class="sidebar-link">
+                        <i class="bi bi-geo-alt"></i>
+                        <span>Address</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -65,14 +71,14 @@ require_once "../php_backend/notifs.php";
                     </a>
                 </li>
                 <li class="sidebar-footer">
-                    <a href="../settings/" class="sidebar-link ">
+                    <a href="../setting_account_page.php" class="sidebar-link ">
                         <i class="bi bi-gear"></i>
                         <span>Settings</span>
                     </a>
                 </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="../../php/logout.php" class="sidebar-link">
+                <a href="../php_backend/logout.php" class="sidebar-link">
                     <i class="bi bi-box-arrow-left"></i>
                     <span>Logout</span>
                 </a>

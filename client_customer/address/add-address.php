@@ -42,7 +42,7 @@ require_once "../php_backend/address-adding.php";
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="" class="sidebar-link ">
+                    <a href="../dashboard.php" class="sidebar-link ">
                         <i class="bi bi-house"></i>
                         <span>Home</span>
                     </a>
@@ -56,11 +56,11 @@ require_once "../php_backend/address-adding.php";
                 <li class="sidebar-item">
                     <a href="./index.php" class="sidebar-link selected">
                         <i class="bi bi-geo-alt-fill"></i>
-                        <span>Adress</span>
+                        <span>Address</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="../notification" class="sidebar-link">
                         <i class="bi bi-bell"></i>
                         <span>Notifications</span>
                     </a>
