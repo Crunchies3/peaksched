@@ -96,7 +96,7 @@ require_once "../php/notifs.php";
                 </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="../../php/logout.php" class="sidebar-link">
+                <a href="../php/logout.php" class="sidebar-link">
                     <i class="bi bi-box-arrow-left"></i>
                     <span>Logout</span>
                 </a>
