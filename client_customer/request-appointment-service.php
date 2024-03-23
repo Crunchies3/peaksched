@@ -44,7 +44,7 @@ require_once "./php_backend/appointment.php";
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="" class="sidebar-link ">
+                    <a href="dashboard.php" class="sidebar-link ">
                         <i class="bi bi-house"></i>
                         <span>Home</span>
                     </a>
@@ -58,7 +58,7 @@ require_once "./php_backend/appointment.php";
                 <li class="sidebar-item">
                     <a href="./address" class="sidebar-link">
                         <i class="bi bi-geo-alt"></i>
-                        <span>Adress</span>
+                        <span>Address</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
