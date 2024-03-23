@@ -58,7 +58,16 @@ $('#myTable').DataTable({
         },
         {
             data: null,
-            defaultContent: '<form action="./view-details.php" id="editEmployee" method="get"><input id="employeeId" hidden type="text" name="appointmentId" value=""></form><button form="editEmployee" class="btn my-button-yes mx-1" id="actionClick">View</button>',
+            render: function(row){
+                var tempElement = document.createElement('div');
+                tempElement.innerHTML = row[6];
+                var status = tempElement.textContent;
+                if(status =='Approved'){
+                    return '<form action="./view-approved-details.php" id="editEmployee" method="get"><input id="employeeId" hidden type="text" name="appointmentId" value=""></form><button form="editEmployee" class="btn my-button-yes mx-1" id="actionClick">View</button>';
+                }else{
+                    return '<form action="./view-details.php" id="editEmployee" method="get"><input id="employeeId" hidden type="text" name="appointmentId" value=""></form><button form="editEmployee" class="btn my-button-yes mx-1" id="actionClick">View</button>';
+                }
+            },
             targets: -1
         },
         //! start copy
