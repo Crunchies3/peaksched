@@ -117,8 +117,8 @@ class Employee_Client
             if($containsResult->num_rows > 0){
                 $this->unassignedWorkersAppointment = $containsResult;
             }else{
-                $stmy = $this->conn->prepare("SELECT*FROM tbl_employee a, tbl_supervisor_worker b WHERE a.employeeid = b.worker_id && b.supervisor_id = ?");
-            $stmy->bind_param("s",$supervisorId);
+                $stmy = $this->conn->prepare("SELECT*FROM tbl_employee a, tbl_supervisor_worker b WHERE a.employeeid = b.worker_id && b.supervisor_id = ? && !EXISTS(SELECT *FROM tbl_worker_appointment WHERE appointment_id = ? && worker_id = b.worker_id)");
+            $stmy->bind_param("ss",$supervisorId,$appointmentId);
             $stmy->execute();
             $emptyResult = $stmy->get_result();
             $this->unassignedWorkersAppointment = $emptyResult;
