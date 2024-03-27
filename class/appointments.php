@@ -451,6 +451,26 @@ class Appointment
         }
     }
 
+    public function fetchRepeatedDatesCurrentOnwards(){
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT DATE(start) FROM tbl_confirmed_appointment
+                 WHERE DATE(start) >= CURRENT_DATE() 
+                 GROUP BY DATE(start) HAVING COUNT(*) = 4"
+                );
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $repeatedDates = array();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    array_push($repeatedDates, $row);
+                }
+            }
+           return json_encode($repeatedDates);
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
     /**
      * Get the value of conn
      */
