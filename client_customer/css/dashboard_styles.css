@@ -85,6 +85,12 @@ body {
     display: flex;
 }
 
+@media (max-width: 990px) {
+    .main {
+        margin-left: 0px !important;
+    }
+}
+
 .main {
     min-height: 100vh;
     width: 100%;
@@ -95,6 +101,11 @@ body {
     margin-left: 230px;
     transition: all .09s ease-in-out;
 
+}
+
+.sidebar-footer {
+    position: fixed;
+    bottom: 50px;
 }
 
 #main.shrink {
@@ -129,7 +140,30 @@ body {
 
 }
 
+.app-bar {
+    padding: 5px;
+    background-color: #242432;
+}
 
+.offcanvas-backdrop {
+    z-index: 999 !important;
+}
+
+.offcanvas-lg {
+    background-color: #242432 !important;
+}
+
+#burger-menu {
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+    padding: .4rem 13px;
+}
+
+#burger-menu i {
+    font-size: 20px;
+    color: #D8D8D8;
+}
 
 #toggle-btn {
     background-color: transparent;
