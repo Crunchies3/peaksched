@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
             range: {
                 min: today,
                 disableWeekday: [0],
+                disabled: [''],
 
             },
         },
