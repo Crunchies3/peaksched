@@ -33,8 +33,16 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 </head>
 
 <body>
+    <div class="app-bar d-lg-none d-flex">
+        <a href="#">
+            <button id="burger-menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar">
+                <i class="bi bi-list"></i>
+            </button>
+        </a>
+        <span class="mx-3 sidebar-logo"><a href="#">TwinPeaks</a></span>
+    </div>
     <div class="wrapper">
-        <aside id="sidebar" class="shadow-lg">
+        <aside id="sidebar" tabindex="-1" class="shadow-lg offcanvas-lg offcanvas-start" data-bs-backdrop="true">
             <div class="d-flex mb-2">
                 <button id="toggle-btn" type="button">
                     <i class="bi bi-calendar-week"></i>
@@ -44,7 +52,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 </div>
             </div>
             <ul class="sidebar-nav">
-            <li class="sidebar-item">
+                <li class="sidebar-item">
                     <a href="../" class="sidebar-link ">
                         <i class="bi bi-house"></i>
                         <span>Home</span>
@@ -74,7 +82,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                         <span>Notifications</span>
                     </a>
                 </li>
-                <li class="sidebar-footer">
+                <li class="sidebar-item">
                     <a href="../settings/" class="sidebar-link ">
                         <i class="bi bi-gear"></i>
                         <span>Settings</span>
@@ -88,14 +96,14 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 </a>
             </div>
         </aside>
-        <section class="main" id="main">
+        <section class="main p-2" id="main">
             <div class="container-fluid" id="mainArea">
                 <div class="mb-5">
                     <h1>Payroll</h1>
                 </div>
                 <div class="container-fluid" id="subArea-single">
                     <div>
-                    <h5><span><a href="./index.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Employee Payroll </h5>
+                        <h5><span><a href="./index.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Employee Payroll </h5>
                     </div>
                     <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header -->

@@ -31,8 +31,17 @@ require_once "php/profile_account.php";
 </head>
 
 <body>
+    <div class="app-bar d-lg-none d-flex">
+        <a href="#">
+            <button id="burger-menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar">
+                <i class="bi bi-list"></i>
+            </button>
+        </a>
+        <span class="mx-3 sidebar-logo"><a href="#">TwinPeaks</a></span>
+    </div>
+
     <div class="wrapper">
-        <aside id="sidebar" class="shadow-lg">
+        <aside id="sidebar" tabindex="-1" class="shadow-lg offcanvas-lg offcanvas-start" data-bs-backdrop="true">
             <div class="d-flex">
                 <button id="toggle-btn" type="button">
                     <i class="bi bi-apple"></i>
@@ -60,7 +69,7 @@ require_once "php/profile_account.php";
                         <span>Notifications</span>
                     </a>
                 </li>
-                <li class="sidebar-footer">
+                <li class="sidebar-item">
                     <a href="profile_account_page.php" class="sidebar-link selected">
                         <i class="bi bi-gear"></i>
                         <span>Settings</span>
@@ -74,7 +83,7 @@ require_once "php/profile_account.php";
                 </a>
             </div>
         </aside>
-        <section class="main">
+        <section class="main p-2">
             <div class="container-fluid" id="settingsArea">
                 <div class="mb-4">
                     <h1>Settings</h1>
@@ -117,7 +126,7 @@ require_once "php/profile_account.php";
                             </div>
                         </div>
                         <div class="mb-0 col-xl-2">
-                            <button name= "updateInfo"class="btn btn-lg fs-6 w-100 save-changes-button">Save changes</button>
+                            <button name="updateInfo" class="btn btn-lg fs-6 w-100 save-changes-button">Save changes</button>
                         </div>
                     </form>
                 </div>
@@ -149,7 +158,7 @@ require_once "php/profile_account.php";
                         </div>
                         <!-- ichange lang ang arrangement aning button igo ra nako gisulod sa form aron maread ig tuplukon -->
                         <div class="mb-0 col-xl-2">
-                            <button name= "changePassword" class="w-100 btn btn-lg fs-6 change-password-button">Change password</button>
+                            <button name="changePassword" class="w-100 btn btn-lg fs-6 change-password-button">Change password</button>
                         </div>
                     </form>
                 </div>

@@ -29,8 +29,17 @@ require_once "../php/appointment-approved-details.php";
 </head>
 
 <body>
+    <div class="app-bar d-lg-none d-flex">
+        <a href="#">
+            <button id="burger-menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar">
+                <i class="bi bi-list"></i>
+            </button>
+        </a>
+        <span class="mx-3 sidebar-logo"><a href="#">TwinPeaks</a></span>
+    </div>
+
     <div class="wrapper">
-        <aside id="sidebar" class="shadow-lg">
+        <aside id="sidebar" tabindex="-1" class="shadow-lg offcanvas-lg offcanvas-start" data-bs-backdrop="true">
             <div class="d-flex mb-2">
                 <button id="toggle-btn" type="button">
                     <i class="bi bi-calendar-week"></i>
@@ -81,7 +90,7 @@ require_once "../php/appointment-approved-details.php";
                         <span>Notifications</span>
                     </a>
                 </li>
-                <li class="sidebar-footer">
+                <li class="sidebar-item">
                     <a href="../setting_account_page.php" class="sidebar-link ">
                         <i class="bi bi-gear"></i>
                         <span>Settings</span>
@@ -95,7 +104,7 @@ require_once "../php/appointment-approved-details.php";
                 </a>
             </div>
         </aside>
-        <section class="main" id="main">
+        <section class="main p-2" id="main">
 
             <div class="container-fluid" id="mainArea">
                 <div class="mb-5">
@@ -144,7 +153,7 @@ require_once "../php/appointment-approved-details.php";
                             <input disabled name="position" type="text" class="form-control fs-6 input-field" placeholder="Enter your position" value="<?php echo $num_baths ?>">
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
-                        <label class="form-label mb-1">ASSIGNED SUPERVISOR</label>
+                            <label class="form-label mb-1">ASSIGNED SUPERVISOR</label>
                             <input disabled name="position" type="text" class="form-control fs-6 input-field" placeholder="Enter your position" value="<?php echo $supFullname ?>">
                         </div>
                     </form>
@@ -156,5 +165,3 @@ require_once "../php/appointment-approved-details.php";
 </body>
 
 </html>
-
-

@@ -33,8 +33,17 @@ require_once "../php/payroll_view_employee.php";
 </head>
 
 <body>
+    <div class="app-bar d-lg-none d-flex">
+        <a href="#">
+            <button id="burger-menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar">
+                <i class="bi bi-list"></i>
+            </button>
+        </a>
+        <span class="mx-3 sidebar-logo"><a href="#">TwinPeaks</a></span>
+    </div>
+
     <div class="wrapper">
-        <aside id="sidebar" class="shadow-lg">
+        <aside id="sidebar" tabindex="-1" class="shadow-lg offcanvas-lg offcanvas-start" data-bs-backdrop="true">
             <div class="d-flex mb-2">
                 <button id="toggle-btn" type="button">
                     <i class="bi bi-calendar-week"></i>
@@ -86,7 +95,7 @@ require_once "../php/payroll_view_employee.php";
                         <span>Notifications</span>
                     </a>
                 </li>
-                <li class="sidebar-footer">
+                <li class="sidebar-item">
                     <a href="../setting_account_page.php" class="sidebar-link ">
                         <i class="bi bi-gear"></i>
                         <span>Settings</span>
@@ -100,7 +109,7 @@ require_once "../php/payroll_view_employee.php";
                 </a>
             </div>
         </aside>
-        <section class="main" id="main">
+        <section class="main p-2" id="main">
             <div class="container-fluid" id="mainArea">
                 <div class="mb-5">
                     <h1>Payroll</h1>
@@ -123,22 +132,22 @@ require_once "../php/payroll_view_employee.php";
                             <th style="color: whitee">Actions</th>
                         </thead>
                         <tbody>
-                        <?php
-                                while ($rows = $payslipList->fetch_assoc()){
+                            <?php
+                            while ($rows = $payslipList->fetch_assoc()) {
                             ?>
                                 <tr>
-                                    <td><?php echo $rows['employeeid'];?></td>
-                                    <td><?php echo $rows['fullname'];?></td>
-                                    <td><?php echo '$'.$rows['pay_rate']. '/hr';?></td>
-                                    <td><?php echo round($rows['hours_worked'],2).' hours';?></td>
-                                    <td><?php echo '$'.round($rows['gross_pay'],2);?></td>
-                                    <td><?php echo '$'.round($rows['deductions'],2);?></td>
-                                    <td><?php echo '$'.round($rows['net_pay'],2);?></td>
+                                    <td><?php echo $rows['employeeid']; ?></td>
+                                    <td><?php echo $rows['fullname']; ?></td>
+                                    <td><?php echo '$' . $rows['pay_rate'] . '/hr'; ?></td>
+                                    <td><?php echo round($rows['hours_worked'], 2) . ' hours'; ?></td>
+                                    <td><?php echo '$' . round($rows['gross_pay'], 2); ?></td>
+                                    <td><?php echo '$' . round($rows['deductions'], 2); ?></td>
+                                    <td><?php echo '$' . round($rows['net_pay'], 2); ?></td>
                                     <td></td>
                                 </tr>
                             <?php
-                                }
-                           ?>
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>

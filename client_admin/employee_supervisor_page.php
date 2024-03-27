@@ -36,8 +36,17 @@ require_once "php/employee_supervisor_editing.php";
 </head>
 
 <body>
+    <div class="app-bar d-lg-none d-flex">
+        <a href="#">
+            <button id="burger-menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar">
+                <i class="bi bi-list"></i>
+            </button>
+        </a>
+        <span class="mx-3 sidebar-logo"><a href="#">TwinPeaks</a></span>
+    </div>
+
     <div class="wrapper">
-        <aside id="sidebar" class="shadow-lg">
+        <aside id="sidebar" tabindex="-1" class="shadow-lg offcanvas-lg offcanvas-start" data-bs-backdrop="true">
             <div class="d-flex mb-2">
                 <button id="toggle-btn" type="button">
                     <i class="bi bi-calendar-week"></i>
@@ -89,7 +98,7 @@ require_once "php/employee_supervisor_editing.php";
                         <span>Notifications</span>
                     </a>
                 </li>
-                <li class="sidebar-footer">
+                <li class="sidebar-item">
                     <a href="setting_account_page.php" class="sidebar-link ">
                         <i class="bi bi-gear"></i>
                         <span>Settings</span>
@@ -103,7 +112,7 @@ require_once "php/employee_supervisor_editing.php";
                 </a>
             </div>
         </aside>
-        <section class="main" id="main">
+        <section class="main p-2" id="main">
 
             <div class="container-fluid" id="mainArea">
                 <div class="mb-5">

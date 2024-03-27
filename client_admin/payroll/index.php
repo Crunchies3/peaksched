@@ -12,7 +12,7 @@ require_once "../php/payroll_index.php";
 <html lang="en">
 
 <head>
-<meta charset="UTF-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Employee</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
@@ -33,8 +33,17 @@ require_once "../php/payroll_index.php";
 </head>
 
 <body>
+    <div class="app-bar d-lg-none d-flex">
+        <a href="#">
+            <button id="burger-menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar">
+                <i class="bi bi-list"></i>
+            </button>
+        </a>
+        <span class="mx-3 sidebar-logo"><a href="#">TwinPeaks</a></span>
+    </div>
+
     <div class="wrapper">
-        <aside id="sidebar" class="shadow-lg">
+        <aside id="sidebar" tabindex="-1" class="shadow-lg offcanvas-lg offcanvas-start" data-bs-backdrop="true">
             <div class="d-flex mb-2">
                 <button id="toggle-btn" type="button">
                     <i class="bi bi-calendar-week"></i>
@@ -86,7 +95,7 @@ require_once "../php/payroll_index.php";
                         <span>Notifications</span>
                     </a>
                 </li>
-                <li class="sidebar-footer">
+                <li class="sidebar-item">
                     <a href="../setting_account_page.php" class="sidebar-link ">
                         <i class="bi bi-gear"></i>
                         <span>Settings</span>
@@ -100,7 +109,7 @@ require_once "../php/payroll_index.php";
                 </a>
             </div>
         </aside>
-        <section class="main" id="main">
+        <section class="main p-2" id="main">
             <div class="container-fluid" id="mainArea">
                 <div class="mb-5">
                     <h1>Payroll</h1>
@@ -121,31 +130,28 @@ require_once "../php/payroll_index.php";
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
-                           <?php
-                                while ($rows = $payrollListResult->fetch_assoc()){
+                            <?php
+                            while ($rows = $payrollListResult->fetch_assoc()) {
                             ?>
                                 <tr>
-                                    <td><?php echo $rows['payroll_id'];?></td>
-                                    <td><?php echo $rows['pay_date'];?></td>
-                                    <td><?php echo $rows['start_date'] .' - ';?> <?php echo $rows['end_date']; ?></td>
-                                    <td><?php echo '$' .round($rows['TotalGross'],2);?></td>
-                                    <td><?php echo '$' .round($rows['TotalNet'],2);?></td>
-                                    <td><?php echo $rows['EmployeeCount'];?></td>
+                                    <td><?php echo $rows['payroll_id']; ?></td>
+                                    <td><?php echo $rows['pay_date']; ?></td>
+                                    <td><?php echo $rows['start_date'] . ' - '; ?> <?php echo $rows['end_date']; ?></td>
+                                    <td><?php echo '$' . round($rows['TotalGross'], 2); ?></td>
+                                    <td><?php echo '$' . round($rows['TotalNet'], 2); ?></td>
+                                    <td><?php echo $rows['EmployeeCount']; ?></td>
                                     <td></td>
                                 </tr>
                             <?php
-                                }
-                           ?>
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>
             </div>
         </section>
-        <script src = "../js/data-table-payroll.js"></script>                  
+        <script src="../js/data-table-payroll.js"></script>
         <script src="../js/script.js"></script>
 </body>
 
 </html>
-
-
-
