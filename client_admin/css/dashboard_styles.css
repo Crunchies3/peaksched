@@ -244,3 +244,42 @@ a.sidebar-link:hover {
 .my-footer {
     border-top: none;
 }
+
+
+/* responsive sidebar */
+@media (max-width: 990px) {
+    .main {
+        margin-left: 0px !important;
+    }
+}
+
+.sidebar-footer {
+    position: fixed;
+    bottom: 50px;
+}
+
+
+.app-bar {
+    padding: 5px;
+    background-color: #242432;
+}
+
+.offcanvas-backdrop {
+    z-index: 999 !important;
+}
+
+.offcanvas-lg {
+    background-color: #242432 !important;
+}
+
+#burger-menu {
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+    padding: .4rem 13px;
+}
+
+#burger-menu i {
+    font-size: 20px;
+    color: #D8D8D8;
+}
