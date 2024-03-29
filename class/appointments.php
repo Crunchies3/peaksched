@@ -514,35 +514,12 @@ class Appointment
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-    //mao ni syang mureturn ug filtered na request_appointment specifically sa customer side
-    public function requestFilterAppStatus($statusType){
-        try {
-            $stmt = $this->conn->prepare("SELECT*FROM tbl_request_appointment a WHERE a.status = ?");
-            $stmt->bind_param("s",$statusType);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
-        } catch (Exception $e) {
-            echo 'Caught exception: ',  $e->getMessage(), "\n";
-        }
-    }
-    //mao ni syang mureturn ug filtered na confirmed_appointment specifically sa admin/supervisor side
-    public function confirmedFilterAppStatus($statusType){
-        try {
-            $stmt = $this->conn->prepare("SELECT*FROM tbl_confirmed_appointment a WHERE a.status = ?");
-            $stmt->bind_param("s",$statusType);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
-        } catch (Exception $e) {
-            echo 'Caught exception: ',  $e->getMessage(), "\n";
-        }
-    }
+
 
     public function fetchRepeatedDatesCurrentOnwards(){
         try {
             $stmt = $this->conn->prepare(
-                "SELECT DATE(start) FROM tbl_confirmed_appointment
+                "SELECT DATE(start) AS 'dates' FROM tbl_confirmed_appointment
                  WHERE DATE(start) >= CURRENT_DATE() 
                  GROUP BY DATE(start) HAVING COUNT(*) = 4"
                 );
@@ -554,7 +531,7 @@ class Appointment
                     array_push($repeatedDates, $row);
                 }
             }
-           return json_encode($repeatedDates);
+           echo json_encode($repeatedDates);
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
