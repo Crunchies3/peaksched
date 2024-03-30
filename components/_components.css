@@ -252,6 +252,11 @@ label {
 
 /* Data Table related Styles */
 
+.emphasize {
+    color: #124F6F !important;
+    font-weight: 600;
+}
+
 #tableHead .dt-orderable-asc {
     border-bottom: #e1e1e1;
     border-style: solid;

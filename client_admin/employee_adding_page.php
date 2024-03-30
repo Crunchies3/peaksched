@@ -33,6 +33,7 @@ require_once "php/employee_adding.php";
     <link rel="stylesheet" href="./css/dashboard_styles.css" />
     <link rel="stylesheet" href="./css/employee_page_styles.css" />
     <link rel="stylesheet" href="../components/_components.css">
+    <link href="../select_box/dist/jquery-editable-select.min.css" rel="stylesheet">
 
 </head>
 
@@ -122,7 +123,7 @@ require_once "php/employee_adding.php";
                     <div>
                         <h5> <span><a href="./employee_page.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Add Employee</h5>
                     </div>
-                    <form id="addEmployeeForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
+                    <form id="addEmployeeForm" class="row needs-validation" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <div class="col-md-6 mb-4">
                             <label class="form-label mb-1">FIRST NAME</label>
                             <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $firstName ?>">
@@ -153,14 +154,18 @@ require_once "php/employee_adding.php";
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">POSITION</label>
-                            <input name="position" type="text" class="form-control fs-6 input-field <?php echo (!empty($position_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $position ?>">
+                            <select required id="positionList" required>
+                                <option>supervisor</option>
+                                <option>worker</option>
+                            </select>
+                            <!-- <input name="position" type="text" class="form-control fs-6 input-field <?php echo (!empty($position_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $position ?>"> -->
                             <div class="invalid-feedback">
                                 <?php echo $position_err; ?>
                             </div>
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">PAY RATE</label>
-                            <input name="payrate" type="number" class="form-control fs-6 input-field <?php echo (!empty($payrate_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $payrate ?>">
+                            <input name="payrate" type="number" class="form-control fs-6 input-field <?php echo (!empty($payrate_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter payrate" value="<?php echo $payrate ?>">
                             <div class="invalid-feedback">
                                 <?php echo $payrate_err; ?>
                             </div>
@@ -178,6 +183,11 @@ require_once "php/employee_adding.php";
             </div>
         </section>
         <script src="./js/script.js"></script>
+        <script src="../select_box/dist/jquery-editable-select.js"></script>
+        <script src="../select_box/src/jquery-editable-select.js"></script>
+        <script src="./js/client_validation.js"></script>
+        <script src="./js/select_box.js"></script>
+
 </body>
 
 </html>

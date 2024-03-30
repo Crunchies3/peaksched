@@ -166,16 +166,17 @@ require_once "php/employee_editing.php";
                                 <?php echo $payrate_err; ?>
                             </div>
                         </div>
-                        <div class="mb-4 col-lg-6 mb-4">
+                        <!-- //!gitanggal nako ang status na field -->
+                        <!-- <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">STATUS</label>
                             <input name="status" type="text" class="form-control fs-6 input-field <?php echo (!empty($status_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter employee's status" value="<?php echo $status ?>">
                             <div class="invalid-feedback">
                                 <?php echo $status_err; ?>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">ASSIGNED TO</label>
-                            <input name="assignedto" type="text" class="form-control fs-6 input-field <?php echo (!empty($assignedTo_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $assignedto ?>">
+                            <input name="assignedto" type="text" readonly="readonly" class="form-control fs-6 input-field <?php echo (!empty($assignedTo_err)) ? 'is-invalid' : ''; ?>" placeholder="" value="<?php echo $assignedto ?>">
                             <div class="invalid-feedback">
                                 <?php echo $assignedTo_err; ?>
                             </div>
