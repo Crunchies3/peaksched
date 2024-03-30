@@ -28,6 +28,7 @@ $('#myTable').DataTable({
     language: {
         emptyTable: 'No data available in table'
     },
+    order: [2, 'desc'],
     'columnDefs': [
         {
             targets: 0,

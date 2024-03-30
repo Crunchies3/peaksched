@@ -20,7 +20,7 @@ $validate->setUserType($customerAcc);
 $address = new Address();
 $address->setConn($conn);
 
-$street = $city = $province = $zipCode = $country = "";
+$type = $street = $city = $province = $zipCode = $country = "";
 $street_err = $city_err = $province_err = $zipCode_err = $country_err = "";
 
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
@@ -48,11 +48,19 @@ $zipCode_err = $validate->address($zipCode);
 $country = trim($_POST["country"]);
 $country_err = $validate->address($country);
 
+$type = $address->doesPrimaryExist();
+
 
 
 
 if (empty($street_err) && empty($city_err) && empty($province_err) && empty($zipCode_err) && empty($country_err)) {
 
-    $address->addAddress($customerId, $addressId, $street, $city, $province, $zipCode, $country);
+    if ($type) {
+        $address->addAddress($customerId, $addressId, $street, $city, $province, $zipCode, $country, 'Primary');
+    } else {
+        $address->addAddress($customerId, $addressId, $street, $city, $province, $zipCode, $country, '');
+    }
+
+
     header("location: ./index.php");
 }

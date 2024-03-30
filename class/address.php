@@ -37,6 +37,44 @@ class Address
         }
     }
 
+    public function fetchCustomerPrimaryAddress($customerId)
+    {
+        try {
+            $type = 'Primary';
+
+            $stmt = $this->conn->prepare(
+                "SELECT a.address_id,
+                        a.street,
+                        a.city,
+                        a.province,
+                        a.country,
+                        a.zip_code,
+                        a.type
+                FROM    tbl_customer_address a,
+                        tbl_customer b
+                WHERE   b.customerid = a.customer_id &&
+                        b.customerid = ? &&
+                        a.type = ?"
+            );
+            $stmt->bind_param("ss", $customerId, $type);
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $this->setAddress_id($row['address_id']);
+                    $this->setStreet($row['street']);
+                    $this->setCity($row['city']);
+                    $this->setProvince($row['province']);
+                    $this->setZip_code($row['zip_code']);
+                    $this->setCountry($row['country']);
+                }
+            }
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
     public function fetchAddressListByCustomer($customerId)
     {
         try {
@@ -47,7 +85,8 @@ class Address
                         a.city,
                         a.province,
                         a.country,
-                        a.zip_code
+                        a.zip_code,
+                        a.type
                 FROM    tbl_customer_address a,
                         tbl_customer b
                 WHERE   b.customerid = a.customer_id &&
@@ -57,6 +96,23 @@ class Address
             $stmt->execute();
             $result = $stmt->get_result();
             return $result;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function doesPrimaryExist()
+    {
+        try {
+            $stmt = $this->conn->prepare("SELECT * FROM tbl_customer_address WHERE type = 'Primary';");
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                $stmt->close();
+                return false;
+            }
+            $stmt->close();
+            return true;
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
@@ -81,7 +137,7 @@ class Address
         }
     }
 
-    public function addAddress($customerId, $addressId, $street, $city, $province, $zipCode, $country)
+    public function addAddress($customerId, $addressId, $street, $city, $province, $zipCode, $country, $type)
     {
         try {
             $stmt = $this->conn->prepare(
@@ -91,10 +147,11 @@ class Address
                                                     city, 
                                                     province, 
                                                     zip_code,
-                                                    country) 
-                VALUES (?,?,?,?,?,?,?)"
+                                                    country,
+                                                    type) 
+                VALUES (?,?,?,?,?,?,?,?)"
             );
-            $stmt->bind_param("sssssss", $addressId, $customerId, $street, $city, $province, $zipCode, $country);
+            $stmt->bind_param("ssssssss", $addressId, $customerId, $street, $city, $province, $zipCode, $country, $type);
             $stmt->execute();
             $this->conn->close();
         } catch (Exception $e) {

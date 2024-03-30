@@ -111,6 +111,7 @@ require_once "../php_backend/address-page.php";
                         <thead id="tableHead">
                             <th style="color: white;">id</th>
                             <th style="color: white;">Address</th>
+                            <th style="color: white;">Type</th>
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
@@ -121,13 +122,14 @@ require_once "../php_backend/address-page.php";
                                 <tr>
                                     <td><?php echo $rows['address_id']; ?></td>
                                     <td>
-                                        <div class="title-text">
+                                        <div class="title-text emphasize">
                                             <?php echo $rows['street']; ?>
                                         </div>
                                         <div class="subTitle-text">
                                             <?php echo $rows['city'] . ' ' . $rows['province'] . ' ' . $rows['country'] . ' ' . $rows['zip_code']; ?>
                                         </div>
                                     </td>
+                                    <td><?php echo $rows['type']; ?></td>
                                     <td></td>
                                 </tr>
                             <?php

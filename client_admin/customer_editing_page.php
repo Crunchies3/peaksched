@@ -156,9 +156,6 @@ require_once "php/customer_editing.php";
                         <div class="mb-3 col-xxl-2">
                             <button data-bs-toggle="modal" data-bs-target="#editEmployeeModal" class="btn btn-lg fs-6 w-100 my-button-yes">Save Changes</button>
                         </div>
-                        <div class="mb-0 col-xxl-2">
-                            <a href="./customer_editing_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Discard Changes</a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -166,35 +163,47 @@ require_once "php/customer_editing.php";
             <div class="container-fluid" id="customerArea">
                 <div class="container-fluid" id="subArea-mid">
                     <div>
-                        <h5>Address</h5>
+                        <h5>Primary Address</h5>
                     </div>
-                    <form id="editCustomerPasswordForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
+                    <form id="editPrimaryAddress" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <input type="hidden" name="customerId" value="<?= htmlspecialchars($customerId) ?>">
 
-                        <div class="col-lg-6 mb-4">
-                            <label class="form-label mb-1">NEW PASSWORD</label>
-                            <input name="newPassword" type="password" class="form-control input-field <?php echo (!empty($newPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your new password" aria-label="Last name" value="<?php echo $newPassword; ?>">
+                        <div class="col-md-4 mb-4">
+                            <label class="form-label mb-1">STREET</label>
+                            <input name="street" type="text" class="form-control input-field <?php echo (!empty($street_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter street" aria-label="Current Password" value="<?php echo $street ?>">
                             <div class="invalid-feedback">
-                                <?php echo $newPassword_err; ?>
+                                <?php echo $street_err; ?>
                             </div>
                         </div>
-                        <div class="mb-4 col-lg-6 mb-4">
-                            <label class="form-label mb-1">CONFIRM NEW PASSWORD</label>
-                            <input name="confirmPassword" type="password" class="form-control fs-6 input-field mb-2 <?php echo (!empty($confirmPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Re-enter your new password" value="<?php echo $confirmPassword; ?>">
+                        <div class="col-md-4 mb-4">
+                            <label class="form-label mb-1">CITY</label>
+                            <input name="city" type="text" class="form-control input-field <?php echo (!empty($city_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter city" aria-label="Current Password" value="<?php echo $city ?>">
                             <div class="invalid-feedback">
-                                <?php echo $confirmPassword_err; ?>
+                                <?php echo $city_err; ?>
                             </div>
-                            <div class="password-reminder">
-                                <small>Password must be atleast 8 characters long and include a mix of uppercase letters, lowercase letters, and numbers.</small>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <label class="form-label mb-1">PROVINCE</label>
+                            <input name="province" type="text" class="form-control input-field <?php echo (!empty($province_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter province" aria-label="Current Password" value="<?php echo $province ?>">
+                            <div class="invalid-feedback">
+                                <?php echo $province_err; ?>
                             </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <label class="form-label mb-1">COUNTRY</label>
+                            <input name="country" type="text" class="form-control input-field <?php echo (!empty($country_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter country" aria-label="Current Password" value="<?php echo $country ?>">
+                            <div class="invalid-feedback">
+                                <?php echo $country_err; ?>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-5">
+                            <label class="form-label mb-1">ZIP CODE</label>
+                            <input name="zipCode" type="text" class="form-control input-field" placeholder="Enter zip code" aria-label="Current Password" value="<?php echo $zipCode ?>">
                         </div>
                     </form>
                     <div class="row justify-content-between">
                         <div class="mb-3 col-xxl-2">
-                            <button data-bs-toggle="modal" data-bs-target="#updatePasswordModal" class="btn btn-lg fs-6 w-100 my-button-yes">Save Password</button>
-                        </div>
-                        <div class="mb-0 col-xxl-2">
-                            <button data-bs-toggle="modal" data-bs-target="#deleteEmployeeAccountModal" class="btn btn-lg fs-6 w-100 my-button-danger">Delete</button>
+                            <button data-bs-toggle="modal" data-bs-target="#updateAddressModal" class="btn btn-lg fs-6 w-100 my-button-yes">Save Address</button>
                         </div>
                     </div>
                 </div>
@@ -308,7 +317,7 @@ require_once "php/customer_editing.php";
                 <button type="button" class="btn my-button-no" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Your account will be deleted.
+                Account will be deleted.
             </div>
             <div class="modal-footer">
                 <button name="deleteAccount" form="editCustomerPasswordForm" class="btn my-button-danger">Confirm</button>
@@ -327,10 +336,30 @@ require_once "php/customer_editing.php";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Your password will be updated.
+                Password will be updated.
             </div>
             <div class="modal-footer">
                 <button name="changePassword" form="editCustomerPasswordForm" class="btn my-button-yes">Confirm</button>
+                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- //? modal paras confirmation sa pag update sa address -->
+
+<div class="modal fade" id="updateAddressModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="updatePasswordModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
+        <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
+            <div class="modal-header">
+                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm edit address?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Address will be updated.
+            </div>
+            <div class="modal-footer">
+                <button name="editAddress" form="editPrimaryAddress" class="btn my-button-yes">Confirm</button>
                 <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>

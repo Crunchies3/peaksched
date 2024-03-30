@@ -120,47 +120,80 @@ require_once "php/customer_adding.php";
                     <h1>Customer</h1>
                 </div>
                 <div class="container-fluid" id="subArea-single">
-                    <div class="row">
-                        <div class="col">
-                            <h5><span><a href="./customer_page.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Add Customer</h5>
-                        </div>
+                    <div>
+                        <h5><span><a href="./customer_page.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span>Add Customer</h5>
                     </div>
                     <form id="addCustomerForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <div class="col-md-6 mb-4">
-                            <label class="form-label mb-1">FIRST NAME</label>
-                            <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $firstName ?>">
+                            <label class="form-label mb-1">FIRST NAME <span class="my-form-required">*</span></label>
+                            <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter first name" aria-label="Current Password" value="<?php echo $firstName ?>">
                             <div class="invalid-feedback">
                                 <?php echo $firstName_err; ?>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label class="form-label mb-1">LAST NAME</label>
-                            <input name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your last name" aria-label="Last name" value="<?php echo $lastName ?>">
+                            <label class="form-label mb-1">LAST NAME <span class="my-form-required">*</span></label>
+                            <input name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter last name" aria-label="Last name" value="<?php echo $lastName ?>">
                             <div class="invalid-feedback">
                                 <?php echo $lastName_err; ?>
                             </div>
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
-                            <label class="form-label mb-1">EMAIL ADDRESS</label>
-                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your email address" value="<?php echo $email ?>">
+                            <label class="form-label mb-1">EMAIL ADDRESS <span class="my-form-required">*</span></label>
+                            <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter email address" value="<?php echo $email ?>">
                             <div class="invalid-feedback">
                                 <?php echo $email_err; ?>
                             </div>
                         </div>
-                        <div class="mb-4 col-lg-6 mb-4">
-                            <label class="form-label mb-1">PHONE NUMBER</label>
-                            <input name="mobile" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your mobile number" value="<?php echo $mobileNumber ?>">
+                        <div class="mb-4 col-lg-6 mb-5">
+                            <label class="form-label mb-1">PHONE NUMBER <span class="my-form-required">*</span></label>
+                            <input name="mobile" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter mobile number" value="<?php echo $mobileNumber ?>">
                             <div class="invalid-feedback">
                                 <?php echo $mobileNumber_err; ?>
                             </div>
                         </div>
+                        <div>
+                            <h5>Address</h5>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <label class="form-label mb-1">STREET <span class="my-form-required">*</span></label>
+                            <input name="street" type="text" class="form-control input-field <?php echo (!empty($street_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter street" aria-label="Current Password" value="<?php echo $street ?>">
+                            <div class="invalid-feedback">
+                                <?php echo $street_err; ?>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <label class="form-label mb-1">CITY <span class="my-form-required">*</span></label>
+                            <input name="city" type="text" class="form-control input-field <?php echo (!empty($city_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter city" aria-label="Current Password" value="<?php echo $city ?>">
+                            <div class="invalid-feedback">
+                                <?php echo $city_err; ?>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <label class="form-label mb-1">PROVINCE <span class="my-form-required">*</span></label>
+                            <input name="province" type="text" class="form-control input-field <?php echo (!empty($province_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter province" aria-label="Current Password" value="<?php echo $province ?>">
+                            <div class="invalid-feedback">
+                                <?php echo $province_err; ?>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <label class="form-label mb-1">COUNTRY <span class="my-form-required">*</span></label>
+                            <input name="country" type="text" class="form-control input-field <?php echo (!empty($country_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter country" aria-label="Current Password" value="<?php echo $country ?>">
+                            <div class="invalid-feedback">
+                                <?php echo $country_err; ?>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-5">
+                            <label class="form-label mb-1">ZIP CODE</label>
+                            <input name="zipCode" type="text" class="form-control input-field" placeholder="Enter zip code" aria-label="Current Password" value="<?php echo $zipCode ?>">
+                        </div>
                     </form>
                     <div class="row">
                         <div class="mb-3 col-xxl-2">
-                            <button data-bs-toggle="modal" data-bs-target="#addCustomerModal" type="submit" class="btn btn-lg fs-6 w-100 my-button-yes">Save</button>
+                            <button data-bs-toggle="modal" data-bs-target="#addCustomerModal" type="submit" class="btn btn-lg fs-6 w-100 my-button-yes">Add Customer</button>
                         </div>
                         <div class="mb-0 col-xxl-2">
-                            <a href="./customer_adding_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Cancel</a>
+                            <a href="./customer_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Cancel</a>
                         </div>
                     </div>
                 </div>
