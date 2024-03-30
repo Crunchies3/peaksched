@@ -112,7 +112,7 @@ require_once "../php/appointment-request-details.php";
                 </div>
                 <div class="container-fluid" id="subArea-top">
                     <div>
-                        <h5>Appointment Request Details</h5>
+                        <h5><span><a href="./" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Appointment Request Details</h5>
                     </div>
                     <form id="appointmentDetails" class="row mb-3" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <input type="hidden" name="appointmentId" value="<?= htmlspecialchars($appointmentId) ?>" id="appointmentId">

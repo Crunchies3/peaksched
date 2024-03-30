@@ -111,8 +111,16 @@ require_once "../php/appointment-request.php";
         </aside>
         <section class="main p-2" id="main">
             <div class="container-fluid" id="mainArea">
-                <div class="mb-5">
+                <div class="mb-4">
                     <h1>Appointments</h1>
+                </div>
+                <div class="row ">
+                    <div class="mb-3 col-xxl-2">
+                        <a href="./index.php" class="btn my-button-selected w-100">Pending Requests</a>
+                    </div>
+                    <div class="mb-4 col-xxl-2">
+                        <a href="./approved-appointments.php" class="btn my-button-unselected w-100">Approved Appointments</a>
+                    </div>
                 </div>
                 <div class="container-fluid" id="subArea-single">
                     <div>
