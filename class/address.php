@@ -37,6 +37,44 @@ class Address
         }
     }
 
+    public function fetchCustomerPrimaryAddress($customerId)
+    {
+        try {
+            $type = 'Primary';
+
+            $stmt = $this->conn->prepare(
+                "SELECT a.address_id,
+                        a.street,
+                        a.city,
+                        a.province,
+                        a.country,
+                        a.zip_code,
+                        a.type
+                FROM    tbl_customer_address a,
+                        tbl_customer b
+                WHERE   b.customerid = a.customer_id &&
+                        b.customerid = ? &&
+                        a.type = ?"
+            );
+            $stmt->bind_param("ss", $customerId, $type);
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $this->setAddress_id($row['address_id']);
+                    $this->setStreet($row['street']);
+                    $this->setCity($row['city']);
+                    $this->setProvince($row['province']);
+                    $this->setZip_code($row['zip_code']);
+                    $this->setCountry($row['country']);
+                }
+            }
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
     public function fetchAddressListByCustomer($customerId)
     {
         try {
