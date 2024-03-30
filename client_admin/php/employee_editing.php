@@ -79,7 +79,7 @@ if (isset($_POST['updateInfo'])) { //! para mag update sa details like name
     $payrate_err = $validate->payrate($payrate);
 
     $status = trim($_POST["status"]);
-    $status_err = $validate->status($status);
+    // $status_err = $validate->status($status);
 
     if (empty($firstname_err) && empty($payrate_err) && empty($status_err) && empty($lastName_err) && empty($email_err) && empty($mobileNumber_err)) {
         $employee->updateEmployeeDetails($firstName, $lastName,  $email, $mobileNumber, $position, $employeeId, $payrate, $status);

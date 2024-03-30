@@ -82,7 +82,8 @@ class Appointment
                         a.service_id = c.service_id AND
                         a.address_id = d.address_id AND
                         a.customer_id = d.customer_id AND
-                        a.status != 'Denied'
+                        a.status != 'Denied' AND
+                        a.status != 'Approved'
                 ORDER BY a.start ASC;"
             );
             $stmt->execute();
@@ -93,6 +94,38 @@ class Appointment
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
+
+
+    public function displayApprovedAppointments()
+    {
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT a.appointment_id,
+                CONCAT(b.firstname,' ', b.lastname) AS 'customer',
+                c.title,
+                CONCAT(d.street, '. ', d.city, ', ', d.province, '. ', d.country, ', ', d.zip_code)  as 'fullAddress',
+                a.start,
+                a.status
+                FROM    tbl_confirmed_appointment a,
+                        tbl_customer b,
+                        tbl_service c,
+                        tbl_customer_address d
+                WHERE   a.customer_id = b.customerid AND
+                        a.service_id = c.service_id AND
+                        a.address_id = d.address_id AND
+                        a.customer_id = d.customer_id
+                ORDER BY a.start ASC;"
+            );
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            return $result;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+
 
     public function isAppointmentIdUnique($id)
     {
@@ -136,7 +169,7 @@ class Appointment
             $stmt = $this->conn->prepare("DELETE FROM tbl_confirmed_appointment WHERE appointment_id = ?");
             $stmt->bind_param("s", $appointmentId);
             $stmt->execute();
-           
+
             return true;
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
@@ -158,7 +191,6 @@ class Appointment
             );
             $stmt->bind_param("sssssss", $note, $dateTimeStart, $dateTimeEnd, $customerId, $employeeId, $serviceId, $appointmentId);
             $stmt->execute();
-           
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
@@ -181,7 +213,6 @@ class Appointment
             );
             $stmt->bind_param("ssssssss", $appointmentId, $customerId, $serviceId, $tempAddress, $employeeId, $dateTimeStart, $dateTimeEnd, $note);
             $stmt->execute();
-
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
@@ -450,17 +481,19 @@ class Appointment
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-    public function approveAppointment($appointmentId, $customerId, $service_id, $addressId, $supervisorid, $num_floors, $num_beds, $num_baths,$start,$end,$note,$status){
+    public function approveAppointment($appointmentId, $customerId, $service_id, $addressId, $supervisorid, $num_floors, $num_beds, $num_baths, $start, $end, $note, $status)
+    {
         try {
             $stmt = $this->conn->prepare("INSERT INTO tbl_confirmed_appointment (appointment_id, customer_id, service_id, address_id, supervisor_id, num_floors, num_beds, num_baths,
             start, end, note, status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
-            $stmt->bind_param("ssssssssssss",$appointmentId,$customerId,$service_id,$addressId,$supervisorid,$num_floors,$num_beds,$num_baths,$start,$end,$note,$status);
+            $stmt->bind_param("ssssssssssss", $appointmentId, $customerId, $service_id, $addressId, $supervisorid, $num_floors, $num_beds, $num_baths, $start, $end, $note, $status);
             $stmt->execute();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-    public function updateApprovedAppointment($appointmentId){
+    public function updateApprovedAppointment($appointmentId)
+    {
         try {
             $stmt = $this->conn->prepare(
                 "UPDATE tbl_request_appointment a SET a.status = 'Approved' WHERE request_app_id = ?"
@@ -471,7 +504,8 @@ class Appointment
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-    public function denyCustRequest($id){
+    public function denyCustRequest($id)
+    {
         try {
             $stmt = $this->conn->prepare(
                 "UPDATE tbl_request_appointment a SET a.status = 'Denied' WHERE request_app_id = ?"
@@ -482,7 +516,8 @@ class Appointment
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-    public function getApprovedAppointmentDetails($appointmentId){
+    public function getApprovedAppointmentDetails($appointmentId)
+    {
         try {
             $stmt = $this->conn->prepare(
                 "SELECT CONCAT(b.firstname,' ',b.lastname) AS 'fullname',
@@ -506,7 +541,7 @@ class Appointment
                       a.supervisor_id = e.employeeid AND
                       a.appointment_id = ?"
             );
-            $stmt->bind_param("s",$appointmentId);
+            $stmt->bind_param("s", $appointmentId);
             $stmt->execute();
             $result = $stmt->get_result();
             return $result;
@@ -516,13 +551,14 @@ class Appointment
     }
 
 
-    public function fetchRepeatedDatesCurrentOnwards(){
+    public function fetchRepeatedDatesCurrentOnwards()
+    {
         try {
             $stmt = $this->conn->prepare(
                 "SELECT DATE(start) AS 'dates' FROM tbl_confirmed_appointment
                  WHERE DATE(start) >= CURRENT_DATE() 
                  GROUP BY DATE(start) HAVING COUNT(*) = 4"
-                );
+            );
             $stmt->execute();
             $result = $stmt->get_result();
             $repeatedDates = array();
@@ -531,7 +567,7 @@ class Appointment
                     array_push($repeatedDates, $row);
                 }
             }
-           echo json_encode($repeatedDates);
+            echo json_encode($repeatedDates);
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }

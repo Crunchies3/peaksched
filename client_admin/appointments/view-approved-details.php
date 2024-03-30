@@ -112,7 +112,7 @@ require_once "../php/appointment-approved-details.php";
                 </div>
                 <div class="container-fluid" id="subArea-top">
                     <div>
-                        <h5>Appointment Details</h5>
+                        <h5><span><a href="./approved-appointments.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span>Appointment Details</h5>
                     </div>
                     <form id="appointmentDetails" class="row mb-3" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <input type="hidden" name="appointmentId" value="<?= htmlspecialchars($appointmentId) ?>" id="appointmentId">
@@ -142,19 +142,19 @@ require_once "../php/appointment-approved-details.php";
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">NUMBER OF FLOORS</label>
-                            <input disabled name="position" type="text" class="form-control fs-6 input-field" placeholder="Enter your position" value="<?php echo $num_floors ?>">
+                            <input disabled name="position" type="text" class="form-control fs-6 input-field" placeholder="other" value="<?php echo $num_floors ?>">
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">NUMBER OF BEDS</label>
-                            <input disabled name="position" type="text" class="form-control fs-6 input-field" placeholder="Enter your position" value="<?php echo $num_beds ?>">
+                            <input disabled name="position" type="text" class="form-control fs-6 input-field" placeholder="other" value="<?php echo $num_beds ?>">
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">NUMBER OF BATHS</label>
-                            <input disabled name="position" type="text" class="form-control fs-6 input-field" placeholder="Enter your position" value="<?php echo $num_baths ?>">
+                            <input disabled name="position" type="text" class="form-control fs-6 input-field" placeholder="other" value="<?php echo $num_baths ?>">
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">ASSIGNED SUPERVISOR</label>
-                            <input disabled name="position" type="text" class="form-control fs-6 input-field" placeholder="Enter your position" value="<?php echo $supFullname ?>">
+                            <input disabled name="position" type="text" class="form-control fs-6 input-field" placeholder="" value="<?php echo $supFullname ?>">
                         </div>
                     </form>
                 </div>

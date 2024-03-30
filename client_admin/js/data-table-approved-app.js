@@ -12,6 +12,7 @@ $(document).ready(function () {
 });
 
 $('#myTable').DataTable({
+    responsive: true,
     layout: {
         topStart: 'search',
         topEnd: {
@@ -21,17 +22,17 @@ $('#myTable').DataTable({
             }]
         },
         //! start copy
-        // top1: {
-        //     searchPanes: {
-        //         initCollapsed: true,
-        //         preSelect: [
-        //             {
-        //                 rows: ['Report Needed', 'Pending Approval', 'Approved'],
-        //                 column: 6
-        //             }
-        //         ]
-        //     }
-        // }
+        top1: {
+            searchPanes: {
+                initCollapsed: true,
+                preSelect: [
+                    {
+                        rows: ['Pending'],
+                        column: 6
+                    }
+                ]
+            }
+        }
         //! end copy
     },
     //! start copy
@@ -60,9 +61,7 @@ $('#myTable').DataTable({
             data: null,
             render: function (row) {
                 var tempElement = document.createElement('div');
-                tempElement.innerHTML = row[6];
-                var status = tempElement.textContent;
-                return '<form action="./view-details.php" id="editEmployee" method="get"><input id="employeeId" hidden type="text" name="appointmentId" value=""></form><button form="editEmployee" class="btn btn-sm my-button-yes mx-1" id="actionClick">View</button>';
+                return '<form action="./view-approved-details.php" id="editEmployee" method="get"><input id="employeeId" hidden type="text" name="appointmentId" value=""></form><button form="editEmployee" class="btn btn-sm my-button-yes mx-1" id="actionClick">View</button>';
             },
             targets: -1
         },
@@ -73,15 +72,9 @@ $('#myTable').DataTable({
                 orderable: false,
                 options: [
                     {
-                        label: 'Report Needed',
+                        label: 'Pending',
                         value: function (rowData, rowIdx) {
-                            return rowData[6] == '<span class="badge rounded-pill my-badge-report-needed">Report Needed</span>';
-                        }
-                    },
-                    {
-                        label: 'Pending Approval',
-                        value: function (rowData, rowIdx) {
-                            return rowData[6] == '<span class="badge rounded-pill my-badge-pending">Pending Approval</span>';
+                            return rowData[6] == '<span class="badge rounded-pill my-badge-pending">pending</span>';
                         }
                     },
                     {
@@ -90,12 +83,6 @@ $('#myTable').DataTable({
                             return rowData[6] == '<span class="badge rounded-pill my-badge-approved">Completed</span>';
                         }
                     },
-                    {
-                        label: 'Approved',
-                        value: function (rowData, rowIdx) {
-                            return rowData[6] == '<span class="badge rounded-pill my-badge-approved">Approved</span>';
-                        }
-                    }
                 ],
                 combiner: 'or'
             },

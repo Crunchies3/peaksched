@@ -12,6 +12,7 @@ $(document).ready(function () {
 });
 
 $('#myTable').DataTable({
+    responsive: true,
     layout: {
         topStart: 'search',
         topEnd: {
@@ -27,6 +28,7 @@ $('#myTable').DataTable({
             }]
         },
     },
+    order: [1, 'asc'],
     scrollY: 450,
     language: {
         emptyTable: 'No data available in table'

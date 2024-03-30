@@ -11,6 +11,19 @@ if (element) {
     element.name = "selectedService";
 }
 
+$('#positionList').editableSelect({
+    effects: 'fade',
+});
+
+var element = document.getElementById("positionList");
+if (element) {
+    element.classList.add("form-control");
+    element.classList.add("input-field");
+    element.placeholder = "Select a position";
+    element.name = "position";
+}
+
+
 
 $('#serviceList2').editableSelect({
     effects: 'fade',
