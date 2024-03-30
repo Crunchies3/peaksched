@@ -90,7 +90,6 @@ class Customers
             $stmt = $this->conn->prepare("INSERT INTO tbl_customer (customerid, firstname, lastname, email, mobileNumber, password) VALUES (?,?,?,?,?,?)");
             $stmt->bind_param("ssssss", $customerid, $firstName, $lastName, $email, $mobileNumber, $tempPassword);
             $stmt->execute();
-            $this->conn->close();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
@@ -115,7 +114,7 @@ class Customers
     //change customer pass
     public function changeCustomerPassword($newHashedPassword, $customerId)
     {
-        
+
         try {
             $stmt = $this->conn->prepare("UPDATE tbl_customer SET password = ? WHERE customerid = ?");
             $stmt->bind_param("ss", $newHashedPassword, $customerId);
@@ -125,17 +124,19 @@ class Customers
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-    public function deleteCustomer($customerId){
+    public function deleteCustomer($customerId)
+    {
         try {
             $stmt = $this->conn->prepare("DELETE FROM tbl_customer WHERE customerid = ?");
-            $stmt->bind_param("s",$customerId);
+            $stmt->bind_param("s", $customerId);
             $stmt->execute();
             $this->conn->close();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-    public function fetchCustomerAppointment($customerId){
+    public function fetchCustomerAppointment($customerId)
+    {
         try {
             $stmt = $this->conn->prepare(
                 "SELECT a.appointment_id,
@@ -151,7 +152,7 @@ class Customers
                       a.service_id = c.service_id AND
                       a.customer_id = ?"
             );
-            $stmt->bind_param("s",$customerId);
+            $stmt->bind_param("s", $customerId);
             $stmt->execute();
             $result = $stmt->get_result();
             return $result;
