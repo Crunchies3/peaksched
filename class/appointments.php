@@ -45,7 +45,7 @@ class Appointment
                         tbl_service d,
                         tbl_customer_address e
                 WHERE   b.customerid = a.customer_id &&
-                        b.customerid = e.customer_id &&
+                        a.address_id = e.address_id &&
                         a.service_id = d.service_id &&
                         a.supervisor_id = c.employeeid;"
             );
@@ -196,10 +196,10 @@ class Appointment
         }
     }
 
-    public function addAppointmnet($appointmentId, $serviceId, $customerId, $employeeId, $dateTimeStart, $dateTimeEnd, $note)
+    public function addAppointmnet($appointmentId, $serviceId, $customerId, $employeeId, $dateTimeStart, $dateTimeEnd, $note, $addressId)
     {
-        $tempAddress = "1";
         try {
+            $stat = 'pending';
             $stmt = $this->conn->prepare(
                 "INSERT INTO tbl_confirmed_appointment (appointment_id, 
                                                         customer_id, 
@@ -208,10 +208,11 @@ class Appointment
                                                         supervisor_id,
                                                         start,
                                                         end,
-                                                        note) 
-                VALUES (?,?,?,?,?,?,?,?);"
+                                                        note,
+                                                        status) 
+                VALUES (?,?,?,?,?,?,?,?,?);"
             );
-            $stmt->bind_param("ssssssss", $appointmentId, $customerId, $serviceId, $tempAddress, $employeeId, $dateTimeStart, $dateTimeEnd, $note);
+            $stmt->bind_param("sssssssss", $appointmentId, $customerId, $serviceId, $addressId, $employeeId, $dateTimeStart, $dateTimeEnd, $note, $stat);
             $stmt->execute();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
