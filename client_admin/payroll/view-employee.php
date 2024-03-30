@@ -115,9 +115,11 @@ require_once "../php/payroll_view_employee.php";
                     <h1>Payroll</h1>
                 </div>
                 <div class="container-fluid" id="subArea-single">
-                    <div>
-                        <h5>Employee payroll</h5>
-                        <input type="hidden" name="payrollId" value="<?= htmlspecialchars($payroll_id) ?>" id="payrollid">
+                    <div class="row">
+                        <div class="col">
+                            <h5><span><a href="./index.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Employee Payroll</h5>
+                            <input type="hidden" name="payrollId" value="<?= htmlspecialchars($payroll_id) ?>" id="payrollid">
+                        </div>
                     </div>
                     <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header -->

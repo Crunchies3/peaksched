@@ -116,39 +116,56 @@ require_once "../php/run-payroll.php";
                     <div>
                         <h5><span><a href="./" class="btn my-button-back mx-2"><i class="bi bi-chevron-left"></i></a></span>Run Payroll</h5>
                     </div>
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
-                        <div>
-                            <label for="startDate">Start Date</label>
-                            <input type="date" name="startDate" id="startDate">
+
+                    <form id="runPayrollForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label mb-1">Start Date</label>
+                            <input type="date" class="form-control input-field" name="startDate" id="startDate">
                         </div>
-                        <div>
-                            <label for="endDate">end Date</label>
-                            <input type="date" name="endDate" id="endDate">
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label mb-1">end Date</label>
+                            <input type="date" class="form-control input-field" name="endDate" id="endDate">
                         </div>
-                        <div>
-                            <label for="fedTax">Federal Tax percent</label>
-                            <input type="text" name="fedTax" id="fedTax">
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label mb-1">Federal Tax percent</label>
+                            <input type="text" class="form-control input-field" name="fedTax" id="fedTax">
                         </div>
-                        <div>
-                            <label for="payDate">Pay Date</label>
-                            <input type="date" name="payDate" id="payDate">
-                        </div>
-                        <div>
-                            <button>
-                                Run Payroll
-                            </button>
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label mb-1">Pay Date</label>
+                            <input type="date" class="form-control input-field" name="payDate" id="payDate">
                         </div>
                     </form>
-
-
-
-
-
+                    <div class="row">
+                        <div class="mb-3 col-xxl-2">
+                            <button data-bs-toggle="modal" data-bs-target="#runPayrollModal" type="submit" class="btn btn-lg fs-6 w-100 my-button-yes">Run Payroll</button>
+                        </div>
+                        <div class="mb-0 col-xxl-2">
+                            <a href="./index.php" name="cancel" class="btn btn-lg fs-6 w-100 my-button-no">Cancel</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-        <script src="../js/data-table-employee-payroll.js"></script>
         <script src="../js/script.js"></script>
 </body>
 
 </html>
+
+
+<div class="modal fade" id="runPayrollModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="runPayrollModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
+        <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
+            <div class="modal-header">
+                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm run payroll?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Run payroll
+            </div>
+            <div class="modal-footer">
+                <button name="runPayroll" form="runPayrollForm" class="btn my-button-yes">Confirm</button>
+                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
