@@ -105,6 +105,12 @@ $('#myTable').DataTable({
                 combiner: 'or'
             },
             targets: [2]
+        },
+        {
+            searchPanes: {
+                show: false,
+            },
+            targets: [0, 1, 3, 4, 5]
         }
         //! end copy
     ],

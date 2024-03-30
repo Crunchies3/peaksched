@@ -32,6 +32,7 @@ $('#myTable').DataTable({
                     }
                 ]
             }
+
         }
         //! end copy
     },
@@ -91,7 +92,14 @@ $('#myTable').DataTable({
                 combiner: 'or'
             },
             targets: [3]
+        },
+        {
+            searchPanes: {
+                show: false,
+            },
+            targets: [0, 1, 2, 4, 5, 6]
         }
+
         //! end copy
     ],
 });
