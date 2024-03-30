@@ -122,8 +122,10 @@ require_once "php/service_adding.php";
                 </div>
                 <div class="container-fluid" id="subArea-single">
                     <div class="container">
-                        <div>
-                            <h5>Create new services</h5>
+                        <div class="row">
+                            <div class="col">
+                                <h5><span><a href="./services_page.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Create new services</h5>
+                            </div>
                         </div>
                         <form id="addServiceForm" class="row mb-5" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                             <div class="col-md-6 mb-4">

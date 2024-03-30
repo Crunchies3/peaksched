@@ -106,8 +106,10 @@ require_once "../php/payslip_view_detail.php";
         </aside>
         <section class="main p-2" id="main">
             <div class="container-fluid" id="mainArea">
-                <div class="mb-5">
-                    <h1>Payslip</h1>
+                <div class="row">
+                    <div class="col">
+                        <h1><span><a href="./index.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Payslip</h1>
+                    </div>
                 </div>
                 <div class="container-fluid" id="subArea-top">
                     <div class="row justify-content-between">

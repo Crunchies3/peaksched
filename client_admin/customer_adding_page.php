@@ -120,8 +120,10 @@ require_once "php/customer_adding.php";
                     <h1>Customer</h1>
                 </div>
                 <div class="container-fluid" id="subArea-single">
-                    <div>
-                        <h5>Add Customer</h5>
+                    <div class="row">
+                        <div class="col">
+                            <h5><span><a href="./customer_page.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Add Customer</h5>
+                        </div>
                     </div>
                     <form id="addCustomerForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <div class="col-md-6 mb-4">
