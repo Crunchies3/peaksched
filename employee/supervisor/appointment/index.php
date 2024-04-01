@@ -128,7 +128,7 @@ require_once "../../php/assigned_app_supervisor.php";
                                     <td><?php echo $rows['fullname']; ?></td>
                                     <td><?php echo $rows['title']; ?></td>
                                     <?php
-                                    if ($rows['status'] == 'Pending') $badgeType = 'my-badge-pending';
+                                    if ($rows['status'] == 'pending') $badgeType = 'my-badge-pending';
                                     else if ($rows['status'] == 'Report Needed') $badgeType = 'my-badge-report-needed';
                                     else if ($rows['status'] == 'Completed') $badgeType = 'my-badge-approved';
                                     ?>

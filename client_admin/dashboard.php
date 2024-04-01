@@ -157,9 +157,7 @@ require_once "php/dashboard.php";
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-clock mx-2"></i>
-                        <input name="start" id="start" type="text" class="form-control input-field selecServiceInput  timepicker" placeholder="" style="width: 163px;" value="12:00 AM">
-                        <i class="bi bi-dash-lg"></i>
-                        <input required name="end" id="end" type="text" class="form-control input-field selecServiceInput  timepicker" placeholder="" style="width: 163px;" value="12:15 AM">
+                        <input name="start" id="start" type="text" class="form-control input-field selecServiceInput  timepicker" placeholder="" value="8:00 AM">
                         <script src="./js/time_picker.js"></script>
                     </div>
                     <div class="mb-3">
@@ -178,7 +176,7 @@ require_once "php/dashboard.php";
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-clock mx-2" style="color: transparent;"></i>
-                        <textarea name="description" type="text" rows="3" class="form-control input-field selecServiceInput " placeholder="notes to supervisor"></textarea>
+                        <textarea name="description" id="editNote" type="text" rows="3" class="form-control input-field selecServiceInput " placeholder="notes to supervisor"></textarea>
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-person mx-2"></i>
@@ -239,9 +237,7 @@ require_once "php/dashboard.php";
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-clock mx-2"></i>
-                        <input required name="start" id="startApp" type="text" class="form-control input-field selecServiceInput  timepicker" placeholder="" style="width: 163px;" value="12:00 AM">
-                        <i class="bi bi-dash-lg"></i>
-                        <input required name="end" id="endApp" type="text" class="form-control input-field selecServiceInput timepicker" placeholder="" style="width: 163px;" value="12:15 AM">
+                        <input required name="start" id="start" type="text" class="form-control input-field selecServiceInput  timepicker" placeholder="" value="8:00 AM">
                         <script src="./js/time_picker.js"></script>
                     </div>
                     <div class="mb-3">
@@ -260,7 +256,7 @@ require_once "php/dashboard.php";
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-clock mx-2" style="color: transparent;"></i>
-                        <textarea name="description" type="text" rows="3" class="form-control input-field selecServiceInput " placeholder="notes to supervisor"></textarea>
+                        <textarea name="description" id="addNotes" type="text" rows="3" class="form-control input-field selecServiceInput " placeholder="notes to supervisor"></textarea>
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-person mx-2"></i>

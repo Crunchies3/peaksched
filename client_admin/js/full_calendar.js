@@ -30,6 +30,12 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById("serviceList").value = info.event.extendedProps.service;
             document.getElementById("supervisorList").value = info.event.extendedProps.supervisor;
             document.getElementById("appointmentId").value = info.event.id;
+            document.getElementById("editNote").value = info.event.extendedProps.note;
+            var eventTime = moment(info.event.start).format("HH:mm");
+            const tempEventDate = new Date(`2000-01-01T${eventTime}`);
+            tempEventDate.setHours(tempEventDate.getHours() - 8);
+            const adjustedEventStart = tempEventDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            document.getElementById("start").value = adjustedEventStart;
             // alert('Event: ' + info.event.title);
             // alert('id: ' + info.event.id);
             // alert('desc: ' + info.event.extendedProps.description);
