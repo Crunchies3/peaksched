@@ -79,7 +79,7 @@ $('#myTable').DataTable({
                     {
                         label: 'Pending',
                         value: function (rowData, rowIdx) {
-                            return rowData[3] == '<span class="badge rounded-pill my-badge-pending">Pending</span>';
+                            return rowData[3] == '<span class="badge rounded-pill my-badge-pending">pending</span>';
                         }
                     },
                     {
