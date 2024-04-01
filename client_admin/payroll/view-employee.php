@@ -118,7 +118,9 @@ require_once "../php/payroll_view_employee.php";
                     <div class="row">
                         <div class="col">
                             <h5><span><a href="./index.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Employee Payroll</h5>
-                            <input type="hidden" name="payrollId" value="<?= htmlspecialchars($payroll_id) ?>" id="payrollid">
+                            <form id='approvePayrollForm' action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                                <input type="hidden" name="payrollId" value="<?php echo htmlspecialchars($payroll_id) ?>" id="payrollid">
+                            </form>
                         </div>
                     </div>
                     <table id="myTable" class="table table-hover table-striped">
@@ -131,7 +133,8 @@ require_once "../php/payroll_view_employee.php";
                             <th style="color: white;">Gross Pay</th>
                             <th style="color: white;">Deductions</th>
                             <th style="color: white;">Total</th>
-                            <th style="color: whitee">Actions</th>
+                            <th style="color: white;">Status</th>
+                            <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
                             <?php
@@ -145,6 +148,7 @@ require_once "../php/payroll_view_employee.php";
                                     <td><?php echo '$' . round($rows['gross_pay'], 2); ?></td>
                                     <td><?php echo '$' . round($rows['deductions'], 2); ?></td>
                                     <td><?php echo '$' . round($rows['net_pay'], 2); ?></td>
+                                    <td><?php echo ($rows['status']); ?></td>
                                     <td></td>
                                 </tr>
                             <?php
@@ -160,3 +164,20 @@ require_once "../php/payroll_view_employee.php";
 </body>
 
 </html>
+<div class="modal fade" id="approvePayrollModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="approvePayrollModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
+        <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
+            <div class="modal-header">
+                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm Changes?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Payroll will be approved
+            </div>
+            <div class="modal-footer">
+                <button name="approvethePayroll" form="approvePayrollForm" class="btn my-button-yes">Confirm</button>
+                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

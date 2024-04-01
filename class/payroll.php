@@ -115,15 +115,17 @@ class Payroll
                                             hours_worked,
                                             gross_pay,
                                             deductions,
-                                            net_pay) 
-                    VALUES (?,?,?,?,?,?,?);"
+                                            net_pay,
+                                            status) 
+                    VALUES (?,?,?,?,?,?,?,?);"
                 );
 
                 $grossPay = $this->computeGrossPay($employeeHoursWorked[$i]['total_hours'], $employeePayrates[$i]['pay_rate']);
                 $deductions = $this->computeDeduction($federalTax, $grossPay);
                 $netPay = $this->computenetpay($deductions, $grossPay);
+                $status = 'Pending';
 
-                $stmt->bind_param("sssssss", $payslipId, $payrollId, $employeeList[$i]['employee_id'], $employeeHoursWorked[$i]['total_hours'], $grossPay, $deductions, $netPay);
+                $stmt->bind_param("ssssssss", $payslipId, $payrollId, $employeeList[$i]['employee_id'], $employeeHoursWorked[$i]['total_hours'], $grossPay, $deductions, $netPay, $status);
                 $stmt->execute();
                 $stmt->close();
             }
@@ -157,17 +159,10 @@ class Payroll
     {
         try {
             $stmt = $this->conn->prepare(
-                "SELECT a.payroll_id,
-                        a.pay_date,
-                        a.start_date,
-                        a.end_date,
-                        SUM(b.gross_pay) AS 'TotalGross',
-                        SUM(b.net_pay) AS 'TotalNet',
-                        COUNT(b.employee_id) AS 'EmployeeCount'
-                 FROM tbl_payroll a,
-                      tbl_payslip b
-                 WHERE a.payroll_id = b.payroll_id
-                 GROUP BY a.payroll_id, a.pay_date, a.start_date, a.end_date
+                "SELECT a.payroll_id, a.pay_date, a.start_date, a.end_date, b.EmployeeCount, a.status
+                 FROM tbl_payroll a 
+                 LEFT JOIN ( SELECT payroll_id, COUNT(employee_id) AS EmployeeCount FROM tbl_payslip GROUP BY payroll_id ) b 
+                 ON a.payroll_id = b.payroll_id;
                  "
             );
             $stmt->execute();
@@ -188,6 +183,7 @@ class Payroll
                         (HOUR(b.hours_worked)+ MINUTE(b.hours_worked)/60+SECOND(b.hours_worked)/3600) AS 'hours_worked',
                         b.gross_pay,
                         b.deductions,
+                        b.status,
                         b.net_pay
                 FROM tbl_employee a,
                      tbl_payslip b
@@ -261,6 +257,16 @@ class Payroll
                     $this->grossPay = $row['gross_pay'];
                 }
             }
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+    public function approvePayslip($payslipId, $employeeid)
+    {
+        try {
+            $stmt = $this->conn->prepare("UPDATE tbl_payslip SET status = 'Approved' WHERE payslip_id = ? AND employee_id = ?");
+            $stmt->bind_param("ss", $payslipId, $employeeid);
+            $stmt->execute();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
