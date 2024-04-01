@@ -232,11 +232,14 @@ require_once "../php/payslip_view_detail.php";
                             </tr>
                         </table>
                     </div>
-
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
+                        <input name='payslipid' type="hidden" value=<?php echo $payslipId ?>>
+                        <input name='employeeid' type="hidden" value=<?php echo $employee_id ?>>
+                        <button class="btn btn-primary" name='approvePayslip'>APPROVE PAYSLIP</button>
+                    </form>
                 </div>
 
             </div>
-
         </section>
         <script src="../js/script.js"></script>
 </body>

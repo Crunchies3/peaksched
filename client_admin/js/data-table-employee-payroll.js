@@ -9,7 +9,7 @@ $(document).ready(function () {
         employeeid = table.row(e.target.closest('tr')).data();
         payrollId = document.getElementById('payrollid').value;
         document.getElementById('employeeid').value = employeeid[0];
-        document.getElementById('payId').value = payrollId;    
+        document.getElementById('payId').value = payrollId;
     });
 });
 
@@ -24,7 +24,7 @@ $('#myTable').DataTable({
                 text: '<i class="bi bi-plus plus-icon"></i> approve payroll',
                 className: 'my-button-yes rounded',
                 action: function () {
-                    location.href = '';
+                    $("#approvePayrollModal").modal("show");
                 }
             }]
         },
@@ -36,7 +36,7 @@ $('#myTable').DataTable({
     'columnDefs': [
         {
             targets: 0,
-            'visible' : false
+            'visible': false
         },
         {
             targets: 1,
