@@ -21,4 +21,7 @@ if (isset($_POST['approvethePayroll'])) {
     $payroll_id = $_POST["payrollId"];
 
     $payroll->approvePayroll($payroll_id);
+} else if (isset($_POST['deletePayroll'])) {
+
+    //? diri ibutang ang code for delete payroll
 }

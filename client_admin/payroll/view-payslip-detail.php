@@ -106,13 +106,12 @@ require_once "../php/payslip_view_detail.php";
         </aside>
         <section class="main p-2" id="main">
             <div class="container-fluid" id="mainArea">
-                <div class="row">
-                    <div class="col">
-                        <h1><span><a href="./index.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Payslip</h1>
-                    </div>
+                <div class="col mb-5">
+                    <h1>Payroll</h1>
                 </div>
                 <div class="container-fluid" id="subArea-top">
                     <div class="row justify-content-between">
+                        <h5><span><a href="./view-employee.php?payrollId=<?php echo $payroll_id ?>" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span>Payslip Details</h5>
                         <div class="col-xxl-10 mb-3 ">
                             <h5>Payslip for the week of <?php echo $month ?> </h5>
                         </div>

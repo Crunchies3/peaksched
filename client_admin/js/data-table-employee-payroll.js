@@ -19,12 +19,18 @@ $('#myTable').DataTable({
         topEnd: {
             buttons: [{
                 text: ' sort',
-                className: 'sort-btn rounded mx-2 bi-sort-down-alt my-button-no',
+                className: 'sort-btn rounded mx-2 bi-sort-down-alt my-button-no col mb-2',
             }, {
-                text: '<i class="bi bi-plus plus-icon"></i> approve payroll',
-                className: 'my-button-yes rounded',
+                text: '<i class="bi bi-check2-circle"></i> approve payroll',
+                className: 'my-button-yes rounded col mb-2',
                 action: function () {
                     $("#approvePayrollModal").modal("show");
+                }
+            }, {
+                text: '<i class="bi bi-trash3"></i> Delete payroll',
+                className: 'my-button-danger rounded mx-2 col mb-2',
+                action: function () {
+                    $("#deletePayrollModal").modal("show");
                 }
             }]
         },
@@ -56,6 +62,10 @@ $('#myTable').DataTable({
         },
         {
             targets: 5,
+            className: "right-aligned-cell"
+        },
+        {
+            targets: 6,
             className: "right-aligned-cell"
         },
         {

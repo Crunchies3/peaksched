@@ -142,13 +142,17 @@ require_once "../php/payroll_view_employee.php";
                             ?>
                                 <tr>
                                     <td><?php echo $rows['employeeid']; ?></td>
-                                    <td><?php echo $rows['fullname']; ?></td>
+                                    <td class="emphasize"><?php echo $rows['fullname']; ?></td>
                                     <td><?php echo '$' . $rows['pay_rate'] . '/hr'; ?></td>
                                     <td><?php echo round($rows['hours_worked'], 2) . ' hours'; ?></td>
-                                    <td><?php echo '$' . round($rows['gross_pay'], 2); ?></td>
-                                    <td><?php echo '$' . round($rows['deductions'], 2); ?></td>
-                                    <td><?php echo '$' . round($rows['net_pay'], 2); ?></td>
-                                    <td><?php echo ($rows['status']); ?></td>
+                                    <td class="my-text-yes"><?php echo '$' . round($rows['gross_pay'], 2); ?></td>
+                                    <td class="my-text-no"><?php echo '$' . round($rows['deductions'], 2); ?></td>
+                                    <td class="my-text-yes"><?php echo '$' . round($rows['net_pay'], 2); ?></td>
+                                    <?php
+                                    if ($rows['status'] == 'Pending') $badgeType = 'my-badge-pending';
+                                    else if ($rows['status'] == 'Approved') $badgeType = 'my-badge-approved';
+                                    ?>
+                                    <td><span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $rows['status']; ?></span></td>
                                     <td></td>
                                 </tr>
                             <?php
@@ -168,7 +172,7 @@ require_once "../php/payroll_view_employee.php";
     <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
-                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm Changes?</h1>
+                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Approve Payroll?</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -176,6 +180,25 @@ require_once "../php/payroll_view_employee.php";
             </div>
             <div class="modal-footer">
                 <button name="approvethePayroll" form="approvePayrollForm" class="btn my-button-yes">Confirm</button>
+                <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deletePayrollModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="approvePayrollModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
+        <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
+            <div class="modal-header">
+                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Delete Payroll?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Payroll will be deleted
+            </div>
+            <div class="modal-footer">
+                <!-- pareha ra silag form sa approved payroll. sa if isset raka mag base kung unsay name sa button na delete -->
+                <button name="deletePayroll" form="approvePayrollForm" class="btn my-button-danger">Delete</button>
                 <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
