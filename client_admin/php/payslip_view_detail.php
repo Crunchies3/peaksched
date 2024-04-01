@@ -15,7 +15,7 @@ if (isset($_GET["employeeid"])) {
 }
 
 //getting displayables
-$payroll->employeePayslipDisplayables($employee_id,$payroll_id);
+$payroll->employeePayslipDisplayables($employee_id, $payroll_id);
 $firstname = $payroll->getfirstname();
 $lastname = $payroll->getlastname();
 $type = $payroll->gettype();
@@ -34,5 +34,14 @@ $deductions = $payroll->getdeductions();
 $grosspay = $payroll->getgrosspay();
 $federaltax = $payroll->getfederalTax();
 
+if (isset($_POST['approvePayslip'])) {
+    if ($_SERVER["REQUEST_METHOD"] != "POST") {
+        return;
+    };
 
-
+    $payslipId = $_POST["payslipid"];
+    $employee_id = $_POST["employeeid"];
+    $payroll->approvePayslip($payslipId, $employee_id);
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit;
+}

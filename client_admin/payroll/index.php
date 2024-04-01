@@ -124,9 +124,8 @@ require_once "../php/payroll_index.php";
                             <th style="color: white;">PayrollId</th>
                             <th style="color: white;">Pay Date</th>
                             <th style="color: white;">Pay Period</th>
-                            <th style="color: white;">Gross</th>
-                            <th style="color: white;">Net</th>
                             <th style="color: white;">Employees</th>
+                            <th style="color: white;">Status</th>
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
@@ -137,9 +136,8 @@ require_once "../php/payroll_index.php";
                                     <td><?php echo $rows['payroll_id']; ?></td>
                                     <td><?php echo $rows['pay_date']; ?></td>
                                     <td><?php echo $rows['start_date'] . ' - '; ?> <?php echo $rows['end_date']; ?></td>
-                                    <td><?php echo '$' . round($rows['TotalGross'], 2); ?></td>
-                                    <td><?php echo '$' . round($rows['TotalNet'], 2); ?></td>
                                     <td><?php echo $rows['EmployeeCount']; ?></td>
+                                    <td><?php echo $rows['status']; ?></td>
                                     <td></td>
                                 </tr>
                             <?php
