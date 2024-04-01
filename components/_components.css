@@ -257,6 +257,15 @@ label {
     font-weight: 600;
 }
 
+.my-text-yes {
+    color: green !important;
+}
+
+.my-text-no {
+    color: #d31f1f !important;
+}
+
+
 #tableHead .dt-orderable-asc {
     border-bottom: #e1e1e1;
     border-style: solid;
