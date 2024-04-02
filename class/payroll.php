@@ -271,6 +271,21 @@ class Payroll
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
+    public function isTherePending(): bool
+    {
+        try {
+            $stmt = $this->conn->prepare("SELECT status FROM tbl_payslip WHERE status = 'Pending'");
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
 
     public function getConn()
     {

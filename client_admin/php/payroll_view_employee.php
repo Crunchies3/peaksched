@@ -10,6 +10,8 @@ $payroll_id = "";
 if (isset($_GET["payrollId"])) {
     $payroll_id = $_GET["payrollId"];
 }
+//boolean
+$isTherePending = $payroll->isTherePending();
 
 $payslipList = $payroll->fetchEmployeeInsidePayroll($payroll_id);
 
