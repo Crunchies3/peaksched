@@ -271,10 +271,15 @@ class Payroll
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-    public function isTherePending(): bool
+    public function isTherePending($payrollId): bool
     {
         try {
-            $stmt = $this->conn->prepare("SELECT status FROM tbl_payslip WHERE status = 'Pending'");
+            $stmt = $this->conn->prepare("SELECT status 
+                                        FROM tbl_payslip 
+                                        WHERE status = 'Pending' &&
+                                               payroll_id = ?; 
+                                        ");
+            $stmt->bind_param("s", $payrollId);
             $stmt->execute();
             $result = $stmt->get_result();
             if ($result->num_rows > 0) {
@@ -282,6 +287,18 @@ class Payroll
             } else {
                 return false;
             }
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function deletePayroll($payrollid)
+    {
+        try {
+            $stmt = $this->conn->prepare("DELETE FROM tbl_payroll WHERE payroll_id = ?;");
+            $stmt->bind_param("s", $payrollid);
+            $stmt->execute();
+            $this->conn->close();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
