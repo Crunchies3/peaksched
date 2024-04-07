@@ -16,7 +16,11 @@ class Employee_Client
     public function fetchAssignedAppointments($supervisorId)
     {
         try {
-            $stmt = $this->conn->prepare("SELECT a.appointment_id, CONCAT(b.firstname,' ',b.lastname) AS 'fullname', c.title, a.status, a.start, a.end FROM tbl_confirmed_appointment a, tbl_customer b, tbl_service c WHERE a.customer_id = b.customerid && a.service_id = c.service_id && a.supervisor_id = ?");
+            $stmt = $this->conn->prepare(
+                "SELECT a.appointment_id, CONCAT(b.firstname,' ',b.lastname)
+                 AS 'fullname', c.title, a.status, a.start, a.end 
+                 FROM tbl_confirmed_appointment a, tbl_customer b, tbl_service c 
+                 WHERE a.customer_id = b.customerid && a.service_id = c.service_id && a.supervisor_id = ?");
             $stmt->bind_param("s", $supervisorId);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -126,9 +130,10 @@ class Employee_Client
                                 tbl_worker_appointment c
                             WHERE a.type = 'worker' &&
                                 a.employeeid = b.worker_id &&
+                                b.supervisor_id = ? &&
                                 !EXISTS(SELECT *FROM tbl_worker_appointment WHERE appointment_id = ? && worker_id = b.worker_id)"
             );
-            $stmt->bind_param("s", $appointmentId);
+            $stmt->bind_param("ss", $supervisorId,$appointmentId);
             $stmt->execute();
             $containsResult = $stmt->get_result();
             if ($containsResult->num_rows > 0) {
