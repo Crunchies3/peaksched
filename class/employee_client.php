@@ -26,6 +26,21 @@ class Employee_Client
         }
     }
 
+    public function fetchReports($supervisorId)
+    {
+        try {
+            $stmt = $this->conn->prepare("SELECT * 
+                                        FROM tbl_supervisor_report
+                                        WHERE supervisor_id = ?");
+            $stmt->bind_param("s", $supervisorId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
     public function fetchAssignedWorkerAppointments($workerId)
     {
         try {
@@ -87,7 +102,8 @@ class Employee_Client
                 FROM    tbl_employee a,
                         tbl_worker_appointment b
                 WHERE   b.worker_id = a.employeeid &&
-                        b.appointment_id = ?");
+                        b.appointment_id = ?"
+            );
             $stmt->bind_param("s", $appointmentId);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -96,7 +112,7 @@ class Employee_Client
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-    public function fetchUnassignedAppointmentWorkers($appointmentId,$supervisorId)
+    public function fetchUnassignedAppointmentWorkers($appointmentId, $supervisorId)
     {
         try {
             $stmt = $this->conn->prepare(
@@ -110,20 +126,20 @@ class Employee_Client
                                 tbl_worker_appointment c
                             WHERE a.type = 'worker' &&
                                 a.employeeid = b.worker_id &&
-                                !EXISTS(SELECT *FROM tbl_worker_appointment WHERE appointment_id = ? && worker_id = b.worker_id)");
-            $stmt->bind_param("s",$appointmentId);
+                                !EXISTS(SELECT *FROM tbl_worker_appointment WHERE appointment_id = ? && worker_id = b.worker_id)"
+            );
+            $stmt->bind_param("s", $appointmentId);
             $stmt->execute();
             $containsResult = $stmt->get_result();
-            if($containsResult->num_rows > 0){
+            if ($containsResult->num_rows > 0) {
                 $this->unassignedWorkersAppointment = $containsResult;
-            }else{
+            } else {
                 $stmy = $this->conn->prepare("SELECT*FROM tbl_employee a, tbl_supervisor_worker b WHERE a.employeeid = b.worker_id && b.supervisor_id = ? && !EXISTS(SELECT *FROM tbl_worker_appointment WHERE appointment_id = ? && worker_id = b.worker_id)");
-            $stmy->bind_param("ss",$supervisorId,$appointmentId);
-            $stmy->execute();
-            $emptyResult = $stmy->get_result();
-            $this->unassignedWorkersAppointment = $emptyResult;
+                $stmy->bind_param("ss", $supervisorId, $appointmentId);
+                $stmy->execute();
+                $emptyResult = $stmy->get_result();
+                $this->unassignedWorkersAppointment = $emptyResult;
             }
-            
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }

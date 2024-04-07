@@ -12,6 +12,7 @@ $(document).ready(function () {
 });
 
 $('#myTable').DataTable({
+    responsive: true,
     layout: {
         topStart: 'search',
         topEnd: {
@@ -43,7 +44,7 @@ $('#myTable').DataTable({
         selector: 'td:first-child'
     },
     //order para ma sort by time. first number is ang cell sa date
-    order: [[4, 'asc'], [5, 'asc']],
+    order: [[2, 'desc'], [3, 'desc'], [4, 'asc']],
     //! end copy
 
     scrollY: 450,
@@ -52,15 +53,7 @@ $('#myTable').DataTable({
     },
     'columnDefs': [
         {
-            targets: 0,
-            className: "right-aligned-cell"
-        },
-        {
-            targets: -3,
-            className: "right-aligned-cell"
-        },
-        {
-            targets: -5,
+            targets: [0, 1, 2, 3, 4],
             className: "right-aligned-cell"
         },
         {
@@ -77,22 +70,21 @@ $('#myTable').DataTable({
                     {
                         label: 'Report Needed',
                         value: function (rowData, rowIdx) {
-                            return rowData[3] == '<span class="badge rounded-pill my-badge-report-needed">Report Needed</span>';
+                            return rowData[4] == '<span class="badge rounded-pill my-badge-report-needed">Report Needed</span>';
                         }
                     },
                     {
                         label: 'Pending',
                         value: function (rowData, rowIdx) {
-                            return rowData[3] == '<span class="badge rounded-pill my-badge-pending">Pending</span>';
+                            return rowData[4] == '<span class="badge rounded-pill my-badge-pending">Pending</span>';
                         }
                     },
                     {
                         label: 'Completed',
                         value: function (rowData, rowIdx) {
-                            return rowData[3] == '<span class="badge rounded-pill my-badge-approved">Completed</span>';
+                            return rowData[4] == '<span class="badge rounded-pill my-badge-approved">Completed</span>';
                         }
                     },
-
                 ],
                 combiner: 'or'
             },
