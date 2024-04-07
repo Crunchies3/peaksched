@@ -132,6 +132,16 @@ class Validation
         }
     }
 
+
+    public function PayrollDate($string)
+    {
+        if (empty($string)) {
+            return "This field is required.";
+        } else {
+            return "";
+        }
+    }
+
     public function mobileNumber($mobile)
     {
         if (empty($mobile)) {

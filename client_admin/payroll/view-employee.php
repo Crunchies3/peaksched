@@ -114,6 +114,9 @@ require_once "../php/payroll_view_employee.php";
                 <div class="mb-5">
                     <h1>Payroll</h1>
                 </div>
+                <div <?php echo ($show) ? 'hidden' : ''; ?> class="alert alert-danger" role="alert">
+                    All payslips must be approved before approving the payroll!
+                </div>
                 <div class="container-fluid" id="subArea-single">
                     <div class="row">
                         <div class="col">

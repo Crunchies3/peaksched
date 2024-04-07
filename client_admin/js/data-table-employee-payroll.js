@@ -35,6 +35,7 @@ $('#myTable').DataTable({
             }]
         },
     },
+    order: [7, 'desc'],
     scrollY: 450,
     language: {
         emptyTable: 'No data available in table'
