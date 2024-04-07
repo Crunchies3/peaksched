@@ -2,6 +2,8 @@
 class Report
 {
 
+    private $conn;
+
     public function createReport($reportId, $workerIds, $workerHour, $workerMinute, $dateNow, $timeNow, $appointmentId, $supervisorId, $notes)
     {
         try {
@@ -65,7 +67,6 @@ class Report
 
 
 
-    private $conn;
 
     public function getConn()
     {

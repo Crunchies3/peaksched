@@ -6,7 +6,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
-require_once "../../php/assigned_app_supervisor.php";
+require_once "../../php/report-page.php";
 ?>
 
 <!DOCTYPE html>
@@ -20,10 +20,10 @@ require_once "../../php/assigned_app_supervisor.php";
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-    <!-- DataTables CDN -->
+    <!-- kani ang i copy paste =. ilisan ang karaan na datatables na link -->
     <link href="https://cdn.datatables.net/v/bs5/dt-2.0.2/b-3.0.1/r-3.0.0/sc-2.4.1/sb-1.7.0/sp-2.3.0/sl-2.0.0/datatables.min.css" rel="stylesheet">
     <script src="https://cdn.datatables.net/v/bs5/dt-2.0.2/b-3.0.1/r-3.0.0/sc-2.4.1/sb-1.7.0/sp-2.3.0/sl-2.0.0/datatables.min.js"></script>
-    <!-- end -->
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
@@ -109,12 +109,11 @@ require_once "../../php/assigned_app_supervisor.php";
                     <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header ug status-->
                         <thead id="tableHead">
+                            <th style="color: white;">Report Id</th>
                             <th style="color: white;">Appointment Id</th>
-                            <th style="color: white;">Customer</th>
-                            <th style="color: white;">Service</th>
-                            <th style="color: white;">Status</th>
                             <th style="color: white;">Date</th>
                             <th style="color: white;">Time</th>
+                            <th style="color: white;">Status</th>
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
@@ -123,17 +122,16 @@ require_once "../../php/assigned_app_supervisor.php";
                             while ($rows = $result->fetch_assoc()) {
                             ?>
                                 <tr>
+                                    <td><?php echo $rows['report_id']; ?></td>
                                     <td><?php echo $rows['appointment_id']; ?></td>
-                                    <td><?php echo $rows['fullname']; ?></td>
-                                    <td><?php echo $rows['title']; ?></td>
+                                    <td><?php echo $rows['report_date']; ?></td>
+                                    <td><?php echo $rows['report_time']; ?></td>
                                     <?php
                                     if ($rows['status'] == 'Pending') $badgeType = 'my-badge-pending';
                                     else if ($rows['status'] == 'Report Needed') $badgeType = 'my-badge-report-needed';
                                     else if ($rows['status'] == 'Completed') $badgeType = 'my-badge-approved';
                                     ?>
                                     <td><span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $rows['status']; ?></span></td>
-                                    <td><?php echo $rows['start']; ?></td>
-                                    <td><?php echo $rows['end']; ?></td>
                                     <td></td>
                                 </tr>
                             <?php
