@@ -20,7 +20,8 @@ class Employee_Client
                 "SELECT a.appointment_id, CONCAT(b.firstname,' ',b.lastname)
                  AS 'fullname', c.title, a.status, a.start, a.end 
                  FROM tbl_confirmed_appointment a, tbl_customer b, tbl_service c 
-                 WHERE a.customer_id = b.customerid && a.service_id = c.service_id && a.supervisor_id = ?");
+                 WHERE a.customer_id = b.customerid && a.service_id = c.service_id && a.supervisor_id = ?"
+            );
             $stmt->bind_param("s", $supervisorId);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -106,7 +107,7 @@ class Employee_Client
                 FROM    tbl_employee a,
                         tbl_worker_appointment b
                 WHERE   b.worker_id = a.employeeid &&
-                        b.appointment_id = ?"
+                        b.appointment_id = ? ORDER BY `a`.`employeeid` ASC"
             );
             $stmt->bind_param("s", $appointmentId);
             $stmt->execute();
@@ -133,7 +134,7 @@ class Employee_Client
                                 b.supervisor_id = ? &&
                                 !EXISTS(SELECT *FROM tbl_worker_appointment WHERE appointment_id = ? && worker_id = b.worker_id)"
             );
-            $stmt->bind_param("ss", $supervisorId,$appointmentId);
+            $stmt->bind_param("ss", $supervisorId, $appointmentId);
             $stmt->execute();
             $containsResult = $stmt->get_result();
             if ($containsResult->num_rows > 0) {

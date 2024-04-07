@@ -8,6 +8,7 @@ $(document).ready(function () {
     table.on('click', '#actionClick', function (e) {
         reportId = table.row(e.target.closest('tr')).data();
         document.getElementById('reportId').value = reportId[0];
+        document.getElementById('appointmentId').value = reportId[1];
     });
 });
 
@@ -58,7 +59,7 @@ $('#myTable').DataTable({
         },
         {
             data: null,
-            defaultContent: '<form action="view-details.php" id="addAppoitment" method="get"><input id="reportId" hidden type="text" name="reportId" value=""></form><button form="addAppoitment" class="btn my-button-yes mx-1" id="actionClick">View</button>',
+            defaultContent: '<form action="view-details.php" id="addAppoitment" method="get"><input id="reportId" hidden type="text" name="reportId" value=""><input id="appointmentId" hidden type="text" name="appointmentId" value=""></form><button form="addAppoitment" class="btn my-button-yes mx-1" id="actionClick">View</button>',
             targets: -1
         },
         //! start copy
