@@ -167,12 +167,12 @@ require_once "php/service_editing.php";
                             </div>
                         </form>
 
-                        <div class="row justify-content-between ">
-                            <div class="row col-lg-6">
-                                <div class="mb-6 col-xxl-4">
+                        <div class="row d-flex justify-content-between ">
+                            <div class="row col-xxl-4">
+                                <div class="mb-4 col-xxl">
                                     <button name="editService" data-bs-toggle="modal" data-bs-target="#addServiceModal" type="submit" class="btn w-100 my-button-yes">Save Changes</button>
                                 </div>
-                                <div class="mb-6 col-xxl-4">
+                                <div class="mb-4 col-xxl">
                                     <a href="./services_page.php" name="discardChanges" class="btn w-100 my-button-no">Cancel</a>
                                 </div>
                             </div>
