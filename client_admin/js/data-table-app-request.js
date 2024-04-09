@@ -12,6 +12,7 @@ $(document).ready(function () {
 });
 
 $('#myTable').DataTable({
+    responsive: true,
     layout: {
         topStart: 'search',
         topEnd: {
