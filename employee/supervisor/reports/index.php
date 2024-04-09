@@ -128,8 +128,7 @@ require_once "../../php/report-page.php";
                                     <td><?php echo $rows['report_time']; ?></td>
                                     <?php
                                     if ($rows['status'] == 'Pending') $badgeType = 'my-badge-pending';
-                                    else if ($rows['status'] == 'Report Needed') $badgeType = 'my-badge-report-needed';
-                                    else if ($rows['status'] == 'Completed') $badgeType = 'my-badge-approved';
+                                    else if ($rows['status'] == 'Approved') $badgeType = 'my-badge-approved';
                                     ?>
                                     <td><span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $rows['status']; ?></span></td>
                                     <td></td>
