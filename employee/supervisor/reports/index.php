@@ -100,7 +100,7 @@ require_once "../../php/report-page.php";
         <section class="main p-2" id="main">
             <div class="container-fluid" id="mainArea">
                 <div class="mb-5">
-                    <h1>Report</h1>
+                    <h1>Reports</h1>
                 </div>
                 <div class="container-fluid" id="subArea-single">
                     <div>
