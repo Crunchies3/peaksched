@@ -12,6 +12,7 @@ $(document).ready(function () {
 });
 
 $('#myTable').DataTable({
+    responsive: true,
     layout: {
         topStart: 'search',
         topEnd: {
@@ -30,7 +31,7 @@ $('#myTable').DataTable({
             targets: 0,
             className: "right-aligned-cell"
         },
-        
+
         {
             data: null,
             defaultContent: '<form action="./appointments/view-approved-details.php" id="editEmployee" method="get"><input id="appId" hidden type="text" name="appointmentId" value=""></form><button form="editEmployee" class="btn my-button-yes mx-1" id="actionClick">View</button>',

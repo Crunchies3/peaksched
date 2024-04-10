@@ -138,6 +138,7 @@ require_once "php/service_adding.php";
                             <div class="col-6 mb-4">
                                 <label class="form-label mb-1">COLOR TAG</label>
                                 <div class="picker rounded" style="height: 39px; width: 44px;"></div>
+                                <input type="hidden" name="selectedColor" id="selectedColor" value="">
                             </div>
                             <div class="col-xl-12 mb-4">
                                 <label class="form-label mb-1">DESCRIPTION</label>

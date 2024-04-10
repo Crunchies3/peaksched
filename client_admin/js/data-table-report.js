@@ -1,13 +1,14 @@
 $.fn.dataTable.Buttons.defaults.dom.button.className = 'btn';
 
 var table;
-var employeeId;
+var reportId;
 
 $(document).ready(function () {
     table = $('#myTable').DataTable();
     table.on('click', '#actionClick', function (e) {
-        employeeId = table.row(e.target.closest('tr')).data();
-        document.getElementById('employeeId').value = employeeId[0];
+        reportId = table.row(e.target.closest('tr')).data();
+        document.getElementById('reportId').value = reportId[0];
+        document.getElementById('appointmentId').value = reportId[2];
     });
 });
 
@@ -18,30 +19,33 @@ $('#myTable').DataTable({
         topEnd: {
             buttons: [{
                 text: ' sort',
-                className: 'sort-btn rounded mx-2 bi-sort-down-alt my-button-no',
-            }]
+                className: 'sort-btn rounded mx-2 bi-sort-down-alt',
+            },
+            ]
         },
+
         //! start copy
-        // top1: {
-        //     searchPanes: {
-        //         initCollapsed: true,
-        //         preSelect: [
-        //             {
-        //                 rows: ['Report Needed', 'Pending Approval', 'Approved'],
-        //                 column: 6
-        //             }
-        //         ]
-        //     }
-        // }
+        top1: {
+            searchPanes: {
+                initCollapsed: true,
+                preSelect: [
+                    {
+                        rows: ['Pending'],
+                        column: 5
+                    }
+                ]
+            }
+        }
         //! end copy
     },
+
     //! start copy
     select: {
         style: 'os',
         selector: 'td:first-child'
     },
     //order para ma sort by time. first number is ang cell sa date
-    order: [[4, 'asc'], [5, 'asc']],
+    order: [[5, 'desc'], [3, 'desc'], [4, 'desc']],
     //! end copy
 
     scrollY: 450,
@@ -50,21 +54,12 @@ $('#myTable').DataTable({
     },
     'columnDefs': [
         {
-            targets: 0,
-            'visible': false
-        },
-        {
-            targets: 4,
+            targets: [0, 1, 2, 3, 4],
             className: "right-aligned-cell"
         },
         {
             data: null,
-            render: function (row) {
-                var tempElement = document.createElement('div');
-                tempElement.innerHTML = row[6];
-                var status = tempElement.textContent;
-                return '<form action="./view-details.php" id="editEmployee" method="get"><input id="employeeId" hidden type="text" name="appointmentId" value=""></form><button form="editEmployee" class="btn btn-sm my-button-yes mx-1" id="actionClick">View</button>';
-            },
+            defaultContent: '<form action="view-details.php" id="addAppoitment" method="get"><input id="reportId" hidden type="text" name="reportId" value=""><input id="appointmentId" hidden type="text" name="appointmentId" value=""></form><button form="addAppoitment" class="btn btn-sm my-button-yes mx-1" id="actionClick">View</button>',
             targets: -1
         },
         //! start copy
@@ -74,44 +69,31 @@ $('#myTable').DataTable({
                 orderable: false,
                 options: [
                     {
-                        label: 'Report Needed',
-                        value: function (rowData, rowIdx) {
-                            return rowData[6] == '<span class="badge rounded-pill my-badge-report-needed">Report Needed</span>';
-                        }
-                    },
-                    {
-                        label: 'Pending Approval',
-                        value: function (rowData, rowIdx) {
-                            return rowData[6] == '<span class="badge rounded-pill my-badge-pending">Pending Approval</span>';
-                        }
-                    },
-                    {
-                        label: 'Completed',
-                        value: function (rowData, rowIdx) {
-                            return rowData[6] == '<span class="badge rounded-pill my-badge-approved">Completed</span>';
-                        }
-                    },
-                    {
                         label: 'Approved',
                         value: function (rowData, rowIdx) {
-                            return rowData[6] == '<span class="badge rounded-pill my-badge-approved">Approved</span>';
+                            return rowData[5] == '<span class="badge rounded-pill my-badge-approved">Approved</span>';
+                        }
+                    },
+                    {
+                        label: 'Pending',
+                        value: function (rowData, rowIdx) {
+                            return rowData[5] == '<span class="badge rounded-pill my-badge-pending">Pending</span>';
                         }
                     }
                 ],
                 combiner: 'or'
             },
-            targets: [6]
+            targets: [5]
         },
         {
             searchPanes: {
                 show: false,
             },
-            targets: [0, 1, 2, 3, 4, 5]
+            targets: [0, 1, 2, 4, 6]
         }
         //! end copy
     ],
 });
-
 
 //! start copy
 $('#myTable').on('select', function () {
@@ -158,4 +140,8 @@ $(function () {
         $(this).toggleClass("bi-sort-down");
         return true;
     });
+});
+
+$(document).on("keydown", ":input:not(textarea)", function (event) {
+    return event.key != "Enter";
 });

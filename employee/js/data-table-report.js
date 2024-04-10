@@ -30,8 +30,8 @@ $('#myTable').DataTable({
                 initCollapsed: true,
                 preSelect: [
                     {
-                        rows: ['Pending', 'Report Needed',],
-                        column: 3
+                        rows: ['Pending'],
+                        column: 4
                     }
                 ]
             }
@@ -69,12 +69,6 @@ $('#myTable').DataTable({
                 orderable: false,
                 options: [
                     {
-                        label: 'Report Needed',
-                        value: function (rowData, rowIdx) {
-                            return rowData[4] == '<span class="badge rounded-pill my-badge-report-needed">Report Needed</span>';
-                        }
-                    },
-                    {
                         label: 'Pending',
                         value: function (rowData, rowIdx) {
                             return rowData[4] == '<span class="badge rounded-pill my-badge-pending">Pending</span>';
@@ -83,13 +77,19 @@ $('#myTable').DataTable({
                     {
                         label: 'Completed',
                         value: function (rowData, rowIdx) {
-                            return rowData[4] == '<span class="badge rounded-pill my-badge-approved">Completed</span>';
+                            return rowData[4] == '<span class="badge rounded-pill my-badge-approved">Approved</span>';
                         }
                     },
                 ],
                 combiner: 'or'
             },
-            targets: [3]
+            targets: [4]
+        },
+        {
+            searchPanes: {
+                show: false,
+            },
+            targets: [0, 1, 2, 3, 5]
         }
         //! end copy
     ],

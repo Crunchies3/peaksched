@@ -84,6 +84,23 @@ class Report
         }
     }
 
+    public function approveReport($reportId)
+    {
+        try {
+            $status = 'Approved';
+            $stmt = $this->conn->prepare(
+                "UPDATE tbl_supervisor_report 
+                SET status = ?
+                WHERE report_id = ?"
+            );
+            $stmt->bind_param("ss", $status, $reportId);
+            $stmt->execute();
+            $stmt->close();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
     public function deleteReport($reportId)
     {
         try {
@@ -97,6 +114,49 @@ class Report
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
+
+    public function getSupervisorNameByReportID($reportId)
+    {
+        try {
+            $stmt = $this->conn->prepare("  SELECT  CONCAT(b.firstname, ' ' , b.lastname) as 'Supervisor'
+                                            FROM    tbl_supervisor_report a,
+                                                    tbl_employee b
+                                            WHERE   a.supervisor_id = b.employeeid && a.report_id = ?;
+                                                    ");
+            $stmt->bind_param("s", $reportId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    return $row['Supervisor'];
+                }
+            }
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function getAllReports()
+    {
+        try {
+            $stmt = $this->conn->prepare("  SELECT  a.report_id,
+                                                    CONCAT(b.firstname, ' ' , b.lastname) as 'Supervisor',
+                                                    a.appointment_id,
+                                                    a.report_date,
+                                                    a.report_time,
+                                                    a.status
+                                            FROM    tbl_supervisor_report a,
+                                                    tbl_employee b
+                                            WHERE   a.supervisor_id = b.employeeid;
+                                                    ");
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
 
 
     public function getReportDetails($reportId)
