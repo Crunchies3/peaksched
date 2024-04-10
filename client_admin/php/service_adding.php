@@ -30,7 +30,7 @@ $serviceTitle = trim($_POST["serviceTitle"]);
 $serviceTitle_err = $validate->serviceTitle($serviceTitle);
 
 $description =  trim($_POST["description"]);
-$color = "#124F6F";
+$color = trim($_POST["selectedColor"]);
 
 
 $duration = trim($_POST["duration"]);
