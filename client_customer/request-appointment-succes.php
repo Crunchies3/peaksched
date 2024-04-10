@@ -49,13 +49,13 @@ require_once "./php_backend/appointment.php";
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="" class="sidebar-link ">
+                    <a href="dashboard.php" class="sidebar-link ">
                         <i class="bi bi-house"></i>
                         <span>Home</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link selected">
+                    <a href="request-appointment-service.php" class="sidebar-link selected">
                         <i class="bi bi-calendar2-fill"></i>
                         <span>Appointments</span>
                     </a>
@@ -63,11 +63,11 @@ require_once "./php_backend/appointment.php";
                 <li class="sidebar-item">
                     <a href="./address" class="sidebar-link">
                         <i class="bi bi-geo-alt"></i>
-                        <span>Adress</span>
+                        <span>Address</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="./notification/" class="sidebar-link">
                         <i class="bi bi-bell"></i>
                         <span>Notifications</span>
                     </a>
@@ -93,9 +93,16 @@ require_once "./php_backend/appointment.php";
                 </div>
                 <div class="container-fluid" id="subArea-single">
                     <div class="mb-5">
-                        <h5>Success</h5>
+                        <h5>Success!</h5>
                     </div>
-                    naka request naka
+                    <div class="mb-4">
+                        Appointment Requested Successfully!
+                    </div>
+                    <div>
+                        <div class="mb-3 col-xxl-3">
+                            <a href="./request-appointment-service.php" class="btn my-button-selected w-100">Request another appointment</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -103,24 +110,3 @@ require_once "./php_backend/appointment.php";
 </body>
 
 </html>
-
-
-
-<!-- Modal -->
-<div class="modal" id="exampleModal" data-bs-backdrop="true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="width: 400px;">
-        <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
-            <div class="modal-header">
-                <h5 class="modal-title" style="font-size: 16px;" id="exampleModalLabel">Appointment</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
