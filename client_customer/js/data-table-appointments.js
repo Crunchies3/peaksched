@@ -42,7 +42,7 @@ $('#myTable').DataTable({
         selector: 'td:first-child'
     },
     //order para ma sort by time. first number is ang cell sa date
-    order: [[3, 'asc'], [4, 'asc']],
+    order: [[3, 'desc'], [4, 'desc']],
     //! end copy
 
     scrollY: 370,
@@ -98,7 +98,7 @@ $('#myTable').DataTable({
                     {
                         label: 'Approved',
                         value: function (rowData, rowIdx) {
-                            return rowData[2] == '<span class="badge rounded-pill my-badge-denied">Approved</span>';
+                            return rowData[2] == '<span class="badge rounded-pill my-badge-approved">Approved</span>';
                         }
                     }
                 ],

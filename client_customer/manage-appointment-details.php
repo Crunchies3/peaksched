@@ -110,7 +110,7 @@ require_once "./php_backend/appointment.php";
                         else if ($status == 'Completed') $badgeType = 'my-badge-approved';
                         else if ($status == 'Approved') $badgeType = 'my-badge-approved';
                         ?>
-                        <h5>Appointment Details <span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $status ?></span></h5>
+                        <h5><span><a href="./manage-appointment.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span>Appointment Details <span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $status ?></span></h5>
                     </div>
                     <div class="row mb-5">
                         <form id="appointmentId" class="col-md-6 mb-4" action="./manage-appointment-reschedule.php" method="get">
