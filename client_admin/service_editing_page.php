@@ -138,11 +138,12 @@ require_once "php/service_editing.php";
                             </div>
                             <div class="col-6 mb-4">
                                 <label class="form-label mb-1">COLOR TAG</label>
-                                <div class="picker rounded" style="height: 39px; width: 44px;"></div>
+                                <div class="picker rounded" style="height: 39px; width: 44px;" data-initialcolor="<?php echo $color ?>"></div>
+                                <input type="hidden" name="selectedColor" id="selectedColor" value="">
                             </div>
                             <div class="col-xl-12 mb-4">
                                 <label class="form-label mb-1">DESCRIPTION</label>
-                                <textarea name="description" type="text" rows="3" class="form-control input-field" placeholder="Enter service description"></textarea>
+                                <textarea name="description" type="text" rows="3" class="form-control input-field" placeholder="Enter service description"><?php echo $description ?></textarea>
                             </div>
                             <div class="mb-4 col-lg-6 mb-4">
                                 <label class="form-label mb-1">DURATION</label>
@@ -197,14 +198,14 @@ require_once "php/service_editing.php";
     <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
-                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm add service?</h1>
+                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm Edit service?</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Service will be added.
+                Service will be edited.
             </div>
             <div class="modal-footer">
-                <button name="changePassword" form="addServiceForm" class="btn my-button-yes">Confirm</button>
+                <button name="editService" form="addServiceForm" class="btn my-button-yes">Confirm</button>
                 <button type="button" class="btn my-button-no" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
@@ -214,11 +215,11 @@ require_once "php/service_editing.php";
     <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
-                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm delete account?</h1>
+                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm delete service?</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Your account will be deleted.
+                The service will be deleted.
             </div>
             <div class="modal-footer">
                 <button name="deleteAccount" form="addServiceForm" class="btn my-button-danger">Confirm</button>

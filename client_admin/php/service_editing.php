@@ -32,13 +32,14 @@ $serviceTitle = $services->getTitle();
 $duration = $services->getDuration();
 $price = $services->getPrice();
 $description = $services->getDescription();
-$color = $services->getDescription();
+$color = $services->getColor();
 
 
 
 
 
 if (isset($_POST['editService'])) {
+
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         return;
     }
@@ -50,16 +51,14 @@ if (isset($_POST['editService'])) {
     $serviceTitle_err = $validate->serviceTitle($serviceTitle);
 
     $description =  trim($_POST["description"]);
-    $color = "#124F6F";
 
+    $color = $_POST["selectedColor"];
 
     $duration = trim($_POST["duration"]);
     $duration_err = $validate->serviceDuration($duration);
 
     $price = trim($_POST["price"]);
     $price_err = $validate->servicePrice($price);
-
-
 
     if (empty($serviceTitle_err) && empty($duration_err) && empty($price_err)) {
         $services->updateServiceDetails($serviceTitle, $color,  $description, $duration, $price, $service_id);
