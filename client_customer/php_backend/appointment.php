@@ -57,11 +57,11 @@ if (isset($_POST['cancelApp'])) {
     $unread = true;
     date_default_timezone_set("America/Vancouver");
     $currentDate = date("Y-m-d H:i:s");
-    $messageToAdmin = $notification->custToAdminCancelAppointment($customer->getFirstname(),$serviceName);
+    $messageToAdmin = $notification->custToAdminCancelAppointment($customer->getFirstname(), $serviceName);
 
     $appointment->cancelAppointment($appointmentId);
-    $appointment->confirmedAppointmentDeletion($customerId,$service_id);
-    $notification->insertNotif($receiver,$unread, $currentDate, $messageToAdmin);
+    $appointment->confirmedAppointmentDeletion($customerId, $service_id);
+    $notification->insertNotif($receiver, $unread, $currentDate, $messageToAdmin);
 
     header("location: manage-cancel-succes.php");
 }

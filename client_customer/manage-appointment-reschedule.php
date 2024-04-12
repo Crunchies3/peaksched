@@ -171,7 +171,7 @@ require_once "./php_backend/manage-appointment-reschedule.php";
                             <button data-bs-toggle="modal" data-bs-target="#reschedApp" class="btn btn-lg fs-6 w-100 my-button-yes">Submit Request</button>
                         </div>
                         <div class="mb-0 col-xxl-2">
-                            <a class="btn btn-lg fs-6 w-100 my-button-no">Cancel</a>
+                            <a href="./manage-appointment.php" class="btn btn-lg fs-6 w-100 my-button-no">Cancel</a>
                         </div>
                     </div>
                 </div>

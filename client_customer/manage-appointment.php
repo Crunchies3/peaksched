@@ -97,9 +97,13 @@ require_once "./php_backend/appointment.php";
                 <div class="mb-4">
                     <h1>Appointments</h1>
                 </div>
-                <div class="mb-4">
-                    <a href="./request-appointment-service.php" class="btn my-button-unselected mt-2">Request Appointment</a>
-                    <a href="./manage-appointment.php" class="btn my-button-selected mx-2 mt-2">Manage Appointments</a>
+                <div class="row ">
+                    <div class="mb-3 col-xxl-2">
+                        <a href="./request-appointment-service.php" class="btn my-button-unselected w-100">Request Appointment</a>
+                    </div>
+                    <div class="mb-4 col-xxl-2">
+                        <a href="./manage-appointment.php" class="btn my-button-selected w-100">Manage Appointments</a>
+                    </div>
                 </div>
                 <div class="container-fluid" id="subArea-single">
                     <div class="mb-5">
@@ -130,8 +134,13 @@ require_once "./php_backend/appointment.php";
                                     else if ($rows['status'] == 'Completed' || $rows['status'] == 'Approved') $badgeType = 'my-badge-approved';
                                     ?>
                                     <td><span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $rows['status']; ?></span></td>
-                                    <td><?php echo $rows['date']; ?></td>
-                                    <td><?php echo $rows['start']; ?></td>
+                                    <?php
+                                    $date =  $rows['start'];
+                                    $dateOnly = date("Y-m-d", strtotime($date));
+                                    $timeOnly = date('h:i A', strtotime($date));
+                                    ?>
+                                    <td><?php echo $dateOnly; ?></td>
+                                    <td><?php echo $timeOnly; ?></td>
                                     <td></td>
                                 </tr>
                             <?php
