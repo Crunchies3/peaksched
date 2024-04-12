@@ -25,6 +25,7 @@ class Payroll
                 FROM    tbl_report_employee_hours a,
                         tbl_supervisor_report b
                 WHERE   b.report_id = a.report_id && 
+                        b.status = 'Approved' &&
                         b.report_date BETWEEN ? AND ?;"
             );
             $stmt->bind_param("ss", $startDate, $endDate);
@@ -36,6 +37,8 @@ class Payroll
                 while ($row = $result->fetch_assoc()) {
                     array_push($employeeList, $row);
                 }
+            }else{
+                return null;
             }
 
             $stmt->close();
