@@ -136,6 +136,25 @@ class Report
         }
     }
 
+    public function countPendingReports()
+    {
+        try {
+            $stmt = $this->conn->prepare("  SELECT  COUNT(report_id) as 'count'
+                                            FROM    tbl_supervisor_report
+                                            WHERE   status = 'Pending';
+                                        ");
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    return $row['count'];
+                }
+            }
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
     public function getAllReports()
     {
         try {

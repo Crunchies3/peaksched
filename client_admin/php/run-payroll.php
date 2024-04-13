@@ -4,15 +4,25 @@ require_once 'config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/appointments.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/form_validation.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/payroll.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/reports.php";
+
 
 $startDate = $endDate = $payDate = $federalTax = $payrollId = "";
 
 $startDate_err = $endDateErr = $fedTax_err = $paydate_err = "";
+$doesPendingReportExist = false;
 
 $payroll = new Payroll();
 $payroll->setConn($conn);
 
 $validate = new Validation();
+
+$report = new Report();
+$report->setConn($conn);
+
+$pendingReportCount = $report->countPendingReports();
+
+if ($pendingReportCount > 0) $doesPendingReportExist = true;
 
 
 if ($_SERVER["REQUEST_METHOD"] != "POST") {

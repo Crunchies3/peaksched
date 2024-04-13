@@ -235,7 +235,7 @@ class Payroll
                 tbl_payslip b,
                 tbl_payroll c
             WHERE
-                a.employeeid = b.employee_id AND b.payroll_id = c.payroll_id AND b.employee_id = ?;
+                a.employeeid = b.employee_id AND b.payroll_id = c.payroll_id AND b.employee_id = ? AND c.status = 'Approved';
                 "
             );
             $stmt->bind_param("s", $employeeid);
