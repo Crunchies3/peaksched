@@ -103,7 +103,7 @@ class Appointment
                 "SELECT a.appointment_id,
                 CONCAT(b.firstname,' ', b.lastname) AS 'customer',
                 c.title,
-                CONCAT(d.street, '. ', d.city, ', ', d.province, '. ', d.country, ', ', d.zip_code)  as 'fullAddress',
+                b.email,
                 a.start,
                 a.status
                 FROM    tbl_confirmed_appointment a,
@@ -530,7 +530,8 @@ class Appointment
                         a.num_floors,
                         a.num_beds,
                         a.num_baths,
-                        CONCAT(e.firstname, ' ', e.lastname) AS 'supFullname'
+                        CONCAT(e.firstname, ' ', e.lastname) AS 'supFullname',
+                        a.note
                 FROM tbl_confirmed_appointment a,
                      tbl_customer b,
                      tbl_service c,

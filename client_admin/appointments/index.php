@@ -151,7 +151,7 @@ require_once "../php/appointment-request.php";
                                     <?php
                                     $date = date_create($rows['start']);
                                     $dateOnly =  date_format($date, "M d, Y");
-                                    $timeOnly = date_format($date, "H: i A");
+                                    $timeOnly = date_format($date, "h: i A");
                                     ?>
                                     <td><?php echo $dateOnly; ?></td>
                                     <td><?php echo $timeOnly; ?></td>

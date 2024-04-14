@@ -55,7 +55,7 @@ $address = $addressObj->getStreet() . '. ' . $addressObj->getCity() . ', ' . $ad
 
 $date = date_create($appointments->getStart());
 $dateOnly = date_format($date, "M d, Y");
-$timeOnly = date_format($date, "H: i A");
+$timeOnly = date_format($date, "h: i A");
 
 $note = "";
 
