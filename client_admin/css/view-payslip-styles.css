@@ -96,3 +96,8 @@ hr.solid {
     border: 1px #BBBBBB;
     border-style: solid;
 }
+
+.rectangle {
+    border: #8b8b8b;
+    border-style: solid;
+}

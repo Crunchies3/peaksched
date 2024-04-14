@@ -39,9 +39,9 @@ if (isset($_POST['approvePayslip'])) {
         return;
     };
 
+    $payroll_id = $_POST["payrollId"];
     $payslipId = $_POST["payslipid"];
     $employee_id = $_POST["employeeid"];
     $payroll->approvePayslip($payslipId, $employee_id);
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
-    exit;
+    header("location: ./view-employee.php?payrollId=$payroll_id");
 }

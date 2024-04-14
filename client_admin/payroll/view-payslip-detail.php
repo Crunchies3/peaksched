@@ -117,50 +117,51 @@ require_once "../php/payslip_view_detail.php";
                 </div>
                 <div class="container-fluid" id="subArea-top">
                     <div class="row justify-content-between">
-                        <h5><span><a href="./view-employee.php?payrollId=<?php echo $payroll_id ?>" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span>Payslip Details</h5>
-                        <div class="col-xxl-10 mb-3 ">
-                            <h5>Payslip for the week of <?php echo $month ?> </h5>
-                        </div>
-                        <div class="col xxl-10 mb-3">
-                            <h5>Payslip #: <?php echo $payslipId ?></h5>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="my-subTitle">Employee pay summary</div>
+                        <h5><span><a href="./view-employee.php?payrollId=<?php echo $payroll_id ?>" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span>
+                            Payslip Details
+                        </h5>
                     </div>
                     <!-- content -->
                     <div class="container-fluid" id="payslipDetails">
                         <div class="row justify-content-between">
-                            <div class="col-3">
-                                <div class="mb-1 row">
+                            <div class="col-6" id="adjustableRow">
+                                <div class="mb-2 row">
+                                    <div class="my-label col-4">
+                                        Payslip ID:
+                                    </div>
+                                    <div class="my-label-emphasize col">
+                                        <?php echo $payslipId ?>
+                                    </div>
+                                </div>
+                                <div class="mb-2 row">
                                     <div class="my-label col-4">
                                         Name:
                                     </div>
-                                    <div class="my-label col">
+                                    <div class="my-label-emphasize col">
                                         <?php echo $firstname . ' ' ?><?php echo $lastname ?>
                                     </div>
                                 </div>
-                                <div class="mb-1 row">
+                                <div class="mb-2 row">
                                     <div class="my-label col-4">
                                         Type:
                                     </div>
-                                    <div class="my-label col">
+                                    <div class="my-label-emphasize col">
                                         <?php echo $type ?>
                                     </div>
                                 </div>
-                                <div class="mb-1 row">
+                                <div class="mb-2 row">
                                     <div class="my-label col-4">
                                         Pay Period:
                                     </div>
-                                    <div class="my-label col">
+                                    <div class="my-label-emphasize col">
                                         <?php echo $wordedStartDate ?> to <?php echo $wordedendDate ?>
                                     </div>
                                 </div>
-                                <div class="mb-1 row">
+                                <div class="mb-2 row">
                                     <div class="my-label col-4">
                                         Pay Date:
                                     </div>
-                                    <div class="my-label col">
+                                    <div class="my-label-emphasize col">
                                         <?php echo $wordedpayDate ?>
                                     </div>
                                 </div>
@@ -168,31 +169,27 @@ require_once "../php/payslip_view_detail.php";
                                     <div class="my-label col-4">
                                         Rate:
                                     </div>
-                                    <div class="my-label col">
+                                    <div class="my-label-emphasize col">
                                         <?php echo '$' . $payrate . '/hr' ?>
                                     </div>
                                 </div>
-                                <div class="mb-1 row">
-                                    <div class="my-label-2 col-4">
-                                        Netpay:
-                                    </div>
-                                    <div class="my-label-2 col">
-                                        <?php echo '$' . round($netPay, 2) ?>
-                                    </div>
-                                </div>
-                                <div class="mb-1 row">
-                                    <div class="my-label-2 col-4">
-                                        Total hours:
-                                    </div>
-                                    <div class="my-label-2 col">
-                                        <?php echo round($hoursworked, 2) . ' hours' ?>
+                            </div>
+                            <div class="col d-flex justify-content-center align-items-center">
+                                <div class="p-2">
+                                    <div class="rectangle">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="p-3">
+                                                <span class="my-label">NET PAY:</span>
+                                            </div>
+                                            <div class="p-3">
+                                                <span class="my-label-emphasize" style="font-weight: bold;"> <?php echo '$' . round($netPay, 2) ?></span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-
                 </div>
             </div>
             <div class="container-fluid" id="middle-area">
@@ -216,13 +213,11 @@ require_once "../php/payslip_view_detail.php";
                             </tr>
                         </table>
                     </div>
-
                 </div>
-
             </div>
             <div class="container-fluid" id="middle-area">
                 <div class="container-fluid" id="subArea-bottom">
-                    <div>
+                    <div class="mb-5">
                         <table>
                             <tr>
                                 <th>Deductions</th>
@@ -238,14 +233,15 @@ require_once "../php/payslip_view_detail.php";
                         </table>
                     </div>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
+                        <input name='payrollId' type="hidden" value=<?php echo $payroll_id ?>>
                         <input name='payslipid' type="hidden" value=<?php echo $payslipId ?>>
                         <input name='employeeid' type="hidden" value=<?php echo $employee_id ?>>
-                        <button class="btn btn-primary" name='approvePayslip'>APPROVE PAYSLIP</button>
+                        <button class="btn my-button-yes" name='approvePayslip'>APPROVE PAYSLIP</button>
                     </form>
                 </div>
-
             </div>
         </section>
+        <script src="../js/payslip_screensize.js"></script>
         <script src="../js/script.js"></script>
 </body>
 
