@@ -132,7 +132,7 @@ require_once "../php/appointment-request.php";
                             <th style="color: white;">Id</th>
                             <th style="color: white;">Customer Name</th>
                             <th style="color: white;">Service</th>
-                            <th style="color: white;">Address</th>
+                            <th style="color: white;">Email</th>
                             <th style="color: white;">Date</th>
                             <th style="color: white;">Time</th>
                             <th style="color: white;">Status</th>
@@ -147,11 +147,11 @@ require_once "../php/appointment-request.php";
                                     <td><?php echo $rows['request_app_id']; ?></td>
                                     <td><?php echo $rows['customer']; ?></td>
                                     <td><?php echo $rows['title']; ?></td>
-                                    <td><?php echo $rows['fullAddress']; ?></td>
+                                    <td><?php echo $rows['email']; ?></td>
                                     <?php
-                                    $date =  $rows['start'];
-                                    $dateOnly = date("Y-m-d", strtotime($date));
-                                    $timeOnly = date('h:i A', strtotime($date));
+                                    $date = date_create($rows['start']);
+                                    $dateOnly =  date_format($date, "M d, Y");
+                                    $timeOnly = date_format($date, "H: i A");
                                     ?>
                                     <td><?php echo $dateOnly; ?></td>
                                     <td><?php echo $timeOnly; ?></td>

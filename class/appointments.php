@@ -71,7 +71,7 @@ class Appointment
                 "SELECT a.request_app_id,
                         CONCAT(b.firstname,' ', b.lastname) AS 'customer',
                         c.title,
-                        CONCAT(d.street, '. ', d.city, ', ', d.province, '. ', d.country, ', ', d.zip_code)  as 'fullAddress',
+                        b.email,
                         a.start,
                         a.status
                 FROM    tbl_request_appointment a,

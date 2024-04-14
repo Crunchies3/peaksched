@@ -170,7 +170,7 @@ require_once "../php/appointment-request-details.php";
                         </div>
                         <div>
                             <label class="form-label mb-2">SPECIAL INSTRUCTION OR COMMENTS</label>
-                            <textarea name="note" type="text" rows="3" class="form-control input-field w-100 selecServiceInput " placeholder=""><?php echo $note ?></textarea>
+                            <textarea readonly name="note" type="text" rows="3" class="form-control input-field w-100 selecServiceInput " placeholder=""><?php echo $note ?></textarea>
                         </div>
                     </form>
                     <form id="reschedApp" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
