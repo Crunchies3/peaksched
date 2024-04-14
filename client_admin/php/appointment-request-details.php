@@ -53,17 +53,22 @@ $addressId =  $appointments->getAddressId();
 $addressObj->getAddressById($addressId);
 $address = $addressObj->getStreet() . '. ' . $addressObj->getCity() . ', ' . $addressObj->getProvince() . '. ' . $addressObj->getCountry() . ', ' . $addressObj->getZip_code();
 
-$date = $appointments->getStart();
-$dateOnly = date("Y-m-d", strtotime($date));
-$timeOnly = date('h:i A', strtotime($date));
+$date = date_create($appointments->getStart());
+$dateOnly = date_format($date, "M d, Y");
+$timeOnly = date_format($date, "H: i A");
+
+$note = "";
+
 
 $numOfFloors = $appointments->getNumOfFloors();
 $numOfBeds = $appointments->getNumOfBeds();
 $numOfBaths = $appointments->getNumOfBaths();
+$note = $appointments->getNote();
+
 
 if (isset($_POST['approveApp'])) {
     $appointmentId = $_POST["appointmentId"];
-    
+
     $appointments->getAppointmentDetails($appointmentId);
 
     $customerId = $appointments->getCustomerId();
@@ -95,9 +100,21 @@ if (isset($_POST['approveApp'])) {
     $created_at = date("Y-m-d H:i:s");
     $message = $notification->adminToCustApproveAppointment($service);
 
-    if(empty($supervisorErr)){
-        $appointments->approveAppointment($appointmentId, $customerId, $serviceId, $addressId, $supervisorId, $numOfFloors,
-        $numOfBeds, $numOfBaths, $date, $end, $note, $status);
+    if (empty($supervisorErr)) {
+        $appointments->approveAppointment(
+            $appointmentId,
+            $customerId,
+            $serviceId,
+            $addressId,
+            $supervisorId,
+            $numOfFloors,
+            $numOfBeds,
+            $numOfBaths,
+            $date,
+            $end,
+            $note,
+            $status
+        );
         //updating the status to approved in customers request appointment table
         $appointments->updateApprovedAppointment($appointmentId);
         $notification->insertNotif($receiver, $unread, $created_at, $message);
@@ -105,7 +122,7 @@ if (isset($_POST['approveApp'])) {
     }
 }
 
-if(isset($_POST['denyRequestModal'])) {
+if (isset($_POST['denyRequestModal'])) {
     $appointmentId = $_POST["appointmentId"];
     $appointments->getAppointmentDetails($appointmentId);
 
@@ -121,7 +138,7 @@ if(isset($_POST['denyRequestModal'])) {
     $created_at = date("Y-m-d H:i:s");
     $message = $notification->adminToCustDenyAppointment($service);
 
-    $notification->insertNotif($receiver,$unread,$created_at,$message);
+    $notification->insertNotif($receiver, $unread, $created_at, $message);
     $appointments->denyCustRequest($appointmentId);
 
 

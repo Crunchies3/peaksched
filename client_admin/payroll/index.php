@@ -133,10 +133,24 @@ require_once "../php/payroll_index.php";
                             ?>
                                 <tr>
                                     <td><?php echo $rows['payroll_id']; ?></td>
-                                    <td><?php echo $rows['pay_date']; ?></td>
-                                    <td><?php echo $rows['start_date'] . ' - '; ?> <?php echo $rows['end_date']; ?></td>
+                                    <?php
+                                    $date = date_create($rows['pay_date']);
+                                    $payDate = date_format($date, "M d, Y");
+                                    $start = date_create($rows['start_date']);
+                                    $startDate = date_format($start, "M d, Y");
+                                    $end = date_create($rows['end_date']);
+                                    $endDate = date_format($end, "M d, Y");
+                                    ?>
+                                    <td><?php echo $payDate; ?></td>
+                                    <td><?php echo $startDate . ' - '; ?> <?php echo $endDate ?></td>
                                     <td><?php echo $rows['EmployeeCount']; ?></td>
-                                    <td><?php echo $rows['status']; ?></td>
+                                    <?php
+                                    if ($rows['status'] == 'Pending Approval') $badgeType = 'my-badge-pending';
+                                    else if ($rows['status'] == 'Report Needed') $badgeType = 'my-badge-report-needed';
+                                    else if ($rows['status'] == 'Completed') $badgeType = 'my-badge-approved';
+                                    else if ($rows['status'] == 'Approved') $badgeType = 'my-badge-approved';
+                                    ?>
+                                    <td><span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $rows['status']; ?></span></td>
                                     <td></td>
                                 </tr>
                             <?php

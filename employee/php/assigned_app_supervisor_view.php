@@ -15,7 +15,7 @@ $employeeClient->setConn($conn);
 
 
 
-$appointmentId = $fullname = $title = $status = $date = "";
+$appointmentId = $fullname = $title = $status = $date = $formattedDate = $formattedTime =  "";
 
 if (isset($_GET["appointmentId"])) {
     $appointmentId = $_GET["appointmentId"];
@@ -28,8 +28,10 @@ $appointmentId = $employeeClient->getAppointmentId();
 $fullname = $employeeClient->getFullname();
 $title = $employeeClient->getServicetitle();
 $status = $employeeClient->getAppointmentstatus();
-$date = $employeeClient->getAppointmentdate();
-$time = $employeeClient->getAppointmentdate();
+$date = date_create($employeeClient->getAppointmentdate());
+$formattedDate = date_format($date, "M d, Y");
+$time = date_create($employeeClient->getAppointmentdate());
+$formattedTime = date_format($time, "H: i A");
 
 //===============================================================================================
 //for displaying/deleting assigned workers to a specific appointment
@@ -53,8 +55,8 @@ if (isset($_POST['RemoveWorker'])) {
     $date = date("Y-m-d H:i:s");
 
     $employeeClient->removeWorkerInAppointment($appointmentId, $workerId);
-    $notification->insertNotif($receiver,$unread,$date,$message);
-    
+    $notification->insertNotif($receiver, $unread, $date, $message);
+
     $employeeClient->fetchAppointmentWorkers($appointmentId);
     $result = $employeeClient->getAssignedWorkers();
 }
