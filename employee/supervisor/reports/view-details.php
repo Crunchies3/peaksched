@@ -68,12 +68,12 @@ require_once "../../php/view-report-details.php";
                 <li class="sidebar-item">
                     <a href="../payroll/" class="sidebar-link ">
                         <i class="bi bi-wallet"></i>
-                        <span>Payroll</span>
+                        <span>Payslips</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a href="../reports/" class="sidebar-link selected">
-                        <i class="bi bi-file-earmark-binary-fill"></i>
+                        <i class="bi bi-flag-fill"></i>
                         <span>Reports</span>
                     </a>
                 </li>

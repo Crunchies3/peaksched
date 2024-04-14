@@ -74,7 +74,7 @@ require_once "../../php/payslip-page.php";
                 </li>
                 <li class="sidebar-item">
                     <a href="../reports/" class="sidebar-link">
-                        <i class="bi bi-file-earmark-binary"></i>
+                        <i class="bi bi-flag"></i>
                         <span>Reports</span>
                     </a>
                 </li>

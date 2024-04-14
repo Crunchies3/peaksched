@@ -48,13 +48,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="../" class="sidebar-link ">
+                    <a href="../" class="sidebar-link">
                         <i class="bi bi-house"></i>
                         <span>Home</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="../appointment/" class="sidebar-link selected">
+                    <a href="./" class="sidebar-link ">
                         <i class="bi bi-calendar2-fill"></i>
                         <span>Appointments</span>
                     </a>
@@ -62,7 +62,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <li class="sidebar-item">
                     <a href="../payroll/" class="sidebar-link ">
                         <i class="bi bi-wallet"></i>
-                        <span>Payroll</span>
+                        <span>Payslips</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="../reports/" class="sidebar-link selected">
+                        <i class="bi bi-flag-fill"></i>
+                        <span>Reports</span>
                     </a>
                 </li>
                 <li class="sidebar-item">

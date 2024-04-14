@@ -77,7 +77,7 @@ require_once "../php/report-view-details.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="./" class="sidebar-link ">
+                    <a href="../payroll/" class="sidebar-link ">
                         <i class="bi bi-wallet"></i>
                         <span>Payroll</span>
                     </a>
