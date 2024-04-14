@@ -67,7 +67,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <li class="sidebar-item">
                     <a href="./" class="sidebar-link selected">
                         <i class="bi bi-wallet-fill"></i>
-                        <span>Payroll</span>
+                        <span>Payslips</span>
                     </a>
                 </li>
                 <li class="sidebar-item">

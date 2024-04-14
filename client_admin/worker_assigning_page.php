@@ -90,6 +90,12 @@ require_once "php/worker_assigning_page.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="./reports/" class="sidebar-link">
+                        <i class="bi bi-flag"></i>
+                        <span>Reports</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="./payroll/" class="sidebar-link ">
                         <i class="bi bi-wallet"></i>
                         <span>Payroll</span>

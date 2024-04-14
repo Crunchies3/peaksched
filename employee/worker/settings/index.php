@@ -65,7 +65,7 @@ require_once "../../php/settings_account.php";
                 <li class="sidebar-item">
                     <a href="../payroll/" class="sidebar-link">
                         <i class="bi bi-wallet"></i>
-                        <span>Payroll</span>
+                        <span>Payslips</span>
                     </a>
                 </li>
                 <li class="sidebar-item">

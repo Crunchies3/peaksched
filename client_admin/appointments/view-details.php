@@ -85,6 +85,12 @@ require_once "../php/appointment-request-details.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="../reports/" class="sidebar-link">
+                        <i class="bi bi-flag"></i>
+                        <span>Reports</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
                         <i class="bi bi-bell"></i>
                         <span>Notifications</span>

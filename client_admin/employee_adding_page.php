@@ -95,6 +95,12 @@ require_once "php/employee_adding.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="./reports/" class="sidebar-link">
+                        <i class="bi bi-flag"></i>
+                        <span>Reports</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="./notifcation/" class="sidebar-link">
                         <i class="bi bi-bell"></i>
                         <span>Notifications</span>
