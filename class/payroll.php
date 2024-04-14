@@ -37,7 +37,7 @@ class Payroll
                 while ($row = $result->fetch_assoc()) {
                     array_push($employeeList, $row);
                 }
-            }else{
+            } else {
                 return null;
             }
 
@@ -210,6 +210,37 @@ class Payroll
             );
             $stmt->bind_param("s", $payroll_id);
             $stmt->execute();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function getEmployeesPayslipList($employeeid)
+    {
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT
+                b.payslip_id,
+                c.start_date,
+                c.end_date,
+                a.pay_rate,
+                (
+                    HOUR(b.hours_worked) + MINUTE(b.hours_worked) / 60 + SECOND(b.hours_worked) / 3600
+                ) AS 'hours_worked',
+                b.gross_pay,
+                b.deductions,
+                b.net_pay
+            FROM
+                tbl_employee a,
+                tbl_payslip b,
+                tbl_payroll c
+            WHERE
+                a.employeeid = b.employee_id AND b.payroll_id = c.payroll_id AND b.employee_id = ? AND c.status = 'Approved';
+                "
+            );
+            $stmt->bind_param("s", $employeeid);
+            $stmt->execute();
+            return $stmt->get_result();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }

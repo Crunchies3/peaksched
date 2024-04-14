@@ -117,6 +117,13 @@ require_once "../php/run-payroll.php";
                         <h5><span><a href="./" class="btn my-button-back mx-2"><i class="bi bi-chevron-left"></i></a></span>Run Payroll</h5>
                     </div>
 
+                    <div <?php echo $doesPendingReportExist ? "" : 'hidden'; ?> class="alert alert-danger" role="alert">
+                        <?php echo $pendingReportCount ?> pending report<?php echo $pendingReportCount > 1 ? 's' : '';  ?> waiting for approval!
+                    </div>
+                    <div <?php echo $doesPendingReportExist ? "hidden" : ""; ?> class="alert alert-success" role="alert">
+                        No pending reports.
+                    </div>
+
                     <form id="runPayrollForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <div class="col-md-6 mb-4">
                             <label class="form-label mb-1">Start Date</label>

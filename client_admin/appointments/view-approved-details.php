@@ -156,7 +156,21 @@ require_once "../php/appointment-approved-details.php";
                             <label class="form-label mb-1">ASSIGNED SUPERVISOR</label>
                             <input disabled name="position" type="text" class="form-control fs-6 input-field" placeholder="" value="<?php echo $supFullname ?>">
                         </div>
+                        <div>
+                            <label class="form-label mb-2">SPECIAL INSTRUCTION OR COMMENTS</label>
+                            <textarea readonly name="note" type="text" rows="3" class="form-control input-field w-100 selecServiceInput " placeholder=""><?php echo $note ?></textarea>
+                        </div>
                     </form>
+                    <div class="row justify-content-between">
+                        <div class="col-xxl-2 mb-4">
+                            <div class="mb-6">
+                                <button href="./manage-appointment.php" class="btn my-button-yes w-100">Reschedule</button>
+                            </div>
+                        </div>
+                        <div class="mb-4 col-xxl-2">
+                            <button data-bs-toggle="modal" data-bs-target="#denyRequestModal" class="btn my-button-danger w-100">Cancel Appointment</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

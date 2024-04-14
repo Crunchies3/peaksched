@@ -6,6 +6,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
+require_once "../../php/payslip-page.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -67,7 +69,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <li class="sidebar-item">
                     <a href="./" class="sidebar-link selected">
                         <i class="bi bi-wallet-fill"></i>
-                        <span>Payroll</span>
+                        <span>Payslips</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -99,55 +101,42 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         <section class="main p-2" id="main">
             <div class="container-fluid" id="mainArea">
                 <div class="mb-5">
-                    <h1>Payroll</h1>
+                    <h1>Payslips</h1>
                 </div>
                 <div class="container-fluid" id="subArea-single">
                     <div>
-                        <h5>All payroll</h5>
+                        <h5>All Payslips</h5>
                     </div>
                     <table id="myTable" class="table table-hover table-striped">
                         <!-- //!TODO: para mailisan ang color sa header -->
                         <thead id="tableHead">
-                            <th style="color: white;">Pay Date</th>
+                            <th style="color: white;">Payslip ID</th>
                             <th style="color: white;">Pay Period</th>
-                            <th style="color: white;">Gross</th>
-                            <th style="color: white;">Net</th>
-                            <th style="color: white;">Employees</th>
+                            <th style="color: white;">Pay Rate</th>
+                            <th style="color: white;">Hours Worked</th>
+                            <th style="color: white;">Gross Pay</th>
+                            <th style="color: white;">Deductions</th>
+                            <th style="color: white;">Total</th>
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>2024-03-20</td>
-                                <td>2024-03-20 - 2024-04-05</td>
-                                <td>59,090.69</td>
-                                <td>59,090.69</td>
-                                <td>10</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>2024-03-20</td>
-                                <td>2024-03-20 - 2024-04-05</td>
-                                <td>59,090.69</td>
-                                <td>59,090.69</td>
-                                <td>10</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>2024-03-20</td>
-                                <td>2024-03-20 - 2024-04-05</td>
-                                <td>59,090.69</td>
-                                <td>59,090.69</td>
-                                <td>10</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>2024-03-20</td>
-                                <td>2024-03-20 - 2024-04-05</td>
-                                <td>59,090.69</td>
-                                <td>59,090.69</td>
-                                <td>10</td>
-                                <td></td>
-                            </tr>
+                            <?php
+                            // LOOP TILL END OF DATA
+                            while ($rows = $result->fetch_assoc()) {
+                            ?>
+                                <tr>
+                                    <td><?php echo $rows['payslip_id']; ?></td>
+                                    <td><?php echo $rows['start_date'] . ' - '; ?> <?php echo $rows['end_date']; ?></td>
+                                    <td><?php echo $rows['pay_rate']; ?></td>
+                                    <td><?php echo round($rows['hours_worked'], 2) . ' hours'; ?></td>
+                                    <td class="my-text-yes"><?php echo '$' . round($rows['gross_pay'], 2); ?></td>
+                                    <td class="my-text-no"><?php echo '$' . round($rows['deductions'], 2); ?></td>
+                                    <td class="my-text-yes"><?php echo '$' . round($rows['net_pay'], 2); ?></td>
+                                    <td></td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>
