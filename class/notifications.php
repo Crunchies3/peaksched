@@ -1,6 +1,7 @@
 <?php
 
-class Notifications{
+class Notifications
+{
     private $conn;
     private $recipientidS;
     private $recipientidC;
@@ -8,7 +9,7 @@ class Notifications{
     private $unread;
     private $notifType;
     private $dateCreated;
-    private $senderUserType; 
+    private $senderUserType;
     private $receiverUserType;
     private $displayNotifs;
 
@@ -19,23 +20,55 @@ class Notifications{
     //kung na assign included ang time kung kanus.a
     //kung wala kay wala.
 
-    public function insertNotif($reciever,$unread,$created_at,$message){
+    public function insertNotif($reciever, $unread, $created_at, $message)
+    {
         try {
             $stmt = $this->conn->prepare(
-            "INSERT INTO tbl_notifications (recipient_type, unread, created_at, message)
-            VALUES (?,?,?,?) ");
-            $stmt->bind_param("ssss", $reciever,$unread,$created_at,$message);
+                "INSERT INTO tbl_notifications (recipient_type, unread, created_at, message)
+            VALUES (?,?,?,?) "
+            );
+            $stmt->bind_param("ssss", $reciever, $unread, $created_at, $message);
+            $stmt->execute();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+    public function insertNotifAdmin($unread, $created_at, $message)
+    {
+        try {
+            $stmt = $this->conn->prepare(
+                "INSERT INTO tbl_notifications (recipient_type, unread, created_at, message) 
+                SELECT 'admin', ?, ?, ? 
+                FROM tbl_admin
+                "
+            );
+            $stmt->bind_param("sss", $unread, $created_at, $message);
             $stmt->execute();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
 
-    public function displayNotification($Id){
+    public function displayNotification($Id)
+    {
         try {
             $stmt = $this->conn->prepare(
-                "SELECT * FROM tbl_notifications WHERE recipient_type = ?");
-            $stmt->bind_param("s",$Id);
+                "SELECT * FROM tbl_notifications WHERE recipient_type = ?"
+            );
+            $stmt->bind_param("s", $Id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $this->displayNotifs = $result;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+    public function displayAdminNotification()
+    {
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT * FROM tbl_notifications WHERE recipient_type = 'admin' GROUP BY message "
+            );
             $stmt->execute();
             $result = $stmt->get_result();
             $this->displayNotifs = $result;
@@ -47,7 +80,7 @@ class Notifications{
     //admin-supervisor notif side (manotify ang supervisor)
     //if mag assign o remove ang admin ug appointment sa supervisor
     //if naay changes sa appointment nahitabo na nacancel o naresched (assuming nga na approve na sa admin kadto nga changes)
-    
+
 
 
     //admin-customer notif side (manotify ang customer)
@@ -70,10 +103,10 @@ class Notifications{
     //sample sa query
     // public function supervisorNotifications($senderid, $recepientid, $notifType, $dateCreated)
     // {
-            //INSERT INTO tbl_notification 
-            //senderid = $senderType->getId
-            //recepientid = id sa supervisor
-            //notiftype = dpende kugn appointment related or dli
+    //INSERT INTO tbl_notification 
+    //senderid = $senderType->getId
+    //recepientid = id sa supervisor
+    //notiftype = dpende kugn appointment related or dli
     // }
 
     public function getConn()

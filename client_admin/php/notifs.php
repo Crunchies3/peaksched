@@ -10,5 +10,5 @@ $adminAcc = unserialize($_SESSION["adminUser"]);
 
 $userName = $adminAcc->getFirstname();
 
-$notification->displayNotification($adminAcc->getId());
+$notification->displayAdminNotification();
 $result = $notification->getDisplayNotifs();
