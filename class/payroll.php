@@ -103,7 +103,6 @@ class Payroll
                 $stmt->close();
             }
 
-            $payslipId = rand(100000, 200000);
 
             // TODO: buhatan para mo compute ani
             $grossPay = "";
@@ -123,6 +122,8 @@ class Payroll
                     VALUES (?,?,?,?,?,?,?,?);"
                 );
 
+                $payslipId = rand(100000, 200000);
+
                 $grossPay = $this->computeGrossPay($employeeHoursWorked[$i]['total_hours'], $employeePayrates[$i]['pay_rate']);
                 $deductions = $this->computeDeduction($federalTax, $grossPay);
                 $netPay = $this->computenetpay($deductions, $grossPay);
@@ -133,6 +134,29 @@ class Payroll
                 $stmt->close();
             }
             return $result;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function getPayrollIdByPayslipId($payslipId)
+    {
+        try {
+            $stmt = $this->conn->prepare(
+                "   SELECT  a.payroll_id
+                    FROM    tbl_payroll a,
+                            tbl_payslip b
+                    WHERE   b.payroll_id = a.payroll_id AND
+                            b.payslip_id = ?"
+            );
+            $stmt->bind_param("s", $payslipId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    return $row['payroll_id'];
+                }
+            }
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
@@ -295,6 +319,8 @@ class Payroll
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
+
+
     public function approvePayslip($payslipId, $employeeid)
     {
         try {

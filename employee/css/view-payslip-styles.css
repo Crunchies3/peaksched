@@ -1,0 +1,103 @@
+/* *mano mano i custommize ang data table */
+
+.dt-search {
+    margin-bottom: 20px;
+}
+
+.dt-scroll-body {
+    background-color: #F7F8FC;
+}
+
+
+/* * end */
+
+
+
+.plus-icon {
+    font-weight: bold;
+}
+
+table {
+    font-family: poppins, poppins;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border: none;
+}
+
+tr:nth-child(even) {
+    background-color: white;
+}
+
+tr:last-child {
+    font-weight: bold;
+}
+
+.form-outline i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+#tablelistTableArea {
+    background-color: white;
+    border: 1px #BBBBBB;
+    border-style: solid;
+    border-top: none;
+    padding: 30px;
+}
+
+
+label {
+    font-weight: 600;
+    color: #7d7d7d;
+    font-size: 12px;
+}
+
+
+
+hr.solid {
+    border-top: 3px solid black;
+}
+
+
+#middle-area {
+    padding-top: 0px;
+}
+
+
+#middle-area h5 {
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+
+#middle-area .input-field,
+#dt-search-0 {
+    background-color: #F7F8FC;
+    color: #222222;
+    border: 1px #BBBBBB;
+    border-style: solid;
+}
+
+.rectangle {
+    border: #8b8b8b;
+    border-style: solid;
+}

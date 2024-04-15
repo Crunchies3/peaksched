@@ -7,7 +7,7 @@ $(document).ready(function () {
     table = $('#myTable').DataTable();
     table.on('click', '#actionClick', function (e) {
         payrollId = table.row(e.target.closest('tr')).data();
-        document.getElementById('payrollId').value = payrollId[0];
+        document.getElementById('payslipId').value = payrollId[0];
     });
 });
 
@@ -18,12 +18,6 @@ $('#myTable').DataTable({
             buttons: [{
                 text: ' sort',
                 className: 'sort-btn rounded mx-2 bi-sort-down-alt my-button-no',
-            }, {
-                text: '<i class="bi bi-plus plus-icon"></i> run payroll',
-                className: 'my-button-yes rounded',
-                action: function () {
-                    location.href = '';
-                }
             }]
         },
     },
@@ -62,7 +56,7 @@ $('#myTable').DataTable({
         },
         {
             data: null,
-            defaultContent: '<form action="../payroll/view-details.php" id="editPayroll" method="get"><input id="payrollId" hidden type="text" name="payrollId" value=""></form><button form="editPayroll" class="btn my-button-yes mx-1" id="actionClick">View</button>',
+            defaultContent: '<form action="../payroll/view-payslip-detail.php" id="editPayroll" method="get"><input id="payslipId" hidden type="text" name="payslipId" value=""></form><button form="editPayroll" class="btn my-button-yes mx-1" id="actionClick">View</button>',
             targets: -1
         },
     ],
