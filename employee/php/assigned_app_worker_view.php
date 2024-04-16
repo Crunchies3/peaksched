@@ -44,6 +44,7 @@ $addressObj->getAddressById($employeeClient->getAddress());
 $address = $addressObj->getStreet() . '. ' . $addressObj->getCity() . ', ' . $addressObj->getProvince() . '. ' . $addressObj->getCountry() . ', ' . $addressObj->getZip_code();
 
 
+
 //===============================================================================================
 //for displaying/deleting assigned workers to a specific appointment
 
