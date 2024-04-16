@@ -32,6 +32,7 @@ $date = date_create($employeeClient->getAppointmentdate());
 $formattedDate = date_format($date, "M d, Y");
 $time = date_create($employeeClient->getAppointmentdate());
 $formattedTime = date_format($time, "H: i A");
+$note = $employeeClient->getNote();
 
 //===============================================================================================
 //for displaying/deleting assigned workers to a specific appointment

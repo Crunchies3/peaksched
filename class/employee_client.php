@@ -11,6 +11,7 @@ class Employee_Client
     private $serviceTitle;
     private $appointmentStatus;
     private $appointmentDate;
+    private $note;
 
 
     public function fetchAssignedAppointments($supervisorId)
@@ -78,7 +79,7 @@ class Employee_Client
     public function displayCurrentAppointmentAssigned($appointmentId)
     {
         try {
-            $stmt = $this->conn->prepare("SELECT a.appointment_id, CONCAT(b.firstname,' ',b.lastname) AS 'fullname', c.title, a.status, a.start FROM tbl_confirmed_appointment a, tbl_customer b, tbl_service c WHERE a.customer_id = b.customerid && a.service_id = c.service_id && a.appointment_id = ?");
+            $stmt = $this->conn->prepare("SELECT a.appointment_id, CONCAT(b.firstname,' ',b.lastname) AS 'fullname', c.title, a.status, a.start, a.note FROM tbl_confirmed_appointment a, tbl_customer b, tbl_service c WHERE a.customer_id = b.customerid && a.service_id = c.service_id && a.appointment_id = ?");
             $stmt->bind_param("s", $appointmentId);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -89,6 +90,7 @@ class Employee_Client
                     $this->setServiceTitle($row["title"]);
                     $this->setAppointmentStatus($row["status"]);
                     $this->setAppointmentDate($row["start"]);
+                    $this->setNote($row["note"]);
                 }
             }
         } catch (Exception $e) {
@@ -243,6 +245,20 @@ class Employee_Client
     public function setAppointmentDate($appointmentDate)
     {
         $this->appointmentDate = $appointmentDate;
+
+        return $this;
+    }
+
+
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+
+    public function setNote($note)
+    {
+        $this->note = $note;
 
         return $this;
     }
