@@ -6,7 +6,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
-require_once "../../php/assigned_app_supervisor_view.php";
+require_once "../../php/assigned_app_worker_view.php";
 ?>
 
 <!DOCTYPE html>
@@ -92,42 +92,50 @@ require_once "../../php/assigned_app_supervisor_view.php";
             </div>
         </aside>
         <section class="main p-2" id="main">
+
             <div class="container-fluid" id="mainArea">
                 <div class="mb-5">
                     <h1>Appointment</h1>
                 </div>
-                <div class="container-fluid" id="subArea-single">
-                    <div class="row">
-                        <div class="col">
-                            <h5><span><a href="./index.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Appointment Details</h5>
-                        </div>
+                <div class="container-fluid" id="subArea-top">
+                    <div>
+                        <h5><span><a href="./index.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Appointment Details</h5>
                     </div>
-                    <div id="editWorkerForm" class="row">
+                    <form id="appointmentDetails" class="row mb-3" method="get" action="../reports/create-report.php" novalidate>
+                        <input type="hidden" name="appointmentId" value="<?= htmlspecialchars($appointmentId) ?>" id="appointmentId">
                         <div class="col-md-6 mb-4">
                             <label class="form-label mb-1">APPOINTMENT ID</label>
-                            <input disabled name="firstName" type="text" class="form-control input-field " placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $appointmentId ?>">
+                            <input disabled name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $appointmentId ?>">
                         </div>
                         <div class="col-md-6 mb-4">
                             <label class="form-label mb-1">FULL NAME</label>
-                            <input disabled name="lastName" type="text" class="form-control input-field " placeholder="Enter your last name" aria-label="Last name" value="<?php echo $fullname ?>">
+                            <input disabled name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your last name" aria-label="Last name" value="<?php echo $fullname ?>">
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">SERVICE</label>
-                            <input disabled name="email" type="email" class="form-control fs-6 input-field " placeholder="Enter your email address" value="<?php echo $title ?>">
+                            <input disabled name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your email address" value="<?php echo $title ?>">
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">STATUS</label>
-                            <input disabled name="mobile" type="text" class="form-control fs-6 input-field " placeholder="Enter your mobile number" value="<?php echo $status ?>">
+                            <input disabled name="mobile" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your mobile number" value="<?php echo $status ?>">
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">DATE</label>
-                            <input disabled name="position" type="text" class="form-control fs-6 input-field" placeholder="Enter your position" value="<?php echo $date ?>">
+                            <input disabled name="position" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $formattedDate  ?>">
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
                             <label class="form-label mb-1">TIME</label>
-                            <input disabled name="position" type="text" class="form-control fs-6 input-field" placeholder="Enter your position" value="<?php echo $time ?>">
+                            <input disabled name="position" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $formattedTime  ?>">
                         </div>
-                    </div>
+                        <div class="mb-4 col-lg-6 mb-4">
+                            <label class="form-label mb-1">ADDRESS</label>
+                            <input disabled name="address" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $address  ?>">
+                        </div>
+                        <div>
+                            <label class="form-label mb-2">SPECIAL INSTRUCTION OR COMMENTS</label>
+                            <textarea readonly name="note" type="text" rows="3" class="form-control input-field w-100 selecServiceInput " placeholder=""><?php echo $note ?></textarea>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>

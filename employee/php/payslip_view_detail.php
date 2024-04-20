@@ -1,18 +1,22 @@
 <?php
 require_once 'config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/payroll.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/employee_account.php";
 
 $payroll = new Payroll();
 $payroll->setConn($conn);
 
-$payroll_id = $employee_id = "";
-if (isset($_GET["payrollid"])) {
-    $payroll_id = $_GET["payrollid"];
+$payroll_id = $employee_id = $payslipId = "";
+
+$employeeAcc = unserialize($_SESSION["employeeUser"]);
+$employee_id = $employeeAcc->getId();
+
+if (isset($_GET["payslipId"])) {
+    $payslipId = $_GET["payslipId"];
 }
 
-if (isset($_GET["employeeid"])) {
-    $employee_id = $_GET["employeeid"];
-}
+
+$payroll_id = $payroll->getPayrollIdByPayslipId($payslipId);
 
 //getting displayables
 $payroll->employeePayslipDisplayables($employee_id, $payroll_id);
@@ -33,15 +37,3 @@ $hoursworked = $payroll->gethoursworked();
 $deductions = $payroll->getdeductions();
 $grosspay = $payroll->getgrosspay();
 $federaltax = $payroll->getfederalTax();
-
-if (isset($_POST['approvePayslip'])) {
-    if ($_SERVER["REQUEST_METHOD"] != "POST") {
-        return;
-    };
-
-    $payroll_id = $_POST["payrollId"];
-    $payslipId = $_POST["payslipid"];
-    $employee_id = $_POST["employeeid"];
-    $payroll->approvePayslip($payslipId, $employee_id);
-    header("location: ./view-employee.php?payrollId=$payroll_id");
-}

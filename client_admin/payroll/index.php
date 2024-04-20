@@ -151,7 +151,7 @@ require_once "../php/payroll_index.php";
                                     <td><?php echo $startDate . ' - '; ?> <?php echo $endDate ?></td>
                                     <td><?php echo $rows['EmployeeCount']; ?></td>
                                     <?php
-                                    if ($rows['status'] == 'Pending Approval') $badgeType = 'my-badge-pending';
+                                    if ($rows['status'] == 'Pending') $badgeType = 'my-badge-pending';
                                     else if ($rows['status'] == 'Report Needed') $badgeType = 'my-badge-report-needed';
                                     else if ($rows['status'] == 'Completed') $badgeType = 'my-badge-approved';
                                     else if ($rows['status'] == 'Approved') $badgeType = 'my-badge-approved';

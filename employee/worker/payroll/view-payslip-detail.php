@@ -5,7 +5,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
 }
-require_once "../php/payslip_view_detail.php";
+require_once "../../php/payslip_view_detail.php";
 ?>
 
 <!DOCTYPE html>
@@ -22,9 +22,9 @@ require_once "../php/payslip_view_detail.php";
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="../css/dashboard_styles.css" />
-    <link rel="stylesheet" href="../css/view-payslip-styles.css" />
-    <link rel="stylesheet" href="../../components/_components.css">
+    <link rel="stylesheet" href="../../css/dashboard_styles.css" />
+    <link rel="stylesheet" href="../../css/view-payslip-styles.css" />
+    <link rel="stylesheet" href="../../../components/_components.css">
 </head>
 
 <body>
@@ -41,7 +41,7 @@ require_once "../php/payslip_view_detail.php";
         <aside id="sidebar" tabindex="-1" class="shadow-lg offcanvas-lg offcanvas-start" data-bs-backdrop="true">
             <div class="d-flex mb-2">
                 <button id="toggle-btn" type="button">
-                    <i class="bi bi-calendar-week"></i>
+                    <i class="bi bi-tree-fill"></i>
                 </button>
                 <div class="sidebar-logo">
                     <a href="#">PeakSched</a>
@@ -49,62 +49,38 @@ require_once "../php/payslip_view_detail.php";
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="../dashboard.php" class="sidebar-link">
+                    <a href="../" class="sidebar-link ">
                         <i class="bi bi-house"></i>
                         <span>Home</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="../appointments/" class="sidebar-link">
+                    <a href="../appointment/" class="sidebar-link">
                         <i class="bi bi-calendar2"></i>
                         <span>Appointments</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="../employee_page.php" class="sidebar-link">
-                        <i class="bi bi-person"></i>
-                        <span>Employee</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="../customer_page.php" class="sidebar-link">
-                        <i class="bi bi-emoji-smile"></i>
-                        <span>Customer</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
                     <a href="./" class="sidebar-link selected">
                         <i class="bi bi-wallet-fill"></i>
-                        <span>Payroll</span>
+                        <span>Payslips</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="../services_page.php" class="sidebar-link">
-                        <i class="bi bi-file-post-fill"></i>
-                        <span>Services</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="../reports/" class="sidebar-link">
-                        <i class="bi bi-flag"></i>
-                        <span>Reports</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="../notifcation/" class="sidebar-link">
+                    <a href="../notification/" class="sidebar-link">
                         <i class="bi bi-bell"></i>
                         <span>Notifications</span>
                     </a>
                 </li>
-                <li class="sidebar-iitem">
-                    <a href="../setting_account_page.php" class="sidebar-link ">
+                <li class="sidebar-item">
+                    <a href="../settings/" class="sidebar-link ">
                         <i class="bi bi-gear"></i>
                         <span>Settings</span>
                     </a>
                 </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="../php/logout.php" class="sidebar-link">
+                <a href="../../php/logout.php" class="sidebar-link">
                     <i class="bi bi-box-arrow-left"></i>
                     <span>Logout</span>
                 </a>
@@ -217,7 +193,7 @@ require_once "../php/payslip_view_detail.php";
             </div>
             <div class="container-fluid" id="middle-area">
                 <div class="container-fluid" id="subArea-bottom">
-                    <div class="mb-5">
+                    <div class="">
                         <table>
                             <tr>
                                 <th>Deductions</th>
@@ -232,12 +208,6 @@ require_once "../php/payslip_view_detail.php";
                             </tr>
                         </table>
                     </div>
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
-                        <input name='payrollId' type="hidden" value=<?php echo $payroll_id ?>>
-                        <input name='payslipid' type="hidden" value=<?php echo $payslipId ?>>
-                        <input name='employeeid' type="hidden" value=<?php echo $employee_id ?>>
-                        <button class="btn my-button-yes" name='approvePayslip'>APPROVE PAYSLIP</button>
-                    </form>
                 </div>
             </div>
         </section>

@@ -143,8 +143,14 @@ require_once "../php/report-page.php";
                                     <td><?php echo $rows['report_id']; ?></td>
                                     <td><?php echo $rows['Supervisor']; ?></td>
                                     <td><?php echo $rows['appointment_id']; ?></td>
-                                    <td><?php echo $rows['report_date']; ?></td>
-                                    <td><?php echo $rows['report_time']; ?></td>
+                                    <?php
+                                    $date = date_create($rows['report_date']);
+                                    $dateOnly =  date_format($date, "M d, Y");
+                                    $time = date_create($rows['report_time']);
+                                    $timeOnly = date_format($time, "h: i A");
+                                    ?>
+                                    <td><?php echo $dateOnly; ?></td>
+                                    <td><?php echo $timeOnly; ?></td>
                                     <?php
                                     if ($rows['status'] == 'Pending') $badgeType = 'my-badge-pending';
                                     else if ($rows['status'] == 'Approved') $badgeType = 'my-badge-approved';

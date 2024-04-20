@@ -133,6 +133,14 @@ require_once "../../php/assigned_app_supervisor_view.php";
                             <label class="form-label mb-1">TIME</label>
                             <input disabled name="position" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $formattedTime  ?>">
                         </div>
+                        <div class="mb-4 col-lg-6 mb-4">
+                            <label class="form-label mb-1">ADDRESS</label>
+                            <input disabled name="address" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $address  ?>">
+                        </div>
+                        <div>
+                            <label class="form-label mb-2">SPECIAL INSTRUCTION OR COMMENTS</label>
+                            <textarea readonly name="note" type="text" rows="3" class="form-control input-field w-100 selecServiceInput " placeholder=""><?php echo $note ?></textarea>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -168,7 +176,7 @@ require_once "../../php/assigned_app_supervisor_view.php";
                         </tbody>
                     </table>
                     <div>
-                        <button form="appointmentDetails" <?php echo "" ?> class="btn btn-success mt-5 w-100">Create Report</button>
+                        <button <?php echo ($status == 'Completed') ? "disabled" : "" ?> form="appointmentDetails" <?php echo "" ?> class="btn btn-success mt-5 w-100">Create Report</button>
                     </div>
                 </div>
             </div>
