@@ -94,16 +94,15 @@ if (isset($_POST['submitRequest'])) {
     $dateTimeStart = $selectedDate . " " . date("H:i", strtotime($selectedTime));
     $dateTimeEnd = $selectedDate . " " . date("H:i", strtotime($selectedTime));
 
-    $receiver = '112544';
     $unread = true;
     date_default_timezone_set("America/Vancouver");
     $currentDate = date("Y-m-d H:i:s");
-    $messageToAdmin = $notification->custToAdminReqAppointment($customer->getFirstname(),$serviceName);
+    $messageToAdmin = $notification->custToAdminReqAppointment($customer->getFirstname(), $serviceName);
 
 
     if (empty($address_Err) && empty($typeOfUnit_err) && empty($numOfBath_err) && empty($numOfBeds_err) && empty($selectedDate_err) && empty($selectedTime_err)) {
         $appointment->addRequestAppointment($requestAppointmentId, $service_id, $addressId, $customerId, $typeOfUnit, $numOfBeds, $numOfBath, $dateTimeStart, $dateTimeEnd, $note, $status);
-        $notification->insertNotif($receiver,$unread, $currentDate, $messageToAdmin);
+        $notification->insertNotifAdmin($unread, $currentDate, $messageToAdmin);
         header("location: request-appointment-succes.php");
     }
 }

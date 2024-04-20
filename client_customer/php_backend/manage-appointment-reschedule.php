@@ -62,20 +62,18 @@ if (isset($_POST['reschedApp'])) {
     $service_id = $appointment->getServiceId();
     $services->displayCurrentService($service_id);
     $serviceName = $services->getTitle();
-    
+
     $customerId = $customer->getId();
 
-    $receiver = '112544';
     $unread = true;
     date_default_timezone_set("America/Vancouver");
     $currentDate = date("Y-m-d H:i:s");
-    $messageToAdmin = $notification->custToAdminReschedAppointment($customer->getFirstname(),$serviceName);
+    $messageToAdmin = $notification->custToAdminReschedAppointment($customer->getFirstname(), $serviceName);
 
-    if(empty($selectedDate_err) && empty($selectedTime_err) ){
-        $appointment->rescheduleAppointment($dateTimeStart,$dateTimeEnd,$note,$status,$appointmentId);
-        $appointment->confirmedAppointmentDeletion($customerId,$service_id);
-        $notification->insertNotif($receiver,$unread, $currentDate, $messageToAdmin);
+    if (empty($selectedDate_err) && empty($selectedTime_err)) {
+        $appointment->rescheduleAppointment($dateTimeStart, $dateTimeEnd, $note, $status, $appointmentId);
+        $appointment->confirmedAppointmentDeletion($customerId, $service_id);
+        $notification->insertNotifAdmin($unread, $currentDate, $messageToAdmin);
         header("location: manage-resched-success.php");
     }
-
 }
