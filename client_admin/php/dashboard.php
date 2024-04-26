@@ -135,6 +135,7 @@ if (isset($_POST['editAppointment'])) {
     $unread = true;
 
     $appointment->deleteAppointmnet($appointmentId);
+    $appointment->updateCustAppointmentWhenDeleted($appointmentId);
     $notification->insertNotif($customerId, $unread, $currentDate, $messageToCustomer);
     $notification->insertNotif($supervisorId, $unread, $currentDate, $messageToSupervisor);
 }

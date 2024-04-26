@@ -574,6 +574,19 @@ class Appointment
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
+    public function updateCustAppointmentWhenDeleted($id)
+    {
+        try {
+            $stmt = $this->conn->prepare(
+                "UPDATE tbl_request_appointment a SET a.status = 'Cancelled'
+                WHERE a.request_app_id = ? AND a.start >= CURRENT_DATE()"
+            );
+            $stmt->bind_param("s", $id);
+            $stmt->execute();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
     /**
      * Get the value of conn
      */
