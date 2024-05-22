@@ -128,31 +128,31 @@ require_once "../php/report-view-details.php";
                             <input type="hidden" name="appointmentId" value="<?= htmlspecialchars($appointmentId) ?>" id="appointmentId">
                             <input type="hidden" name="reportId" value="<?= htmlspecialchars($reportId) ?>" id="reportId">
                             <div class="col-md-6 mb-4">
-                                <label class="form-label mb-1">APPOINTMENT ID</label>
+                                <label class="form-label mb-1">APPOINTMENT ID <span class="my-form-required">*</span></label>
                                 <input disabled name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $appointmentId ?>">
                             </div>
                             <div class="col-md-6 mb-4">
-                                <label class="form-label mb-1">APPOINTMENT DATE</label>
+                                <label class="form-label mb-1">APPOINTMENT DATE <span class="my-form-required">*</span></label>
                                 <input disabled name="lastName" type="text" class="form-control input-field" placeholder="Enter your last name" aria-label="Last name" value="<?php echo $date ?>">
                             </div>
                             <div class="col-md-6 mb-4">
-                                <label class="form-label mb-1">CUSTOMER NAME</label>
+                                <label class="form-label mb-1">CUSTOMER NAME <span class="my-form-required">*</span></label>
                                 <input disabled name="lastName" type="text" class="form-control input-field" placeholder="Enter your last name" aria-label="Last name" value="<?php echo $fullname ?>">
                             </div>
                             <div class="mb-4 col-lg-6 mb-4">
-                                <label class="form-label mb-1">SERVICE</label>
+                                <label class="form-label mb-1">SERVICE <span class="my-form-required">*</span></label>
                                 <input disabled name="email" type="email" class="form-control fs-6 input-field" placeholder="Enter your email address" value="<?php echo $title ?>">
                             </div>
                             <div class="mb-4 col-lg-6 mb-4">
-                                <label class="form-label mb-1">SUPERVISOR</label>
+                                <label class="form-label mb-1">SUPERVISOR <span class="my-form-required">*</span></label>
                                 <input disabled name="position" type="text" class="form-control fs-6 input-field" placeholder="Enter your position" value="<?php echo $supervisorName ?>">
                             </div>
                             <div class="mb-4 col-lg-6 mb-4">
-                                <label class="form-label mb-1">DATE REPORTED</label>
+                                <label class="form-label mb-1">DATE REPORTED <span class="my-form-required">*</span></label>
                                 <input disabled name="position" type="text" class="form-control fs-6 input-field" placeholder="Enter your position" value="<?php echo $dateOnly ?>">
                             </div>
                             <div class="mb-4 col-lg-6 mb-1">
-                                <label class="form-label mb-1">TIME REPORTED</label>
+                                <label class="form-label mb-1">TIME REPORTED <span class="my-form-required">*</span></label>
                                 <input disabled name="position" type="text" class="form-control fs-6 input-field" placeholder="Enter your position" value="<?php echo $timeOnly ?>">
                             </div>
                         </div>

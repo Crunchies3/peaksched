@@ -131,42 +131,42 @@ require_once "php/employee_editing.php";
                     <form id="editEmployeeForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <input type="hidden" name="employeeId" value="<?= htmlspecialchars($employeeId) ?>">
                         <div class="col-md-6 mb-4">
-                            <label class="form-label mb-1">FIRST NAME</label>
+                            <label class="form-label mb-1">FIRST NAME <span class="my-form-required">*</span></label>
                             <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $firstName ?>">
                             <div class="invalid-feedback">
                                 <?php echo $firstName_err; ?>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label class="form-label mb-1">LAST NAME</label>
+                            <label class="form-label mb-1">LAST NAME <span class="my-form-required">*</span></label>
                             <input name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your last name" aria-label="Last name" value="<?php echo $lastName ?>">
                             <div class="invalid-feedback">
                                 <?php echo $lastName_err; ?>
                             </div>
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
-                            <label class="form-label mb-1">EMAIL ADDRESS</label>
+                            <label class="form-label mb-1">EMAIL ADDRESS <span class="my-form-required">*</span></label>
                             <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your email address" value="<?php echo $email ?>">
                             <div class="invalid-feedback">
                                 <?php echo $email_err; ?>
                             </div>
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
-                            <label class="form-label mb-1">PHONE NUMBER</label>
+                            <label class="form-label mb-1">PHONE NUMBER <span class="my-form-required">*</span></label>
                             <input name="mobile" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your mobile number" value="<?php echo $mobileNumber ?>">
                             <div class="invalid-feedback">
                                 <?php echo $mobileNumber_err; ?>
                             </div>
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
-                            <label class="form-label mb-1">POSITION</label>
+                            <label class="form-label mb-1">POSITION <span class="my-form-required">*</span></label>
                             <input name="position" type="text" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your position" value="<?php echo $position ?>">
                             <div class="invalid-feedback">
                                 <?php echo $position_err; ?>
                             </div>
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
-                            <label class="form-label mb-1">PAYRATE</label>
+                            <label class="form-label mb-1">PAYRATE <span class="my-form-required">*</span></label>
                             <input name="payrate" type="number" class="form-control fs-6 input-field <?php echo (!empty($payrate_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter employee's payrate" value="<?php echo $payrate ?>">
                             <div class="invalid-feedback">
                                 <?php echo $payrate_err; ?>
@@ -207,14 +207,14 @@ require_once "php/employee_editing.php";
                         <input type="hidden" name="employeeId" value="<?= htmlspecialchars($employeeId) ?>">
 
                         <div class="col-lg-6 mb-4">
-                            <label class="form-label mb-1">NEW PASSWORD</label>
+                            <label class="form-label mb-1">NEW PASSWORD <span class="my-form-required">*</span></label>
                             <input name="newPassword" type="password" class="form-control input-field <?php echo (!empty($newPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your new password" aria-label="Last name" value="<?php echo $newPassword ?>">
                             <div class="invalid-feedback">
                                 <?php echo $newPassword_err; ?>
                             </div>
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
-                            <label class="form-label mb-1">CONFIRM NEW PASSWORD</label>
+                            <label class="form-label mb-1">CONFIRM NEW PASSWORD <span class="my-form-required">*</span></label>
                             <input name="confirmPassword" type="password" class="form-control fs-6 input-field mb-2 <?php echo (!empty($confirmPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Re-enter your new password" value="<?php echo $confirmPassword ?>">
                             <div class="invalid-feedback">
                                 <?php echo $confirmPassword_err; ?>

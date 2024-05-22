@@ -63,7 +63,7 @@ $('#myTable').DataTable({
                 var tempElement = document.createElement('div');
                 tempElement.innerHTML = row[6];
                 var status = tempElement.textContent;
-                return '<form action="./view-details.php" id="editEmployee" method="get"><input id="employeeId" hidden type="text" name="appointmentId" value=""></form><button form="editEmployee" class="btn btn-sm my-button-yes mx-1" id="actionClick">View</button>';
+                return '<form action="./view-details.php" id="editEmployee" method="get"><input id="employeeId" hidden type="text" name="appointmentId" value=""></form><button form="editEmployee" class="btn my-button-yes mx-1" id="actionClick">view</button>';
             },
             targets: -1
         },
