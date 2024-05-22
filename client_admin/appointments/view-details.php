@@ -188,7 +188,7 @@ require_once "../php/appointment-request-details.php";
                                 <button data-bs-toggle="modal" data-bs-target="#approveRequestModal" class="btn btn-lg fs-6 w-100 my-button-yes">Approve Appointment</button>
                             </div>
                             <div class="mb-6 col-xxl-4">
-                                <button href="./manage-appointment.php" class="btn my-button-no w-100">Reschedule</button>
+                                <form action="./reschedule.php" id="resched" method="get"><input id="appointmentId" hidden type="text" name="appointmentId" value="<?php echo $appointmentId ?>"></form><button form="resched" class="btn my-button-no w-100" id="actionClick">Reschedule</button>
                             </div>
                         </div>
                         <div class="mb-4 col-xxl-2">
