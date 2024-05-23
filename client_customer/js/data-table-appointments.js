@@ -28,8 +28,8 @@ $('#myTable').DataTable({
                 initCollapsed: true,
                 preSelect: [
                     {
-                        rows: ['Pending Approval', 'Denied', 'Approved'],
-                        column: 2
+                        rows: ['Pending Approval', 'Denied', 'Approved', 'Cancelled'],
+                        column: 4
                     }
                 ]
             }
@@ -84,37 +84,43 @@ $('#myTable').DataTable({
                     {
                         label: 'Denied',
                         value: function (rowData, rowIdx) {
-                            return rowData[2] == '<span class="badge rounded-pill my-badge-denied">Denied</span>';
+                            return rowData[4] == '<span class="badge rounded-pill my-badge-denied">Denied</span>';
+                        }
+                    },
+                    {
+                        label: 'Cancelled',
+                        value: function (rowData, rowIdx) {
+                            return rowData[4] == '<span class="badge rounded-pill my-badge-denied">Cancelled</span>';
                         }
                     },
                     {
                         label: 'Pending Approval',
                         value: function (rowData, rowIdx) {
-                            return rowData[2] == '<span class="badge rounded-pill my-badge-pending">Pending Approval</span>';
+                            return rowData[4] == '<span class="badge rounded-pill my-badge-pending">Pending Approval</span>';
                         }
                     },
                     {
                         label: 'Completed',
                         value: function (rowData, rowIdx) {
-                            return rowData[2] == '<span class="badge rounded-pill my-badge-denied">Completed</span>';
+                            return rowData[4] == '<span class="badge rounded-pill my-badge-denied">Completed</span>';
                         }
                     },
                     {
                         label: 'Approved',
                         value: function (rowData, rowIdx) {
-                            return rowData[2] == '<span class="badge rounded-pill my-badge-approved">Approved</span>';
+                            return rowData[4] == '<span class="badge rounded-pill my-badge-approved">Approved</span>';
                         }
                     }
                 ],
                 combiner: 'or'
             },
-            targets: [2]
+            targets: [4]
         },
         {
             searchPanes: {
                 show: false,
             },
-            targets: [0, 1, 3, 4, 5]
+            targets: [0, 1, 3, 5, 6]
         }
         //! end copy
     ],

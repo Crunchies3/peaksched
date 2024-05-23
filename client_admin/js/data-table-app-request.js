@@ -50,10 +50,6 @@ $('#myTable').DataTable({
     },
     'columnDefs': [
         {
-            targets: 0,
-            'visible': false
-        },
-        {
             targets: 4,
             className: "right-aligned-cell"
         },

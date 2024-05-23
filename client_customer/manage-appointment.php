@@ -140,6 +140,7 @@ require_once "./php_backend/appointment.php";
                                     if ($rows['status'] == 'Pending Approval') $badgeType = 'my-badge-pending';
                                     else if ($rows['status'] == 'Denied') $badgeType = 'my-badge-denied';
                                     else if ($rows['status'] == 'Completed' || $rows['status'] == 'Approved') $badgeType = 'my-badge-approved';
+                                    else if ($rows['status'] == 'Cancelled') $badgeType = 'my-badge-denied';
                                     ?>
                                     <td><?php echo $dateOnly; ?></td>
                                     <td><?php echo $timeOnly; ?></td>
