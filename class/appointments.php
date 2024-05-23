@@ -259,6 +259,22 @@ class Appointment
         }
     }
 
+    public function updateCustomerRequestAppointmentStatus($appointmentId, $status)
+    {
+        try {
+            $stmt = $this->conn->prepare(
+                "UPDATE tbl_request_appointment
+                SET     
+                        status = ?
+                WHERE   request_app_id = ?"
+            );
+            $stmt->bind_param("ss", $status, $appointmentId);
+            $stmt->execute();
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
     public function addRequestAppointment($requestAppointmentId, $service_id, $addressId, $customerId, $typeOfUnit, $numOfBeds, $numOfBath, $dateTimeStart, $dateTimeEnd, $note, $status)
     {
         try {

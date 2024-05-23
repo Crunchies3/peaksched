@@ -21,6 +21,7 @@ $('#myTable').DataTable({
             }]
         },
     },
+    order: [[2, 'desc']],
     scrollY: 450,
     language: {
         emptyTable: 'No data available in table'
@@ -32,10 +33,6 @@ $('#myTable').DataTable({
         },
         {
             targets: 1,
-            className: "right-aligned-cell"
-        },
-        {
-            targets: 2,
             className: "right-aligned-cell"
         },
         {
@@ -54,6 +51,11 @@ $('#myTable').DataTable({
             targets: 6,
             className: "right-aligned-cell"
         },
+        {
+            targets: 2,
+            'visible': false
+        },
+
         {
             data: null,
             defaultContent: '<form action="../payroll/view-payslip-detail.php" id="editPayroll" method="get"><input id="payslipId" hidden type="text" name="payslipId" value=""></form><button form="editPayroll" class="btn my-button-yes mx-1" id="actionClick">view</button>',

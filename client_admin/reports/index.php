@@ -132,6 +132,7 @@ require_once "../php/report-page.php";
                             <th style="color: white;">Date Reported</th>
                             <th style="color: white;">Time</th>
                             <th style="color: white;">Status</th>
+                            <th style="color: white;">numberedDate</th>
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
@@ -145,6 +146,7 @@ require_once "../php/report-page.php";
                                     <td><?php echo $rows['appointment_id']; ?></td>
                                     <?php
                                     $date = date_create($rows['report_date']);
+                                    $numberedDateOnly = date_format($date, "m-d-Y");
                                     $dateOnly =  date_format($date, "M d, Y");
                                     $time = date_create($rows['report_time']);
                                     $timeOnly = date_format($time, "h: i A");
@@ -156,6 +158,7 @@ require_once "../php/report-page.php";
                                     else if ($rows['status'] == 'Approved') $badgeType = 'my-badge-approved';
                                     ?>
                                     <td><span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $rows['status']; ?></span></td>
+                                    <td><?php echo $numberedDateOnly; ?></td>
                                     <td></td>
                                 </tr>
                             <?php

@@ -131,6 +131,7 @@ require_once "../php/payroll_index.php";
                             <th style="color: white;">Pay Period</th>
                             <th style="color: white;">Employees</th>
                             <th style="color: white;">Status</th>
+                            <th style="color: white;">numberedEndDateOnly</th>
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
@@ -146,6 +147,7 @@ require_once "../php/payroll_index.php";
                                     $startDate = date_format($start, "M d, Y");
                                     $end = date_create($rows['end_date']);
                                     $endDate = date_format($end, "M d, Y");
+                                    $numberedEndDateOnly = date_format($date, "m-d-Y");
                                     ?>
                                     <td><?php echo $payDate; ?></td>
                                     <td><?php echo $startDate . ' - '; ?> <?php echo $endDate ?></td>
@@ -157,6 +159,7 @@ require_once "../php/payroll_index.php";
                                     else if ($rows['status'] == 'Approved') $badgeType = 'my-badge-approved';
                                     ?>
                                     <td><span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $rows['status']; ?></span></td>
+                                    <td><?php echo $numberedEndDateOnly; ?></td>
                                     <td></td>
                                 </tr>
                             <?php

@@ -25,17 +25,6 @@ $('#myTable').DataTable({
         },
 
         //! start copy
-        top1: {
-            searchPanes: {
-                initCollapsed: true,
-                preSelect: [
-                    {
-                        rows: ['Pending'],
-                        column: 4
-                    }
-                ]
-            }
-        }
         //! end copy
     },
 
@@ -45,7 +34,7 @@ $('#myTable').DataTable({
         selector: 'td:first-child'
     },
     //order para ma sort by time. first number is ang cell sa date
-    order: [[2, 'desc'], [3, 'desc'], [4, 'asc']],
+    order: [[5, 'desc'], [4, 'asc']],
     //! end copy
 
     scrollY: 450,
@@ -56,6 +45,10 @@ $('#myTable').DataTable({
         {
             targets: [0, 1, 2, 3, 4],
             className: "right-aligned-cell"
+        },
+        {
+            targets: 5,
+            'visible': false
         },
         {
             data: null,

@@ -117,6 +117,7 @@ if (isset($_POST['submitReport'])) {
     if (empty($hourWorked_err)) {
         $report->createReport($reportId, $workerIds, $workerHour, $workerMinute, $dateNow, $timeNow, $appointmentId, $supervisorId, $notes);
         $appointment->updateConfirmedAppointmentStatus($appointmentId, 'Completed');
+        $appointment->updateCustomerRequestAppointmentStatus($appointmentId, 'Completed');
         $conn->close();
         header('location: report-success.php');
     }

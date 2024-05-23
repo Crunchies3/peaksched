@@ -28,8 +28,8 @@ $('#myTable').DataTable({
                 initCollapsed: true,
                 preSelect: [
                     {
-                        rows: ['Pending Approval', 'Denied', 'Approved'],
-                        column: 2
+                        rows: ['Pending Approval', 'Denied', 'Approved', 'Cancelled'],
+                        column: 4
                     }
                 ]
             }
@@ -42,7 +42,7 @@ $('#myTable').DataTable({
         selector: 'td:first-child'
     },
     //order para ma sort by time. first number is ang cell sa date
-    order: [[3, 'desc'], [4, 'desc']],
+    order: [[3, 'asc'], [5, 'asc']],
     //! end copy
 
     scrollY: 370,
@@ -67,6 +67,10 @@ $('#myTable').DataTable({
             className: "right-aligned-cell"
         },
         {
+            targets: 5,
+            'visible': false
+        },
+        {
             data: null,
             defaultContent: '<form action="./manage-appointment-details.php" id="selectedAppointment" method="get"><input id="appointmentId" hidden type="text" name="appointmentId" value=""> </form><button form="selectedAppointment" class="btn btn-sm my-button-yes mx-1" id="actionClick">view</button>',
             targets: -1
@@ -80,37 +84,43 @@ $('#myTable').DataTable({
                     {
                         label: 'Denied',
                         value: function (rowData, rowIdx) {
-                            return rowData[2] == '<span class="badge rounded-pill my-badge-denied">Denied</span>';
+                            return rowData[4] == '<span class="badge rounded-pill my-badge-denied">Denied</span>';
+                        }
+                    },
+                    {
+                        label: 'Cancelled',
+                        value: function (rowData, rowIdx) {
+                            return rowData[4] == '<span class="badge rounded-pill my-badge-denied">Cancelled</span>';
                         }
                     },
                     {
                         label: 'Pending Approval',
                         value: function (rowData, rowIdx) {
-                            return rowData[2] == '<span class="badge rounded-pill my-badge-pending">Pending Approval</span>';
+                            return rowData[4] == '<span class="badge rounded-pill my-badge-pending">Pending Approval</span>';
                         }
                     },
                     {
                         label: 'Completed',
                         value: function (rowData, rowIdx) {
-                            return rowData[2] == '<span class="badge rounded-pill my-badge-denied">Completed</span>';
+                            return rowData[4] == '<span class="badge rounded-pill my-badge-approved">Completed</span>';
                         }
                     },
                     {
                         label: 'Approved',
                         value: function (rowData, rowIdx) {
-                            return rowData[2] == '<span class="badge rounded-pill my-badge-approved">Approved</span>';
+                            return rowData[4] == '<span class="badge rounded-pill my-badge-approved">Approved</span>';
                         }
                     }
                 ],
                 combiner: 'or'
             },
-            targets: [2]
+            targets: [4]
         },
         {
             searchPanes: {
                 show: false,
             },
-            targets: [0, 1, 3, 4, 5]
+            targets: [0, 1, 3, 5, 6]
         }
         //! end copy
     ],

@@ -132,28 +132,28 @@ require_once "../php/run-payroll.php";
 
                     <form id="runPayrollForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <div class="col-md-6 mb-4">
-                            <label class="form-label mb-1">Start Date</label>
+                            <label class="form-label mb-1">Start Date <span class="my-form-required">*</span></label>
                             <input type="date" class="form-control input-field <?php echo (!empty($startDate_err)) ? 'is-invalid' : ''; ?>" name="startDate" id="startDate" value="<?php echo $startDate ?>">
                             <div class="invalid-feedback">
                                 <?php echo $startDate_err; ?>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label class="form-label mb-1">End Date</label>
+                            <label class="form-label mb-1">End Date <span class="my-form-required">*</span></label>
                             <input type="date" class="form-control input-field <?php echo (!empty($endDateErr)) ? 'is-invalid' : ''; ?>" name="endDate" id="endDate" value="<?php echo $endDate ?>">
                             <div class="invalid-feedback">
                                 <?php echo $endDateErr; ?>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label class="form-label mb-1">Federal Tax percent</label>
+                            <label class="form-label mb-1">Federal Tax percent <span class="my-form-required">*</span></label>
                             <input type="text" class="form-control input-field <?php echo (!empty($fedTax_err)) ? 'is-invalid' : ''; ?>" name="fedTax" id="fedTax" value="<?php echo $federalTax ?>">
                             <div class="invalid-feedback">
                                 <?php echo $fedTax_err; ?>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label class="form-label mb-1">Pay Date</label>
+                            <label class="form-label mb-1">Pay Date <span class="my-form-required">*</span></label>
                             <input type="date" class="form-control input-field <?php echo (!empty($paydate_err)) ? 'is-invalid' : ''; ?>" name="payDate" id="payDate" value="<?php echo $payDate ?>">
                             <div class="invalid-feedback">
                                 <?php echo $paydate_err; ?>

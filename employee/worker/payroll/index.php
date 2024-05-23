@@ -106,6 +106,7 @@ require_once "../../php/payslip-page.php";
                         <thead id="tableHead">
                             <th style="color: white;">Payslip ID</th>
                             <th style="color: white;">Pay Period</th>
+                            <th style="color: white;">numberedEndDateOnly</th>
                             <th style="color: white;">Pay Rate</th>
                             <th style="color: white;">Hours Worked</th>
                             <th style="color: white;">Gross Pay</th>
@@ -120,7 +121,18 @@ require_once "../../php/payslip-page.php";
                             ?>
                                 <tr>
                                     <td><?php echo $rows['payslip_id']; ?></td>
-                                    <td><?php echo $rows['start_date'] . ' - '; ?> <?php echo $rows['end_date']; ?></td>
+                                    <?php
+                                    $date = date_create($rows['start_date']);
+                                    $payPeriod = date_format($date, "M d, Y");
+                                    $start = date_create($rows['start_date']);
+                                    $startDate = date_format($start, "M d, Y");
+                                    $end = date_create($rows['end_date']);
+                                    $endDate = date_format($end, "M d, Y");
+                                    $numberedEndDateOnly = date_format($date, "m-d-Y");
+                                    ?>
+                                    <td><?php echo $startDate . ' - '; ?> <?php echo $endDate ?></td>
+                                    <td><?php echo $numberedEndDateOnly; ?></td>
+
                                     <td><?php echo $rows['pay_rate']; ?></td>
                                     <td><?php echo round($rows['hours_worked'], 2) . ' hours'; ?></td>
                                     <td class="my-text-yes"><?php echo '$' . round($rows['gross_pay'], 2); ?></td>

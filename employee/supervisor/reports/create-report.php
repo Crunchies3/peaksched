@@ -98,6 +98,7 @@ require_once "../../php/create-report.php";
             </div>
         </aside>
         <section class="main p-2" id="main">
+            <form method="GET" id="backButton" action="../appointment/view-details.php"><input name="appointmentId" type="hidden" value="<?php echo $appointmentId ?>"></form>
             <form id="reportDetails" class="" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                 <div class="container-fluid" id="mainArea">
                     <div class="mb-5">
@@ -105,7 +106,9 @@ require_once "../../php/create-report.php";
                     </div>
                     <div class="container-fluid" id="subArea-top">
                         <div>
-                            <h5>Create Report</h5>
+                            <h5>
+                                <span><button form="backButton" class="btn my-button-back"><i class="bi bi-chevron-left"></i></button></span> Create Report
+                            </h5>
                         </div>
 
                         <div class="row">
@@ -159,7 +162,7 @@ require_once "../../php/create-report.php";
                                         <?php echo 'Please enter hours worked'; ?>
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-4">
                                     <button id="applyHoursWorked" type="button" class="btn my-button-yes">Apply to all Worker</button>
                                 </div>
                             </div>

@@ -103,7 +103,9 @@ require_once "../../php/assigning_app_supervisor.php";
                 </div>
                 <div class="container-fluid" id="subArea-single">
                     <div>
-                        <h5>Assign Appointment</h5>
+                        <h5>
+                            <form method="GET" id="backButton" action="./view-details.php"><input name="appointmentId" type="hidden" value="<?php echo $appointmentId ?>"></form><span><button href="./view-details.php" form="backButton" class="btn my-button-back"><i class="bi bi-chevron-left"></i></button></span> Assign Workers
+                        </h5>
                     </div>
                     <input type="hidden" id="appointmentId" value="<?php echo $appointmentId ?>">
                     <div class="d-flex justify-content-between mb-3">
@@ -147,7 +149,7 @@ require_once "../../php/assigning_app_supervisor.php";
 
 
 <div class="modal fade" id="AssignWorkerModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="AssignWorkerModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
                 <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm assign worker?</h1>

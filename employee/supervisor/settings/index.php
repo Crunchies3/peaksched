@@ -106,28 +106,28 @@ require_once "../../php/settings_account.php";
                     </div>
                     <form id="updateAccountDetails" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <div class="col-md-6 mb-4">
-                            <label class="form-label mb-1">FIRST NAME</label>
+                            <label class="form-label mb-1">FIRST NAME <span class="my-form-required">*</span></label>
                             <input name="firstName" type="text" class="form-control input-field <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $firstName ?>">
                             <div class="invalid-feedback">
                                 <?php echo $firstName_err; ?>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label class="form-label mb-1">LAST NAME</label>
+                            <label class="form-label mb-1">LAST NAME <span class="my-form-required">*</span></label>
                             <input name="lastName" type="text" class="form-control input-field <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your last name" aria-label="Last name" value="<?php echo $lastName ?>">
                             <div class="invalid-feedback">
                                 <?php echo $lastName_err; ?>
                             </div>
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
-                            <label class="form-label mb-1">EMAIL ADDRESS</label>
+                            <label class="form-label mb-1">EMAIL ADDRESS <span class="my-form-required">*</span></label>
                             <input name="email" type="email" class="form-control fs-6 input-field <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your email address" value="<?php echo $email ?>">
                             <div class="invalid-feedback">
                                 <?php echo $email_err; ?>
                             </div>
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
-                            <label class="form-label mb-1">PHONE NUMBER</label>
+                            <label class="form-label mb-1">PHONE NUMBER <span class="my-form-required">*</span></label>
                             <input name="mobile" type="email" class="form-control fs-6 input-field <?php echo (!empty($mobileNumber_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your mobile number" value="<?php echo $mobileNumber ?>">
                             <div class="invalid-feedback">
                                 <?php echo $mobileNumber_err; ?>
@@ -139,7 +139,7 @@ require_once "../../php/settings_account.php";
                     </div>
                     <div class="row">
                         <div class="mb-3 col-xxl-3">
-                            <button  style="display: none;" type="submit" id="editAccount" name="editAccount"data-bs-toggle="modal" data-bs-target="#updateInfoModal" class="btn btn-sm fs-6 w-100 my-button-yes">Save changes</button>
+                            <button style="display: none;" type="submit" id="editAccount" name="editAccount" data-bs-toggle="modal" data-bs-target="#updateInfoModal" class="btn btn-sm fs-6 w-100 my-button-yes">Save changes</button>
                         </div>
                         <div class="mb-3 col-xxl-3  ">
                             <button style="display: none;" id="discardChanges" href="./index.php" name="discardChanges" class="btn btn-sm fs-6 w-100 my-button-no">Cancel</button>
@@ -152,21 +152,21 @@ require_once "../../php/settings_account.php";
                     </div>
                     <form class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" id="securityForm" novalidate>
                         <div class="col-lg-6 mb-4">
-                            <label class="form-label mb-1">CURRENT PASSWORD</label>
+                            <label class="form-label mb-1">CURRENT PASSWORD <span class="my-form-required">*</span></label>
                             <input name="currentPassword" type="password" class="form-control input-field <?php echo (!empty($currentPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your current password" aria-label="Current Password" value="<?php echo $currentPassword; ?>">
                             <div class="invalid-feedback">
                                 <?php echo $currentPassword_err; ?>
                             </div>
                         </div>
                         <div class="col-lg-6 mb-4">
-                            <label class="form-label mb-1">NEW PASSWORD</label>
+                            <label class="form-label mb-1">NEW PASSWORD <span class="my-form-required">*</span></label>
                             <input name="newPassword" type="password" class="form-control input-field <?php echo (!empty($newPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your new password" aria-label="Last name" value="<?php echo $newPassword; ?>">
                             <div class="invalid-feedback">
                                 <?php echo $newPassword_err; ?>
                             </div>
                         </div>
                         <div class="mb-4 col-lg-6 mb-4">
-                            <label class="form-label mb-1">CONFIRM NEW PASSWORD</label>
+                            <label class="form-label mb-1">CONFIRM NEW PASSWORD <span class="my-form-required">*</span></label>
                             <input name="confirmPassword" type="password" class="form-control fs-6 input-field mb-2 <?php echo (!empty($confirmPassword_err)) ? 'is-invalid' : ''; ?>" placeholder="Re-enter your new password" value="<?php echo $confirmPassword; ?>">
                             <div class="invalid-feedback">
                                 <?php echo $confirmPassword_err; ?>
@@ -218,7 +218,7 @@ require_once "../../php/settings_account.php";
 <!-- //? modal paras confirmation sa pag update sa password -->
 
 <div class="modal fade" id="updatePasswordModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="updatePasswordModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
                 <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm change password?</h1>

@@ -42,7 +42,7 @@ $('#myTable').DataTable({
         selector: 'td:first-child'
     },
     //order para ma sort by time. first number is ang cell sa date
-    order: [[3, 'asc'], [4, 'asc']],
+    order: [[6, 'asc'], [4, 'asc']],
     //! end copy
 
     scrollY: 450,
@@ -59,6 +59,10 @@ $('#myTable').DataTable({
             defaultContent: '<form action="view-details.php" id="addAppoitment" method="get"><input id="appointmentId" hidden type="text" name="appointmentId" value=""></form><button form="addAppoitment" class="btn my-btn-view mx-1" id="actionClick">view</button>',
             targets: -1
         },
+        {
+            targets: 6,
+            'visible': false
+        },
         //! start copy
         {
             searchPanes: {
@@ -68,32 +72,32 @@ $('#myTable').DataTable({
                     {
                         label: 'Report Needed',
                         value: function (rowData, rowIdx) {
-                            return rowData[3] == '<span class="badge rounded-pill my-badge-report-needed">Report Needed</span>';
+                            return rowData[5] == '<span class="badge rounded-pill my-badge-report-needed">Report Needed</span>';
                         }
                     },
                     {
                         label: 'Pending',
                         value: function (rowData, rowIdx) {
-                            return rowData[3] == '<span class="badge rounded-pill my-badge-pending">Pending</span>';
+                            return rowData[5] == '<span class="badge rounded-pill my-badge-pending">Pending</span>';
                         }
                     },
                     {
                         label: 'Completed',
                         value: function (rowData, rowIdx) {
-                            return rowData[3] == '<span class="badge rounded-pill my-badge-approved">Completed</span>';
+                            return rowData[5] == '<span class="badge rounded-pill my-badge-approved">Completed</span>';
                         }
                     },
 
                 ],
                 combiner: 'or'
             },
-            targets: [3]
+            targets: [5]
         },
         {
             searchPanes: {
                 show: false,
             },
-            targets: [0, 1, 2, 4, 5, 6]
+            targets: [0, 1, 2, 4, 6]
         }
 
         //! end copy

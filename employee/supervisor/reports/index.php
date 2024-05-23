@@ -114,6 +114,7 @@ require_once "../../php/report-page.php";
                             <th style="color: white;">Date</th>
                             <th style="color: white;">Time</th>
                             <th style="color: white;">Status</th>
+                            <th style="color: white;">numberedDateOnly</th>
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
@@ -123,14 +124,20 @@ require_once "../../php/report-page.php";
                             ?>
                                 <tr>
                                     <td><?php echo $rows['report_id']; ?></td>
+                                    <?php
+                                    $date = date_create($rows['report_date']);
+                                    $reportDate = date_format($date, "M d, Y");
+                                    $numberedDateOnly = date_format($date, "m-d-Y");
+                                    ?>
                                     <td><?php echo $rows['appointment_id']; ?></td>
-                                    <td><?php echo $rows['report_date']; ?></td>
+                                    <td><?php echo $reportDate; ?></td>
                                     <td><?php echo $rows['report_time']; ?></td>
                                     <?php
                                     if ($rows['status'] == 'Pending') $badgeType = 'my-badge-pending';
                                     else if ($rows['status'] == 'Approved') $badgeType = 'my-badge-approved';
                                     ?>
                                     <td><span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $rows['status']; ?></span></td>
+                                    <td><?php echo $numberedDateOnly; ?></td>
                                     <td></td>
                                 </tr>
                             <?php
@@ -152,7 +159,7 @@ require_once "../../php/report-page.php";
 
 <!-- Modal -->
 <div class="modal" id="exampleModal" data-bs-backdrop="true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
                 <h5 class="modal-title" style="font-size: 16px;" id="exampleModalLabel">Appointment</h5>

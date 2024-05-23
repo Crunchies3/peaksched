@@ -135,23 +135,23 @@ require_once "php/service_adding.php";
                         </div>
                         <form id="addServiceForm" class="row mb-5" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                             <div class="col-md-6 mb-4">
-                                <label class="form-label mb-1">SERVICE TITLE</label>
+                                <label class="form-label mb-1">SERVICE TITLE <span class="my-form-required">*</span></label>
                                 <input name="serviceTitle" type="text" class="form-control input-field <?php echo (!empty($serviceTitle_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your service title" aria-label="Current Password" value="<?php echo $serviceTitle ?>">
                                 <div class=" invalid-feedback">
                                     <?php echo $serviceTitle_err; ?>
                                 </div>
                             </div>
                             <div class="col-6 mb-4">
-                                <label class="form-label mb-1">COLOR TAG</label>
+                                <label class="form-label mb-1">COLOR TAG <span class="my-form-required">*</span></label>
                                 <div class="picker rounded" style="height: 39px; width: 44px;"></div>
                                 <input type="hidden" name="selectedColor" id="selectedColor" value="">
                             </div>
                             <div class="col-xl-12 mb-4">
-                                <label class="form-label mb-1">DESCRIPTION</label>
+                                <label class="form-label mb-1">DESCRIPTION <span class="my-form-required">*</span></label>
                                 <textarea name="description" type="text" rows="3" class="form-control input-field" placeholder="Enter service description"></textarea>
                             </div>
                             <div class="mb-4 col-lg-6 mb-4">
-                                <label class="form-label mb-1">DURATION</label>
+                                <label class="form-label mb-1">DURATION <span class="my-form-required">*</span></label>
                                 <div class="input-group <?php echo (!empty($duration_err)) ? 'is-invalid' : ''; ?>">
                                     <input name="duration" type="text" class="form-control fs-6 input-field " placeholder="Enter service duration" value="<?php echo $duration ?>">
                                     <span class="input-group-text">minutes</span>
@@ -161,7 +161,7 @@ require_once "php/service_adding.php";
                                 </div>
                             </div>
                             <div class="mb-4 col-lg-6 mb-4">
-                                <label class="form-label mb-1">PRICE</label>
+                                <label class="form-label mb-1">PRICE <span class="my-form-required">*</span></label>
                                 <div class="input-group <?php echo (!empty($price_err)) ? 'is-invalid' : ''; ?>">
                                     <span class="input-group-text">$</span>
                                     <input name="price" type="text" class="form-control fs-6 input-field" placeholder="Enter service price" value="<?php echo $price ?>">
@@ -194,7 +194,7 @@ require_once "php/service_adding.php";
 </html>
 
 <div class="modal fade" id="addServiceModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="addServiceModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
                 <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm add service?</h1>
