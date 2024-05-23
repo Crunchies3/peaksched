@@ -14,7 +14,7 @@ require_once "../php/appointment-request.php";
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Employee</title>
+    <title>PeakSched</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -124,7 +124,7 @@ require_once "../php/appointment-request.php";
                     <div class="mb-3 col-xxl-2">
                         <a href="./index.php" class="btn my-button-selected w-100">Pending Requests</a>
                     </div>
-                    <div class="mb-4 col-xxl-2">
+                    <div class="mb-4 col-xxl-3">
                         <a href="./approved-appointments.php" class="btn my-button-unselected w-100">Approved Appointments</a>
                     </div>
                 </div>

@@ -29,7 +29,7 @@ $('#myTable').DataTable({
         },
         {
             data: null,
-            defaultContent: '<form action="view-details.php" id="viewNotification" method="get"><input id="notificationId" hidden type="text" name="notificationId" value=""></form><button form="viewNotification" class="btn btn-sm my-button-yes mx-1" id="actionClick">View</button>',
+            defaultContent: '<form action="view-details.php" id="viewNotification" method="get"><input id="notificationId" hidden type="text" name="notificationId" value=""></form><button form="viewNotification" class="btn btn-sm my-button-yes mx-1" id="actionClick">view</button>',
             targets: -1
         },
     ],

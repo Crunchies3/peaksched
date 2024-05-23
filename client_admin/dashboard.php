@@ -16,7 +16,7 @@ require_once "php/dashboard.php";
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title>PeakSched</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -131,7 +131,7 @@ require_once "php/dashboard.php";
 
 <!-- Modal -->
 <div class="modal" id="editAppointment" data-bs-backdrop="true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="width: 450px;">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow p-2 mb-5 bg-white border my-modal">
             <div class="modal-header my-header">
                 <h5 class="modal-title" style="font-size: 16px;" id="exampleModalLabel">Appointment</h5>
@@ -215,7 +215,7 @@ require_once "php/dashboard.php";
 
 <!-- kung mag add na Modal -->
 <div class="modal" id="appointment" data-bs-backdrop="true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="width: 450px;">
+    <div class="modal-dialog modal-dialog-centered" >
         <div class="modal-content shadow p-2 mb-5 bg-white border my-modal">
             <div class="modal-header my-header">
                 <h5 class="modal-title" style="font-size: 16px;" id="exampleModalLabel">Appointment</h5>

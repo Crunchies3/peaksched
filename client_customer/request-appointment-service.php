@@ -16,7 +16,7 @@ require_once "./php_backend/appointment.php";
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title>TwinPeaks</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -95,10 +95,10 @@ require_once "./php_backend/appointment.php";
                     <h1>Appointments</h1>
                 </div>
                 <div class="row ">
-                    <div class="mb-3 col-xxl-2">
+                    <div class="mb-3 col-xxl-3">
                         <a href="./request-appointment-service.php" class="btn my-button-selected w-100">Request Appointment</a>
                     </div>
-                    <div class="mb-4 col-xxl-2">
+                    <div class="mb-4 col-xxl-3">
                         <a href="./manage-appointment.php" class="btn my-button-unselected w-100">Manage Appointments</a>
                     </div>
                 </div>
@@ -146,7 +146,7 @@ require_once "./php_backend/appointment.php";
 
 <!-- Modal -->
 <div class="modal" id="exampleModal" data-bs-backdrop="true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="width: 400px;">
+    <div class="modal-dialog modal-dialog-centered" >
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
                 <h5 class="modal-title" style="font-size: 16px;" id="exampleModalLabel">Appointment</h5>
