@@ -66,5 +66,5 @@ if (isset($_POST['cancelApp'])) {
     $appointment->confirmedAppointmentDeletion($customerId, $service_id);
     $notification->insertNotifAdmin($unread, $currentDate, $messageToAdmin);
 
-    header("location: manage-cancel-succes.php");
+    echo '<script type="text/javascript"> window.location="manage-cancel-succes";</script>';
 }

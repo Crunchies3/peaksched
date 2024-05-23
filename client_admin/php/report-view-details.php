@@ -183,11 +183,11 @@ if (isset($_POST['updateReport'])) {
 
     if (empty($hourWorked_err)) {
         $report->approveReport($reportId);
-        header("location: ./index.php");
+        echo '<script type="text/javascript"> window.location="./index.php";</script>';
     }
 } else if (isset($_POST['deleteReport'])) {
 
     $reportId = $_POST["reportId"];
     $report->deleteReport($reportId);
-    header("location: ./index.php");
+    echo '<script type="text/javascript"> window.location="./index.php";</script>';
 }

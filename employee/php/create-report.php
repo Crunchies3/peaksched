@@ -119,6 +119,6 @@ if (isset($_POST['submitReport'])) {
         $appointment->updateConfirmedAppointmentStatus($appointmentId, 'Completed');
         $appointment->updateCustomerRequestAppointmentStatus($appointmentId, 'Completed');
         $conn->close();
-        header('location: report-success.php');
+        echo '<script type="text/javascript"> window.location="report-success.php";</script>';
     }
 }

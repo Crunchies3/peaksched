@@ -62,7 +62,7 @@ if (isset($_POST['editService'])) {
 
     if (empty($serviceTitle_err) && empty($duration_err) && empty($price_err)) {
         $services->updateServiceDetails($serviceTitle, $color,  $description, $duration, $price, $service_id);
-        header("location: service_editing_page.php?serviceId=$service_id");
+        echo "<script type='text/javascript'> window.location='service_editing_page.php?serviceId=$service_id';</script>";
     }
 } else if (isset($_POST['deleteAccount'])) {
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
@@ -70,5 +70,5 @@ if (isset($_POST['editService'])) {
     }
     $service_id = $_POST["serviceId"];
     $services->deleteService($service_id);
-    header("location: ./services_page.php");
+    echo '<script type="text/javascript"> window.location="./services_page.php";</script>';
 }

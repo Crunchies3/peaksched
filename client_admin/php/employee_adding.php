@@ -52,5 +52,5 @@ $payrate_err = $validate->payrate($payrate);
 
 if (empty($firstname_err) && empty($lastName_err) && empty($email_err) && empty($mobileNumber_err) && empty($payrate_err)) {
     $employee->addEmployee($firstName, $lastName, $email,  $mobileNumber, $position, $employeeid, $tempHashedPassword, $payrate);
-    header("location: ./employee_page.php");
+    echo '<script type="text/javascript"> window.location="./employee_page.php";</script>';
 }
