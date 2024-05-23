@@ -519,7 +519,7 @@ class AdminAccount extends UserAccount
 
 
             //Set the hostname of the mail server
-            $mail->Host = 'smtp.gmail.com';
+            $mail->Host = 'localhost';
             //Use `$mail->Host = gethostbyname('smtp.gmail.com');`
             //if your network does not support SMTP over IPv6,
             //though this may cause issues with TLS
@@ -527,7 +527,7 @@ class AdminAccount extends UserAccount
             //Set the SMTP port number:
             // - 465 for SMTP with implicit TLS, a.k.a. RFC8314 SMTPS or
             // - 587 for SMTP+STARTTLS
-            $mail->Port = 465;
+            // $mail->Port = 465;
 
             //Set the encryption mechanism to use:
             // - SMTPS (implicit TLS on port 465) or
@@ -535,19 +535,19 @@ class AdminAccount extends UserAccount
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 
             //Whether to use SMTP authentication
-            $mail->SMTPAuth = true;
+            $mail->SMTPAuth = false;
 
             //Username to use for SMTP authentication - use full email address for gmail
-            $mail->Username = 'rivals191@gmail.com';
+            // $mail->Username = 'rivals191@gmail.com';
 
             //Password to use for SMTP authentication
-            $mail->Password = 'iwafeletytquflgl';
+            // $mail->Password = 'iwafeletytquflgl';
 
             //Set who the message is to be sent from
             //Note that with gmail you can only use your account address (same as `Username`)
             //or predefined aliases that you have configured within your account.
             //Do not use user-submitted addresses in here
-            $mail->setFrom('from@example.com');
+            $mail->setFrom('rivals191@gmail.com');
 
             //Set an alternative reply-to address
             //This is a good place to put user-submitted addresses
