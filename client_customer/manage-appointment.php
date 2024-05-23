@@ -115,9 +115,10 @@ require_once "./php_backend/appointment.php";
                         <thead id="tableHead">
                             <th style="color: white;">Appointment Id</th>
                             <th style="color: white;">Service</th>
-                            <th style="color: white;">Status</th>
                             <th style="color: white;">Date</th>
                             <th style="color: white;">Time</th>
+                            <th style="color: white;">Status</th>
+                            <th style="color: white;">numberedDate</th>
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
@@ -129,18 +130,21 @@ require_once "./php_backend/appointment.php";
                                     <td><?php echo $rows['request_app_id']; ?></td>
                                     <td><?php echo $rows['serviceName']; ?></td>
                                     <?php
+
+                                    $date = date_create($rows['start']);
+                                    $numberedDateOnly = date_format($date, "m-d-Y");
+                                    $dateOnly =  date_format($date, "M d, Y");
+                                    $time = date_create($rows['start']);
+                                    $timeOnly = date_format($time, "h: i A");
+
                                     if ($rows['status'] == 'Pending Approval') $badgeType = 'my-badge-pending';
                                     else if ($rows['status'] == 'Denied') $badgeType = 'my-badge-denied';
                                     else if ($rows['status'] == 'Completed' || $rows['status'] == 'Approved') $badgeType = 'my-badge-approved';
                                     ?>
-                                    <td><span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $rows['status']; ?></span></td>
-                                    <?php
-                                    $date =  $rows['start'];
-                                    $dateOnly = date("Y-m-d", strtotime($date));
-                                    $timeOnly = date('h:i A', strtotime($date));
-                                    ?>
                                     <td><?php echo $dateOnly; ?></td>
                                     <td><?php echo $timeOnly; ?></td>
+                                    <td><span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $rows['status']; ?></span></td>
+                                    <td><?php echo $numberedDateOnly; ?></td>
                                     <td></td>
                                 </tr>
                             <?php

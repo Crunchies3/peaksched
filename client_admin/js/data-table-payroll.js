@@ -28,6 +28,7 @@ $('#myTable').DataTable({
             }]
         },
     },
+    order: [[5, 'desc']],
     scrollY: 450,
     language: {
         emptyTable: 'No data available in table'
@@ -52,6 +53,10 @@ $('#myTable').DataTable({
         {
             targets: 4,
             className: "right-aligned-cell"
+        },
+        {
+            targets: 5,
+            'visible': false
         },
         {
             data: null,

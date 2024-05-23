@@ -142,6 +142,7 @@ require_once "../php/approved-appointment.php";
                             <th style="color: white;">Date</th>
                             <th style="color: white;">Time</th>
                             <th style="color: white;">Status</th>
+                            <th style="color: white;">numberedDate</th>
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
@@ -156,6 +157,7 @@ require_once "../php/approved-appointment.php";
                                     <td><?php echo $rows['email']; ?></td>
                                     <?php
                                     $date =  date_create($rows['start']);
+                                    $numberedDateOnly = date_format($date, "m-d-Y");
                                     $dateOnly =  date_format($date, "M d, Y");
                                     $timeOnly = date_format($date, "h: i A");
                                     ?>
@@ -168,6 +170,7 @@ require_once "../php/approved-appointment.php";
                                     else if ($rows['status'] == 'Approved') $badgeType = 'my-badge-approved';
                                     ?>
                                     <td><span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $rows['status']; ?></span></td>
+                                    <td><?php echo $numberedDateOnly; ?></td>
                                     <td></td>
                                 </tr>
                             <?php

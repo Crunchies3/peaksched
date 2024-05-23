@@ -106,9 +106,10 @@ require_once "../../php/assigned-app-worker.php";
                             <th style="color: white;">Appointment Id</th>
                             <th style="color: white;">Customer</th>
                             <th style="color: white;">Service</th>
-                            <th style="color: white;">Status</th>
                             <th style="color: white;">Date</th>
                             <th style="color: white;">Time</th>
+                            <th style="color: white;">Status</th>
+                            <th style="color: white;">numberedDate</th>
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
@@ -121,13 +122,21 @@ require_once "../../php/assigned-app-worker.php";
                                     <td><?php echo $rows['fullname']; ?></td>
                                     <td><?php echo $rows['title']; ?></td>
                                     <?php
-                                    if ($rows['status'] == 'Pending') $badgeType = 'my-badge-pending';
+
+                                    $date = date_create($rows['start']);
+                                    $numberedDateOnly = date_format($date, "m-d-Y");
+                                    $dateOnly =  date_format($date, "M d, Y");
+                                    $time = date_create($rows['start']);
+                                    $timeOnly = date_format($time, "h: i A");
+
+                                    if ($rows['status'] == 'pending') $badgeType = 'my-badge-pending';
                                     else if ($rows['status'] == 'Report Needed') $badgeType = 'my-badge-report-needed';
                                     else if ($rows['status'] == 'Completed') $badgeType = 'my-badge-approved';
                                     ?>
+                                    <td><?php echo $dateOnly; ?></td>
+                                    <td><?php echo $timeOnly; ?></td>
                                     <td><span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $rows['status']; ?></span></td>
-                                    <td><?php echo $rows['start']; ?></td>
-                                    <td><?php echo $rows['end']; ?></td>
+                                    <td><?php echo $numberedDateOnly; ?></td>
                                     <td></td>
                                 </tr>
                             <?php

@@ -42,7 +42,7 @@ $('#myTable').DataTable({
         selector: 'td:first-child'
     },
     //order para ma sort by time. first number is ang cell sa date
-    order: [[3, 'desc'], [4, 'desc']],
+    order: [[3, 'asc'], [5, 'asc']],
     //! end copy
 
     scrollY: 370,
@@ -65,6 +65,10 @@ $('#myTable').DataTable({
         {
             targets: -3,
             className: "right-aligned-cell"
+        },
+        {
+            targets: 5,
+            'visible': false
         },
         {
             data: null,
