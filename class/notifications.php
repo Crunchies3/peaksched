@@ -37,8 +37,7 @@ class Notifications
         try {
             $stmt = $this->conn->prepare(
                 "INSERT INTO tbl_notifications (recipient_type, unread, created_at, message) 
-                SELECT 'admin', ?, ?, ? 
-                FROM tbl_admin
+                VALUEs ('admin', ?, ?, ?)
                 "
             );
             $stmt->bind_param("sss", $unread, $created_at, $message);
