@@ -113,9 +113,10 @@ require_once "../../php/assigned_app_supervisor.php";
                             <th style="color: white;">Appointment Id</th>
                             <th style="color: white;">Customer</th>
                             <th style="color: white;">Service</th>
-                            <th style="color: white;">Status</th>
                             <th style="color: white;">Date</th>
                             <th style="color: white;">Time</th>
+                            <th style="color: white;">Status</th>
+                            <th style="color: white;">numberedEndDateOnly</th>
                             <th style="color: white;">Actions</th>
                         </thead>
                         <tbody>
@@ -125,6 +126,7 @@ require_once "../../php/assigned_app_supervisor.php";
                             ?>
                                 <tr>
                                     <td><?php echo $rows['appointment_id']; ?></td>
+
                                     <td><?php echo $rows['fullname']; ?></td>
                                     <td><?php echo $rows['title']; ?></td>
                                     <?php
@@ -132,16 +134,22 @@ require_once "../../php/assigned_app_supervisor.php";
                                     else if ($rows['status'] == 'Report Needed') $badgeType = 'my-badge-report-needed';
                                     else if ($rows['status'] == 'Completed') $badgeType = 'my-badge-approved';
                                     ?>
-                                    <td><span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $rows['status']; ?></span></td>
                                     <?php
                                     $appointment->getConfirmedAppointmentDetails($rows['appointment_id']);
                                     $appointment->getConfirmedDisplayables();
                                     $date = $appointment->getSpecificDate();
-                                    $dateOnly = date("Y-m-d", strtotime($date));
+                                    $dateOnly = date("M d, Y", strtotime($date));
                                     $timeOnly = date('h:i A', strtotime($date));
+                                    $start = date_create($date);
+                                    $startDate = date_format($start, "M d, Y");
+                                    $end = date_create($date);
+                                    $endDate = date_format($end, "M d, Y");
+                                    $numberedEndDateOnly = date_format($start, "m-d-Y");
                                     ?>
                                     <td><?php echo $dateOnly; ?></td>
                                     <td><?php echo $timeOnly; ?></td>
+                                    <td><span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $rows['status']; ?></span></td>
+                                    <td><?php echo $numberedEndDateOnly; ?></td>
                                     <td></td>
                                 </tr>
                             <?php
@@ -163,7 +171,7 @@ require_once "../../php/assigned_app_supervisor.php";
 
 <!-- Modal -->
 <div class="modal" id="exampleModal" data-bs-backdrop="true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
                 <h5 class="modal-title" style="font-size: 16px;" id="exampleModalLabel">Appointment</h5>

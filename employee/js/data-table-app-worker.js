@@ -72,32 +72,32 @@ $('#myTable').DataTable({
                     {
                         label: 'Report Needed',
                         value: function (rowData, rowIdx) {
-                            return rowData[3] == '<span class="badge rounded-pill my-badge-report-needed">Report Needed</span>';
+                            return rowData[5] == '<span class="badge rounded-pill my-badge-report-needed">Report Needed</span>';
                         }
                     },
                     {
                         label: 'Pending',
                         value: function (rowData, rowIdx) {
-                            return rowData[3] == '<span class="badge rounded-pill my-badge-pending">Pending</span>';
+                            return rowData[5] == '<span class="badge rounded-pill my-badge-pending">Pending</span>';
                         }
                     },
                     {
                         label: 'Completed',
                         value: function (rowData, rowIdx) {
-                            return rowData[3] == '<span class="badge rounded-pill my-badge-approved">Completed</span>';
+                            return rowData[5] == '<span class="badge rounded-pill my-badge-approved">Completed</span>';
                         }
                     },
 
                 ],
                 combiner: 'or'
             },
-            targets: [3]
+            targets: [5]
         },
         {
             searchPanes: {
                 show: false,
             },
-            targets: [0, 1, 2, 4, 5, 6]
+            targets: [0, 1, 2, 4, 6]
         }
 
         //! end copy
