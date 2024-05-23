@@ -134,12 +134,15 @@ require_once "../../php/settings_account.php";
                             </div>
                         </div>
                     </form>
+                    <div class="mb-0 col-xxl-3">
+                        <button id="showEdit" name="editAccount" type="submit" class="btn btn-sm fs-6 w-100 my-button-yes">Edit Account Details</button>
+                    </div>
                     <div class="row">
                         <div class="mb-3 col-xxl-3">
-                            <button data-bs-toggle="modal" data-bs-target="#updateInfoModal" class="btn btn-sm fs-6 w-100 save-changes-button">Save changes</button>
+                            <button  style="display: none;" type="submit" id="editAccount" name="editAccount"data-bs-toggle="modal" data-bs-target="#updateInfoModal" class="btn btn-sm fs-6 w-100 my-button-yes">Save changes</button>
                         </div>
-                        <div class="mb-0 col-xxl-3">
-                            <a href="./" name="discardChanges" class="btn btn-sm fs-6 w-100 discard-changes-button">Discard changes</a>
+                        <div class="mb-3 col-xxl-3  ">
+                            <button style="display: none;" id="discardChanges" href="./index.php" name="discardChanges" class="btn btn-sm fs-6 w-100 my-button-no">Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -175,16 +178,16 @@ require_once "../../php/settings_account.php";
                     </form>
                     <div class="row">
                         <div class="mb-3 col-xxl-3">
-                            <button data-bs-toggle="modal" data-bs-target="#updatePasswordModal" type="submit" class="btn btn-sm fs-6 w-100 change-password-button">Change password</button>
+                            <button data-bs-toggle="modal" data-bs-target="#updatePasswordModal" type="submit" class="btn btn-sm fs-6 w-100 my-button-yes">Change password</button>
                         </div>
                         <div class="mb-0 col-xxl-3">
-                            <a href="./" name="discardChanges" class="btn btn-sm fs-6 w-100 discard-changes-button">Discard changes</a>
+                            <a href="./" name="discardChanges" class="btn btn-sm fs-6 w-100 my-button-no">Discard changes</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <script src="./js/script.js"></script>
+        <script src="../../js/settings.js"></script>
 </body>
 
 </html>
