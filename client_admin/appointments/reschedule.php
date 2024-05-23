@@ -6,7 +6,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
-require_once "../php/appointment-request-details.php";
+require_once "../php/appointment-reschedule.php";
 ?>
 
 <!DOCTYPE html>
@@ -120,7 +120,7 @@ require_once "../php/appointment-request-details.php";
                 </div>
                 <div class="container-fluid" id="subArea-single">
                     <div>
-                        <h5><span><a href="./" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Appointment Request Details</h5>
+                        <h5><span><button onclick="goBack()" href="./" class="btn my-button-back"><i class="bi bi-chevron-left"></i></button></span>Reschedule Appointment</h5>
                     </div>
                     <form id="reSched" class="row mb-5" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="col-md-6 mb-4">
@@ -180,15 +180,21 @@ require_once "../php/appointment-request-details.php";
                     </form>
                     <div class="row">
                         <div class="mb-3 col-xxl-2">
-                            <button data-bs-toggle="modal" data-bs-target="#reschedApp" class="btn btn-lg fs-6 w-100 my-button-yes">Submit Request</button>
+                            <button data-bs-toggle="modal" data-bs-target="#reschedApp" class="btn btn-lg fs-6 w-100 my-button-yes">Reschedule Appointment</button>
                         </div>
                         <div class="mb-0 col-xxl-2">
-                            <a href="./manage-appointment.php" class="btn btn-lg fs-6 w-100 my-button-no">Cancel</a>
+                            <button onclick="goBack()" href="./manage-appointment.php" class="btn btn-lg fs-6 w-100 my-button-no">Cancel</button>
                         </div>
                     </div>
                 </div>
             </div>
             <script src="./js/script.js"></script>
+
+            <script>
+                function goBack() {
+                    window.history.back();
+                }
+            </script>
 </body>
 
 </html>
@@ -200,11 +206,11 @@ require_once "../php/appointment-request-details.php";
     <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
-                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Request Reschedule Appointment?</h1>
+                <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Reschedule Appointment?</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Your request will be submitted.
+                Appointment will be rescheduled.
             </div>
             <div class="modal-footer">
                 <button name="reschedApp" form="reSched" class="btn my-button-yes">Confirm</button>
