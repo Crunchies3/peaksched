@@ -9,5 +9,5 @@ $_SESSION = array();
 session_destroy();
 
 // Redirect to login page
-echo '<script type="text/javascript"> window.location="../index";</script>';
+echo '<script type="text/javascript"> window.location="../index.php";</script>';
 exit;
