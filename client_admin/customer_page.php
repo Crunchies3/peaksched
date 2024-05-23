@@ -141,7 +141,7 @@ require_once "php/customer_page.php";
                             ?>
                                 <tr>
                                     <td><?php echo $rows['customerid']; ?></td>
-                                    <td><?php echo $rows['firstname']; ?> <?php echo $rows['lastname']; ?></td>
+                                    <td class="emphasize"><?php echo $rows['firstname']; ?> <?php echo $rows['lastname']; ?></td>
                                     <td><?php echo $rows['email']; ?></td>
                                     <td><?php echo $rows['mobilenumber']; ?></td>
                                     <td></td>

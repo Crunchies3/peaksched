@@ -124,7 +124,7 @@ require_once "../php/approved-appointment.php";
                     <div class="mb-3 col-xxl-2">
                         <a href="./index.php" class="btn my-button-unselected w-100">Pending Requests</a>
                     </div>
-                    <div class="mb-4 col-xxl-2">
+                    <div class="mb-4 col-xxl-3">
                         <a href="./approved-appointments.php" class="btn my-button-selected w-100">Approved Appointments</a>
                     </div>
                 </div>
