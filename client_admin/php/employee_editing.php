@@ -11,7 +11,7 @@ if (isset($_GET["employeeId"])) {
     $employee = new Employees();
     $employee->setConn($conn);
     if ($employee->getTypeById($idEmployee) == "supervisor") {
-        header("location: employee_supervisor_page.php?employeeId=$idEmployee");
+        echo "<script type='text/javascript'> window.location='employee_supervisor_page.php?employeeId=$idEmployee';</script>";
         exit;
     }
 }
@@ -83,7 +83,7 @@ if (isset($_POST['updateInfo'])) { //! para mag update sa details like name
 
     if (empty($firstname_err) && empty($payrate_err) && empty($status_err) && empty($lastName_err) && empty($email_err) && empty($mobileNumber_err)) {
         $employee->updateEmployeeDetails($firstName, $lastName,  $email, $mobileNumber, $position, $employeeId, $payrate, $status);
-        header("location: ./employee_editing_page.php?employeeId=$employeeId");
+        echo "<script type='text/javascript'> window.location='./employee_editing_page.php?employeeId=$employeeId';</script>";
     }
 } else if (isset($_POST['changePassword'])) {  //! para mag change pass
 
@@ -114,7 +114,7 @@ if (isset($_POST['updateInfo'])) { //! para mag update sa details like name
     if (empty($newPassword_err) && empty($confirmPassword_err)) {
         $employee->changeEmployeePassword($newHashedPassword);
         //faulty to be continued..
-        header("location: ./employee_page.php?employeeId=$employeeId");
+        echo "<script type='text/javascript'> window.location='./employee_page.php?employeeId=$employeeId';</script>";
     }
 } else if (isset($_POST['deleteAccount'])) { //! para mag delete ug account
     //pareha ra ang change pass ug delete account ug form maong giani
@@ -123,5 +123,5 @@ if (isset($_POST['updateInfo'])) { //! para mag update sa details like name
     }
     $employeeId = $_POST["employeeId"];
     $employee->deleteEmployee($employeeId);
-    header("location: ./employee_page.php");
+    echo '<script type="text/javascript"> window.location="./employee_page.php";</script>';
 }

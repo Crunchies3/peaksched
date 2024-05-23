@@ -42,5 +42,5 @@ $price_err = $validate->servicePrice($price);
 
 if (empty($serviceTitle_err) && empty($duration_err) && empty($price_err)) {
     $services->addService($service_id, $serviceTitle, $color,  $description, $duration, $price);
-    header("location: ./services_page.php");
+    echo '<script type="text/javascript"> window.location="./services_page.php";</script>';
 }

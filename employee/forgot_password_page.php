@@ -2,7 +2,13 @@
 session_start();
 
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header("location: dashboard.php");
+
+    if ($_SESSION["type"] == "supervisor") {
+        echo '<script type="text/javascript"> window.location="./supervisor";</script>';
+    } else {
+        echo '<script type="text/javascript"> window.location="./worker";</script>';
+    }
+
     exit;
 }
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/employee/php/forgot_password.php";

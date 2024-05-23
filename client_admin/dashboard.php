@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: index.php");
+    echo '<script type="text/javascript"> window.location="index.php";</script>';
     exit;
 }
 
@@ -215,7 +215,7 @@ require_once "php/dashboard.php";
 
 <!-- kung mag add na Modal -->
 <div class="modal" id="appointment" data-bs-backdrop="true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow p-2 mb-5 bg-white border my-modal">
             <div class="modal-header my-header">
                 <h5 class="modal-title" style="font-size: 16px;" id="exampleModalLabel">Appointment</h5>

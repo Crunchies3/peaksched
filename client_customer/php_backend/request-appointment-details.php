@@ -105,6 +105,6 @@ if (isset($_POST['submitRequest'])) {
     if (empty($address_Err) && empty($typeOfUnit_err) && empty($numOfBath_err) && empty($numOfBeds_err) && empty($selectedDate_err) && empty($selectedTime_err)) {
         $appointment->addRequestAppointment($requestAppointmentId, $service_id, $addressId, $customerId, $typeOfUnit, $numOfBeds, $numOfBath, $dateTimeStart, $dateTimeEnd, $note, $status);
         $notification->insertNotifAdmin($unread, $currentDate, $messageToAdmin);
-        header("location: request-appointment-succes.php");
+        echo '<script type="text/javascript"> window.location="request-appointment-succes.php";</script>';
     }
 }

@@ -71,5 +71,5 @@ if (isset($_POST['deleteAddress'])) {
 
     $addressId = trim($_POST["addressId"]);
     $address->deleteAddress($addressId);
-    header('location: ./');
+    echo '<script type="text/javascript"> window.location="./";</script>';
 }

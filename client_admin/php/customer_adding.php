@@ -81,5 +81,5 @@ $zipCode = trim($_POST["zipCode"]);
 if (empty($firstname_err) && empty($lastName_err) && empty($email_err) && empty($mobileNumber_err) && empty($street_err) && empty($city_err) && empty($province_err) && empty($country_err)) {
     $customer->addCustomer($firstName, $lastName, $email,  $mobileNumber, $customerId, $tempHashedPassword);
     $address->addAddress($customerId, $addressId, $street, $city, $province, $zipCode, $country, 'Primary');
-    header("location: ./customer_page.php");
+    echo '<script type="text/javascript"> window.location="./customer_page.php";</script>';
 }

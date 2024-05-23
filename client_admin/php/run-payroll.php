@@ -46,5 +46,5 @@ $payrollId = rand(100000, 200000);
 
 if (empty($startDate_err) && empty($endDateErr) && empty($paydate_err) && empty($fedTax_err)) {
     $payroll->runPayroll($payrollId, $startDate, $endDate, $payDate, $federalTax);
-    header("location: ./index.php");
+    echo '<script type="text/javascript"> window.location="./index.php";</script>';
 }

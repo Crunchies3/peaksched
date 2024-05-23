@@ -118,7 +118,7 @@ if (isset($_POST['approveApp'])) {
         //updating the status to approved in customers request appointment table
         $appointments->updateApprovedAppointment($appointmentId);
         $notification->insertNotif($receiver, $unread, $created_at, $message);
-        header("location: ./index.php");
+        echo '<script type="text/javascript"> window.location="./index.php";</script>';
     }
 }
 
@@ -142,5 +142,5 @@ if (isset($_POST['denyRequestModal'])) {
     $appointments->denyCustRequest($appointmentId);
 
 
-    header("location: ./index.php");
+    echo '<script type="text/javascript"> window.location="./index.php";</script>';
 }

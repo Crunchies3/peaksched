@@ -30,7 +30,7 @@ if (isset($_POST['approvethePayroll'])) {
     if (!$isGoodToGo) {
         $show = true;
         $payroll->approvePayroll($payroll_id);
-        header("location: ./index.php");
+        echo '<script type="text/javascript"> window.location="./index.php";</script>';
     } else {
         $show = false;
     }
@@ -44,5 +44,5 @@ if (isset($_POST['approvethePayroll'])) {
 
     $payroll->deletePayroll($payroll_id);
 
-    header("location: ./index.php");
+    echo '<script type="text/javascript"> window.location="./index.php";</script>';
 }

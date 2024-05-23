@@ -43,6 +43,6 @@ if (isset($_POST['reschedApp'])) {
 
     if (empty($selectedDate_err) && empty($selectedTime_err)) {
         $appointment->rescheduleAppointment($dateTimeStart, $dateTimeEnd, $note, $status, $appointmentId);
-        header("location: view-details.php?appointmentId=$appointmentId");
+        echo "<script type='text/javascript'> window.location='view-details.php?appointmentId=$appointmentId';</script>";
     }
 }

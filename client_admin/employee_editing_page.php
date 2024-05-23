@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: index.php");
+    echo '<script type="text/javascript"> window.location="index.php";</script>';
     exit;
 }
 
@@ -125,7 +125,7 @@ require_once "php/employee_editing.php";
                     <h1>Employee</h1>
                 </div>
                 <div class="container-fluid" id="subArea-top">
-                    <div>   
+                    <div>
                         <h5><span><a href="./employee_page.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Employee Details</h5>
                     </div>
                     <form id="editEmployeeForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>

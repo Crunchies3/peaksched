@@ -98,7 +98,7 @@ if (isset($_POST['updateInfo'])) { //! para mag update sa details like name
 
     if (empty($firstname_err) && empty($lastName_err) && empty($email_err) && empty($mobileNumber_err)) {
         $customer->updateCustomerDetails($firstName, $lastName,  $email, $mobileNumber, $customerId);
-        header("location: customer_editing_page.php?customerId=$customerId");
+        echo "<script type='text/javascript'> window.location='customer_editing_page.php?customerId=$customerId';</script>";
     }
 } else if (isset($_POST['changePassword'])) {  //! para mag change pass
 
@@ -134,7 +134,7 @@ if (isset($_POST['updateInfo'])) { //! para mag update sa details like name
     if (empty($newPassword_err) && empty($confirmPassword_err)) {
         $customer->changeCustomerPassword($newHashedPassword, $customerId);
         //faulty to be continued..
-        header("location: customer_editing_page.php?customerId=$customerId");
+        echo "<script type='text/javascript'> window.location='customer_editing_page.php?customerId=$customerId';</script>";
     }
 } else if (isset($_POST['deleteAccount'])) { //! para mag delete ug account
     //pareha ra ang change pass ug delete account ug form maong giani
@@ -143,7 +143,7 @@ if (isset($_POST['updateInfo'])) { //! para mag update sa details like name
     }
     $customerId = $_POST["customerId"];
     $customer->deleteCustomer($customerId);
-    header("location: ./customer_page.php");
+    echo '<script type="text/javascript"> window.location="./customer_page.php";</script>';
 } else if (isset($_POST['editAddress'])) { //! para mag edit sa address
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
@@ -185,6 +185,6 @@ if (isset($_POST['updateInfo'])) { //! para mag update sa details like name
 
     if (empty($street_err) && empty($city_err) && empty($province_err) && empty($country_err)) {
         $address->updateAddress($addressId, $street, $city, $province, $zipCode, $country);
-        header("location: customer_editing_page.php?customerId=$customerId");
+        echo "<script type='text/javascript'> window.location='customer_editing_page.php?customerId=$customerId';</script>";
     }
 }

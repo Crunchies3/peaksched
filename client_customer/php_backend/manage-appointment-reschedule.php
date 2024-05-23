@@ -74,6 +74,6 @@ if (isset($_POST['reschedApp'])) {
         $appointment->rescheduleAppointment($dateTimeStart, $dateTimeEnd, $note, $status, $appointmentId);
         $appointment->confirmedAppointmentDeletion($customerId, $service_id);
         $notification->insertNotifAdmin($unread, $currentDate, $messageToAdmin);
-        header("location: manage-resched-success.php");
+        echo '<script type="text/javascript"> window.location="manage-resched-success.php";</script>';
     }
 }

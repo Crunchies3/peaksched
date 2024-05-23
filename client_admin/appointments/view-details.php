@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: index.php");
+    echo '<script type="text/javascript"> window.location="../index.php";</script>';
     exit;
 }
 
@@ -207,7 +207,7 @@ require_once "../php/appointment-request-details.php";
 </html>
 
 <div class="modal fade" id="approveRequestModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="approveRequestModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
                 <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Approve Appointment?</h1>
@@ -225,7 +225,7 @@ require_once "../php/appointment-request-details.php";
 </div>
 
 <div class="modal fade" id="denyRequestModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="denyRequestModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
                 <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Deny Appointment?</h1>

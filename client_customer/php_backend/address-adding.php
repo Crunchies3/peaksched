@@ -62,5 +62,5 @@ if (empty($street_err) && empty($city_err) && empty($province_err) && empty($zip
     }
 
 
-    header("location: ./index.php");
+    echo '<script type="text/javascript"> window.location="./index";</script>';
 }

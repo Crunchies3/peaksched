@@ -7,7 +7,6 @@ class Notifications
     private $recipientidC;
     private $senderid;
     private $unread;
-    private $notifType;
     private $dateCreated;
     private $senderUserType;
     private $receiverUserType;
@@ -67,7 +66,7 @@ class Notifications
     {
         try {
             $stmt = $this->conn->prepare(
-                "SELECT * FROM tbl_notifications WHERE recipient_type = 'admin' GROUP BY message "
+                "SELECT * FROM tbl_notifications WHERE recipient_type = 'admin'"
             );
             $stmt->execute();
             $result = $stmt->get_result();
@@ -91,23 +90,6 @@ class Notifications
     //if naay changes gibuhat (resched/cancel) ang customer na need i approve
 
 
-
-    //plano
-    //taga execute sa operation nga involve ug notification ing anion lang ang tirada nga magneed ug parameter
-    //siguro ang need kadalasan kay ang senderType ug receiverType sa sql query side
-    //sample sa backend
-    // public function notifySupervisorFromAdmin($senderType , $receiverType) : string
-    // {
-    //     return $senderType->getName() . 'Has assigned you to an appointment '. $AppointmentName . 'on' .$currentDate. 'Please view your appointment tab for more details'.; 
-    // }
-    //sample sa query
-    // public function supervisorNotifications($senderid, $recepientid, $notifType, $dateCreated)
-    // {
-    //INSERT INTO tbl_notification 
-    //senderid = $senderType->getId
-    //recepientid = id sa supervisor
-    //notiftype = dpende kugn appointment related or dli
-    // }
 
     public function getConn()
     {
