@@ -25,17 +25,6 @@ $('#myTable').DataTable({
         },
 
         //! start copy
-        top1: {
-            searchPanes: {
-                initCollapsed: true,
-                preSelect: [
-                    {
-                        rows: ['Pending'],
-                        column: 4
-                    }
-                ]
-            }
-        }
         //! end copy
     },
 

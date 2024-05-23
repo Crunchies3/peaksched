@@ -102,7 +102,7 @@ $('#myTable').DataTable({
                     {
                         label: 'Completed',
                         value: function (rowData, rowIdx) {
-                            return rowData[4] == '<span class="badge rounded-pill my-badge-denied">Completed</span>';
+                            return rowData[4] == '<span class="badge rounded-pill my-badge-approved">Completed</span>';
                         }
                     },
                     {
