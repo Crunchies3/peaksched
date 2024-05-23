@@ -16,7 +16,7 @@ require_once "php/service_editing.php";
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Settings</title>
+    <title>PeakSched</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -204,7 +204,7 @@ require_once "php/service_editing.php";
 </html>
 
 <div class="modal fade" id="addServiceModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="addServiceModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
+    <div class="modal-dialog modal-dialog-centered" >
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
                 <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm Edit service?</h1>
@@ -221,7 +221,7 @@ require_once "php/service_editing.php";
     </div>
 </div>
 <div class="modal fade" id="deleteEmployeeAccountModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="deleteEmployeeAccountModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
+    <div class="modal-dialog modal-dialog-centered" >
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
                 <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm delete service?</h1>

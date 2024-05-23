@@ -14,7 +14,7 @@ require_once "../../php/payslip_view_detail.php";
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Employee</title>
+    <title>PeakSched</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -93,7 +93,7 @@ require_once "../../php/payslip_view_detail.php";
                 </div>
                 <div class="container-fluid" id="subArea-top">
                     <div class="row justify-content-between">
-                        <h5><span><a href="./view-employee.php?payrollId=<?php echo $payroll_id ?>" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span>
+                        <h5><span><a href="./" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span>
                             Payslip Details
                         </h5>
                     </div>

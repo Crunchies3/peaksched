@@ -16,7 +16,7 @@ require_once "../../php/settings_account.php";
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Settings</title>
+    <title>PeakSched</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -135,11 +135,11 @@ require_once "../../php/settings_account.php";
                         </div>
                     </form>
                     <div class="row">
-                        <div class="mb-3 col-xxl-2">
-                            <button data-bs-toggle="modal" data-bs-target="#updateInfoModal" class="btn btn-lg fs-6 w-100 save-changes-button">Save changes</button>
+                        <div class="mb-3 col-xxl-3">
+                            <button data-bs-toggle="modal" data-bs-target="#updateInfoModal" class="btn btn-sm fs-6 w-100 save-changes-button">Save changes</button>
                         </div>
-                        <div class="mb-0 col-xxl-2">
-                            <a href="./" name="discardChanges" class="btn btn-lg fs-6 w-100 discard-changes-button">Discard changes</a>
+                        <div class="mb-0 col-xxl-3">
+                            <a href="./" name="discardChanges" class="btn btn-sm fs-6 w-100 discard-changes-button">Discard changes</a>
                         </div>
                     </div>
                 </div>
@@ -174,11 +174,11 @@ require_once "../../php/settings_account.php";
                         </div>
                     </form>
                     <div class="row">
-                        <div class="mb-3 col-xxl-2">
-                            <button data-bs-toggle="modal" data-bs-target="#updatePasswordModal" type="submit" class="btn btn-lg fs-6 w-100 change-password-button">Change password</button>
+                        <div class="mb-3 col-xxl-3">
+                            <button data-bs-toggle="modal" data-bs-target="#updatePasswordModal" type="submit" class="btn btn-sm fs-6 w-100 change-password-button">Change password</button>
                         </div>
-                        <div class="mb-0 col-xxl-2">
-                            <a href="./" name="discardChanges" class="btn btn-lg fs-6 w-100 discard-changes-button">Discard changes</a>
+                        <div class="mb-0 col-xxl-3">
+                            <a href="./" name="discardChanges" class="btn btn-sm fs-6 w-100 discard-changes-button">Discard changes</a>
                         </div>
                     </div>
                 </div>
@@ -194,7 +194,7 @@ require_once "../../php/settings_account.php";
 <!-- //? modal paras confirmation sa pag update sa details -->
 
 <div class="modal fade" id="updateInfoModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="updateInfoModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
                 <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm changes?</h1>
@@ -215,7 +215,7 @@ require_once "../../php/settings_account.php";
 <!-- //? modal paras confirmation sa pag update sa password -->
 
 <div class="modal fade" id="updatePasswordModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="updatePasswordModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
+    <div class="modal-dialog modal-dialog-centered" >
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
                 <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm change password?</h1>

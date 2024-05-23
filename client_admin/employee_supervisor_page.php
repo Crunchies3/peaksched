@@ -16,7 +16,7 @@ require_once "php/employee_supervisor_editing.php";
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Employee</title>
+    <title>PeakSched</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -274,7 +274,7 @@ require_once "php/employee_supervisor_editing.php";
 <!-- //? modal paras confirmation sa pag update sa details -->
 
 <div class="modal fade" id="updateInfoModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="updateInfoModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
                 <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm changes?</h1>
@@ -297,7 +297,7 @@ require_once "php/employee_supervisor_editing.php";
 <!-- //? modal paras confirmation sa pag delete sa user -->
 
 <div class="modal fade" id="deleteEmployeeAccountModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="deleteEmployeeAccountModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
                 <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm delete account?</h1>
@@ -317,7 +317,7 @@ require_once "php/employee_supervisor_editing.php";
 <!-- //? modal paras confirmation sa pag delete sa worker -->
 
 <div class="modal fade" id="deleteWorkerAccountModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="RemoveWorker" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
+    <div class="modal-dialog modal-dialog-centered" >
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
                 <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm remove worker?</h1>

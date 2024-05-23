@@ -19,7 +19,7 @@ require_once 'php/reset_password.php';
     <link rel="stylesheet" href="./css/login_page_styles.css">
     <script src="https://kit.fontawesome.com/3a742f337b.js" crossorigin="anonymous"></script> <!-- MATA SA PASSWORd -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <title>Login</title>
+    <title>PeakSched</title>
 </head>
 
 <body>
