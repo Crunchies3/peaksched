@@ -39,6 +39,8 @@ $services->displayCurrentService($service_id);
 
 $serviceName = $services->getTitle();
 
+$isThereAddress = $address->checkIfAddressExist($customerId);
+
 
 if (isset($_POST['submitRequest'])) {
 

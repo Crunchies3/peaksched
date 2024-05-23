@@ -75,6 +75,25 @@ class Address
         }
     }
 
+    public function checkIfAddressExist($customerId)
+    {
+        try {
+            $stmt = $this->conn->prepare(
+
+                "SELECT * FROM tbl_customer_address WHERE customer_id = ?"
+            );
+            $stmt->bind_param("s", $customerId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
+                return true;
+            } else return false;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+
     public function fetchAddressListByCustomer($customerId)
     {
         try {

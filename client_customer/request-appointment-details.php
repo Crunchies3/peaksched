@@ -118,6 +118,9 @@ require_once "./php_backend/request-appointment-details.php";
                                     <label class="form-label mb-1">SELECTED SERVICE <span class="my-form-required">*</span></label>
                                     <input disabled name="firstName" type="text" class="form-control input-field" placeholder="Enter your first name" aria-label="Current Password" value="<?php echo $serviceName ?>">
                                 </div>
+                                <div <?php echo $isThereAddress ? "hidden" : ''; ?> class="alert alert-danger" role="alert">
+                                    Please add an Address. <a href="./address/add-address.php" style="text-decoration: underline;">click here!</a>
+                                </div>
                                 <div class="col-md-12 mb-4">
                                     <label class="form-label mb-1 <?php echo (!empty($address_Err)) ? 'is-invalid' : ''; ?>">ADDRESS <span class="my-form-required">*</span></label>
                                     <div class="invalid-feedback">
@@ -311,7 +314,7 @@ require_once "./php_backend/request-appointment-details.php";
 <!-- Modal -->
 
 <div class="modal fade" id="submitRequest" data-bs-backdrop="static" tabindex="-1" aria-labelledby="updateInfoModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
                 <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm Request?</h1>
