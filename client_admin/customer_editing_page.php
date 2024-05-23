@@ -124,7 +124,7 @@ require_once "php/customer_editing.php";
                 </div>
                 <div class="container-fluid" id="subArea-top">
                     <div>
-                        <h5><span><a href="./customer_page.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Edit Customer</h5>
+                        <h5><span><a href="./customer_page.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span>Customer Details</h5>
                     </div>
                     <form id="editCustomerForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <input type="hidden" name="customerId" value="<?= htmlspecialchars($customerId) ?>">
@@ -157,9 +157,15 @@ require_once "php/customer_editing.php";
                             </div>
                         </div>
                     </form>
+                    <div class="mb-0 col-xxl-2">
+                        <button id="showEdit" name="editCustomer" type="submit" class="btn btn-lg fs-6 w-100 my-button-yes">Edit Customer</button>
+                    </div>
                     <div class="row">
                         <div class="mb-3 col-xxl-2">
-                            <button data-bs-toggle="modal" data-bs-target="#editEmployeeModal" class="btn btn-lg fs-6 w-100 my-button-yes">Save Changes</button>
+                            <button style="display: none;" type="submit" id="editCustomer" name="editCustomer" data-bs-toggle="modal" data-bs-target="#editEmployeeModal" class="btn btn-lg fs-6 w-100 my-button-yes">Save Changes</button>
+                        </div>
+                        <div class="mb-3 col-xxl-2">
+                            <button style="display: none;" id="discardChanges" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -206,9 +212,15 @@ require_once "php/customer_editing.php";
                             <input name="zipCode" type="text" class="form-control input-field" placeholder="Enter zip code" aria-label="Current Password" value="<?php echo $zipCode ?>">
                         </div>
                     </form>
-                    <div class="row justify-content-between">
+                    <div class="mb-0 col-xxl-2">
+                        <button id="showEditAddress" name="editAddress" type="submit" class="btn btn-lg fs-6 w-100 my-button-yes">Edit Adress</button>
+                    </div>
+                    <div class="row">
                         <div class="mb-3 col-xxl-2">
-                            <button data-bs-toggle="modal" data-bs-target="#updateAddressModal" class="btn btn-lg fs-6 w-100 my-button-yes">Save Address</button>
+                            <button style="display: none;" type="submit" id="editAddress" name="editAddress" data-bs-toggle="modal" data-bs-target="#updateAddressModal" class="btn btn-lg fs-6 w-100 my-button-yes">Save Address</button>
+                        </div>
+                        <div class="mb-3 col-xxl-2">
+                            <button style="display: none;" id="discardChangesAddress" name="discardChangesAddress" class="btn btn-lg fs-6 w-100 my-button-no">Cancel</button>
                         </div>
                     </div>
                 </div>

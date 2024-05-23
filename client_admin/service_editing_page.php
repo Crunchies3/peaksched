@@ -130,7 +130,7 @@ require_once "php/service_editing.php";
                     <div class="container">
                         <div class="row">
                             <div class="col">
-                                <h5><span><a href="./services_page.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Edit Service</h5>
+                                <h5><span><a href="./services_page.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span>Service Details</h5>
                             </div>
                         </div>
                         <form id="addServiceForm" class="row mb-5" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
@@ -174,17 +174,20 @@ require_once "php/service_editing.php";
                             </div>
                         </form>
 
+                        <div class="mb-0 col-xxl-2">
+                            <button id="showEdit" name="editService" type="submit" class="btn btn-lg fs-6 w-100 my-button-yes">Edit Service</button>
+                        </div>
                         <div class="row d-flex justify-content-between ">
                             <div class="row col-xxl-4">
                                 <div class="mb-4 col-xxl">
-                                    <button name="editService" data-bs-toggle="modal" data-bs-target="#addServiceModal" type="submit" class="btn w-100 my-button-yes">Save Changes</button>
+                                    <button style="display: none;" type="submit" id="editService" name="editService" data-bs-toggle="modal" data-bs-target="#addServiceModal" type="submit" class="btn btn-lg fs-6 w-100 my-button-yes">Save Changes</button>
                                 </div>
                                 <div class="mb-4 col-xxl">
-                                    <a href="./services_page.php" name="discardChanges" class="btn w-100 my-button-no">Cancel</a>
+                                    <button style="display: none;" id="discardChanges" href="./index.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Cancel</button>
                                 </div>
                             </div>
                             <div class="mb-4 col-xxl-2">
-                                <button data-bs-toggle="modal" data-bs-target="#deleteEmployeeAccountModal" class="btn w-100 my-button-danger">Delete</button>
+                                <button style="display: none;" type="submit" id="deleteService" name="deleteService" data-bs-toggle="modal" data-bs-target="#deleteEmployeeAccountModal" class="btn w-100 my-button-danger">Delete</button>
                             </div>
                         </div>
                     </div>

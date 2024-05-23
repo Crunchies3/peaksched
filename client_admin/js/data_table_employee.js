@@ -44,16 +44,14 @@ $('#myTable').DataTable({
         },
         {
             data: null,
-            defaultContent: '<form action="./employee_editing_page.php" id="editEmployee" method="get"><input id="employeeId" hidden type="text" name="employeeId" value=""></form><button form="editEmployee" class="btn my-button-yes mx-1" id="actionClick">view</button>',
+            defaultContent: '<form action="./employee_editing_page.php" id="editEmployee" method="get"><input id="employeeId" hidden type="text" name="employeeId" value=""></form><button form="editEmployee" class="btn my-button-yes mx-1" id="actionClick">View</button>',
             targets: -1
         },
     ],
 });
 
 
-
 // var data = $('#myTable').DataTable().rows().data();
-
 
 
 
@@ -87,3 +85,28 @@ $(function () {
         return true;
     });
 });
+
+// !sugod copy
+
+// ? para ma disable ang submit on enter
+$(document).ready(function () {
+    $(window).keydown(function (event) {
+        if (event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+        }
+    });
+});
+
+$("#showEdit").on("click", function () {
+    $("#editEmployee").toggle();
+    $("#discardChanges").toggle();
+    $("#showEdit").toggle();
+});
+
+$("#discardChanges").on("click", function () {
+    $("#editEmployee").toggle();
+    $("#discardChanges").toggle();
+    $("#showEdit").toggle();
+});
+// !end copy

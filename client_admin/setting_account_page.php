@@ -153,12 +153,15 @@ require_once "php/profile_account.php";
                             </div>
                         </div>
                     </form>
+                    <div class="mb-0 col-xxl-2">
+                        <button id="showEdit" name="editAccount" type="submit" class="btn btn-lg fs-6 w-100 my-button-yes">Edit Employee</button>
+                    </div>
                     <div class="row">
                         <div class="mb-3 col-xxl-2">
-                            <button data-bs-toggle="modal" data-bs-target="#updateInfoModal" class="btn btn-lg fs-6 w-100 my-button-yes">Save changes</button>
+                            <button style="display: none;" type="submit" id="editAccount" name="editAccount" data-bs-toggle="modal" data-bs-target="#updateInfoModal" class="btn btn-lg fs-6 w-100 my-button-yes">Save changes</button>
                         </div>
-                        <div class="mb-0 col-xxl-2">
-                            <a href="./setting_account_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Discard changes</a>
+                        <div class="mb-3 col-xxl-2">
+                            <button style="display: none;" id="discardChanges" href="./index.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -204,6 +207,7 @@ require_once "php/profile_account.php";
             </div>
         </section>
         <script src="./js/script.js"></script>
+        <script src="./js/setting-account-page.js"></script>
 </body>
 
 </html>
