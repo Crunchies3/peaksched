@@ -125,8 +125,8 @@ require_once "php/employee_editing.php";
                     <h1>Employee</h1>
                 </div>
                 <div class="container-fluid" id="subArea-top">
-                    <div>
-                        <h5><span><a href="./employee_page.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Edit Employee</h5>
+                    <div>   
+                        <h5><span><a href="./employee_page.php" class="btn my-button-back"><i class="bi bi-chevron-left"></i></a></span> Employee Details</h5>
                     </div>
                     <form id="editEmployeeForm" class="row" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
                         <input type="hidden" name="employeeId" value="<?= htmlspecialchars($employeeId) ?>">
@@ -188,14 +188,20 @@ require_once "php/employee_editing.php";
                             </div>
                         </div>
                     </form>
+
+                    <!-- //! start copy -->
+                    <div class="mb-0 col-xxl-2">
+                        <button id="showEdit" name="editEmployee" type="submit" class="btn btn-lg fs-6 w-100 my-button-yes">Edit Employee</button>
+                    </div>
                     <div class="row">
                         <div class="mb-3 col-xxl-2">
-                            <button data-bs-toggle="modal" data-bs-target="#editEmployeeModal" class="btn btn-lg fs-6 w-100 my-button-yes">Save Changes</button>
+                            <button style="display: none;" type="submit" id="editEmployee" name="editEmployee" data-bs-toggle="modal" data-bs-target="#editEmployeeModal" class="btn btn-lg fs-6 w-100 my-button-yes">Save Changes</button>
                         </div>
-                        <div class="mb-0 col-xxl-2">
-                            <a href="./employee_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Cancel</a>
+                        <div class="mb-3 col-xxl-2">
+                            <button style="display: none;" id="discardChanges" href="./index.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Cancel</button>
                         </div>
                     </div>
+                    <!-- //! end copy -->
                 </div>
             </div>
             <div class="container-fluid" id="main">
@@ -236,6 +242,7 @@ require_once "php/employee_editing.php";
             </div>
         </section>
         <script src="./js/script.js"></script>
+        <script src="./js/data_table_employee.js"></script>
 
 </body>
 

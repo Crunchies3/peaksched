@@ -153,12 +153,15 @@ require_once "php/profile_account.php";
                             </div>
                         </div>
                     </form>
+                    <div class="mb-0 col-xxl-2">
+                        <button id="showEdit" name="editAccount" type="submit" class="btn btn-lg fs-6 w-100 my-button-yes">Edit Account Details</button>
+                    </div>
                     <div class="row">
                         <div class="mb-3 col-xxl-2">
-                            <button data-bs-toggle="modal" data-bs-target="#updateInfoModal" class="btn btn-lg fs-6 w-100 my-button-yes">Save changes</button>
+                            <button style="display: none;" type="submit" id="editAccount" name="editAccount" data-bs-toggle="modal" data-bs-target="#updateInfoModal" class="btn btn-lg fs-6 w-100 my-button-yes">Save changes</button>
                         </div>
-                        <div class="mb-0 col-xxl-2">
-                            <a href="./setting_account_page.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Discard changes</a>
+                        <div class="mb-3 col-xxl-2">
+                            <button style="display: none;" id="discardChanges" href="./index.php" name="discardChanges" class="btn btn-lg fs-6 w-100 my-button-no">Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -204,6 +207,7 @@ require_once "php/profile_account.php";
             </div>
         </section>
         <script src="./js/script.js"></script>
+        <script src="./js/setting-account-page.js"></script>
 </body>
 
 </html>
@@ -213,7 +217,7 @@ require_once "php/profile_account.php";
 <!-- //? modal paras confirmation sa pag update sa details -->
 
 <div class="modal fade" id="updateInfoModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="updateInfoModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="width: 500px;">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
                 <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm changes?</h1>
