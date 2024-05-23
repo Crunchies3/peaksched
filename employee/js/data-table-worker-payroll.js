@@ -56,7 +56,7 @@ $('#myTable').DataTable({
         },
         {
             data: null,
-            defaultContent: '<form action="../payroll/view-payslip-detail.php" id="editPayroll" method="get"><input id="payslipId" hidden type="text" name="payslipId" value=""></form><button form="editPayroll" class="btn my-button-yes mx-1" id="actionClick">View</button>',
+            defaultContent: '<form action="../payroll/view-payslip-detail.php" id="editPayroll" method="get"><input id="payslipId" hidden type="text" name="payslipId" value=""></form><button form="editPayroll" class="btn my-button-yes mx-1" id="actionClick">view</button>',
             targets: -1
         },
     ],

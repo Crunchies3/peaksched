@@ -61,7 +61,7 @@ $('#myTable').DataTable({
         },
         {
             data: null,
-            defaultContent: '<form action="view-details.php" id="addAppoitment" method="get"><input id="appointmentId" hidden type="text" name="appointmentId" value=""></form><button form="addAppoitment" class="btn my-button-yes mx-1" id="actionClick">View</button>',
+            defaultContent: '<form action="view-details.php" id="addAppoitment" method="get"><input id="appointmentId" hidden type="text" name="appointmentId" value=""></form><button form="addAppoitment" class="btn my-button-yes mx-1" id="actionClick">view</button>',
             targets: -1
         },
         //! start copy

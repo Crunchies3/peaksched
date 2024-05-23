@@ -43,7 +43,7 @@ $('#myTable').DataTable({
         },
         {
             data: null,
-            defaultContent: '<form id="RemoveWorkerForm" method="post"><input id="workerId" name="workerId" hidden type="text" value=""><input id="appointId" name="appointmentId" hidden type="text" value=""></form><button data-bs-target="#RemoveWorker"  data-bs-toggle = "modal" class="btn my-button-yes mx-1" id="actionClick">Remove</button>',
+            defaultContent: '<form id="RemoveWorkerForm" method="post"><input id="workerId" name="workerId" hidden type="text" value=""><input id="appointId" name="appointmentId" hidden type="text" value=""></form><button data-bs-target="#RemoveWorker"  data-bs-toggle = "modal" class="btn my-button-yes mx-1" id="actionClick">remove</button>',
             targets: -1
         },
     ],
