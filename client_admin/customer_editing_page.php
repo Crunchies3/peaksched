@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: index.php");
+    echo '<script type="text/javascript"> window.location="index.php";</script>';
     exit;
 }
 
@@ -307,7 +307,7 @@ require_once "php/customer_editing.php";
 </html>
 
 <div class="modal fade" id="editEmployeeModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editEmployeeModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
                 <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm Changes?</h1>
@@ -366,7 +366,7 @@ require_once "php/customer_editing.php";
 <!-- //? modal paras confirmation sa pag update sa address -->
 
 <div class="modal fade" id="updateAddressModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="updatePasswordModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow p-3 mb-5 bg-white rounded border">
             <div class="modal-header">
                 <h1 class="modal-title" style="font-size: 20px;" id="exampleModalLabel">Confirm edit address?</h1>
