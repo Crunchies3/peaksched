@@ -173,7 +173,7 @@ class EmployeeAccount extends UserAccount
             $mail->Username   = 'rivals191@gmail.com';
             $mail->Password   = 'iwafeletytquflgl';
             $mail->SMTPSecure = 'ssl';
-            $mail->Port       = 465;
+            $mail->Port       = 587;
             //Recipients
             $mail->setFrom('noreply@gmail.com');
             $mail->addAddress($email);
