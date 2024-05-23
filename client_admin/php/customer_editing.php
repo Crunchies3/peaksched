@@ -98,7 +98,7 @@ if (isset($_POST['updateInfo'])) { //! para mag update sa details like name
 
     if (empty($firstname_err) && empty($lastName_err) && empty($email_err) && empty($mobileNumber_err)) {
         $customer->updateCustomerDetails($firstName, $lastName,  $email, $mobileNumber, $customerId);
-        header("location: ./customer_page.php");
+        header("location: customer_editing_page.php?customerId=$customerId");
     }
 } else if (isset($_POST['changePassword'])) {  //! para mag change pass
 
@@ -134,7 +134,7 @@ if (isset($_POST['updateInfo'])) { //! para mag update sa details like name
     if (empty($newPassword_err) && empty($confirmPassword_err)) {
         $customer->changeCustomerPassword($newHashedPassword, $customerId);
         //faulty to be continued..
-        header("location: ./customer_page.php");
+        header("location: customer_editing_page.php?customerId=$customerId");
     }
 } else if (isset($_POST['deleteAccount'])) { //! para mag delete ug account
     //pareha ra ang change pass ug delete account ug form maong giani
@@ -185,6 +185,6 @@ if (isset($_POST['updateInfo'])) { //! para mag update sa details like name
 
     if (empty($street_err) && empty($city_err) && empty($province_err) && empty($country_err)) {
         $address->updateAddress($addressId, $street, $city, $province, $zipCode, $country);
-        echo '<script>alert("Address updated successfully!")</script>';
+        header("location: customer_editing_page.php?customerId=$customerId");
     }
 }

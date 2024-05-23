@@ -154,7 +154,7 @@ require_once "php/profile_account.php";
                         </div>
                     </form>
                     <div class="mb-0 col-xxl-2">
-                        <button id="showEdit" name="editAccount" type="submit" class="btn btn-lg fs-6 w-100 my-button-yes">Edit Employee</button>
+                        <button id="showEdit" name="editAccount" type="submit" class="btn btn-lg fs-6 w-100 my-button-yes">Edit Account Details</button>
                     </div>
                     <div class="row">
                         <div class="mb-3 col-xxl-2">

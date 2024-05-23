@@ -62,7 +62,7 @@ if (isset($_POST['editService'])) {
 
     if (empty($serviceTitle_err) && empty($duration_err) && empty($price_err)) {
         $services->updateServiceDetails($serviceTitle, $color,  $description, $duration, $price, $service_id);
-        header("location: ./services_page.php");
+        header("location: service_editing_page.php?serviceId=$service_id");
     }
 } else if (isset($_POST['deleteAccount'])) {
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
