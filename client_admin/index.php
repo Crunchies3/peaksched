@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header("location: dashboard.php");
+    echo '<script type="text/javascript"> window.location="dashboard.php";</script>';
     exit;
 }
 require_once "php/backend_login_page.php";
