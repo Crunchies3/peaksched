@@ -83,7 +83,8 @@ class Appointment
                         a.address_id = d.address_id AND
                         a.customer_id = d.customer_id AND
                         a.status != 'Denied' AND
-                        a.status != 'Approved'
+                        a.status != 'Approved' AND
+                        a.status != 'Cancelled'
                 ORDER BY a.start ASC;"
             );
             $stmt->execute();
