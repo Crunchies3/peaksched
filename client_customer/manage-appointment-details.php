@@ -145,7 +145,7 @@ require_once "./php_backend/appointment.php";
                             <button form="appointmentId" class="btn btn-lg fs-6 w-100 my-button-yes">Reschedule Appointment</button>
                         </div>
                         <div class="mb-0 col-xxl-3">
-                            <button data-bs-toggle="modal" data-bs-target="#cancelAppointment" class="btn btn-lg fs-6 w-100 my-button-danger">Cancel Appointment</button>
+                            <button <?php echo ($isDisabled) ? 'disabled' : '' ?> data-bs-toggle="modal" data-bs-target="#cancelAppointment" class="btn btn-lg fs-6 w-100 my-button-danger">Cancel Appointment</button>
                         </div>
                     </div>
                 </div>

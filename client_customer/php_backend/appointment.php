@@ -40,8 +40,21 @@ if ($date == null) {
     $date = "1999-01-01 08:00:00";
 }
 
+//this is for disabling the cancel appointment button if the current date is just the day before the appointment
+date_default_timezone_set("America/Vancouver");
+$currentDate = date("Y-m-d H:i:s");
+
+
 $dateOnly = date("Y-m-d", strtotime($date));
 $timeOnly = date('h:i A', strtotime($date));
+
+$currentTimestamp = strtotime($currentDate);
+$currentTimeGoal = strtotime($date);
+
+$daysDifference = (int) ((($currentTimestamp - $currentTimeGoal) / 60 / 60 / 24));
+
+$isDisabled = ($daysDifference === -1);
+//---------------------------------------------------------------------------------------------------------------
 
 
 $status = $appointment->getStatus();
