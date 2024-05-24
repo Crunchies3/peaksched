@@ -66,9 +66,21 @@ while ($rows = $resultHours->fetch_assoc()) {
 
 $report->getReportedDateTime($reportId);
 
+$datesss = $report->getDateReported();
 
-$dateOnly = date("Y-m-d", strtotime($report->getDateReported()));
-$timeOnly = date('h:i A', strtotime($report->getTimeReported()));
+if ($datesss == null) {
+    $datesss = "1999-01-01";
+}
+
+$timesss = $report->getTimeReported();
+
+if ($timesss == null) {
+    $timesss = "08:00:00";
+}
+
+
+$dateOnly = date("Y-m-d", strtotime($datesss));
+$timeOnly = date('h:i A', strtotime($timesss));
 $notes = $report->getNote();
 
 

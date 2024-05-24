@@ -66,7 +66,7 @@ class CustomerAccount extends UserAccount
             $stmt->bind_param("ssssss", $customerId, $firstName, $lastName, $emailAddress, $mobileNumber, $hashedPassword);
             $stmt->execute();
             $stmt->close();
-            header("location: dashboard.php");
+            header("location: index.php");
             $this->conn->close();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
