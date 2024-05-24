@@ -54,12 +54,6 @@ require_once "php_backend/settings_account.php";
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="dashboard.php" class="sidebar-link">
-                        <i class="bi bi-house"></i>
-                        <span>Home</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
                     <a href="request-appointment-service.php" class="sidebar-link">
                         <i class="bi bi-calendar2"></i>
                         <span>Appointments</span>

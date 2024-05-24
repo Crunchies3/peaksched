@@ -4,9 +4,9 @@ session_start();
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
     if ($_SESSION["type"] == "supervisor") {
-        echo '<script type="text/javascript"> window.location="./supervisor";</script>';
+        echo '<script type="text/javascript"> window.location="./supervisor/appointment";</script>';
     } else {
-        echo '<script type="text/javascript"> window.location="./worker";</script>';
+        echo '<script type="text/javascript"> window.location="./worker/appointment";</script>';
     }
 
     exit;

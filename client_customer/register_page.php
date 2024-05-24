@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    echo '<script type="text/javascript"> window.location="dashboard.php";</script>';
+    echo '<script type="text/javascript"> window.location="./request-appointment-service.php";</script>';
     exit;
 }
 

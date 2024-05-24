@@ -52,9 +52,9 @@ class EmployeeAccount extends UserAccount
                         $_SESSION["employeeUser"] = serialize($this);
 
                         if ($row["type"] == "supervisor") {
-                            header("location: ./supervisor");
+                            header("location: ./supervisor/appointment");
                         } else {
-                            header("location: ./worker");
+                            header("location: ./worker/appointment");
                         }
                     }
                 }
