@@ -52,8 +52,13 @@ $service = $serviceObj->getTitle();
 $addressId =  $appointments->getAddressId();
 $addressObj->getAddressById($addressId);
 $address = $addressObj->getStreet() . '. ' . $addressObj->getCity() . ', ' . $addressObj->getProvince() . '. ' . $addressObj->getCountry() . ', ' . $addressObj->getZip_code();
+$datesss = $appointments->getStart();
 
-$date = date_create($appointments->getStart());
+if ($datesss == null) {
+    $datesss = "1999-01-01 08:00:00";
+}
+
+$date = date_create($datesss);
 $dateOnly = date_format($date, "M d, Y");
 $timeOnly = date_format($date, "h: i A");
 
