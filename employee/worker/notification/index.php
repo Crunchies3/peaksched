@@ -50,16 +50,10 @@ require_once "../../php/notifs.php";
                     <i class="bi bi-tree-fill"></i>
                 </button>
                 <div class="sidebar-logo">
-                    <a href="../">PeakSched</a>
+                    <a href="../appointment/">PeakSched</a>
                 </div>
             </div>
             <ul class="sidebar-nav">
-                <li class="sidebar-item">
-                    <a href="../" class="sidebar-link ">
-                        <i class="bi bi-house"></i>
-                        <span>Home</span>
-                    </a>
-                </li>
                 <li class="sidebar-item">
                     <a href="../appointment/" class="sidebar-link ">
                         <i class="bi bi-calendar2"></i>

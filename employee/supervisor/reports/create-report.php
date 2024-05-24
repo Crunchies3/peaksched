@@ -49,16 +49,10 @@ require_once "../../php/create-report.php";
                     <i class="bi bi-calendar-week"></i>
                 </button>
                 <div class="sidebar-logo">
-                    <a href="../">PeakSched</a>
+                    <a href="../appointment/">PeakSched</a>
                 </div>
             </div>
             <ul class="sidebar-nav">
-                <li class="sidebar-item">
-                    <a href="../" class="sidebar-link">
-                        <i class="bi bi-house"></i>
-                        <span>Home</span>
-                    </a>
-                </li>
                 <li class="sidebar-item">
                     <a href="./" class="sidebar-link ">
                         <i class="bi bi-calendar2-fill"></i>
