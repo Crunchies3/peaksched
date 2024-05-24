@@ -77,10 +77,6 @@ require_once "php/backend_login_page.php";
                         alt="google" style="width: 20px;" class="me-2"><small>Sign in with
                         Google</small></button>
                     </div> -->
-                        <div class="row" style="text-align: center;">
-                            <small class="signin-now">Don't have an account? <a href="./register_page.php" style="text-decoration: none; color: #124F6F;">Sign
-                                    Up!</a></small>
-                        </div>
                     </form>
                 </div>
             </div>

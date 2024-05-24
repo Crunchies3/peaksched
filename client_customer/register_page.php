@@ -164,20 +164,66 @@ require_once 'php_backend/create_account.php';
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                The standard Lorem Ipsum passage, used since the 1500s
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                Privacy Policy
 
-                Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
-                "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+                We at Peaksched want you to understand the privacy and policy we adhere to. This policy
+                outlines how we collect, use, communicate, and disclose personal information.<br>
+                <br>
+                Why we collect data and information?<br>
+                <br>
+                As necessary to fulfill our contract with you. This means providing the services
+                laid out in our Terms of Services/Terms of Use.
+                As necessary to comply with a legal obligation.<br>
+                <br>
+                What information we will collect?<br>
+                <br>
+                • Your activity and information you provide.
+                • App, browser, and device information.
+                We collect personal information for the purpose of providing professional cleaning services.
+                Before collecting any data, we will clearly state the purpose.
+                We only collect information necessary for our services and other compatible purposes.
+                Therefore, personal data should be relevant, accurate, complete, and up-to-date.<br>
+                <br>
+                What data will be stored?<br>
+                <br>
+                We retain personal information only as long as necessary to fulfill our service obligations.
+                Once the purpose is fulfilled, we securely dispose of or anonymize the data.<br>
+                <br>
+                What are the security measures for your information?<br>
+                <br>
+                We protect personal information using reasonable security safeguards. Safeguards include measures
+                against loss, theft, unauthorized access, disclosure, copying, use, or modification.<br>
+                <br>
+                Lawful and Fair Collection<br>
+                <br>
+                We collect personal information through lawful and fair means. Consent is obtained where appropriate.
+                Canadian Privacy Notice
+                Canada has two federal privacy laws that we adhere to:<br>
+                <br>
+                The Privacy Act:<br>
+                <br>
+                Covers how the federal government handles personal information.
+                The Personal Information Protection and Electronic Documents Act (PIPEDA):<br>
+                <br>
+                Covers how businesses handle personal information
+                This notice applies to our processing of your information to support Peaksched and
+                other products to the extent such processing is subject to Canadian Law.<br>
+                <br>
+                Confidentiality Agreement for Cleaners<br>
+                <br>
+                Our employees sign confidentiality agreements to protect company information.<br>
+                <br>
+                How will you know the policy has changes?<br>
+                <br>
+                We will notify you before we make material changes to this policy. You’ll have the opportunity to review the revised Policy before you choose to continue using our service.
+                <br>
+                Contact Us<br>
+                <br>
+                For any privacy-related inquiries, please reach out to us.
+                Your trust is essential to us, and we are committed to maintaining the confidentiality of your personal information.
 
-                1914 translation by H. Rackham
-                "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
 
-                Section 1.10.33 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
-                "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
 
-                1914 translation by H. Rackham
-                "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains."
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">I Understand</button>
@@ -194,20 +240,47 @@ require_once 'php_backend/create_account.php';
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                The standard Lorem Ipsum passage, used since the 1500s
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
-                Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
-                "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
-
-                1914 translation by H. Rackham
-                "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
-
-                Section 1.10.33 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
-                "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
-
-                1914 translation by H. Rackham
-                "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains."
+                TERMS: <br>
+                <br>
+                The terms of this agreement shall take place once the contractor and client
+                have agreed on the services provided by the company. Services provided by Twin Peaks
+                will include all and other various cleaning tasks set forth by the company and which
+                by the parties may agree on.<br>
+                <br>
+                PERFORMANCE: <br>
+                <br>
+                The company agrees to provide services to the best of their abilities at
+                all time. The client shall have the right to, at any point, perform an inspection
+                of the suppliers work and detail any issues during, or after services.<br>
+                <br>
+                DURATION AND PRICING: <br>
+                <br>
+                Regular cleaning service Minimum of 3.5 hrs Flat Rate (1 or more person) or starting
+                rate at $140 Canadian dollars tax not included. Detailed and move-out cleaning with a
+                minimum 6 hrs Flat rate (1 or more person) or starting rate at $210 Canadian dollars
+                tax not included. Moreover any extra hours consumed after the minimum starting rate an
+                additional charge at $40 dollars per hour.<br>
+                <br>
+                PAYMENT: <br>
+                <br>
+                The Service Provider shall perform the above-listed services on an as-needed
+                basis, and shall invoice the client as such. The Service Provider shall generate a
+                complete invoice for all services rendered every after the job is finished. Client
+                agrees to pay all invoices associated with this agreement after receiving invoice
+                issued of receipt unless notice of fault or failure to perform allows for delayed payment.<br>
+                <br>
+                INDEMNIFICATION: <br>
+                <br>
+                Should circumstances of neglect, wrongdoing or failure to complete services
+                standard, each party agrees to indemnify and hold harmless the other party and its
+                respective affiliates, partners and employees. Each party then agrees to the
+                appropriate monetary, and/or services reprimandation through Twin Peaks’ services
+                by re-cleaning, and/or resolving through appropriate measures of satisfaction
+                between both parties. Twin Peaks agrees to fully address and remedy such errors
+                as soon as reasonably possible. The clients/customers must request a re-cleaning
+                schedule as soon as possible. (Not more than 8 hours for re-cleaning) any
+                re-cleaning request after 8 hours will be charge regularly at $40 per hour.<br>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">I Understand</button>
