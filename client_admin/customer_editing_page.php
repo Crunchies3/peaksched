@@ -250,7 +250,11 @@ require_once "php/customer_editing.php";
                                     <td><?php echo $rows['appointment_id']; ?></td>
                                     <td><?php echo $rows['fullname']; ?></td>
                                     <td><?php echo $rows['title']; ?></td>
-                                    <td><?php echo $rows['status']; ?></td>
+                                    <?php
+                                    if ($rows['status'] == 'pending') $badgeType = 'my-badge-pending';
+                                    else if ($rows['status'] == 'Completed') $badgeType = 'my-badge-approved';
+                                    ?>
+                                    <td><span class="badge rounded-pill <?php echo $badgeType ?>"><?php echo $rows['status']; ?></span></td>
                                     <td><?php echo $rows['date']; ?></td>
                                     <td><?php echo $rows['time']; ?></td>
                                     <td></td>
