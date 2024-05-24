@@ -18,7 +18,6 @@ abstract class UserAccount
     abstract public function isEmailUnique($email);
     abstract public function doesEmailExist($email);
     abstract public function addResetToken($tokenHash, $expiry, $email);
-    abstract public function sendForgotPasswordLink($email, $token);
     abstract public function doesTokenExist($tokenHash);
     abstract public function forgotResetPassword($hashedPassword, $id);
     abstract public function updateUserDetails($newFirstName, $newLastName, $newEmailAddress, $newMobileNumber);
@@ -31,7 +30,8 @@ abstract class UserAccount
 
 
     // *Getter
-    public function getConn(){
+    public function getConn()
+    {
         return $this->conn;
     }
     public function getEmail()

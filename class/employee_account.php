@@ -160,41 +160,6 @@ class EmployeeAccount extends UserAccount
         }
     }
 
-    public function sendForgotPasswordLink($email, $token)
-    {
-        global $mail;
-
-        try {
-            // TODO: dapat i seperate file ang configure paras Server settings
-            //Server settings
-            $mail->isSMTP();
-            $mail->Host       = 'smtp.gmail.com';
-            $mail->SMTPAuth   = true;
-            $mail->Username   = 'rivals191@gmail.com';
-            $mail->Password   = 'iwafeletytquflgl';
-            $mail->SMTPSecure = 'ssl';
-            $mail->Port       = 587;
-            //Recipients
-            $mail->setFrom('noreply@gmail.com');
-            $mail->addAddress($email);
-            //Content
-            $mail->isHTML(true);
-
-            $mail->Subject = 'Password Reset';
-            $mail->Body    = <<<END
-            
-            Click <a href="http://localhost/peaksched/employee/reset_password.php?token=$token">here</a>
-            to reset your password.
-
-            END;
-
-            $mail->send();
-            $this->conn->close();
-        } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-        }
-    }
-
     public function doesTokenExist($tokenHash)
     {
         try {

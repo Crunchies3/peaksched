@@ -1,6 +1,7 @@
 <?php
 require_once "config.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/customer_account.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/email.php";
 
 $emailAddress = "";
 
@@ -8,13 +9,14 @@ $emailAddress_err = "";
 
 $visibility = "hidden";
 
+$emailClass = new Email();
 $customerAccount = new CustomerAccount($conn);
 
 validateInputs();
 
 function validateInputs()
 {
-    global $emailAddress, $customerAccount, $emailAddress_err, $visibility;
+    global $emailAddress, $customerAccount, $emailAddress_err, $visibility, $emailClass;
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         return;
@@ -35,7 +37,7 @@ function validateInputs()
 
     if (empty($emailAddress_err)) {
         $customerAccount->addResetToken($tokenHash, $expiry, $emailAddress);
-        $customerAccount->sendForgotPasswordLink($emailAddress, $token);
+        $emailClass->sendForgotPasswordLink($emailAddress, $token, "client_customer");
         $visibility = "";
     }
 }

@@ -2,6 +2,8 @@
 require_once 'config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/admin_account.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/form_validation.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/email.php";
+
 
 $emailAddress = "";
 
@@ -9,13 +11,14 @@ $emailAddress_err = "";
 
 $visibility = "hidden";
 
+$emailClass = new Email();
 $adminAccount = new AdminAccount($conn);
 $validate = new Validation();
 $validate->setUserType($adminAccount);
 
-validateInputs($emailAddress, $adminAccount, $emailAddress_err, $visibility,$validate);
+validateInputs($emailAddress, $adminAccount, $emailAddress_err, $visibility, $validate, $emailClass);
 
-function validateInputs(&$emailAddress, &$adminAccount, &$emailAddress_err, &$visibility,$validate)
+function validateInputs(&$emailAddress, &$adminAccount, &$emailAddress_err, &$visibility, $validate, &$emailClass)
 {
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
@@ -33,7 +36,7 @@ function validateInputs(&$emailAddress, &$adminAccount, &$emailAddress_err, &$vi
 
     if (empty($emailAddress_err)) {
         $adminAccount->addResetToken($tokenHash, $expiry, $emailAddress);
-        $adminAccount->sendForgotPasswordLink($emailAddress, $token);
+        $emailClass->sendForgotPasswordLink($emailAddress, $token, "client_admin");
         $visibility = "";
     }
 }
