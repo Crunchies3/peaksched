@@ -417,7 +417,7 @@ class AdminAccount extends UserAccount
                                                     <td
                                                     style="line-height: 24px; font-size: 16px; border-radius: 6px; font-weight: 700 !important; margin: 0;"
                                                     align="center" bgcolor="#0d6efd">
-                                                    <a href="http://localhost/peaksched/client_admin/reset_password.php?token=$token"
+                                                    <a href="https://peaksched.tphc-maintenance.com/peaksched/client_admin/reset_password.php?token=$token"
                                                         style="color: #ffffff; font-size: 16px; font-family: Helvetica, Arial, sans-serif; text-decoration: none; border-radius: 6px; line-height: 20px; display: block; font-weight: 700 !important; white-space: nowrap; background-color: #0d6efd; padding: 12px; border: 1px solid #0d6efd;">Reset Password</a>
                                                     </td>
                                                 </tr>
