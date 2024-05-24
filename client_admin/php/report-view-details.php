@@ -39,7 +39,13 @@ $supervisorName = $report->getSupervisorNameByReportID($reportId);
 $fullname = $employeeClient->getFullname();
 $title = $employeeClient->getServicetitle();
 $status = $employeeClient->getAppointmentstatus();
-$date = date("Y-m-d", strtotime($employeeClient->getAppointmentdate()));
+
+$datesss = $employeeClient->getAppointmentdate();
+
+if ($datesss == null) {
+    $datesss = "1999-01-01 08:00:00";
+}
+$date = date("Y-m-d", strtotime($datesss));
 $time = $employeeClient->getAppointmentdate();
 
 $workerIds = array();
@@ -65,8 +71,20 @@ while ($rows = $resultHours->fetch_assoc()) {
 $report->getReportedDateTime($reportId);
 
 
-$dateOnly = date("Y-m-d", strtotime($report->getDateReported()));
-$timeOnly = date('h:i A', strtotime($report->getTimeReported()));
+$datessss = $report->getDateReported();
+
+if ($datessss == null) {
+    $datessss = "1999-01-01 08:00:00";
+}
+
+$timessss = $report->getTimeReported();
+
+if ($timessss == null) {
+    $timessss = "1999-01-01 08:00:00";
+}
+
+$dateOnly = date("Y-m-d", strtotime($datessss));
+$timeOnly = date('h:i A', strtotime($timessss));
 $notes = $report->getNote();
 
 
