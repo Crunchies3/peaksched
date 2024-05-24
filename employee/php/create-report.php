@@ -35,6 +35,11 @@ $appointment->getConfirmedAppointmentDetails($appointmentId);
 $appointment->getConfirmedDisplayables();
 $date = $appointment->getSpecificDate();
 
+
+if ($date == null) {
+    $date = "1999-01-01 08:00:00";
+}
+
 $dateOnly = date("Y-m-d", strtotime($date));
 $timeOnly = date('h:i A', strtotime($date));
 
