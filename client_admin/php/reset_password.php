@@ -12,6 +12,10 @@ if (isset($_GET["token"])) {
     $token = $_GET["token"];
 }
 
+if (isset($_POST['token'])) {
+    $token = $_POST['token'];
+}
+
 $adminAccount = new AdminAccount($conn);
 $validate = new Validation;
 $validate->setUserType($adminAccount);
@@ -20,14 +24,14 @@ if ($token != null) {
     validateToken($adminAccount, $token, $tokenHash, $tokenHash_err, $status, $visibility, $validate);
 }
 
-validateInputs($password_err, $confirmPassword_err,$password, $confirmPassword, $hashedPassword, $adminAccount, $token, $validate);
+validateInputs($password_err, $confirmPassword_err, $password, $confirmPassword, $hashedPassword, $adminAccount, $token, $validate);
 
-function validateToken($adminAccount, &$token, &$tokenHash, &$tokenHash_err, &$status, &$visibility,$validate)
+function validateToken($adminAccount, &$token, &$tokenHash, &$tokenHash_err, &$status, &$visibility, $validate)
 {
 
 
     $tokenHash = $adminAccount->getHashedToken($token);
-    $tokenHash_err = $validate->tokenHash($tokenHash,$status);
+    $tokenHash_err = $validate->tokenHash($tokenHash, $status);
 
     if (empty($tokenHash_err)) {
         $visibility = "hidden";
@@ -54,7 +58,7 @@ function validateInputs(&$password_err, &$confirmPassword_err, &$password, &$con
     }
 
     $confirmPassword = trim($_POST["confirmPassword"]);
-    $confirmPassword_err = $validate->confirmPassword($confirmPassword,$password);
+    $confirmPassword_err = $validate->confirmPassword($confirmPassword, $password);
 
 
     if (empty($password_err) && empty($confirmPassword_err)) {
