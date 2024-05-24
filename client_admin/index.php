@@ -32,7 +32,7 @@ require_once "php/backend_login_page.php";
                 </div>
             </div>
 
-            <div class="col-md-6 right-box">
+            <div class="col-lg-6 right-box">
                 <div class="row align-items-center">
                     <div class="header-text mt-5">
                         <h1 class="title">Log In</h1>

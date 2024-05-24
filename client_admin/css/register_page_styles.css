@@ -36,7 +36,7 @@ body {
     color: #9c9c9c;
 }
 
-@media only screen and (max-wifht: 768px) {
+@media only screen and (max-width: 768px) {
     .box-area {
         margin: 0 10px;
 
