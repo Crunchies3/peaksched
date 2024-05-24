@@ -20,12 +20,29 @@ $firstname = $payroll->getfirstname();
 $lastname = $payroll->getlastname();
 $type = $payroll->gettype();
 $payrate = $payroll->getpayrate();
+
 $paydate = $payroll->getpaydate();
+
+if ($paydate == null) {
+    $paydate = "1999-01-01 08:00:00";
+}
+
 $wordedpayDate = date("F j, Y", strtotime($paydate));
+
 $month = date("F", strtotime($paydate));
 $startDate = $payroll->getstartdate();
+
+if ($startDate == null) {
+    $startDate = "1999-01-01 08:00:00";
+}
+
 $wordedStartDate = date("F j, Y", strtotime($startDate));
 $endDate = $payroll->getendate();
+
+if ($endDate == null) {
+    $endDate = "1999-01-01 08:00:00";
+}
+
 $wordedendDate = date("F j, Y", strtotime($endDate));
 $payslipId = $payroll->getpayslipid();
 $netPay = $payroll->getnetpay();
