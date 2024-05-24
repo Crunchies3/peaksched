@@ -47,7 +47,7 @@ class CustomerAccount extends UserAccount
                         $_SESSION["loggedin"] = true;
                         $_SESSION["customerUser"] = serialize($this);
 
-                        header("location: ./dashboard.php");
+                        header("location: ./request-appointment-service.php");
                     }
                 }
             } else {

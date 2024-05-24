@@ -56,12 +56,6 @@ require_once "./php_backend/request-appointment-details.php";
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="./index.php" class="sidebar-link ">
-                        <i class="bi bi-house"></i>
-                        <span>Home</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
                     <a href="#" class="sidebar-link selected">
                         <i class="bi bi-calendar2-fill"></i>
                         <span>Appointments</span>
