@@ -1,6 +1,8 @@
 <?php
 require_once 'config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/employee_account.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/peaksched/class/email.php";
+
 
 $emailAddress = "";
 
@@ -8,13 +10,16 @@ $emailAddress_err = "";
 
 $visibility = "hidden";
 //gibutngan lang nako ug "worker" na parameter cy para madawat pero wala sya nako gipuslan sa forgot pass/reset pass kay sa email man japon dependent
-$employeeAccount = new EmployeeAccount($conn,"worker");
+$employeeAccount = new EmployeeAccount($conn, "worker");
 
-validateInputs( $emailAddress, $employeeAccount, $emailAddress_err, $visibility);
+$emailClass = new Email();
 
-function validateInputs( &$emailAddress, &$employeeAccount, &$emailAddress_err, &$visibility)
+
+validateInputs($emailAddress, $employeeAccount, $emailAddress_err, $visibility, $emailClass);
+
+function validateInputs(&$emailAddress, &$employeeAccount, &$emailAddress_err, &$visibility, &$emailClass)
 {
-    
+
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         return;
@@ -35,7 +40,7 @@ function validateInputs( &$emailAddress, &$employeeAccount, &$emailAddress_err, 
 
     if (empty($emailAddress_err)) {
         $employeeAccount->addResetToken($tokenHash, $expiry, $emailAddress);
-        $employeeAccount->sendForgotPasswordLink($emailAddress, $token);
+        $emailClass->sendForgotPasswordLink($emailAddress, $token, "employee");
         $visibility = "";
     }
 }
