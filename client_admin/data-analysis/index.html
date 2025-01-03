@@ -120,74 +120,77 @@
                     <p style="font-size: 14px;">Here's your analytic data</p>
                 </div>
                 <div class="row g-0">
-                    <div class="container-fluid col-5" style="margin-right: 15px;" id="subArea-single">
-                        <div class="row mb-4">
-                            <p class="col">Total Availed Services</p>
-                            <div class="col-6">
-                                <div class="row g-2">
-                                    <div class="col">
-                                        <select class="form-select">
-                                            <option selected>Monthly</option>
-                                            <option value="1">Yearly</option>
-                                            <option value="2">Custom</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-7">
-                                        <input type="text" id="input-calendar" class="form-control input-field"
-                                            readonly>
+                    <div class="col-5" style="padding-right: 15px;">
+                        <div class="container-fluid" id="subArea-single">
+                            <div class="row mb-4">
+                                <p class="col">Total Availed Services</p>
+                                <div class="col-6">
+                                    <div class="row g-2">
+                                        <div class="col">
+                                            <select class="form-select">
+                                                <option selected>Monthly</option>
+                                                <option value="1">Yearly</option>
+                                                <option value="2">Custom</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-7">
+                                            <input type="text" id="input-calendar" class="form-control input-field"
+                                                readonly>
 
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row g-0 mb-3">
-                            <div class="container-fluid col" style="margin-right: 15px;" id="service-card">
-                                <div class="col mb-2">Cleaning</div>
-                                <h1 style="font-size: 30px;">157</h1>
-                            </div>
-                            <div class="container-fluid col" id="service-card">
-                                <div class="col mb-2">Maintenance</div>
-                                <h1 style="font-size: 30px;">80</h1>
-                            </div>
-                        </div>
-                        <div class="container-fluid col" style="margin-right: 15px;" id="demand-card">
-                            <p class="col">Demand per Service</p>
-                            <div class="row ">
-                                <div class="mb-3 col-xxl-4">
-                                    <div class="btn my-button-selected w-100">Cleaning Service</div>
+                            <div class="row g-0 mb-3">
+                                <div class="container-fluid col" style="margin-right: 15px;" id="service-card">
+                                    <div class="col mb-2">Cleaning</div>
+                                    <h1 style="font-size: 30px;">157</h1>
                                 </div>
-                                <div class="mb-4 col-xxl-5">
-                                    <div class="btn my-button-unselected w-100">Maintenance Service</div>
+                                <div class="container-fluid col" id="service-card">
+                                    <div class="col mb-2">Maintenance</div>
+                                    <h1 style="font-size: 30px;">80</h1>
                                 </div>
                             </div>
-
-                            <div id="demand-per-service" class="container-fluid" style="height: 340px;">
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="container-fluid col" id="subArea-single">
-                        <div class="row">
-                            <p class="col">Yearly Stats</p>
-                            <div class="col-4">
-                                <div class="row g-2">
-                                    <div class="col">
-
+                            <div class="container-fluid col" style="margin-right: 15px;" id="demand-card">
+                                <p class="col">Demand per Service</p>
+                                <div class="row ">
+                                    <div class="mb-3 col-xxl-4">
+                                        <div class="btn my-button-selected w-100">Cleaning Service</div>
                                     </div>
-                                    <div class="col-6">
-                                        <input type="text" id="input-calendar-year" class="form-control input-field"
-                                            readonly>
-
+                                    <div class="mb-4 col-xxl-5">
+                                        <div class="btn my-button-unselected w-100">Maintenance Service</div>
                                     </div>
+                                </div>
+                                <div id="demand-per-service" class="container-fluid" style="height: 340px;">
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-7">
+                        <div class="container-fluid" id="subArea-single">
+                            <div class="row mb-4">
+                                <p class="col">Yearly Stats</p>
+                                <div class="col-4">
+                                    <div class="row g-2">
+                                        <div class="col">
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" id="input-calendar-year" class="form-control input-field"
+                                                readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <DIV class="col">Total Availed Services</>
 
-                </div>
+                                <div id="yearly_service" class="container-fluid" style="height: 300PX;">
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
         </section>
         <script src="script.js"></script>
         <script src="echarts.js"></script>
