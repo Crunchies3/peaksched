@@ -1,0 +1,12 @@
+.form-select {
+    color: whitesmoke;
+}
+
+.form-select {
+    background-color: #0087CD;
+}
+
+.form-select option {
+    color: #000000;
+    background-color: #ffffff;
+}

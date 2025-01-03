@@ -60,6 +60,12 @@ require_once "php/dashboard.php";
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="./data-analysis/" class="sidebar-link">
+                        <i class="bi bi-clipboard2-data-fill"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="./appointments/index.php" class="sidebar-link">
                         <i class="bi bi-calendar2"></i>
                         <span>Appointments</span>
