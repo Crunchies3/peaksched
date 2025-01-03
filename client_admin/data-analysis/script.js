@@ -42,6 +42,45 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    // Destructure the Calendar constructor
+    const { Calendar } = window.VanillaCalendarPro;
+    // Create a calendar instance and initialize it.
+
+    var today = new Date();
+    var dd = String(today.getDate() + 1).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+    today = yyyy + '-' + mm + '-' + dd;
+
+    console.log(today);
+
+    const inputElement = document.getElementById('input-calendar-year');
+    inputElement.value = yyyy;
+
+
+    const options = {
+        inputMode: true,
+        selectedTheme: 'light',
+        positionToInput: "auto",
+        type: 'year',
+        dateMax: today,
+        onClickYear(self) {
+            if (!self.context.inputElement) return;
+            if (self.context.selectedYear) {
+                self.context.inputElement.value = self.context.selectedYear;
+                self.hide();
+            } else {
+                self.context.inputElement.value = '';
+            }
+        },
+    }
+
+    const calendar = new Calendar('#input-calendar-year', options);
+    calendar.init();
+});
+
+
 function convertToMonth(temp) {
     switch (temp) {
         case 0:
