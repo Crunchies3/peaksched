@@ -119,11 +119,11 @@
                     <h1>Data Analytics</h1>
                     <p style="font-size: 14px;">Here's your analytic data</p>
                 </div>
-                <div class="row g-0">
+                <div class="row g-0 mb-3">
                     <div class="col-5" style="padding-right: 15px;">
                         <div class="container-fluid" id="subArea-single">
                             <div class="row mb-4">
-                                <p class="col">Total Availed Services</p>
+                                <p class="col fw-bold">Total Availed Services</p>
                                 <div class="col-6">
                                     <div class="row g-2">
                                         <div class="col">
@@ -153,16 +153,18 @@
                                 </div>
                             </div>
                             <div class="container-fluid col" style="margin-right: 15px;" id="demand-card">
-                                <p class="col">Demand per Service</p>
+                                <p class="col" style="margin-bottom: 22px;">Demand per Service</p>
                                 <div class="row ">
                                     <div class="mb-3 col-xxl-4">
-                                        <div class="btn my-button-selected w-100">Cleaning Service</div>
+                                        <div id="d-cleaning-service" class="btn btn-sm my-button-selected w-100">
+                                            Cleaning Service</div>
                                     </div>
                                     <div class="mb-4 col-xxl-5">
-                                        <div class="btn my-button-unselected w-100">Maintenance Service</div>
+                                        <div id="d-maintenance service" class="btn btn-sm my-button-unselected w-100">
+                                            Maintenance Service</div>
                                     </div>
                                 </div>
-                                <div id="demand-per-service" class="container-fluid" style="height: 340px;">
+                                <div id="demand-per-service" class="container-fluid mb-2" style="height: 340px;">
                                 </div>
                             </div>
                         </div>
@@ -170,7 +172,7 @@
                     <div class="col-7">
                         <div class="container-fluid" id="subArea-single">
                             <div class="row mb-4">
-                                <p class="col">Yearly Stats</p>
+                                <p class="col fw-bold">Yearly Stats</p>
                                 <div class="col-4">
                                     <div class="row g-2">
                                         <div class="col">
@@ -182,15 +184,57 @@
                                     </div>
                                 </div>
                             </div>
-                            <DIV class="col">Total Availed Services</>
-
-                                <div id="yearly_service" class="container-fluid" style="height: 300PX;">
+                            <div class="col">Total Availed Services</div>
+                            <div id="yearly_service" class="container-fluid mb-4" style="height: 254px;">
+                            </div>
+                            <div class="row">
+                                <div class="col mb-4">Demand per Service</div>
+                                <div class="row col">
+                                    <div class="mb-3 col-xxl">
+                                        <div class="btn btn-sm my-button-selected w-100">Cleaning Service</div>
+                                    </div>
+                                    <div class="mb-4 col-xxl">
+                                        <div class="btn btn-sm my-button-unselected w-100">Maintenance Service</div>
+                                    </div>
                                 </div>
                             </div>
+                            <div id="yearly_service-2" class="container-fluid" style="height: 254px;">
+                            </div>
                         </div>
-
-
                     </div>
+                </div>
+                <section class="container-fluid" id="subArea-single">
+                    <div style="font-weight: bold;" class="mb-4">Demand Forecast</div>
+                    <div class="row col">
+                        <div class="mb-3 col-xxl">
+                            <div class="btn btn-sm my-button-selected w-100">Services</div>
+                        </div>
+                        <div class="mb-4 col-xxl">
+                            <div class="btn btn-sm my-button-unselected w-100">Cleaning Service</div>
+                        </div>
+                        <div class="mb-4 col-xxl">
+                            <div class="btn btn-sm my-button-unselected w-100">Maintenance Service</div>
+                        </div>
+                    </div>
+                    <form class="mb-3">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
+                                value="Cleaning Service">
+                            <label class="form-check-label" for="inlineCheckbox1">Cleaning Service</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
+                                value="Maintenance Service">
+                            <label class="form-check-label" for="inlineCheckbox2">Maintenance Service</label>
+                        </div>
+                    </form>
+                    <button class="btn-primary btn mb-4">Forecast</button>
+                    <div id="forecast-card" class="d-flex justify-content-center align-items-center "
+                        style="height: 450px;">
+                        <h1 style="color: gray;">Please select what to forecast first</h1>
+                    </div>
+                </section>
+            </div>
         </section>
         <script src="script.js"></script>
         <script src="echarts.js"></script>
