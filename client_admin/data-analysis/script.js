@@ -1,10 +1,23 @@
 let d_chosenYear;
 let d_chosenMonth;
-
 let d_last_chosen = 'clean';
-
 let d_date_type = 'month'
+let historical_data;
+let demand_per_service_categories;
+let demand_per_service_data;
+let year_per_service_categories;
+let year_per_service_data;
+let y_chosen_year;
+let y_last_chosen = 'clean';
 
+
+window.onload = async function () {
+    await getHistoricalData();
+    d_cleaning_service();
+    y_cleaning_service();
+    loadYearlyServiceDemand()
+    putValuesInCard();
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     // Destructure the Calendar constructor
@@ -138,6 +151,17 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!self.context.inputElement) return;
             if (self.context.selectedYear) {
                 self.context.inputElement.value = self.context.selectedYear;
+                y_chosen_year = self.context.selectedYear;
+                loadYearlyServiceDemand();
+
+
+                if (y_last_chosen == 'clean') {
+                    y_cleaning_service();
+                }
+                else {
+                    y_maintenance_service();
+                }
+
                 self.hide();
             } else {
                 self.context.inputElement.value = '';
@@ -148,9 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const calendar = new Calendar('#input-calendar-year', options);
     calendar.init();
 });
-
-
-
 
 function convertToMonth(temp) {
     switch (temp) {
@@ -210,18 +231,6 @@ function convertToShortMonth(temp) {
     }
 }
 
-
-let historical_data;
-
-
-window.onload = async function () {
-    await getHistoricalData();
-    d_cleaning_service();
-    y_cleaning_service();
-    putValuesInCard();
-}
-
-
 async function getHistoricalData() {
     fetch('data.json').then(respose => respose.json()).then(data => {
         historical_data = data;
@@ -236,14 +245,6 @@ async function getHistoricalData() {
         }, 1000); // Simulating async behavior
     });
 }
-
-
-let demand_per_service_categories;
-let demand_per_service_data;
-
-let year_per_service_categories;
-let year_per_service_data;
-
 
 function d_cleaning_service() {
 
@@ -264,25 +265,15 @@ function d_cleaning_service() {
 
     const temp = getServiceValues(historical_data, year, month, serviceTypes)
 
-    console.log("temp ===============");
-    console.log(temp);
 
     if (d_date_type === 'month') {
         demand_per_service_data = getValuesByMonth(temp, month[0]);
     } else {
-        console.log("temp ========taas=======");
-        console.log(temp);
         demand_per_service_data = getValuesByYear(temp);
-
-        console.log("demand per service data ===============");
-        console.log(demand_per_service_data);
     }
 
 
     loadDemandPerServiceChart();
-
-
-
 
     d_last_chosen = 'clean';
 
@@ -311,7 +302,6 @@ function d_maintenance_service() {
         demand_per_service_data = getValuesByMonth(temp, month[0]);
     } else {
         demand_per_service_data = getValuesByYear(temp);
-        console.log(demand_per_service_data);
     }
 
 
@@ -320,8 +310,6 @@ function d_maintenance_service() {
 
     d_last_chosen = 'maintain';
 }
-
-
 
 function y_cleaning_service() {
 
@@ -334,11 +322,19 @@ function y_cleaning_service() {
     y_button_c.classList.remove('my-button-unselected');
 
     year_per_service_categories = ["Regular Cleaning", "Detailed Cleaning", "Air-BNB cleaning", "Move-in/out cleaning", "Other"];
-    year_per_service_data = [[69, 93, 132, 161, 152, 133, 111, 113, 92, 75, 60, 55], [53, 61, 90, 131, 128, 109, 113, 74, 70, 65, 51, 44],
-    [2, 5, 15, 11, 15, 16, 21, 22, 5, 2, 8, 3], [3, 3, 3, 4, 4, 6, 9, 8, 10, 8, 4, 3], [6, 5, 2, 3, 4, 2, 3, 1, 4, 7, 5, 3]];
+
+
+    let year = y_chosen_year;
+    let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    let cleaning_cat = ["regular_cleaning", "detailed_cleaning", "airbnb_cleaning", "move_out_in_cleaning", "other"];
+    let temp = getServiceValues(historical_data, year, months, cleaning_cat);
+    year_per_service_data = temp[0].values.map((_, index) =>
+        temp.map(entry => entry.values[index])
+    );
 
     loadYearlyDemandPerServiceChart();
 
+    y_last_chosen = 'clean';
 }
 
 function y_maintenance_service() {
@@ -352,12 +348,19 @@ function y_maintenance_service() {
     y_button_c.classList.add('my-button-unselected');
 
     year_per_service_categories = ["Home renovation", "Drywall repair", "Painting", "Pressure Washing"];
-    year_per_service_data = [[2, 5, 15, 11, 15, 16, 21, 22, 5, 2, 8, 3], [69, 93, 132, 161, 152, 133, 111, 113, 92, 75, 60, 55],
-    [6, 5, 2, 3, 4, 2, 3, 1, 4, 7, 5, 3], [53, 61, 90, 131, 128, 109, 113, 74, 70, 65, 51, 44]];
+
+    let year = y_chosen_year;
+    let maintain_cat = ["home_renovation", "drywall_repair", "painting_service", "pressure_washing"];
+    let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    let temp = getServiceValues(historical_data, year, months, maintain_cat);
+    year_per_service_data = temp[0].values.map((_, index) =>
+        temp.map(entry => entry.values[index])
+    );
 
     loadYearlyDemandPerServiceChart();
-}
 
+    y_last_chosen = "maintain";
+}
 
 function loadDemandPerServiceChart() {
     var demand_per_service = document.getElementById("demand-per-service")
@@ -401,7 +404,6 @@ function loadDemandPerServiceChart() {
 
     option_demand_per_service && myChart_demand_per_service.setOption(option_demand_per_service)
 }
-
 
 function loadYearlyDemandPerServiceChart() {
 
@@ -481,7 +483,90 @@ function loadYearlyDemandPerServiceChart() {
     myChart_yearly_service2.setOption(option_yearly_service2)
 }
 
+function loadYearlyServiceDemand() {
 
+    let year = y_chosen_year;
+    let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    let cleaning_cat = ["regular_cleaning", "detailed_cleaning", "airbnb_cleaning", "move_out_in_cleaning", "other"];
+    let maintain_cat = ["home_renovation", "drywall_repair", "painting_service", "pressure_washing"];
+
+    let temp = getServiceValues(historical_data, year, months, cleaning_cat);
+    let temp1 = getServiceValues(historical_data, year, months, maintain_cat);
+
+    let cleaning_data = [];
+    let maintain_data = [];
+
+    months.forEach(function (month) {
+        const data = getValuesByMonth(temp, month);
+        const sum = data.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+        cleaning_data.push(sum);
+
+        const data1 = getValuesByMonth(temp1, month);
+        const sum1 = data1.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+        maintain_data.push(sum1);
+    });
+
+    var yearly_service = document.getElementById("yearly_service")
+    var myChart_yearly_service = echarts.init(yearly_service)
+    var option_yearly_service
+
+
+    option_yearly_service = {
+        tooltip: {
+            trigger: "axis",
+            axisPointer: {
+                type: "shadow"
+            }
+        },
+        legend: {
+            data: ['Cleaning Service', 'Maintenance Service']
+        },
+        grid: {
+            left: "3%",
+            right: "4%",
+            bottom: "3%",
+            containLabel: true
+        },
+        xAxis: [
+            {
+                type: "category",
+                data: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                axisTick: {
+                    alignWithLabel: true
+                }
+            }
+        ],
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name: "Cleaning Service",
+                data: cleaning_data,
+                type: 'line',
+                smooth: true,
+                areaStyle: {
+                    color: '#abc8f7'
+                },
+                showSymbol: false
+            },
+            {
+                name: "Maintenance Service",
+                data: maintain_data,
+                type: 'line',
+                smooth: true,
+                showSymbol: false,
+                areaStyle: {
+                    color: '#aae8a0'
+                }
+            },
+        ]
+
+    }
+    myChart_yearly_service.setOption(option_yearly_service)
+
+}
 
 function getServiceValues(data, year, months, serviceTypes) {
     return months.map(month => {
@@ -498,12 +583,10 @@ function getServiceValues(data, year, months, serviceTypes) {
     });
 }
 
-
 function getValuesByMonth(data, targetMonth) {
     const entry = data.find(item => item.month === targetMonth);
     return entry ? entry.values : null; // Return values if found, otherwise null
 }
-
 
 function getValuesByYear(data) {
 
@@ -533,9 +616,7 @@ function getValuesByYear(data) {
     }
 }
 
-
 function putValuesInCard() {
-
     if (d_date_type === 'month') {
 
         const year1 = d_chosenYear;
@@ -561,7 +642,6 @@ function putValuesInCard() {
         const temp1 = getServiceValues(historical_data, year1, month1, serviceTypes1)
         demand_per_service_data1 = getValuesByYear(temp1, month1);
         const sum1 = demand_per_service_data1.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-        console.log(sum1);
         document.getElementById('clean-card').textContent = sum1;
 
 
