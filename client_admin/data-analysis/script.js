@@ -247,10 +247,18 @@ function d_cleaning_service() {
 
     const temp = getServiceValues(historical_data, year, month, serviceTypes)
 
+    console.log("temp ===============");
+    console.log(temp);
+
     if (d_date_type === 'month') {
         demand_per_service_data = getValuesByMonth(temp, month[0]);
     } else {
+        console.log("temp ========taas=======");
+        console.log(temp);
         demand_per_service_data = getValuesByYear(temp);
+
+        console.log("demand per service data ===============");
+        console.log(demand_per_service_data);
     }
 
 
@@ -286,6 +294,7 @@ function d_maintenance_service() {
         demand_per_service_data = getValuesByMonth(temp, month[0]);
     } else {
         demand_per_service_data = getValuesByYear(temp);
+        console.log(demand_per_service_data);
     }
 
 
@@ -483,6 +492,17 @@ function getValuesByYear(data) {
 
     if (d_last_chosen === 'clean') {
         let columnSums = [0, 0, 0, 0, 0];
+
+        // Loop through the data and sum the values
+        data.forEach(entry => {
+            entry.values.forEach((value, index) => {
+                columnSums[index] += value; // Add the value to the corresponding column
+            });
+        });
+
+        return columnSums;
+    } else {
+        let columnSums = [0, 0, 0, 0];
 
         // Loop through the data and sum the values
         data.forEach(entry => {
