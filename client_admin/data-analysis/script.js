@@ -3,7 +3,7 @@ let d_chosenMonth;
 
 let d_last_chosen = 'clean';
 
-let d_date_type = 'year'
+let d_date_type = 'month'
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -23,81 +23,94 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let options;
 
-    if (d_date_type === 'month') {
-        d_chosenMonth = [convertToShortMonth(mm - 1)];
-        d_chosenYear = yyyy;
+    loadCalendar();
 
-        options = {
-            inputMode: true,
-            selectedTheme: 'light',
-            positionToInput: "auto",
-            type: 'month',
-            dateMax: today,
-            onClickMonth(self) {
-                if (!self.context.inputElement) return;
-                if (self.context.selectedMonth || self.context.selectedMonth == 0) {
+    const selectElement = document.getElementById('mySelect');
 
-                    let month = convertToMonth(self.context.selectedMonth);
-                    d_chosenMonth = [convertToShortMonth(self.context.selectedMonth)];
-
-                    self.context.inputElement.value = month + " " + self.context.selectedYear;
-
-                    d_chosenYear = self.context.selectedYear;
-
-                    if (d_last_chosen == 'clean')
-                        d_cleaning_service();
-                    else d_maintenance_service();
+    selectElement.addEventListener('change', function () {
+        const selectedValue = selectElement.value; // Get the selected value
+        console.log('Selected value:', selectedValue);
+        d_date_type = selectedValue;
+        loadCalendar();
+    });
 
 
-                    putValuesInCard();
-                    // if you want to hide the calendar after picking a date
-                    self.hide();
-                } else {
-                    self.context.inputElement.value = '';
-                }
-            },
-        }
-    } else {
-        d_chosenMonth = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        d_chosenYear = yyyy;
+    function loadCalendar() {
+        if (d_date_type === 'month') {
+            d_chosenMonth = [convertToShortMonth(mm - 1)];
+            d_chosenYear = yyyy;
 
-        options = {
-            inputMode: true,
-            selectedTheme: 'light',
-            positionToInput: "auto",
-            type: 'year',
-            dateMax: today,
-            onClickYear(self) {
-                if (!self.context.inputElement) return;
-                if (self.context.selectedYear) {
+            options = {
+                inputMode: true,
+                selectedTheme: 'light',
+                positionToInput: "auto",
+                type: 'month',
+                dateMax: today,
+                onClickMonth(self) {
+                    if (!self.context.inputElement) return;
+                    if (self.context.selectedMonth || self.context.selectedMonth == 0) {
 
-                    self.context.inputElement.value = self.context.selectedYear;
+                        let month = convertToMonth(self.context.selectedMonth);
+                        d_chosenMonth = [convertToShortMonth(self.context.selectedMonth)];
 
-                    d_chosenMonth = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                        self.context.inputElement.value = month + " " + self.context.selectedYear;
 
-                    d_chosenYear = self.context.selectedYear;
+                        d_chosenYear = self.context.selectedYear;
 
-                    if (d_last_chosen == 'clean')
-                        d_cleaning_service();
-                    else {
-                        d_maintenance_service();
+                        if (d_last_chosen == 'clean')
+                            d_cleaning_service();
+                        else d_maintenance_service();
+
+
+                        putValuesInCard();
+                        // if you want to hide the calendar after picking a date
+                        self.hide();
+                    } else {
+                        self.context.inputElement.value = '';
                     }
+                },
+            }
+        } else {
+            d_chosenMonth = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            d_chosenYear = yyyy;
+
+            options = {
+                inputMode: true,
+                selectedTheme: 'light',
+                positionToInput: "auto",
+                type: 'year',
+                dateMax: today,
+                onClickYear(self) {
+                    if (!self.context.inputElement) return;
+                    if (self.context.selectedYear) {
+
+                        self.context.inputElement.value = self.context.selectedYear;
+
+                        d_chosenMonth = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+                        d_chosenYear = self.context.selectedYear;
+
+                        if (d_last_chosen == 'clean')
+                            d_cleaning_service();
+                        else {
+                            d_maintenance_service();
+                        }
 
 
-                    putValuesInCard();
-                    self.hide();
+                        putValuesInCard();
+                        self.hide();
 
-                } else {
-                    self.context.inputElement.value = '';
-                }
-            },
+                    } else {
+                        self.context.inputElement.value = '';
+                    }
+                },
+            }
         }
+
+        const calendar = new Calendar('#input-calendar', options);
+        calendar.init();
     }
-
-    const calendar = new Calendar('#input-calendar', options);
-    calendar.init();
 });
-
 
 document.addEventListener('DOMContentLoaded', () => {
     // Destructure the Calendar constructor
@@ -135,6 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const calendar = new Calendar('#input-calendar-year', options);
     calendar.init();
 });
+
+
 
 
 function convertToMonth(temp) {
@@ -559,3 +574,4 @@ function putValuesInCard() {
         document.getElementById('maintain-card').textContent = sum;
     }
 }
+
