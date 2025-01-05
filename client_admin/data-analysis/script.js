@@ -79,7 +79,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     if (d_last_chosen == 'clean')
                         d_cleaning_service();
-                    else d_maintenance_service();
+                    else {
+                        d_maintenance_service();
+                    }
 
 
                     putValuesInCard();
@@ -490,7 +492,7 @@ function getValuesByMonth(data, targetMonth) {
 
 function getValuesByYear(data) {
 
-    if (d_last_chosen === 'clean') {
+    if (d_last_chosen === 'clean' || data[0].values.length === 5) {
         let columnSums = [0, 0, 0, 0, 0];
 
         // Loop through the data and sum the values
@@ -501,7 +503,8 @@ function getValuesByYear(data) {
         });
 
         return columnSums;
-    } else {
+
+    } else if (d_last_chosen === 'maintain' || data[0].values.length === 4) {
         let columnSums = [0, 0, 0, 0];
 
         // Loop through the data and sum the values
@@ -519,40 +522,40 @@ function getValuesByYear(data) {
 function putValuesInCard() {
 
     if (d_date_type === 'month') {
+
         const year1 = d_chosenYear;
         const month1 = d_chosenMonth;
         const serviceTypes1 = ["regular_cleaning", "detailed_cleaning", "airbnb_cleaning", "move_out_in_cleaning", "other"]
-
         const temp1 = getServiceValues(historical_data, year1, month1, serviceTypes1)
-
         demand_per_service_data1 = getValuesByMonth(temp1, month1[0]);
-
         const sum1 = demand_per_service_data1.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-
         document.getElementById('clean-card').textContent = sum1;
+
 
         const year = d_chosenYear;
         const month = d_chosenMonth;
-        const serviceTypes = ["home_renovation", "drywall_repair", "painitng_service", "pressure_washing"]
-
+        const serviceTypes = ["home_renovation", "drywall_repair", "painting_service", "pressure_washing"]
         const temp = getServiceValues(historical_data, year, month, serviceTypes)
-
         demand_per_service_data = getValuesByMonth(temp, month[0]);
-
         const sum = demand_per_service_data.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-
         document.getElementById('maintain-card').textContent = sum;
     } else {
         const year1 = d_chosenYear;
         const month1 = d_chosenMonth;
         const serviceTypes1 = ["regular_cleaning", "detailed_cleaning", "airbnb_cleaning", "move_out_in_cleaning", "other"]
-
         const temp1 = getServiceValues(historical_data, year1, month1, serviceTypes1)
-
         demand_per_service_data1 = getValuesByYear(temp1, month1);
-
         const sum1 = demand_per_service_data1.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-
+        console.log(sum1);
         document.getElementById('clean-card').textContent = sum1;
+
+
+        const year = d_chosenYear;
+        const month = d_chosenMonth;
+        const serviceTypes = ["home_renovation", "drywall_repair", "painting_service", "pressure_washing"]
+        const temp = getServiceValues(historical_data, year, month, serviceTypes)
+        demand_per_service_data = getValuesByYear(temp, month);
+        const sum = demand_per_service_data.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+        document.getElementById('maintain-card').textContent = sum;
     }
 }
