@@ -35,7 +35,7 @@
         "other": 0,
         "home_renovation": 0,
         "drywall_repair": 0,
-        "painting_service": 0,
+        "painting_service": 1,
         "pressure_washing": 4
     },
     {
@@ -61,7 +61,7 @@
         "other": 3,
         "home_renovation": 0,
         "drywall_repair": 1,
-        "painting_service": 0,
+        "painting_service": 2,
         "pressure_washing": 7
     },
     {

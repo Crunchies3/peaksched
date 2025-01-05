@@ -3,6 +3,8 @@ let d_chosenMonth;
 
 let d_last_chosen = 'clean';
 
+let d_date_type = 'year'
+
 
 document.addEventListener('DOMContentLoaded', () => {
     // Destructure the Calendar constructor
@@ -19,40 +21,77 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputElement = document.getElementById('input-calendar');
     inputElement.value = convertToMonth(mm - 1) + " " + yyyy;
 
-    d_chosenMonth = [convertToShortMonth(mm - 1)];
-    d_chosenYear = yyyy;
+    let options;
+
+    if (d_date_type === 'month') {
+        d_chosenMonth = [convertToShortMonth(mm - 1)];
+        d_chosenYear = yyyy;
+
+        options = {
+            inputMode: true,
+            selectedTheme: 'light',
+            positionToInput: "auto",
+            type: 'month',
+            dateMax: today,
+            onClickMonth(self) {
+                if (!self.context.inputElement) return;
+                if (self.context.selectedMonth || self.context.selectedMonth == 0) {
+
+                    let month = convertToMonth(self.context.selectedMonth);
+                    d_chosenMonth = [convertToShortMonth(self.context.selectedMonth)];
+
+                    self.context.inputElement.value = month + " " + self.context.selectedYear;
+
+                    d_chosenYear = self.context.selectedYear;
+
+                    if (d_last_chosen == 'clean')
+                        d_cleaning_service();
+                    else d_maintenance_service();
 
 
-    const options = {
-        inputMode: true,
-        selectedTheme: 'light',
-        positionToInput: "auto",
-        type: 'month',
-        dateMax: today,
-        onClickMonth(self) {
-            if (!self.context.inputElement) return;
-            if (self.context.selectedMonth || self.context.selectedMonth == 0) {
+                    putValuesInCard();
+                    // if you want to hide the calendar after picking a date
+                    self.hide();
+                } else {
+                    self.context.inputElement.value = '';
+                }
+            },
+        }
+    } else {
+        d_chosenMonth = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        d_chosenYear = yyyy;
 
-                let month = convertToMonth(self.context.selectedMonth);
-                d_chosenMonth = [convertToShortMonth(self.context.selectedMonth)];
+        options = {
+            inputMode: true,
+            selectedTheme: 'light',
+            positionToInput: "auto",
+            type: 'year',
+            dateMax: today,
+            onClickYear(self) {
+                if (!self.context.inputElement) return;
+                if (self.context.selectedYear) {
 
-                self.context.inputElement.value = month + " " + self.context.selectedYear;
+                    self.context.inputElement.value = self.context.selectedYear;
 
-                d_chosenYear = self.context.selectedYear;
+                    d_chosenMonth = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-                if (d_last_chosen == 'clean')
-                    d_cleaning_service();
-                else d_maintenance_service();
+                    d_chosenYear = self.context.selectedYear;
+
+                    if (d_last_chosen == 'clean')
+                        d_cleaning_service();
+                    else d_maintenance_service();
 
 
-                putValuesInCard();
-                // if you want to hide the calendar after picking a date
-                self.hide();
-            } else {
-                self.context.inputElement.value = '';
-            }
-        },
+                    putValuesInCard();
+                    self.hide();
+
+                } else {
+                    self.context.inputElement.value = '';
+                }
+            },
+        }
     }
+
     const calendar = new Calendar('#input-calendar', options);
     calendar.init();
 });
@@ -203,13 +242,22 @@ function d_cleaning_service() {
 
     const year = d_chosenYear;
     const month = d_chosenMonth;
+
     const serviceTypes = ["regular_cleaning", "detailed_cleaning", "airbnb_cleaning", "move_out_in_cleaning", "other"]
 
     const temp = getServiceValues(historical_data, year, month, serviceTypes)
 
-    demand_per_service_data = getValuesByMonth(temp, month[0]);
+    if (d_date_type === 'month') {
+        demand_per_service_data = getValuesByMonth(temp, month[0]);
+    } else {
+        demand_per_service_data = getValuesByYear(temp);
+    }
+
 
     loadDemandPerServiceChart();
+
+
+
 
     d_last_chosen = 'clean';
 
@@ -229,11 +277,17 @@ function d_maintenance_service() {
 
     const year = d_chosenYear;
     const month = d_chosenMonth;
-    const serviceTypes = ["home_renovation", "drywall_repair", "painitng_service", "pressure_washing"]
+    const serviceTypes = ["home_renovation", "drywall_repair", "painting_service", "pressure_washing"]
 
     const temp = getServiceValues(historical_data, year, month, serviceTypes)
 
-    demand_per_service_data = getValuesByMonth(temp, month[0]);
+
+    if (d_date_type === 'month') {
+        demand_per_service_data = getValuesByMonth(temp, month[0]);
+    } else {
+        demand_per_service_data = getValuesByYear(temp);
+    }
+
 
 
     loadDemandPerServiceChart();
@@ -420,35 +474,65 @@ function getServiceValues(data, year, months, serviceTypes) {
 
 
 function getValuesByMonth(data, targetMonth) {
-    console.log(targetMonth);
     const entry = data.find(item => item.month === targetMonth);
-    console.log(entry);
     return entry ? entry.values : null; // Return values if found, otherwise null
 }
 
 
+function getValuesByYear(data) {
+
+    if (d_last_chosen === 'clean') {
+        let columnSums = [0, 0, 0, 0, 0];
+
+        // Loop through the data and sum the values
+        data.forEach(entry => {
+            entry.values.forEach((value, index) => {
+                columnSums[index] += value; // Add the value to the corresponding column
+            });
+        });
+
+        return columnSums;
+    }
+}
+
+
 function putValuesInCard() {
-    const year1 = d_chosenYear;
-    const month1 = d_chosenMonth;
-    const serviceTypes1 = ["regular_cleaning", "detailed_cleaning", "airbnb_cleaning", "move_out_in_cleaning", "other"]
 
-    const temp1 = getServiceValues(historical_data, year1, month1, serviceTypes1)
+    if (d_date_type === 'month') {
+        const year1 = d_chosenYear;
+        const month1 = d_chosenMonth;
+        const serviceTypes1 = ["regular_cleaning", "detailed_cleaning", "airbnb_cleaning", "move_out_in_cleaning", "other"]
 
-    demand_per_service_data1 = getValuesByMonth(temp1, month1[0]);
+        const temp1 = getServiceValues(historical_data, year1, month1, serviceTypes1)
 
-    const sum1 = demand_per_service_data1.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+        demand_per_service_data1 = getValuesByMonth(temp1, month1[0]);
 
-    document.getElementById('clean-card').textContent = sum1;
+        const sum1 = demand_per_service_data1.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 
-    const year = d_chosenYear;
-    const month = d_chosenMonth;
-    const serviceTypes = ["home_renovation", "drywall_repair", "painitng_service", "pressure_washing"]
+        document.getElementById('clean-card').textContent = sum1;
 
-    const temp = getServiceValues(historical_data, year, month, serviceTypes)
+        const year = d_chosenYear;
+        const month = d_chosenMonth;
+        const serviceTypes = ["home_renovation", "drywall_repair", "painitng_service", "pressure_washing"]
 
-    demand_per_service_data = getValuesByMonth(temp, month[0]);
+        const temp = getServiceValues(historical_data, year, month, serviceTypes)
 
-    const sum = demand_per_service_data.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+        demand_per_service_data = getValuesByMonth(temp, month[0]);
 
-    document.getElementById('maintain-card').textContent = sum;
+        const sum = demand_per_service_data.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+
+        document.getElementById('maintain-card').textContent = sum;
+    } else {
+        const year1 = d_chosenYear;
+        const month1 = d_chosenMonth;
+        const serviceTypes1 = ["regular_cleaning", "detailed_cleaning", "airbnb_cleaning", "move_out_in_cleaning", "other"]
+
+        const temp1 = getServiceValues(historical_data, year1, month1, serviceTypes1)
+
+        demand_per_service_data1 = getValuesByYear(temp1, month1);
+
+        const sum1 = demand_per_service_data1.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+
+        document.getElementById('clean-card').textContent = sum1;
+    }
 }
