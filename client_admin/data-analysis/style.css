@@ -43,3 +43,140 @@
     border-bottom-right-radius: 10px;
     padding: 20px;
 }
+
+.loading {
+    --speed-of-animation: 0.9s;
+    --gap: 6px;
+    --first-color: #4c86f9;
+    --second-color: #49a84c;
+    --third-color: #f6bb02;
+    --fourth-color: #f6bb02;
+    --fifth-color: #2196f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    gap: 6px;
+    height: 100px;
+}
+
+.loading span {
+    width: 4px;
+    height: 50px;
+    background: var(--first-color);
+    animation: scale var(--speed-of-animation) ease-in-out infinite;
+}
+
+.loading span:nth-child(2) {
+    background: var(--second-color);
+    animation-delay: -0.8s;
+}
+
+.loading span:nth-child(3) {
+    background: var(--third-color);
+    animation-delay: -0.7s;
+}
+
+.loading span:nth-child(4) {
+    background: var(--fourth-color);
+    animation-delay: -0.6s;
+}
+
+.loading span:nth-child(5) {
+    background: var(--fifth-color);
+    animation-delay: -0.5s;
+}
+
+@keyframes scale {
+
+    0%,
+    40%,
+    100% {
+        transform: scaleY(0.05);
+    }
+
+    20% {
+        transform: scaleY(1);
+    }
+}
+
+
+
+.loader {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.jimu-primary-loading:before,
+.jimu-primary-loading:after {
+    position: absolute;
+    top: 0;
+    content: '';
+}
+
+.jimu-primary-loading:before {
+    left: -19.992px;
+}
+
+.jimu-primary-loading:after {
+    left: 19.992px;
+    -webkit-animation-delay: 0.32s !important;
+    animation-delay: 0.32s !important;
+}
+
+.jimu-primary-loading:before,
+.jimu-primary-loading:after,
+.jimu-primary-loading {
+    background: #076fe5;
+    -webkit-animation: loading-keys-app-loading 0.8s infinite ease-in-out;
+    animation: loading-keys-app-loading 0.8s infinite ease-in-out;
+    width: 13.6px;
+    height: 32px;
+}
+
+.jimu-primary-loading {
+    text-indent: -9999em;
+    margin: auto;
+    position: absolute;
+    right: calc(50% - 6.8px);
+    top: calc(50% - 16px);
+    -webkit-animation-delay: 0.16s !important;
+    animation-delay: 0.16s !important;
+}
+
+@-webkit-keyframes loading-keys-app-loading {
+
+    0%,
+    80%,
+    100% {
+        opacity: .75;
+        box-shadow: 0 0 #076fe5;
+        height: 32px;
+    }
+
+    40% {
+        opacity: 1;
+        box-shadow: 0 -8px #076fe5;
+        height: 40px;
+    }
+}
+
+@keyframes loading-keys-app-loading {
+
+    0%,
+    80%,
+    100% {
+        opacity: .75;
+        box-shadow: 0 0 #076fe5;
+        height: 32px;
+    }
+
+    40% {
+        opacity: 1;
+        box-shadow: 0 -8px #076fe5;
+        height: 40px;
+    }
+}

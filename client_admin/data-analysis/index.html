@@ -120,7 +120,7 @@
                     <p style="font-size: 14px;">Here's your analytic data</p>
                 </div>
                 <div class="row g-0 mb-3">
-                    <div class="col-5" style="padding-right: 15px;">
+                    <div class="col-xl-5" style="padding-right: 15px;">
                         <div class="container-fluid" id="subArea-single">
                             <div class="row mb-4">
                                 <p class="col fw-bold">Total Availed Services</p>
@@ -145,11 +145,15 @@
                             <div class="row g-0 mb-3">
                                 <div class="container-fluid col" style="margin-right: 15px;" id="service-card">
                                     <div class="col mb-2">Cleaning</div>
-                                    <h1 id="clean-card" style="font-size: 30px;"></h1>
+                                    <h1 id="clean-card" style="font-size: 30px;">
+                                        <span style="color: grey;">...</span>
+                                    </h1>
                                 </div>
                                 <div class="container-fluid col" id="service-card">
                                     <div class="col mb-2">Maintenance</div>
-                                    <h1 id="maintain-card" style="font-size: 30px;"></h1>
+                                    <h1 id="maintain-card" style="font-size: 30px;">
+                                        <span style="color: grey;">...</span>
+                                    </h1>
                                 </div>
                             </div>
                             <div class="container-fluid col" style="margin-right: 15px;" id="demand-card">
@@ -167,11 +171,20 @@
                                     </div>
                                 </div>
                                 <div id="demand-per-service" class="container-fluid mb-2" style="height: 340px;">
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <div class="loading" style="height: 300px;">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-7">
+                    <div class="col-xl-7">
                         <div class="container-fluid" id="subArea-single">
                             <div class="row mb-4">
                                 <p class="col fw-bold">Yearly Stats</p>
@@ -188,6 +201,15 @@
                             </div>
                             <div class="col">Total Availed Services</div>
                             <div id="yearly_service" class="container-fluid mb-4" style="height: 254px;">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <div class="loading" style="height: 250px;">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col mb-4">Demand per Service</div>
@@ -205,6 +227,15 @@
                                 </div>
                             </div>
                             <div id="yearly_service-2" class="container-fluid" style="height: 254px;">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <div class="loading" style="height: 300px;">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -213,37 +244,36 @@
                     <div style="font-weight: bold;" class="mb-4">Demand Forecast</div>
                     <div class="row col">
                         <div class="mb-3 col-xxl">
-                            <div class="btn btn-sm my-button-selected w-100">Services</div>
+                            <div onclick="service_check()" id="service_btn" class="btn btn-sm my-button-selected w-100">
+                                Services</div>
                         </div>
                         <div class="mb-4 col-xxl">
-                            <div class="btn btn-sm my-button-unselected w-100">Cleaning Service</div>
+                            <div onclick="cleaning_check()" id="cleaning_btn"
+                                class="btn btn-sm my-button-unselected w-100">Cleaning Service</div>
                         </div>
                         <div class="mb-4 col-xxl">
-                            <div class="btn btn-sm my-button-unselected w-100">Maintenance Service</div>
+                            <div onclick="maintain_check()" id="maintain_btn"
+                                class="btn btn-sm my-button-unselected w-100">Maintenance Service
+                            </div>
                         </div>
                     </div>
-                    <form class="mb-3">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                                value="Cleaning Service">
-                            <label class="form-check-label" for="inlineCheckbox1">Cleaning Service</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
-                                value="Maintenance Service">
-                            <label class="form-check-label" for="inlineCheckbox2">Maintenance Service</label>
-                        </div>
+
+                    <div class="mb-2">Select a service <span style="color: red;">*</span></div>
+                    <form id="my_form" class="mb-3">
+
                     </form>
                     <button class="btn-primary btn mb-4">Forecast</button>
                     <div id="forecast-card" class="d-flex justify-content-center align-items-center "
                         style="height: 450px;">
-                        <h1 style="color: gray;">Please select what to forecast first</h1>
+                        <div style="color: gray;">Please select a service or category to forecast demand. Your results
+                            will appear once you make a selection!</div>
                     </div>
+
                 </section>
             </div>
         </section>
         <script src="script.js"></script>
-        <script src="echarts.js"></script>
+        <script src="demand.js"></script>
 </body>
 
 </html>

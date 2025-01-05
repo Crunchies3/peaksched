@@ -242,7 +242,7 @@ async function getHistoricalData() {
         setTimeout(() => {
             console.log("Historical data fetched");
             resolve();
-        }, 1000); // Simulating async behavior
+        }, 1500); // Simulating async behavior
     });
 }
 
