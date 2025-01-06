@@ -2,7 +2,10 @@ const services_button = document.getElementById('service_btn');
 const cleaning_button = document.getElementById('cleaning_btn');
 const maintain_button = document.getElementById('maintain_btn');
 const myForm = document.getElementById('my_form');
+const forecast_button = document.getElementById('forecast_button');
+let selected_services = [];
 
+toggleButtonState();
 
 window.onLoad = service_check();
 
@@ -29,10 +32,13 @@ function service_check() {
                                 value="Maintenance Service">
                             <label class="form-check-label" for="inlineCheckbox2">Maintenance Service</label>
                         </div>`;
-
-
     myForm.innerHTML = checkBoxesHTML;
 
+    document.querySelectorAll(".form-check-input").forEach(checkbox => {
+        checkbox.addEventListener("change", toggleButtonState);
+    });
+
+    toggleButtonState();
 }
 
 function cleaning_check() {
@@ -73,6 +79,11 @@ function cleaning_check() {
 
     myForm.innerHTML = checkBoxesHTML;
 
+    document.querySelectorAll(".form-check-input").forEach(checkbox => {
+        checkbox.addEventListener("change", toggleButtonState);
+    });
+
+    toggleButtonState();
 }
 
 function maintain_check() {
@@ -106,5 +117,33 @@ function maintain_check() {
 
     myForm.innerHTML = checkBoxesHTML;
 
+    document.querySelectorAll(".form-check-input").forEach(checkbox => {
+        checkbox.addEventListener("change", toggleButtonState);
+    });
+
+    toggleButtonState();
+}
+
+function forecast() {
+    selected_services = [];
+    const checkboxes = document.querySelectorAll(".form-check-input");
+    checkboxes.forEach((checkbox) => {
+        if (checkbox.checked) {
+            selected_services.push(checkbox.value); // Add value to array if checkbox is selected
+        }
+    })
+
 
 }
+
+
+function toggleButtonState() {
+
+    const checkboxes = document.querySelectorAll(".form-check-input");
+    const anyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+    forecast_button.disabled = !anyChecked;
+}
+
+
+
