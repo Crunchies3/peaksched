@@ -1,8 +1,3 @@
-<?php
-require_once "./backend.php";
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 

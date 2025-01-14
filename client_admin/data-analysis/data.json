@@ -1,5 +1,18 @@
 [
     {
+        "year": 2025,
+        "month": "Jan",
+        "regular_cleaning": 2,
+        "detailed_cleaning": 2,
+        "airbnb_cleaning": 1,
+        "move_out_in_cleaning": 0,
+        "other": 0,
+        "home_renovation": 0,
+        "drywall_repair": 1,
+        "painting_service": 0,
+        "pressure_washing": 0
+    },
+    {
         "year": 2024,
         "month": "Jan",
         "regular_cleaning": 69,
