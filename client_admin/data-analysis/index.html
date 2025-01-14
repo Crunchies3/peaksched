@@ -132,7 +132,6 @@
                                             <select class="form-select" id="mySelect">
                                                 <option value="month" selected>Monthly</option>
                                                 <option value="year">Yearly</option>
-                                                <option value="custom">Custom</option>
                                             </select>
                                         </div>
                                         <div class="col-7">
@@ -263,10 +262,29 @@
                     <div class="mb-2">Select a service <span style="color: red;">*</span></div>
                     <div id="my_form" class="mb-3">
                     </div>
-                    <button id="forecast_button" class="btn-primary btn mb-4" onclick="forecast()"
-                        disabled>Forecast</button>
-                    <div id="forecast_chart" class="container-fluid" style="height: 300px;">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="row">
+                                <div class="col-6">
+                                    <input id="forecast_input" placeholder="Select a month and year"
+                                        class="mb-4 form-control input-field" readonly></input>
+                                </div>
+                                <div class="col-6">
+                                    <button id="forecast_button" class="btn-primary btn" onclick="forecast()"
+                                        disabled>Forecast</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <div id="forecast_chart" class="container-fluid d-flex justify-content-center align-content-center"
+                        style="height: 300px;">
+                        <div class="mt-5" style="color: grey;">Please select a
+                            service or category to forecast demand. Your results
+                            will appear once you make a selection!</div>
+                    </div>
+
+
+
                 </section>
             </div>
         </section>

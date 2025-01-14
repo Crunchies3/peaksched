@@ -64,7 +64,184 @@ async function predictFutureDemand(model, startYear, startMonth, monthsAhead, sc
 
     return predictions;
 }
-// Example scaled data (Replace this with your actual scaled data array)
+
+
+// Example: Predict demand for the next 20 months (from January 2025 to August 2026)
+//pde ra guro iparameterized ang 2024(year), 12(december or current month), 20(next months ahead)
+
+async function regular_cleaning() {
+
+    const model = await loadModel();
+    const predictedFutureDemand = await predictFutureDemand(
+        model, 2024, 12, months_ahead, scaledData
+    );
+    let predicted_values = predictedFutureDemand.map(demand => Math.round(demand));
+    let rem = months_ahead % 12;
+    if (months_ahead > 12 && rem != 0) {
+        predicted_values = predicted_values.slice(months_ahead - rem, months_ahead)
+    } else if (months_ahead > 12 && rem == 0) {
+        predicted_values = predicted_values.slice(months_ahead - 12, months_ahead)
+    }
+    collections_of_predicted_values.push(predicted_values);
+}
+
+
+function detailed_cleaning() {
+
+    let dataSubset = detailedCleaning.slice(0, months_ahead);
+
+    let rem = months_ahead % 12;
+
+
+    if (months_ahead > 12 && rem != 0) {
+        dataSubset = dataSubset.slice(months_ahead - rem, months_ahead)
+    } else if (months_ahead > 12 && rem == 0) {
+        dataSubset = dataSubset.slice(months_ahead - 12, months_ahead)
+    }
+
+    collections_of_predicted_values.push(dataSubset);
+    console.log(collections_of_predicted_values);
+}
+
+
+function airbnb_cleaning() {
+    let dataSubset = airBnBCleaning.slice(0, months_ahead);
+    let rem = months_ahead % 12;
+
+    if (months_ahead > 12 && rem != 0) {
+        dataSubset = dataSubset.slice(months_ahead - rem, months_ahead)
+    } else if (months_ahead > 12 && rem == 0) {
+        dataSubset = dataSubset.slice(months_ahead - 12, months_ahead)
+    }
+
+
+    collections_of_predicted_values.push(dataSubset);
+    console.log(collections_of_predicted_values);
+}
+
+
+function move_out_in_cleaning() {
+    let dataSubset = moveInOutCleaning.slice(0, months_ahead);
+    let rem = months_ahead % 12;
+
+    if (months_ahead > 12 && rem != 0) {
+        dataSubset = dataSubset.slice(months_ahead - rem, months_ahead)
+    } else if (months_ahead > 12 && rem == 0) {
+        dataSubset = dataSubset.slice(months_ahead - 12, months_ahead)
+    }
+
+
+
+    collections_of_predicted_values.push(dataSubset);
+    console.log(collections_of_predicted_values);
+}
+
+function other_cleaning() {
+    let dataSubset = otherCleaning.slice(0, months_ahead);
+    let rem = months_ahead % 12;
+
+
+    if (months_ahead > 12 && rem != 0) {
+        dataSubset = dataSubset.slice(months_ahead - rem, months_ahead)
+    } else if (months_ahead > 12 && rem == 0) {
+        dataSubset = dataSubset.slice(months_ahead - 12, months_ahead)
+    }
+
+
+    collections_of_predicted_values.push(dataSubset);
+    console.log(collections_of_predicted_values);
+}
+
+function home_renovation() {
+    let dataSubset = homeRenovation.slice(0, months_ahead);
+    let rem = months_ahead % 12;
+
+    if (months_ahead > 12 && rem != 0) {
+        dataSubset = dataSubset.slice(months_ahead - rem, months_ahead)
+    } else if (months_ahead > 12 && rem == 0) {
+        dataSubset = dataSubset.slice(months_ahead - 12, months_ahead)
+    }
+
+
+
+    collections_of_predicted_values.push(dataSubset);
+    console.log(collections_of_predicted_values);
+}
+
+function drywall_repair() {
+    let dataSubset = drywallRepair.slice(0, months_ahead);
+    let rem = months_ahead % 12;
+
+    if (months_ahead > 12 && rem != 0) {
+        dataSubset = dataSubset.slice(months_ahead - rem, months_ahead)
+    } else if (months_ahead > 12 && rem == 0) {
+        dataSubset = dataSubset.slice(months_ahead - 12, months_ahead)
+    }
+
+
+    collections_of_predicted_values.push(dataSubset);
+    console.log(collections_of_predicted_values);
+}
+
+function painting_service() {
+    let dataSubset = painting.slice(0, months_ahead);
+    let rem = months_ahead % 12;
+
+    if (months_ahead > 12 && rem != 0) {
+        dataSubset = dataSubset.slice(months_ahead - rem, months_ahead)
+    } else if (months_ahead > 12 && rem == 0) {
+        dataSubset = dataSubset.slice(months_ahead - 12, months_ahead)
+    }
+
+
+    collections_of_predicted_values.push(dataSubset);
+    console.log(collections_of_predicted_values);
+}
+
+function pressure_washing() {
+    let dataSubset = pressureWashing.slice(0, months_ahead);
+    let rem = months_ahead % 12;
+
+    if (months_ahead > 12 && rem != 0) {
+        dataSubset = dataSubset.slice(months_ahead - rem, months_ahead)
+    } else if (months_ahead > 12 && rem == 0) {
+        dataSubset = dataSubset.slice(months_ahead - 12, months_ahead)
+    }
+
+    collections_of_predicted_values.push(dataSubset);
+    console.log(collections_of_predicted_values);
+}
+
+function cleaning_service() {
+    let dataSubset = cleaningService.slice(0, months_ahead);
+    let rem = months_ahead % 12;
+
+    if (months_ahead > 12 && rem != 0) {
+        dataSubset = dataSubset.slice(months_ahead - rem, months_ahead)
+    } else if (months_ahead > 12 && rem == 0) {
+        dataSubset = dataSubset.slice(months_ahead - 12, months_ahead)
+    }
+
+
+    collections_of_predicted_values.push(dataSubset);
+    console.log(collections_of_predicted_values);
+}
+
+function maintenance_service() {
+    let dataSubset = maintenanceService.slice(0, months_ahead);
+    let rem = months_ahead % 12;
+
+    if (months_ahead > 12 && rem != 0) {
+        dataSubset = dataSubset.slice(months_ahead - rem, months_ahead)
+    } else if (months_ahead > 12 && rem == 0) {
+        dataSubset = dataSubset.slice(months_ahead - 12, months_ahead)
+    }
+
+    collections_of_predicted_values.push(dataSubset);
+    console.log(collections_of_predicted_values);
+}
+
+
 const scaledData = [
     { year: 2024, month: 1, scaledDemand: 0.04 },
     { year: 2024, month: 2, scaledDemand: 0.12 },
@@ -79,84 +256,6 @@ const scaledData = [
     { year: 2024, month: 11, scaledDemand: 0.23 },
     { year: 2024, month: 12, scaledDemand: 0.14 }
 ];
-
-// Example: Predict demand for the next 20 months (from January 2025 to August 2026)
-//pde ra guro iparameterized ang 2024(year), 12(december or current month), 20(next months ahead)
-
-async function regular_cleaning() {
-    const model = await loadModel(); // Wait for the model to load
-    const predictedFutureDemand = await predictFutureDemand(
-        model, 2024, 12, months_ahead, scaledData
-    );
-    const predicted_values = predictedFutureDemand.map(demand => Math.round(demand));
-    collections_of_predicted_values.push(predicted_values);
-}
-
-
-function detailed_cleaning() {
-    const dataSubset = detailedCleaning.slice(0, months_ahead);
-    collections_of_predicted_values.push(dataSubset);
-    console.log(collections_of_predicted_values);
-}
-
-
-function airbnb_cleaning() {
-    const dataSubset = airBnBCleaning.slice(0, months_ahead);
-    collections_of_predicted_values.push(dataSubset);
-    console.log(collections_of_predicted_values);
-}
-
-
-function move_out_in_cleaning() {
-    const dataSubset = moveInOutCleaning.slice(0, months_ahead);
-    collections_of_predicted_values.push(dataSubset);
-    console.log(collections_of_predicted_values);
-}
-
-function other_cleaning() {
-    const dataSubset = otherCleaning.slice(0, months_ahead);
-    collections_of_predicted_values.push(dataSubset);
-    console.log(collections_of_predicted_values);
-}
-
-function home_renovation() {
-    const dataSubset = homeRenovation.slice(0, months_ahead);
-    collections_of_predicted_values.push(dataSubset);
-    console.log(collections_of_predicted_values);
-}
-
-function drywall_repair() {
-    const dataSubset = drywallRepair.slice(0, months_ahead);
-    collections_of_predicted_values.push(dataSubset);
-    console.log(collections_of_predicted_values);
-}
-
-function painting_service() {
-    const dataSubset = painting.slice(0, months_ahead);
-    collections_of_predicted_values.push(dataSubset);
-    console.log(collections_of_predicted_values);
-}
-
-function pressure_washing() {
-    const dataSubset = pressureWashing.slice(0, months_ahead);
-    collections_of_predicted_values.push(dataSubset);
-    console.log(collections_of_predicted_values);
-}
-
-function cleaning_service() {
-    const dataSubset = cleaningService.slice(0, months_ahead);
-    collections_of_predicted_values.push(dataSubset);
-    console.log(collections_of_predicted_values);
-}
-
-function maintenance_service() {
-    const dataSubset = maintenanceService.slice(0, months_ahead);
-    collections_of_predicted_values.push(dataSubset);
-    console.log(collections_of_predicted_values);
-}
-
-
-
 
 
 

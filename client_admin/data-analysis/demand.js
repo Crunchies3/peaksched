@@ -135,7 +135,6 @@ async function forecast() {
     for (const checkbox of checkboxes) {
         if (checkbox.checked) {
             selected_services.push(checkbox.value); // Add value to array if checkbox is selected
-            months_ahead = 12;
             switch (checkbox.value) {
                 case "Cleaning Service":
                     await cleaning_service();
@@ -144,7 +143,7 @@ async function forecast() {
                     await maintenance_service();
                     break;
                 case "regular_cleaning":
-                    await regular_cleaning(); // Wait for regular_cleaning to finish
+                    await regular_cleaning();
                     break;
                 case "detailed_cleaning":
                     await detailed_cleaning();

@@ -655,3 +655,81 @@ function putValuesInCard() {
     }
 }
 
+
+
+let forecast_month;
+let forecast_year;
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Destructure the Calendar constructor
+    const { Calendar } = window.VanillaCalendarPro;
+    // Create a calendar instance and initialize it.
+
+    var today = new Date();
+    var dd = String(today.getDate() + 1).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+    today = yyyy + '-' + mm + '-' + dd;
+
+    let options;
+
+    loadCalendar();
+
+    function loadCalendar() {
+        forecast_month = [convertToShortMonth(mm - 1)];
+        forecast_year = yyyy;
+
+        options = {
+            inputMode: true,
+            selectedTheme: 'light',
+            positionToInput: "auto",
+            type: 'month',
+            onClickMonth(self) {
+                if (!self.context.inputElement) return;
+                if (self.context.selectedMonth || self.context.selectedMonth == 0) {
+
+                    let month = convertToMonth(self.context.selectedMonth);
+                    forecast_month = [convertToShortMonth(self.context.selectedMonth)];
+
+                    self.context.inputElement.value = month + " " + self.context.selectedYear;
+
+                    forecast_year = self.context.selectedYear;
+
+                    self.hide();
+
+                    // Example usage
+                    const date1 = new Date(2024, 11);
+                    const date2 = new Date(forecast_year, self.context.selectedMonth);
+
+                    const differenceInMonths = getMonthYearDifference(date1, date2);
+                    console.log(`Difference in months: ${differenceInMonths}`);
+
+                    months_ahead = differenceInMonths;
+                } else {
+                    self.context.inputElement.value = '';
+                }
+            },
+        }
+        const calendar = new Calendar('#forecast_input', options);
+        calendar.init();
+    }
+});
+
+function getMonthYearDifference(startDate, endDate) {
+    // Extract year and month from the start date
+    const startYear = startDate.getFullYear();
+    const startMonth = startDate.getMonth(); // Months are 0-based in JavaScript
+
+    // Extract year and month from the end date
+    const endYear = endDate.getFullYear();
+    const endMonth = endDate.getMonth();
+
+    // Calculate the difference in months
+    const totalMonthsStart = startYear * 12 + startMonth;
+    const totalMonthsEnd = endYear * 12 + endMonth;
+
+    // Return the absolute difference in months
+    return Math.abs(totalMonthsEnd - totalMonthsStart);
+}
+
+
