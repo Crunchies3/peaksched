@@ -4,6 +4,8 @@ const maintain_button = document.getElementById('maintain_btn');
 const myForm = document.getElementById('my_form');
 const forecast_button = document.getElementById('forecast_button');
 let selected_services = [];
+let yAxis = [];
+
 
 toggleButtonState();
 
@@ -124,17 +126,70 @@ function maintain_check() {
     toggleButtonState();
 }
 
-function forecast() {
+async function forecast() {
+    yAxis.length = 0;
+
     selected_services = [];
     const checkboxes = document.querySelectorAll(".form-check-input");
-    checkboxes.forEach((checkbox) => {
+
+    for (const checkbox of checkboxes) {
         if (checkbox.checked) {
             selected_services.push(checkbox.value); // Add value to array if checkbox is selected
+            months_ahead = 12;
+            switch (checkbox.value) {
+                case "Cleaning Service":
+                    await cleaning_service();
+                    break;
+                case "Maintenance Service":
+                    await maintenance_service();
+                    break;
+                case "regular_cleaning":
+                    await regular_cleaning(); // Wait for regular_cleaning to finish
+                    break;
+                case "detailed_cleaning":
+                    await detailed_cleaning();
+                    break;
+                case "airbnb_cleaning":
+                    await airbnb_cleaning();
+                    break;
+                case "move_out_in_cleaning":
+                    await move_out_in_cleaning();
+                    break;
+                case "other":
+                    await other_cleaning();
+                    break;
+                case "home_renovation":
+                    await home_renovation();
+                    break;
+                case "drywall_repair":
+                    await drywall_repair();
+                    break;
+                case "painting_service":
+                    await painting_service();
+                    break;
+                case "pressure_washing":
+                    await pressure_washing();
+                    break;
+            }
         }
-    })
+    }
 
+    yAxis = selected_services.map((service, index) => ({
+        name: service,
+        data: collections_of_predicted_values[index],
+        type: 'line',
+        smooth: true,
+        showSymbol: false,
+    }));
+
+    loadForecastChart();
+
+    console.log(yAxis);
+
+    collections_of_predicted_values = [];
 
 }
+
 
 
 function toggleButtonState() {
@@ -143,6 +198,46 @@ function toggleButtonState() {
     const anyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
 
     forecast_button.disabled = !anyChecked;
+}
+
+
+function loadForecastChart() {
+    var forecast_chart = document.getElementById("forecast_chart")
+    var myChart_yearly_service3 = echarts.init(forecast_chart)
+    var option_yearly_service3
+
+    option_yearly_service3 = {
+        tooltip: {
+            trigger: "axis",
+            axisPointer: {
+                type: "shadow"
+            }
+        },
+        legend: {
+            data: selected_services
+        },
+        grid: {
+            left: "3%",
+            right: "4%",
+            bottom: "3%",
+            containLabel: true
+        },
+        xAxis: [
+
+            {
+                type: "category",
+                data: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                axisTick: {
+                    alignWithLabel: true
+                }
+            }
+        ],
+        yAxis: {
+            type: 'value'
+        },
+        series: yAxis
+    }
+    myChart_yearly_service3.setOption(option_yearly_service3)
 }
 
 

@@ -237,12 +237,12 @@ async function getHistoricalData() {
     }).catch(error => {
         console.error("Error loading the JSON file:", error)
     });
-
+    const del = Math.floor(Math.random() * (1500 - 300 + 1)) + 500;
     return new Promise(resolve => {
         setTimeout(() => {
             console.log("Historical data fetched");
             resolve();
-        }, 1500); // Simulating async behavior
+        }, del);
     });
 }
 

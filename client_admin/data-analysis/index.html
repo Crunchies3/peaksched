@@ -18,6 +18,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+
 
 
     <link rel="stylesheet" href="../css/dashboard_styles.css" />
@@ -240,7 +242,7 @@
                         </div>
                     </div>
                 </div>
-                <section class="container-fluid" id="subArea-single">
+                <section class="container-fluid mb-4" id="subArea-single">
                     <div style="font-weight: bold;" class="mb-4">Demand Forecast</div>
                     <div class="row col">
                         <div class="mb-3 col-xxl">
@@ -263,17 +265,15 @@
                     </div>
                     <button id="forecast_button" class="btn-primary btn mb-4" onclick="forecast()"
                         disabled>Forecast</button>
-                    <div id="forecast-card" class="d-flex justify-content-center align-items-center "
-                        style="height: 450px;">
-                        <div style="color: gray;">Please select a service or category to forecast demand. Your results
-                            will appear once you make a selection!</div>
+                    <div id="forecast_chart" class="container-fluid" style="height: 300px;">
                     </div>
-
                 </section>
             </div>
         </section>
         <script src="script.js"></script>
         <script src="demand.js"></script>
+        <script src="prediction.js"></script>
+        <script src="./tfjs_model/data.js"></script>
 </body>
 
 </html>
