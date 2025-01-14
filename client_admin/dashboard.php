@@ -62,7 +62,7 @@ require_once "php/dashboard.php";
                 <li class="sidebar-item">
                     <a href="./data-analysis/" class="sidebar-link">
                         <i class="bi bi-clipboard2-data-fill"></i>
-                        <span>Dashboard</span>
+                        <span>Data Analytics</span>
                     </a>
                 </li>
                 <li class="sidebar-item">

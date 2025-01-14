@@ -1,3 +1,8 @@
+<?php
+require_once "./backend.php";
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,7 +61,7 @@
                 <li class="sidebar-item">
                     <a href="" class="sidebar-link selected">
                         <i class="bi bi-clipboard2-data-fill"></i>
-                        <span>Dashboard</span>
+                        <span>Data Analytics</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
